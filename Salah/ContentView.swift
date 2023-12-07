@@ -8,31 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var locationManger = LocationManager()
     @State private var prayerTimes:[String] = []
     var body: some View {
-        NavigationStack {
-            List{
-                ForEach(prayerTimes,id:\.self){prayer in
-                    Text(prayer)
-                }
+        Group{
+            if locationManger.lastLocation == nil {
+                LocationPermissionOnboard()
             }
-        }.onAppear{
-            let time = PrayTime()
-            time.setCalcMethod(3)
-            
-            print(time.getZone())
-            let getTime = time.getDatePrayerTimes(2023, andMonth: 12, andDay: 6, andLatitude: 49.44, andLongitude: 11.02, andtimeZone: 1.0)!
-            prayerTimes = getTime as! [String]
-            
-            
-
-            // Call the function to parse the local JSON data
-            parseLocalJSON()
-
-             
-
-
+            else{
+                MainNavigationView()
+            }
         }
+        .environmentObject(locationManger)
+//        NavigationView()
+//        .onAppear{
+//            let time = PrayTime()
+//            time.setCalcMethod(3)
+//            
+//            print(time.getZone())
+//            let getTime = time.getDatePrayerTimes(2023, andMonth: 12, andDay: 6, andLatitude: 49.44, andLongitude: 11.02, andtimeZone: 1.0)!
+//            prayerTimes = getTime as! [String]
+//            
+//            
+//
+//            // Call the function to parse the local JSON data
+//            parseLocalJSON()
+//
+//             
+//
+//
+//        }
     }
     
     func parseLocalJSON() {

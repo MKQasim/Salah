@@ -7,25 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0504785F2B20DF6800E6BE85 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* data.json */; };
+		050478602B20DF6800E6BE85 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
+		050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* SidebarView.swift */; };
+		050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478652B20EE2F00E6BE85 /* MainNavigationView.swift */; };
+		0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786A2B20F33600E6BE85 /* LocationManager.swift */; };
+		0504786D2B20F52000E6BE85 /* SalahDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786C2B20F52000E6BE85 /* SalahDetailView.swift */; };
+		050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */; };
 		C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
 		C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E30B2B20793A00964AF0 /* ContentView.swift */; };
 		C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E30D2B20793C00964AF0 /* Assets.xcassets */; };
 		C9F5E3122B20793C00964AF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E3112B20793C00964AF0 /* Preview Assets.xcassets */; };
-		C9F5E3192B207E8900964AF0 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E3182B207E8900964AF0 /* data.json */; };
-		C9F5E31D2B207EBD00964AF0 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E31C2B207EBD00964AF0 /* PrayTime.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0504785C2B20DF6800E6BE85 /* PrayTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrayTime.h; sourceTree = "<group>"; };
+		0504785D2B20DF6800E6BE85 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		0504785E2B20DF6800E6BE85 /* PrayTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrayTime.m; sourceTree = "<group>"; };
+		050478632B20EDFA00E6BE85 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		050478652B20EE2F00E6BE85 /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
+		0504786A2B20F33600E6BE85 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		0504786C2B20F52000E6BE85 /* SalahDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahDetailView.swift; sourceTree = "<group>"; };
+		0504786E2B20F63500E6BE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionOnboard.swift; sourceTree = "<group>"; };
 		C9F5E3062B20793A00964AF0 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5E3092B20793A00964AF0 /* SalahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahApp.swift; sourceTree = "<group>"; };
 		C9F5E30B2B20793A00964AF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C9F5E30D2B20793C00964AF0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C9F5E30F2B20793C00964AF0 /* Salah.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Salah.entitlements; sourceTree = "<group>"; };
 		C9F5E3112B20793C00964AF0 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C9F5E3182B207E8900964AF0 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = ../../../../../../../Documents/CPlusPlussinSwiftui/CPlusPlussinSwiftui/data.json; sourceTree = "<group>"; };
 		C9F5E31A2B207EBC00964AF0 /* Salah-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Salah-Bridging-Header.h"; sourceTree = "<group>"; };
-		C9F5E31B2B207EBD00964AF0 /* PrayTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrayTime.h; path = ../../../../../../../Documents/CPlusPlussinSwiftui/CPlusPlussinSwiftui/PrayTime.h; sourceTree = "<group>"; };
-		C9F5E31C2B207EBD00964AF0 /* PrayTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrayTime.m; path = ../../../../../../../Documents/CPlusPlussinSwiftui/CPlusPlussinSwiftui/PrayTime.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +50,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		050478612B20EDBA00E6BE85 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0504786F2B20F97800E6BE85 /* OnBoarding */,
+				050478672B20EE4900E6BE85 /* DetailView */,
+				050478622B20EDD400E6BE85 /* Navigation */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		050478622B20EDD400E6BE85 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				050478632B20EDFA00E6BE85 /* SidebarView.swift */,
+				050478652B20EE2F00E6BE85 /* MainNavigationView.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
+		050478672B20EE4900E6BE85 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				0504786C2B20F52000E6BE85 /* SalahDetailView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		050478682B20F18B00E6BE85 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				0504785E2B20DF6800E6BE85 /* PrayTime.m */,
+				0504785C2B20DF6800E6BE85 /* PrayTime.h */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		050478692B20F32400E6BE85 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				0504786A2B20F33600E6BE85 /* LocationManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		0504786F2B20F97800E6BE85 /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
 		C9F5E2FD2B20793A00964AF0 = {
 			isa = PBXGroup;
 			children = (
@@ -58,15 +121,17 @@
 		C9F5E3082B20793A00964AF0 /* Salah */ = {
 			isa = PBXGroup;
 			children = (
+				0504786E2B20F63500E6BE85 /* Info.plist */,
+				050478692B20F32400E6BE85 /* Services */,
+				050478612B20EDBA00E6BE85 /* Views */,
 				C9F5E3092B20793A00964AF0 /* SalahApp.swift */,
 				C9F5E30B2B20793A00964AF0 /* ContentView.swift */,
-				C9F5E3182B207E8900964AF0 /* data.json */,
-				C9F5E31B2B207EBD00964AF0 /* PrayTime.h */,
-				C9F5E31C2B207EBD00964AF0 /* PrayTime.m */,
+				0504785D2B20DF6800E6BE85 /* data.json */,
+				050478682B20F18B00E6BE85 /* Main */,
 				C9F5E30D2B20793C00964AF0 /* Assets.xcassets */,
 				C9F5E30F2B20793C00964AF0 /* Salah.entitlements */,
-				C9F5E3102B20793C00964AF0 /* Preview Content */,
 				C9F5E31A2B207EBC00964AF0 /* Salah-Bridging-Header.h */,
+				C9F5E3102B20793C00964AF0 /* Preview Content */,
 			);
 			path = Salah;
 			sourceTree = "<group>";
@@ -139,7 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F5E3122B20793C00964AF0 /* Preview Assets.xcassets in Resources */,
-				C9F5E3192B207E8900964AF0 /* data.json in Resources */,
+				0504785F2B20DF6800E6BE85 /* data.json in Resources */,
 				C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,9 +216,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0504786D2B20F52000E6BE85 /* SalahDetailView.swift in Sources */,
+				050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */,
 				C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */,
+				050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */,
+				0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */,
+				050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */,
 				C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */,
-				C9F5E31D2B207EBD00964AF0 /* PrayTime.m in Sources */,
+				050478602B20DF6800E6BE85 /* PrayTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,9 +356,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Salah/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Salah;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationUsageDescription = "This app require you location coodinates to calculate salah timing natively";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app require you location coodinates to calculate salah timing natively";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -297,8 +372,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
@@ -329,9 +403,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Salah/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Salah;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSLocationUsageDescription = "This app require you location coodinates to calculate salah timing natively";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app require you location coodinates to calculate salah timing natively";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -340,8 +419,7 @@
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";

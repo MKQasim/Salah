@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+#if os(iOS)
 import CoreLocationUI
-
+#endif
 struct LocationPermissionOnboard: View {
+    @EnvironmentObject private var locationState: LocationState
     @EnvironmentObject private var locationManager: LocationManager
     
     @State private var animationAmount = 1.0
     
     var body: some View {
-        NavigationView{
+        NavigationStack{
             VStack{
                 VStack{
                     Text("Start with new journey of Salah Tracking")
@@ -30,34 +32,69 @@ struct LocationPermissionOnboard: View {
                 Image(systemName: "paperplane.circle.fill")
                     .foregroundColor(.blue)
                     .font(.largeTitle)
+                    .scaleEffect(animationAmount)
                     .animation(
                         .easeInOut(duration: 3),
                         value: animationAmount
                     )
-                    .scaleEffect(animationAmount)
                     .padding(.bottom,20)
                 Spacer()
-                LocationButton(action: {
-                    locationManager.requestLocation()
-                })
-                .symbolVariant(.fill)
-                .foregroundColor(.white)
-                .cornerRadius(20)
-                .padding(.bottom,8)
-
-                Button(action: {}, label: {
-                    Text("Don't want to share")
-                })
-                .padding(.bottom,8)
+                switch locationManager.locationStatus {
+                case .denied:
+                    EmptyView()
+                case .authorizedAlways, .authorizedWhenInUse, .authorized:
+                    Button(action: locationCheck, label: {
+                        Text("Get current location")
+                    })
+                    .buttonStyle(.borderedProminent)
+                    .tint(.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+                    .padding(.bottom,8)
+                default:
+                    Button(action: {
+                        locationManager.requestLocation()
+                    }, label: {
+                        Text("Allow location permission")
+                    })
+                    .buttonStyle(.borderedProminent)
+                    .tint(.gray)
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+                    .padding(.bottom,8)
+                }
+                
+                NavigationLink("Don't want to share location", destination: ManualLocationView())
+                    .padding(.bottom,8)
             }
             .padding()
         }
         .onAppear{
-            animationAmount += 4
+            animationAmount += 2
         }
+    }
+    
+    func locationCheck() {
+        switch locationManager.locationStatus {
+        case .notDetermined, .restricted, .denied:
+            locationState.isLocation = true
+        case .authorizedAlways, .authorizedWhenInUse, .authorized:
+            locationManager.requestLocation()
+            guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
+            locationState.latitude = userCoordinates.latitude
+            locationState.longitude = userCoordinates.longitude
+            locationState.isLocation = true
+        default:
+            locationState.isLocation = true
+        }
+        
+        
+
     }
 }
 
 #Preview {
     LocationPermissionOnboard()
+        .environmentObject(LocationState())
+        .environmentObject(LocationManager())
 }

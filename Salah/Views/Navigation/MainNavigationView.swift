@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct MainNavigationView: View {
-    
+    @EnvironmentObject private var locationState: LocationState
     @Environment (\.horizontalSizeClass) private var horizontalSize
     
     var body: some View {
         switch horizontalSize{
         case .compact:
-            SalahDetailView()
+            NavigationStack{
+                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
+            }
         case .regular:
             SidebarView()
         case .none:
@@ -27,4 +29,6 @@ struct MainNavigationView: View {
 
 #Preview {
     MainNavigationView()
+        .environmentObject(LocationManager())
+        .environmentObject(LocationState())
 }

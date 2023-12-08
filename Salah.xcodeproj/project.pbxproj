@@ -7,22 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0504785F2B20DF6800E6BE85 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* data.json */; };
+		0504785F2B20DF6800E6BE85 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* cities.json */; };
 		050478602B20DF6800E6BE85 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
 		050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* SidebarView.swift */; };
 		050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478652B20EE2F00E6BE85 /* MainNavigationView.swift */; };
 		0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786A2B20F33600E6BE85 /* LocationManager.swift */; };
 		0504786D2B20F52000E6BE85 /* SalahDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786C2B20F52000E6BE85 /* SalahDetailView.swift */; };
 		050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */; };
+		052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052F0CAB2B2310E30037ADAE /* LocationState.swift */; };
+		056F97BF2B21C732006AC7F8 /* ManualLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */; };
+		056F97C12B21CEFC006AC7F8 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C02B21CEFC006AC7F8 /* PickerTextField.swift */; };
+		056F97C42B223274006AC7F8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C32B223274006AC7F8 /* Location.swift */; };
+		056F97C72B228573006AC7F8 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = 056F97C62B228573006AC7F8 /* country.json */; };
+		056F97C92B228654006AC7F8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C82B228654006AC7F8 /* Country.swift */; };
 		C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
 		C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E30B2B20793A00964AF0 /* ContentView.swift */; };
 		C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E30D2B20793C00964AF0 /* Assets.xcassets */; };
 		C9F5E3122B20793C00964AF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E3112B20793C00964AF0 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		052F0CC22B2322AF0037ADAE /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0504785C2B20DF6800E6BE85 /* PrayTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrayTime.h; sourceTree = "<group>"; };
-		0504785D2B20DF6800E6BE85 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data.json; sourceTree = "<group>"; };
+		0504785D2B20DF6800E6BE85 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		0504785E2B20DF6800E6BE85 /* PrayTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrayTime.m; sourceTree = "<group>"; };
 		050478632B20EDFA00E6BE85 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
 		050478652B20EE2F00E6BE85 /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
@@ -30,6 +49,12 @@
 		0504786C2B20F52000E6BE85 /* SalahDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahDetailView.swift; sourceTree = "<group>"; };
 		0504786E2B20F63500E6BE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionOnboard.swift; sourceTree = "<group>"; };
+		052F0CAB2B2310E30037ADAE /* LocationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationState.swift; sourceTree = "<group>"; };
+		056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualLocationView.swift; sourceTree = "<group>"; };
+		056F97C02B21CEFC006AC7F8 /* PickerTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTextField.swift; sourceTree = "<group>"; };
+		056F97C32B223274006AC7F8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		056F97C62B228573006AC7F8 /* country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
+		056F97C82B228654006AC7F8 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		C9F5E3062B20793A00964AF0 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5E3092B20793A00964AF0 /* SalahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahApp.swift; sourceTree = "<group>"; };
 		C9F5E30B2B20793A00964AF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +78,7 @@
 		050478612B20EDBA00E6BE85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				056F97C02B21CEFC006AC7F8 /* PickerTextField.swift */,
 				0504786F2B20F97800E6BE85 /* OnBoarding */,
 				050478672B20EE4900E6BE85 /* DetailView */,
 				050478622B20EDD400E6BE85 /* Navigation */,
@@ -98,8 +124,35 @@
 			isa = PBXGroup;
 			children = (
 				050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */,
+				056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */,
 			);
 			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		052F0CAA2B23101B0037ADAE /* State */ = {
+			isa = PBXGroup;
+			children = (
+				052F0CAB2B2310E30037ADAE /* LocationState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		056F97C22B223264006AC7F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				056F97C32B223274006AC7F8 /* Location.swift */,
+				056F97C82B228654006AC7F8 /* Country.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		056F97C52B22812B006AC7F8 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0504785D2B20DF6800E6BE85 /* cities.json */,
+				056F97C62B228573006AC7F8 /* country.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		C9F5E2FD2B20793A00964AF0 = {
@@ -122,11 +175,13 @@
 			isa = PBXGroup;
 			children = (
 				0504786E2B20F63500E6BE85 /* Info.plist */,
+				056F97C52B22812B006AC7F8 /* Data */,
+				056F97C22B223264006AC7F8 /* Models */,
 				050478692B20F32400E6BE85 /* Services */,
 				050478612B20EDBA00E6BE85 /* Views */,
+				052F0CAA2B23101B0037ADAE /* State */,
 				C9F5E3092B20793A00964AF0 /* SalahApp.swift */,
 				C9F5E30B2B20793A00964AF0 /* ContentView.swift */,
-				0504785D2B20DF6800E6BE85 /* data.json */,
 				050478682B20F18B00E6BE85 /* Main */,
 				C9F5E30D2B20793C00964AF0 /* Assets.xcassets */,
 				C9F5E30F2B20793C00964AF0 /* Salah.entitlements */,
@@ -154,6 +209,7 @@
 				C9F5E3022B20793A00964AF0 /* Sources */,
 				C9F5E3032B20793A00964AF0 /* Frameworks */,
 				C9F5E3042B20793A00964AF0 /* Resources */,
+				052F0CC22B2322AF0037ADAE /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
@@ -203,8 +259,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				056F97C72B228573006AC7F8 /* country.json in Resources */,
 				C9F5E3122B20793C00964AF0 /* Preview Assets.xcassets in Resources */,
-				0504785F2B20DF6800E6BE85 /* data.json in Resources */,
+				0504785F2B20DF6800E6BE85 /* cities.json in Resources */,
 				C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,8 +274,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0504786D2B20F52000E6BE85 /* SalahDetailView.swift in Sources */,
+				056F97C42B223274006AC7F8 /* Location.swift in Sources */,
+				052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */,
 				050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */,
 				C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */,
+				056F97C92B228654006AC7F8 /* Country.swift in Sources */,
+				056F97C12B21CEFC006AC7F8 /* PickerTextField.swift in Sources */,
+				056F97BF2B21C732006AC7F8 /* ManualLocationView.swift in Sources */,
 				050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */,
 				0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */,
 				050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */,
@@ -373,7 +435,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -420,7 +482,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;

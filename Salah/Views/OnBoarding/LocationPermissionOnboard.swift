@@ -87,12 +87,9 @@ struct LocationPermissionOnboard: View {
         default:
             locationState.isLocation = true
         }
-        
-        
-
     }
 }
-
+        
 #Preview {
     LocationPermissionOnboard()
         .environmentObject(LocationState())

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainNavigationView: View {
+
     @EnvironmentObject private var locationState: LocationState
     @Environment (\.horizontalSizeClass) private var horizontalSize
     

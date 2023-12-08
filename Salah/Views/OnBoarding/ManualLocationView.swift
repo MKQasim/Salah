@@ -37,9 +37,11 @@ struct ManualLocationView: View {
                 }
             }
         }
-        .searchable(text: $searchable,placement: .navigationBarDrawer(displayMode: .always))
         .navigationTitle("Manual Location")
+        #if os(iOS)
+        .searchable(text: $searchable,placement: .navigationBarDrawer(displayMode: .always))
         .navigationBarTitleDisplayMode(.large)
+        #endif
         .toolbar{
             ToolbarItem(placement: .primaryAction){
                 if selectedLocation != nil {

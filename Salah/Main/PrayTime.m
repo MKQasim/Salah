@@ -709,7 +709,7 @@ double JDate;      // Julian date
 -(NSMutableArray*)computeDayTimes {
 
     //int i = 0;
-    NSMutableArray *t1, *t2, *t3;
+    NSMutableArray *t1 = nil, *t2, *t3;
     NSMutableArray *times = [[[NSMutableArray alloc] init] autorelease]; //default times
     [times addObject:[NSNumber numberWithDouble:5.0]];
     [times addObject:[NSNumber numberWithDouble:6.0]];

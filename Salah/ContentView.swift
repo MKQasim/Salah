@@ -14,9 +14,9 @@ struct ContentView: View {
     var body: some View {
         Group{
             if !locationState.isLocation {
-                LocationPermissionOnboard()
-            }
-            else{
+                MainNavigationView()
+//                AppLandingView()
+            }else{
                 MainNavigationView()
             }
         }

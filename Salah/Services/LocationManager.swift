@@ -34,8 +34,10 @@ class LocationManager: NSObject, ObservableObject{
             return "Authorized Always"
         case .authorizedWhenInUse:
             return "Authorized When In Use"
+            #if os(iOS)
         case .authorized:
             return "Authorized"
+            #endif
         @unknown default:
             return "Unknown"
         }

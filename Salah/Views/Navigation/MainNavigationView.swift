@@ -16,7 +16,8 @@ struct MainNavigationView: View {
         switch horizontalSize{
         case .compact:
             NavigationStack{
-                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
+//                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
+                HomeView()
             }
         case .regular:
             SidebarView()

@@ -59,6 +59,10 @@ struct SalahDetailView: View {
                     }
                 }
                 .frame(maxWidth: .infinity)
+                
+                Section("Weekly Timing") {
+                    Text("H")
+                }
             }
             .padding()
         }
@@ -70,6 +74,7 @@ struct SalahDetailView: View {
     func getSalahTimings(lat: Double, long:Double, timeZone:Double){
 //        guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
         let date = Date()
+#if os(iOS)
         let time = PrayTime()
         time.setCalcMethod(3)
         let mutableNames = time.timeNames!
@@ -86,6 +91,7 @@ struct SalahDetailView: View {
                 sunTimes.append(newSalahTiming)
             }
         }
+#endif
     }
 }
 

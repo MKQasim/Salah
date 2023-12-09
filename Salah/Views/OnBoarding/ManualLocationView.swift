@@ -56,11 +56,11 @@ struct ManualLocationView: View {
             }
         }
         .onAppear{
-            parseLocalJSON()
+            parseLocalJSONtoFetchLocations()
         }
     }
     
-    func parseLocalJSON() {
+    func parseLocalJSONtoFetchLocations() {
         if let path = Bundle.main.path(forResource: "cities", ofType: "json") {
             do {
                 let fileUrl = URL(fileURLWithPath: path)

@@ -42,7 +42,7 @@ struct LocationPermissionOnboard: View {
                 switch locationManager.locationStatus {
                 case .denied:
                     EmptyView()
-                case .authorizedAlways, .authorizedWhenInUse, .authorized:
+                case .authorizedAlways, .authorizedWhenInUse:
                     Button(action: locationCheck, label: {
                         Text("Get current location")
                     })
@@ -51,6 +51,17 @@ struct LocationPermissionOnboard: View {
                     .foregroundColor(.white)
                     .cornerRadius(20)
                     .padding(.bottom,8)
+                    #if os(iOS)
+                case .authorized:
+                    Button(action: locationCheck, label: {
+                        Text("Get current location")
+                    })
+                    .buttonStyle(.borderedProminent)
+                    .tint(.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+                    .padding(.bottom,8)
+                    #endif
                 default:
                     Button(action: {
                         locationManager.requestLocation()
@@ -78,12 +89,20 @@ struct LocationPermissionOnboard: View {
         switch locationManager.locationStatus {
         case .notDetermined, .restricted, .denied:
             locationState.isLocation = true
-        case .authorizedAlways, .authorizedWhenInUse, .authorized:
+        case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
             locationState.latitude = userCoordinates.latitude
             locationState.longitude = userCoordinates.longitude
             locationState.isLocation = true
+            #if os(iOS)
+        case .authorized:
+            locationManager.requestLocation()
+            guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
+            locationState.latitude = userCoordinates.latitude
+            locationState.longitude = userCoordinates.longitude
+            locationState.isLocation = true
+            #endif
         default:
             locationState.isLocation = true
         }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0504785F2B20DF6800E6BE85 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* cities.json */; };
-		050478602B20DF6800E6BE85 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
 		050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* SidebarView.swift */; };
 		050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478652B20EE2F00E6BE85 /* MainNavigationView.swift */; };
 		0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786A2B20F33600E6BE85 /* LocationManager.swift */; };
@@ -20,11 +19,43 @@
 		056F97C42B223274006AC7F8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C32B223274006AC7F8 /* Location.swift */; };
 		056F97C72B228573006AC7F8 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = 056F97C62B228573006AC7F8 /* country.json */; };
 		056F97C92B228654006AC7F8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C82B228654006AC7F8 /* Country.swift */; };
+		C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
+		C964588F2B24B4BF002B4E3A /* AppLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C964588E2B24B4BF002B4E3A /* AppLandingView.swift */; };
+		C96458912B24B8A1002B4E3A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96458902B24B8A1002B4E3A /* HomeView.swift */; };
+		C96458922B24C71C002B4E3A /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96458902B24B8A1002B4E3A /* HomeView.swift */; };
+		C98C93D22B248AE900C4BC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98C93D12B248AE900C4BC37 /* Assets.xcassets */; };
+		C98C93D52B248AE900C4BC37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */; };
+		C98C93D82B248AE900C4BC37 /* MiniSalah Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C98C93CB2B248AE700C4BC37 /* MiniSalah Watch App.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
+		C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E30B2B20793A00964AF0 /* ContentView.swift */; };
+		C98C93DF2B248BA300C4BC37 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478652B20EE2F00E6BE85 /* MainNavigationView.swift */; };
+		C98C93E02B248BA600C4BC37 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* SidebarView.swift */; };
+		C98C93E12B248BAA00C4BC37 /* SalahDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786C2B20F52000E6BE85 /* SalahDetailView.swift */; };
+		C98C93E22B248BAE00C4BC37 /* ManualLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */; };
+		C98C93E32B248BB100C4BC37 /* LocationPermissionOnboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */; };
+		C98C93E42B248BB400C4BC37 /* PickerTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C02B21CEFC006AC7F8 /* PickerTextField.swift */; };
+		C98C93E52B248BB800C4BC37 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786A2B20F33600E6BE85 /* LocationManager.swift */; };
+		C98C93E62B248BBB00C4BC37 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C82B228654006AC7F8 /* Country.swift */; };
+		C98C93E72B248BBE00C4BC37 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C32B223274006AC7F8 /* Location.swift */; };
+		C98C93E82B248BC300C4BC37 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = 056F97C62B228573006AC7F8 /* country.json */; };
+		C98C93E92B248BD200C4BC37 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* cities.json */; };
+		C98C93EA2B248CCB00C4BC37 /* LocationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052F0CAB2B2310E30037ADAE /* LocationState.swift */; };
+		C98C93EB2B248D8D00C4BC37 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
 		C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
 		C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E30B2B20793A00964AF0 /* ContentView.swift */; };
 		C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E30D2B20793C00964AF0 /* Assets.xcassets */; };
 		C9F5E3122B20793C00964AF0 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E3112B20793C00964AF0 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C98C93D62B248AE900C4BC37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9F5E2FE2B20793A00964AF0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C98C93CA2B248AE700C4BC37;
+			remoteInfo = "MiniSalah Watch App";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		052F0CC22B2322AF0037ADAE /* Embed Watch Content */ = {
@@ -33,6 +64,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
+				C98C93D82B248AE900C4BC37 /* MiniSalah Watch App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +87,11 @@
 		056F97C32B223274006AC7F8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		056F97C62B228573006AC7F8 /* country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
 		056F97C82B228654006AC7F8 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		C964588E2B24B4BF002B4E3A /* AppLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLandingView.swift; sourceTree = "<group>"; };
+		C96458902B24B8A1002B4E3A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		C98C93CB2B248AE700C4BC37 /* MiniSalah Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiniSalah Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C98C93D12B248AE900C4BC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C9F5E3062B20793A00964AF0 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5E3092B20793A00964AF0 /* SalahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahApp.swift; sourceTree = "<group>"; };
 		C9F5E30B2B20793A00964AF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +102,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C98C93C82B248AE700C4BC37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9F5E3032B20793A00964AF0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -82,6 +126,7 @@
 				0504786F2B20F97800E6BE85 /* OnBoarding */,
 				050478672B20EE4900E6BE85 /* DetailView */,
 				050478622B20EDD400E6BE85 /* Navigation */,
+				C96458902B24B8A1002B4E3A /* HomeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -125,6 +170,7 @@
 			children = (
 				050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */,
 				056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */,
+				C964588E2B24B4BF002B4E3A /* AppLandingView.swift */,
 			);
 			path = OnBoarding;
 			sourceTree = "<group>";
@@ -155,10 +201,28 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		C98C93CC2B248AE700C4BC37 /* MiniSalah Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				C98C93D12B248AE900C4BC37 /* Assets.xcassets */,
+				C98C93D32B248AE900C4BC37 /* Preview Content */,
+			);
+			path = "MiniSalah Watch App";
+			sourceTree = "<group>";
+		};
+		C98C93D32B248AE900C4BC37 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
 		C9F5E2FD2B20793A00964AF0 = {
 			isa = PBXGroup;
 			children = (
 				C9F5E3082B20793A00964AF0 /* Salah */,
+				C98C93CC2B248AE700C4BC37 /* MiniSalah Watch App */,
 				C9F5E3072B20793A00964AF0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -167,6 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				C9F5E3062B20793A00964AF0 /* Salah.app */,
+				C98C93CB2B248AE700C4BC37 /* MiniSalah Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -202,6 +267,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		C98C93CA2B248AE700C4BC37 /* MiniSalah Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C98C93D92B248AE900C4BC37 /* Build configuration list for PBXNativeTarget "MiniSalah Watch App" */;
+			buildPhases = (
+				C98C93C72B248AE700C4BC37 /* Sources */,
+				C98C93C82B248AE700C4BC37 /* Frameworks */,
+				C98C93C92B248AE700C4BC37 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MiniSalah Watch App";
+			productName = "MiniSalah Watch App";
+			productReference = C98C93CB2B248AE700C4BC37 /* MiniSalah Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
 		C9F5E3052B20793A00964AF0 /* Salah */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9F5E3152B20793C00964AF0 /* Build configuration list for PBXNativeTarget "Salah" */;
@@ -214,6 +296,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				C98C93D72B248AE900C4BC37 /* PBXTargetDependency */,
 			);
 			name = Salah;
 			productName = Salah;
@@ -230,6 +313,9 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					C98C93CA2B248AE700C4BC37 = {
+						CreatedOnToolsVersion = 15.0.1;
+					};
 					C9F5E3052B20793A00964AF0 = {
 						CreatedOnToolsVersion = 15.0.1;
 						LastSwiftMigration = 1500;
@@ -250,11 +336,23 @@
 			projectRoot = "";
 			targets = (
 				C9F5E3052B20793A00964AF0 /* Salah */,
+				C98C93CA2B248AE700C4BC37 /* MiniSalah Watch App */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C98C93C92B248AE700C4BC37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98C93E92B248BD200C4BC37 /* cities.json in Resources */,
+				C98C93D52B248AE900C4BC37 /* Preview Assets.xcassets in Resources */,
+				C98C93D22B248AE900C4BC37 /* Assets.xcassets in Resources */,
+				C98C93E82B248BC300C4BC37 /* country.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9F5E3042B20793A00964AF0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -269,12 +367,35 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C98C93C72B248AE700C4BC37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C98C93E12B248BAA00C4BC37 /* SalahDetailView.swift in Sources */,
+				C96458922B24C71C002B4E3A /* HomeView.swift in Sources */,
+				C98C93E42B248BB400C4BC37 /* PickerTextField.swift in Sources */,
+				C98C93EB2B248D8D00C4BC37 /* PrayTime.m in Sources */,
+				C98C93E52B248BB800C4BC37 /* LocationManager.swift in Sources */,
+				C98C93E62B248BBB00C4BC37 /* Country.swift in Sources */,
+				C98C93EA2B248CCB00C4BC37 /* LocationState.swift in Sources */,
+				C98C93E72B248BBE00C4BC37 /* Location.swift in Sources */,
+				C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */,
+				C98C93E32B248BB100C4BC37 /* LocationPermissionOnboard.swift in Sources */,
+				C98C93DF2B248BA300C4BC37 /* MainNavigationView.swift in Sources */,
+				C98C93E22B248BAE00C4BC37 /* ManualLocationView.swift in Sources */,
+				C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */,
+				C98C93E02B248BA600C4BC37 /* SidebarView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9F5E3022B20793A00964AF0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				0504786D2B20F52000E6BE85 /* SalahDetailView.swift in Sources */,
 				056F97C42B223274006AC7F8 /* Location.swift in Sources */,
+				C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */,
+				C96458912B24B8A1002B4E3A /* HomeView.swift in Sources */,
 				052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */,
 				050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */,
 				C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */,
@@ -282,16 +403,94 @@
 				056F97C12B21CEFC006AC7F8 /* PickerTextField.swift in Sources */,
 				056F97BF2B21C732006AC7F8 /* ManualLocationView.swift in Sources */,
 				050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */,
+				C964588F2B24B4BF002B4E3A /* AppLandingView.swift in Sources */,
 				0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */,
 				050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */,
 				C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */,
-				050478602B20DF6800E6BE85 /* PrayTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		C98C93D72B248AE900C4BC37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = ios;
+			target = C98C93CA2B248AE700C4BC37 /* MiniSalah Watch App */;
+			targetProxy = C98C93D62B248AE900C4BC37 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		C98C93DA2B248AE900C4BC37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC_EXCEPTIONS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = CT7H96YF74;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MiniSalah;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kamsque.Salah;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamsque.Salah.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Salah/Salah-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		C98C93DB2B248AE900C4BC37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC_EXCEPTIONS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = CT7H96YF74;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = MiniSalah;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kamsque.Salah;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kamsque.Salah.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Salah/Salah-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
 		C9F5E3132B20793C00964AF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -409,6 +608,7 @@
 		C9F5E3162B20793C00964AF0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -418,7 +618,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;
@@ -456,6 +656,7 @@
 		C9F5E3172B20793C00964AF0 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
@@ -465,7 +666,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;
@@ -502,6 +703,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C98C93D92B248AE900C4BC37 /* Build configuration list for PBXNativeTarget "MiniSalah Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C98C93DA2B248AE900C4BC37 /* Debug */,
+				C98C93DB2B248AE900C4BC37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C9F5E3012B20793A00964AF0 /* Build configuration list for PBXProject "Salah" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

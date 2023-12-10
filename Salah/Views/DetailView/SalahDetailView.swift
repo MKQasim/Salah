@@ -32,7 +32,7 @@ struct SalahDetailView: View {
     
     var body: some View {
         ZStack{
-            Color.mint.ignoresSafeArea(.all)
+            Color.clear.ignoresSafeArea(.all)
             ScrollView{
                 ForEach(sunTimes, id: \.self){
                     sunTime in
@@ -45,7 +45,7 @@ struct SalahDetailView: View {
                         ){prayer in
                             VStack{
                                 Text(prayer.name)
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.gray)
                                     .font(.title)
                                     .fontWeight(.black)
                                 Text(prayer.time)

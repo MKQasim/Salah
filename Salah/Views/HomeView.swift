@@ -78,7 +78,7 @@ struct PageView: View {
     @ViewBuilder
     private var sunTimesSection: some View {
         if !prayerViewModel.sunTimes.isEmpty {
-            Section(header: Text("Sun Times").foregroundColor(.black)) {
+            Section(header: Text("Sun Times").bold().foregroundColor(.black).background(.clear)) {
                 ForEach(prayerViewModel.sunTimes, id: \.self) { sunTime in
                     HStack {
                         Image(systemName: "sun.max.fill")
@@ -87,10 +87,9 @@ struct PageView: View {
                             .foregroundColor(.black)
                             .font(.headline)
                     }
-                }
+                }.frame(width: 350, height: 45)
+                .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.gray))
             }
-            .frame(width: 350, height: 45)
-            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.gray))
             .padding()
         } else {
             EmptyView()
@@ -101,7 +100,7 @@ struct PageView: View {
     let column = [GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150))]
     @ViewBuilder
     private var prayerTimesSection: some View {
-        Section(header: Text("Prayer Times").foregroundColor(.black)) {
+        Section(header: Text("Prayer Times").bold().foregroundColor(.black)) {
             LazyVGrid(columns: column, spacing: 10) {
                 ForEach(prayerViewModel.prayerTimes, id: \.self) { prayer in
                     PrayerItemView(prayer: prayer)
@@ -116,7 +115,7 @@ struct PageView: View {
     // Weekly Timing Section
     @ViewBuilder
     private var weeklyTimingSection: some View {
-        Section(header: Text("Weekly Timing").foregroundColor(.black)) {
+        Section(header: Text("Weekly Timing").bold().foregroundColor(.black)) {
             Text("Your weekly timing content goes here")
                 .foregroundColor(.black)
                 .font(.title3)
@@ -136,6 +135,7 @@ struct PrayerItemView: View {
                 .foregroundColor(.purple) // Adjust color as needed
                 .font(.title)
             Text(prayer.name)
+                .frame(width: 100)
                 .fontWeight(.bold)
                 .foregroundColor(.black)
             Text(prayer.time)

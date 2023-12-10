@@ -75,8 +75,8 @@ struct LocationPermissionOnboard: View {
                     .padding(.bottom,8)
                 }
                 
-                NavigationLink("Don't want to share location", destination: ManualLocationView())
-                    .padding(.bottom,8)
+//                NavigationLink("Don't want to share location", destination: ManualLocationView())
+//                    .padding(.bottom,8)
             }
             .padding()
         }
@@ -92,15 +92,15 @@ struct LocationPermissionOnboard: View {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.latitude = userCoordinates.latitude
-            locationState.longitude = userCoordinates.longitude
+            locationState.defaultLatitude = userCoordinates.latitude
+            locationState.defaultLongitude = userCoordinates.longitude
             locationState.isLocation = true
             #if os(iOS)
         case .authorized:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.latitude = userCoordinates.latitude
-            locationState.longitude = userCoordinates.longitude
+            locationState.defaultLatitude = userCoordinates.latitude
+            locationState.defaultLongitude = userCoordinates.longitude
             locationState.isLocation = true
             #endif
         default:

@@ -8,7 +8,9 @@
 import Foundation
 
 class LocationState: ObservableObject {
-    @Published var latitude = 49.441834
-    @Published var longitude = 11.025047
+    @Published var defaultLatitude = 49.441834
+    @Published var defaultLongitude = 11.025047
+    @Published var defaultTimeZone = +1.0
     @Published var isLocation = false
+    @Published var cities:[Cities] = []
 }

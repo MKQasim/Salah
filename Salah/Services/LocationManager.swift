@@ -58,5 +58,6 @@ extension LocationManager : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {return}
         lastLocation = location
+        manager.stopUpdatingLocation()
     }
 }

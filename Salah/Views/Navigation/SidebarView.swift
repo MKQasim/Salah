@@ -18,12 +18,17 @@ struct SidebarView: View {
         } detail: {
             switch locationManager.locationStatus {
             case .notDetermined, .restricted, .denied:
-                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
+                EmptyView()
+//                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
             case .authorizedAlways, .authorizedWhenInUse:
-                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
+                EmptyView()
+
+//                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
                 #if os(iOS)
             case .authorized:
-                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
+                EmptyView()
+
+//                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
                 #endif
             default:
                 Text("Restricted Access")

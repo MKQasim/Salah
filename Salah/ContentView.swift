@@ -9,19 +9,35 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var locationState = LocationState()
-    @StateObject private var locationManger = LocationManager()
+    @StateObject var locationManager = LocationManager()
     @State private var prayerTimes:[String] = []
     var body: some View {
         Group{
-            if !locationState.isLocation {
-                MainNavigationView()
-//                AppLandingView()
-            }else{
-                MainNavigationView()
+            MainNavigationView()
+        }
+        .environmentObject(locationManager)
+        .environmentObject(locationState)
+        .onAppear{
+            locationManager.requestLocation()
+            switch locationManager.locationStatus{
+            case .authorizedWhenInUse,.authorizedAlways:
+                location()
+                #if os(iOS)
+            case .authorized:
+                location()
+                #endif
+            default:
+                locationState.isLocation = true
             }
         }
-        .environmentObject(locationManger)
-        .environmentObject(locationState)
+    }
+    
+    func location(){
+        locationManager.requestLocation()
+        guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
+        locationState.defaultLatitude = userCoordinates.latitude
+        locationState.defaultLongitude = userCoordinates.longitude
+        locationState.isLocation = true
     }
 }
 

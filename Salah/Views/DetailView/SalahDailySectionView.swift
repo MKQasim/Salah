@@ -30,10 +30,10 @@ struct SalahDailySectionView: View {
                 .padding()
         }
         .onAppear {
-            updateRemainingTime()
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                updateRemainingTime()
-            }
+//            updateRemainingTime()
+//            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+//                updateRemainingTime()
+//            }
         }
     }
     
@@ -52,7 +52,7 @@ struct SalahDailySectionView: View {
         let sortedPrayerTimes = prayerTimes.sorted(by: { $0.time < $1.time })
         
         for prayer in sortedPrayerTimes {
-            if let prayerDate = convertTimeStringToDate(prayer.time, format: "HH:mm"), prayerDate > currentDate {
+            if let prayerDate = convertTimeStringToDate(prayer.time, format: "HH:mm:ss"), prayerDate > currentDate {
                 return prayer
             }
         }
@@ -66,7 +66,7 @@ struct SalahDailySectionView: View {
     }
     
     private func remainingTimeToNextPrayer(from time: String) -> String {
-        guard let prayerDate = convertTimeStringToDate(time, format: "HH:mm") else {
+        guard let prayerDate = convertTimeStringToDate(time, format: "HH:mm:ss") else {
             return "Unknown"
         }
         
@@ -81,7 +81,7 @@ struct PrayerItemView: View {
     var body: some View {
         VStack {
             Image(systemName: "moon.stars.fill")
-                .foregroundColor(.purple) // Adjust color as needed
+                .foregroundColor(.purple)
                 .font(.title)
             Text(prayer.name)
                 .frame(width: 100)
@@ -105,9 +105,9 @@ extension Date {
         }
         
         if hours > 0 {
-            return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+            return String(format: "%02f:%02f:%02f", hours, minutes, seconds)
         } else {
-            return String(format: "%02d:%02d", minutes, seconds)
+            return String(format: "%02f:%02f", minutes, seconds)
         }
     }
 }

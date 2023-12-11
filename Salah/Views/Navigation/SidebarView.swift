@@ -10,31 +10,43 @@ import SwiftUI
 struct SidebarView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var locationState:LocationState
+    @EnvironmentObject private var navigationState: NavigationState
+    
+    @State private var isSheet = false
     var body: some View {
         NavigationSplitView{
-            List{
-                Text("Current Location")
+            List(selection: $navigationState.sidebarSelection){
+                ForEach(locationState.cities){city in
+                    NavigationLink(value: city, label: {
+                        Text(city.city)
+                    })
+                }
+            }
+            .toolbar{
+                ToolbarItem(id: "sidebar", placement: .primaryAction){
+                    Button(action: {
+                        isSheet.toggle()
+                    }, label: {
+                        Label("Open add city", systemImage: "plus")
+                    })
+                }
             }
         } detail: {
-            switch locationManager.locationStatus {
-            case .notDetermined, .restricted, .denied:
-                EmptyView()
-//                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
-            case .authorizedAlways, .authorizedWhenInUse:
-                EmptyView()
-
-//                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
-                #if os(iOS)
-            case .authorized:
-                EmptyView()
-
-//                SalahDetailView(lat: locationState.latitude, long: locationState.longitude, timeZone: +1.0)
-                #endif
-            default:
-                Text("Restricted Access")
+            switch navigationState.sidebarSelection {
+            case .currentLocation:
+                SalahDetailView(city: Cities(city: "Nuremberg", lat: 49.10, long: 11.01, timeZone: +1.0))
+            case .city(let cities):
+                Text("Hello")
+//                SalahDetailView(city: cities)
+            case .none:
+                SalahDetailView(city: Cities(city: "Nuremberg", lat: 49.10, long: 11.01, timeZone: +1.0))
             }
+        }
+        .sheet(isPresented: $isSheet){
+                ManualLocationView(isSheet: $isSheet)
             
         }
+        
     }
 }
 

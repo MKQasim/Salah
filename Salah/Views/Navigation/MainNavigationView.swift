@@ -10,7 +10,8 @@ import SwiftUI
 struct MainNavigationView: View {
 
     @Environment (\.horizontalSizeClass) private var horizontalSize
-    
+    @StateObject var navigationState = NavigationState()
+
     var body: some View {
         switch horizontalSize{
         case .compact:
@@ -19,8 +20,10 @@ struct MainNavigationView: View {
             }
         case .regular:
             SidebarView()
+                .environmentObject(navigationState)
         case .none:
             SidebarView()
+                .environmentObject(navigationState)
         default:
             Text("Regular")
         }

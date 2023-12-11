@@ -26,6 +26,10 @@
 		056F97C42B223274006AC7F8 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C32B223274006AC7F8 /* Location.swift */; };
 		056F97C72B228573006AC7F8 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = 056F97C62B228573006AC7F8 /* country.json */; };
 		056F97C92B228654006AC7F8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C82B228654006AC7F8 /* Country.swift */; };
+		05FC81702B27BEFA0046E93C /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC816F2B27BEFA0046E93C /* NavigationState.swift */; };
+		05FC81712B27BEFA0046E93C /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC816F2B27BEFA0046E93C /* NavigationState.swift */; };
+		05FC81732B27BF130046E93C /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC81722B27BF130046E93C /* NavigationItem.swift */; };
+		05FC81742B27BF130046E93C /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC81722B27BF130046E93C /* NavigationItem.swift */; };
 		C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
 		C964588F2B24B4BF002B4E3A /* AppLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C964588E2B24B4BF002B4E3A /* AppLandingView.swift */; };
 		C98C93D22B248AE900C4BC37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98C93D12B248AE900C4BC37 /* Assets.xcassets */; };
@@ -94,6 +98,8 @@
 		056F97C32B223274006AC7F8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		056F97C62B228573006AC7F8 /* country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
 		056F97C82B228654006AC7F8 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		05FC816F2B27BEFA0046E93C /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
+		05FC81722B27BF130046E93C /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		C964588E2B24B4BF002B4E3A /* AppLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLandingView.swift; sourceTree = "<group>"; };
 		C98C93CB2B248AE700C4BC37 /* MiniSalah Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MiniSalah Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98C93D12B248AE900C4BC37 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				052F0CAB2B2310E30037ADAE /* LocationState.swift */,
+				05FC816F2B27BEFA0046E93C /* NavigationState.swift */,
 			);
 			path = State;
 			sourceTree = "<group>";
@@ -196,6 +203,7 @@
 				056F97C32B223274006AC7F8 /* Location.swift */,
 				056F97C82B228654006AC7F8 /* Country.swift */,
 				0531E6562B263E8C00FBA29B /* Cities.swift */,
+				05FC81722B27BF130046E93C /* NavigationItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -379,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05FC81742B27BF130046E93C /* NavigationItem.swift in Sources */,
 				C98C93E12B248BAA00C4BC37 /* SalahDetailView.swift in Sources */,
 				C98C93EB2B248D8D00C4BC37 /* PrayTime.m in Sources */,
 				C98C93E52B248BB800C4BC37 /* LocationManager.swift in Sources */,
@@ -387,6 +396,7 @@
 				0531E6522B26377400FBA29B /* SalahSunTimeSection.swift in Sources */,
 				C98C93E72B248BBE00C4BC37 /* Location.swift in Sources */,
 				C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */,
+				05FC81712B27BEFA0046E93C /* NavigationState.swift in Sources */,
 				0531E6582B263E8C00FBA29B /* Cities.swift in Sources */,
 				C98C93E32B248BB100C4BC37 /* LocationPermissionOnboard.swift in Sources */,
 				C98C93DF2B248BA300C4BC37 /* MainNavigationView.swift in Sources */,
@@ -403,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0531E6542B26392800FBA29B /* TabbarView.swift in Sources */,
+				05FC81702B27BEFA0046E93C /* NavigationState.swift in Sources */,
 				0504786D2B20F52000E6BE85 /* SalahDetailView.swift in Sources */,
 				056F97C42B223274006AC7F8 /* Location.swift in Sources */,
 				0531E6572B263E8C00FBA29B /* Cities.swift in Sources */,
@@ -410,6 +421,7 @@
 				C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */,
 				052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */,
 				050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */,
+				05FC81732B27BF130046E93C /* NavigationItem.swift in Sources */,
 				C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */,
 				056F97C92B228654006AC7F8 /* Country.swift in Sources */,
 				056F97BF2B21C732006AC7F8 /* ManualLocationView.swift in Sources */,
@@ -445,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = MiniSalah;
@@ -479,7 +491,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = MiniSalah;
@@ -630,7 +642,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;
@@ -678,7 +690,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;

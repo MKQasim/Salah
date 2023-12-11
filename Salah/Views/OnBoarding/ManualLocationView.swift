@@ -20,7 +20,7 @@ struct ManualLocationView: View {
     @State private var searchable = ""
 
     var body: some View {
-        NavigationView{
+        NavigationStack{
             Form{
                 List{
                     ForEach(dropDownList.filter({searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable)}), id: \.self.id){item in
@@ -33,13 +33,14 @@ struct ManualLocationView: View {
                         }
                         .onTapGesture {
                             selectedLocation = item
+                            addLocation()
                         }
                         
                     }
                 }
             }
             .navigationTitle("Manual Location")
-            #if os(iOS)
+            #if !os(macOS)
             .searchable(text: $searchable)
             .navigationBarTitleDisplayMode(.large)
             #endif
@@ -47,14 +48,7 @@ struct ManualLocationView: View {
                 ToolbarItem(placement: .primaryAction){
                     if selectedLocation != nil {
                         Button(action: {
-                            
-                            getTimeZone(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0) { timeZone in
-                                print("Time zone offset: \(timeZone) hours")
-                                // Use the timeZone value here or perform additional actions
-                                let newCity = Cities(city: selectedLocation?.city ?? "Nuremberg", lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0, timeZone: timeZone)
-                                locationState.cities.append(newCity)
-                                isSheet.toggle()
-                            }
+                            addLocation()
                            
                         }, label: {
                             Text("Done")
@@ -63,9 +57,19 @@ struct ManualLocationView: View {
                 }
             }
         }
-        
         .onAppear{
             parseLocalJSONtoFetchLocations()
+        }
+    }
+    
+    func addLocation() {
+        
+        getTimeZone(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0) { timeZone in
+            
+            // Use the timeZone value here or perform additional actions
+            let newCity = Cities(city: selectedLocation?.city ?? "Nuremberg", lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0, timeZone: timeZone)
+            locationState.cities.append(newCity)
+            isSheet.toggle()
         }
     }
     

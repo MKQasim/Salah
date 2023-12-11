@@ -24,8 +24,9 @@ struct SalahDetailView: View {
     let column = [GridItem(.adaptive(minimum: 150)),GridItem(.adaptive(minimum: 150)),GridItem(.adaptive(minimum: 150))]
     
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-      @State var timeNow = ""
-      var dateFormatter = DateFormatter()
+    @State var timeNow = ""
+    @State var nextSalah = ""
+    var dateFormatter = DateFormatter()
     
     var body: some View {
         ZStack{
@@ -33,10 +34,15 @@ struct SalahDetailView: View {
             ScrollView{
                 
                 Text("Currently: " + timeNow)
-                      .onReceive(timer) { _ in
-                          self.timeNow = currentTime(for: city.timeZone) ?? ""
-                      }
-                      .onAppear(perform: {dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"})
+                    .onReceive(timer) { _ in
+                        self.timeNow = currentTime(for: city.timeZone) ?? ""
+                    }
+                    .onAppear(perform: {dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"})
+                
+                Text("Remaining : " + nextSalah)
+                    .onReceive(timer){_ in
+                        
+                    }
                 
                 Text(city.city)
                     .font(.largeTitle)
@@ -50,29 +56,57 @@ struct SalahDetailView: View {
                     Text("H")
                 }
             }
-            .padding()
+            #if !os(macOS)
+            .navigationBarTitleDisplayMode(.large)
+            .navigationTitle(city.city)
+            #endif
         }
         .onAppear{
             if isUpdate{
                 getSalahTimings(lat: city.lat, long: city.long, timeZone: city.timeZone)
                 isUpdate = false
             }
+            getNextPrayerTime()
         }
     }
     
-     func currentTime(for timeZone: Double) -> String? {
+    private func getNextPrayerTime() {
+        let currentDate = Date()
+            for prayer in prayerTimes {
+                if let prayerDate = convertTimeStringToDate(prayer.time, format: "HH:mm:ss"), prayerDate > currentDate {
+                print(prayerDate)
+                }
+    }
+    }
+    
+    
+    
+    private func remainingTimeToNextPrayer(from time: String) -> String {
+        guard let prayerDate = convertTimeStringToDate(time, format: "HH:mm:ss") else {
+            return "Unknown"
+        }
+        let now = Date()
+        return now.timeRemainingString(to: prayerDate)
+    }
+
+    private func convertTimeStringToDate(_ timeString: String, format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        return dateFormatter.date(from: timeString)
+    }
+    
+    func currentTime(for timeZone: Double) -> String? {
         
         let currentDate = Date()
-        var dateFormatter = DateFormatter()
-         dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
         if let dateTime = currentDate.dateByAdding(timeZoneOffset:timeZone) {
-            print("dateTime:", dateTime)
             return dateFormatter.string(for: dateTime) ?? ""
         } else {
             print("Error occurred while calculating the date.")
             return ""
         }
-
+        
     }
     
     func getSalahTimings(lat: Double, long:Double, timeZone:Double){
@@ -115,7 +149,7 @@ extension Date {
         dateComponents.hour = hours
         dateComponents.minute = minutes
         dateComponents.second = seconds
-
+        
         return calendar.date(byAdding: dateComponents, to: self) ?? self
     }
 }
@@ -126,7 +160,7 @@ extension Date {
         var dateComponents = DateComponents()
         dateComponents.hour = hours
         dateComponents.minute = minutes
-
+        
         return calendar.date(byAdding: dateComponents, to: self)
     }
     

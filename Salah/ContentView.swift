@@ -12,9 +12,7 @@ struct ContentView: View {
     @StateObject var locationManager = LocationManager()
     @State private var prayerTimes:[String] = []
     var body: some View {
-        Group{
-            MainNavigationView()
-        }
+        MainNavigationView()        
         .environmentObject(locationManager)
         .environmentObject(locationState)
         .onAppear{
@@ -22,7 +20,7 @@ struct ContentView: View {
             switch locationManager.locationStatus{
             case .authorizedWhenInUse,.authorizedAlways:
                 location()
-                #if os(iOS)
+                #if !os(watchOS)
             case .authorized:
                 location()
                 #endif

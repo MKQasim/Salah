@@ -25,7 +25,7 @@ struct SalahDetailView: View {
     
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
       @State var timeNow = ""
-      let dateFormatter = DateFormatter()
+      var dateFormatter = DateFormatter()
     
     var body: some View {
         ZStack{
@@ -34,7 +34,7 @@ struct SalahDetailView: View {
                 
                 Text("Currently: " + timeNow)
                       .onReceive(timer) { _ in
-                        self.timeNow = dateFormatter.string(from: Date())
+                          self.timeNow = currentTime(for: city.timeZone) ?? ""
                       }
                       .onAppear(perform: {dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"})
                 
@@ -58,6 +58,21 @@ struct SalahDetailView: View {
                 isUpdate = false
             }
         }
+    }
+    
+     func currentTime(for timeZone: Double) -> String? {
+        
+        let currentDate = Date()
+        var dateFormatter = DateFormatter()
+         dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
+        if let dateTime = currentDate.dateByAdding(timeZoneOffset:timeZone) {
+            print("dateTime:", dateTime)
+            return dateFormatter.string(for: dateTime) ?? ""
+        } else {
+            print("Error occurred while calculating the date.")
+            return ""
+        }
+
     }
     
     func getSalahTimings(lat: Double, long:Double, timeZone:Double){
@@ -92,6 +107,37 @@ extension Date {
         return calendar.component(component, from: self)
     }
 }
+
+extension Date {
+    func adjusted(byHours hours: Int, minutes: Int, seconds: Int) -> Date {
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.hour = hours
+        dateComponents.minute = minutes
+        dateComponents.second = seconds
+
+        return calendar.date(byAdding: dateComponents, to: self) ?? self
+    }
+}
+
+extension Date {
+    func dateByAdding(hours: Int, minutes: Int) -> Date? {
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.hour = hours
+        dateComponents.minute = minutes
+
+        return calendar.date(byAdding: dateComponents, to: self)
+    }
+    
+    func dateByAdding(timeZoneOffset: Double) -> Date? {
+        let hours = Int(timeZoneOffset)
+        let minutes = Int((timeZoneOffset - Double(hours)) * 60)
+        return dateByAdding(hours: hours, minutes: minutes)
+    }
+}
+
+
 
 
 //#Preview {

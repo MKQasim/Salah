@@ -34,12 +34,12 @@ struct SidebarView: View {
         } detail: {
             switch navigationState.sidebarSelection {
             case .currentLocation:
-                SalahDetailView(city: Cities(city: "Nuremberg", lat: 49.10, long: 11.01, timeZone: +1.0))
+                PrayerDetailView(city: Cities(city: "Nuremberg", lat: 49.10, long: 11.01, timeZone: +1.0))
             case .city(let cities):
                 Text("Hello")
 //                SalahDetailView(city: cities)
             case .none:
-                SalahDetailView(city: Cities(city: "Nuremberg", lat: 49.10, long: 11.01, timeZone: +1.0))
+                PrayerDetailView(city: Cities(city: "Nuremberg", lat: 49.10, long: 11.01, timeZone: +1.0))
             }
         }
         .sheet(isPresented: $isSheet){

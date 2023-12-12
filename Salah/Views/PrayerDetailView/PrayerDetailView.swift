@@ -13,7 +13,7 @@ struct SalahTiming: Identifiable, Hashable {
     let time: String
 }
 
-struct SalahDetailView: View {
+struct PrayerDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @State private var prayerTimes:[SalahTiming] = []
     @State private var sunTimes:[SalahTiming] = []
@@ -48,12 +48,16 @@ struct SalahDetailView: View {
                     .font(.largeTitle)
                     .fontWeight(.black)
                 
-                SalahSunTimeSection(sunTimes: $sunTimes)
+                PrayerHeaderSection(sunTimes: $sunTimes)
                 
-                SalahDailySectionView(prayerTimes: $prayerTimes)
+                PrayerDailySectionView(prayerTimes: $prayerTimes)
+                
+                Section("Next Salah"){
+                    Text(nextSalah)
+                }
                 
                 Section("Weekly Timing") {
-                    Text("H")
+                    PrayerWeeklySectionView(city: city)
                 }
             }
             #if !os(macOS)
@@ -71,18 +75,29 @@ struct SalahDetailView: View {
     }
     
     private func getNextPrayerTime() {
-        let currentDate = Date()
+        let currentDate = Date().dateByAdding(timeZoneOffset: city.timeZone)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
             for prayer in prayerTimes {
-                if let prayerDate = convertTimeStringToDate(prayer.time, format: "HH:mm:ss"), prayerDate > currentDate {
-                print(prayerDate)
+                let addedCurrentDate = dateFormatter.string(from: currentDate!) + " " + prayer.time
+                if let prayerTime = convertTimeStringToDate(addedCurrentDate, format: "dd/MM/yyyy HH:mm"){
+                    if prayerTime > currentDate! {
+                        print(currentDate,prayerTime)
+                        nextSalah = "\(prayer.name) at \(prayer.time)"
+                        print(prayer)
+                        break
+                    }
                 }
     }
+        if nextSalah.isEmpty {
+            nextSalah = "\(prayerTimes[0].name) at \(prayerTimes[0].time)"
+        }
     }
     
     
     
     private func remainingTimeToNextPrayer(from time: String) -> String {
-        guard let prayerDate = convertTimeStringToDate(time, format: "HH:mm:ss") else {
+        guard let prayerDate = convertTimeStringToDate(time, format: "HH:mm") else {
             return "Unknown"
         }
         let now = Date()
@@ -96,7 +111,6 @@ struct SalahDetailView: View {
     }
     
     func currentTime(for timeZone: Double) -> String? {
-        
         let currentDate = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "LLLL dd, hh:mm:ss a"
@@ -174,9 +188,10 @@ extension Date {
 
 
 
-//#Preview {
-//    SalahDetailView(lat: 43.22, long: 24.33, timeZone: +4.0)
-//        .environmentObject(LocationManager())
-//        .environmentObject(LocationState())
-//}
+#Preview {
+    let city = Cities(city: "Nurember", lat: 43.22, long: 11.32, timeZone: +1.0)
+    return PrayerDetailView(city: city)
+        .environmentObject(LocationManager())
+        .environmentObject(LocationState())
+}
 

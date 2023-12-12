@@ -28,7 +28,7 @@ struct TabbarView: View {
     var body: some View {
         TabView(selection: $selectionTabbar) {
             if locationState.isLocation {
-                SalahDetailView(city: Cities(city: "Nuremberg", lat: 43.33, long: 19.23, timeZone: 1.0))
+                PrayerDetailView(city: Cities(city: "Nuremberg", lat: 43.33, long: 19.23, timeZone: 1.0))
                     .tag(0)
                     .tabItem {
                         Label("Current Location", systemImage: "location.fill")
@@ -36,7 +36,7 @@ struct TabbarView: View {
             }
             ForEach(locationState.cities, id: \.self){location in
                 VStack{
-                    SalahDetailView(city: location)
+                    PrayerDetailView(city: location)
                 }
                 .tag(location)
             }

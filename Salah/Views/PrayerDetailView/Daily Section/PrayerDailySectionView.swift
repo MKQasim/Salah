@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SalahDailySectionView: View {
+struct PrayerDailySectionView: View {
     
     @Binding var prayerTimes: [SalahTiming]
     @State private var nextPrayerName: String = ""
@@ -15,26 +15,33 @@ struct SalahDailySectionView: View {
     let column = [GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150))]
     
     var body: some View {
-        Section(header: Text("Prayer Times : " + nextPrayerName).bold().foregroundColor(.black)) {
-            LazyVGrid(columns: column, spacing: 10) {
+        
+        LazyVGrid(columns: column, alignment: .leading, spacing: 10,pinnedViews: [.sectionHeaders]) {
+            Section(header: VStack{
+                Text("Prayer Times")
+                    .font(.title3)
+                    .fontWeight(.black)
+            }){
                 ForEach(prayerTimes, id: \.self) { prayer in
-                    PrayerItemView(prayer: prayer)
+                    PrayerDailyCellView(prayer: prayer)
                 }
+                .background(.thinMaterial)
+                .cornerRadius(20.0)
             }
-            .padding()
-            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.gray))
-            .padding()
             
-            // Display next prayer remaining time
-            Text("Next Prayer: \(nextPrayerName) - \(remainingTime)")
-                .padding()
         }
-        .onAppear {
-//            updateRemainingTime()
-//            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-//                updateRemainingTime()
-//            }
-        }
+        .padding()
+        
+        // Display next prayer remaining time
+        Text("Next Prayer: \(nextPrayerName) - \(remainingTime)")
+            .padding()
+        
+            .onAppear {
+                //            updateRemainingTime()
+                //            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                //                updateRemainingTime()
+                //            }
+            }
     }
     
     private func updateRemainingTime() {
@@ -69,32 +76,12 @@ struct SalahDailySectionView: View {
         guard let prayerDate = convertTimeStringToDate(time, format: "HH:mm:ss") else {
             return "Unknown"
         }
-        
         let now = Date()
         return now.timeRemainingString(to: prayerDate)
     }
 }
 
-struct PrayerItemView: View {
-    let prayer: SalahTiming
 
-    var body: some View {
-        VStack {
-            Image(systemName: "moon.stars.fill")
-                .foregroundColor(.purple)
-                .font(.title)
-            Text(prayer.name)
-                .frame(width: 100)
-                .fontWeight(.bold)
-                .foregroundColor(.black)
-            Text(prayer.time)
-                .fontWeight(.medium)
-                .foregroundColor(.black)
-        }
-        .frame(maxWidth: .infinity)
-        .padding()
-    }
-}
 extension Date {
     func timeRemainingString(to date: Date) -> String {
         let calendar = Calendar.current
@@ -113,7 +100,7 @@ extension Date {
 }
 
 
-//#Preview {
-//    @State var prayerTime = [SalahTiming(name: "Fajr", time: "06:00")]
-//    SalahDailySectionView(prayerTimes: $prayerTime)
-//}
+#Preview {
+    @State var prayerTime = [SalahTiming(name: "Fajr", time: "06:00"), SalahTiming(name: "Duhr", time: "12:00"), SalahTiming(name: "Asr", time: "14:00"),SalahTiming(name: "Magrib", time: "17:00"),SalahTiming(name: "Isah", time: "19:00")]
+    return PrayerDailySectionView(prayerTimes: $prayerTime)
+}

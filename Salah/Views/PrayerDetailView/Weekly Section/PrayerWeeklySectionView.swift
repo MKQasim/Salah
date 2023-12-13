@@ -14,22 +14,24 @@ struct PrayerWeeklySectionView: View {
 
     var body: some View {
         VStack{
-            ForEach(weeklyPrayerTiming, id: \.self){item in
-                
-                HStack{
-                    ScrollView(.horizontal,showsIndicators: false){
-                        HStack{
-                            ForEach(item, id: \.self){
-                                oneDaySalah in
-                                VStack{
+            Section(header: Text("Weekly Timeing").bold()) {
+                ForEach(weeklyPrayerTiming, id: \.self){item in
+                    
+                    HStack{
+                        ScrollView(.horizontal,showsIndicators: false){
+                            HStack{
+                                ForEach(item, id: \.self){
+                                    oneDaySalah in
+                                    VStack{
                                         Text(oneDaySalah.name)
-                                    
+                                        
                                         Text(oneDaySalah.time)
-                                    
+                                        
+                                    }
+                                    .padding()
+                                    .background(.thinMaterial)
+                                    .cornerRadius(10)
                                 }
-                                .padding()
-                                .background(.thinMaterial)
-                                .cornerRadius(10)
                             }
                         }
                     }

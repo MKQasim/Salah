@@ -13,29 +13,28 @@ struct PrayerHeaderSection: View {
     
     var body: some View {
         if !sunTimes.isEmpty {
-            VStack(alignment: .leading){
-                LazyVGrid(columns: [.init(.flexible(minimum: 150)), .init(.flexible(minimum: 150))], content: {
-                    ForEach(sunTimes, id: \.self) { sunTime in
-                        VStack{
-                            Image(systemName: "sun.max.fill")
-                                .foregroundColor(.yellow)
-                                .font(.title)
-                            Text("\(sunTime.name): \(sunTime.time)")
-                                .foregroundColor(.black)
-                                .font(.headline)
-                        }
-                        .padding()
-                        .background(.thinMaterial)
-                        .cornerRadius(20)
-                        
-                    }
-                })
+            VStack(alignment: .center){
                 Section(header: Text("Sun Times").bold()) {
                     VStack{
-                        
+                        LazyVGrid(columns: [.init(.flexible(minimum: 150)), .init(.flexible(minimum: 150))], content: {
+                            ForEach(sunTimes, id: \.self) { sunTime in
+                                VStack{
+                                    Image(systemName: "sun.max.fill")
+                                        .foregroundColor(.yellow)
+                                        .font(.title)
+                                    Text("\(sunTime.name): \(sunTime.time)")
+                                        .foregroundColor(.black)
+                                        .font(.headline)
+                                }
+                                .padding()
+                                .background(.thinMaterial)
+                                .cornerRadius(20)
+                                
+                            }
+                        })
                     }
                 }
-            }
+            } .padding()
         } else {
             EmptyView()
         }

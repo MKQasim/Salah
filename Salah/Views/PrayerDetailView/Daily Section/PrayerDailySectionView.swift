@@ -16,32 +16,19 @@ struct PrayerDailySectionView: View {
     
     var body: some View {
         
-        LazyVGrid(columns: column, alignment: .leading, spacing: 10,pinnedViews: [.sectionHeaders]) {
-            Section(header: VStack{
-                Text("Prayer Times")
-                    .font(.title3)
-                    .fontWeight(.black)
-            }){
-                ForEach(prayerTimes, id: \.self) { prayer in
-                    PrayerDailyCellView(prayer: prayer)
+        VStack(alignment: .center){
+            Section(header: Text("Prayer Times").bold()) {
+                VStack{
+                    LazyVGrid(columns: column, content: {
+                        ForEach(prayerTimes, id: \.self) { prayer in
+                            PrayerDailyCellView(prayer: prayer)
+                        }
+                        .background(.thinMaterial)
+                        .cornerRadius(20.0)
+                    }).padding()
                 }
-                .background(.thinMaterial)
-                .cornerRadius(20.0)
             }
-            
         }
-        .padding()
-        
-        // Display next prayer remaining time
-        Text("Next Prayer: \(nextPrayerName) - \(remainingTime)")
-            .padding()
-        
-            .onAppear {
-                //            updateRemainingTime()
-                //            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-                //                updateRemainingTime()
-                //            }
-            }
     }
     
     private func updateRemainingTime() {

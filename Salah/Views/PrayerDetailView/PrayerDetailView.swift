@@ -155,7 +155,9 @@ struct PrayerDetailView: View {
             }
             .padding()
         }
+#if os(iOS)
         .navigationBarTitle(city.city)
+#endif
         .onAppear {
             if isUpdate {
                 getSalahTimings(lat: city.lat, long: city.long, timeZone: city.timeZone)

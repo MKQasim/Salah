@@ -51,7 +51,7 @@
 		C96F50D62B29A5E7005D09A5 /* SalahMacWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50D52B29A5E7005D09A5 /* SalahMacWidget.swift */; };
 		C96F50D82B29A5E7005D09A5 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50D72B29A5E7005D09A5 /* AppIntent.swift */; };
 		C96F50DA2B29A5E8005D09A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C96F50D92B29A5E8005D09A5 /* Assets.xcassets */; };
-		C96F50DF2B29A5E8005D09A5 /* SalahMacWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C96F50CF2B29A5E7005D09A5 /* SalahMacWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C96F50DF2B29A5E8005D09A5 /* SalahMacWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C96F50CF2B29A5E7005D09A5 /* SalahMacWidgetExtension.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C98C93D52B248AE900C4BC37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */; };
 		C98C93D82B248AE900C4BC37 /* Salah.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C98C93CB2B248AE700C4BC37 /* Salah.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
@@ -668,6 +668,9 @@
 		};
 		C96F50DE2B29A5E8005D09A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilters = (
+				macos,
+			);
 			target = C96F50CE2B29A5E7005D09A5 /* SalahMacWidgetExtension */;
 			targetProxy = C96F50DD2B29A5E8005D09A5 /* PBXContainerItemProxy */;
 		};
@@ -997,7 +1000,7 @@
 				CODE_SIGN_ENTITLEMENTS = Salah/Salah.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
@@ -1045,7 +1048,7 @@
 				CODE_SIGN_ENTITLEMENTS = Salah/Salah.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;

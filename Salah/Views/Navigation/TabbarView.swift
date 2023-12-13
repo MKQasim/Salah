@@ -49,24 +49,17 @@ struct TabbarView: View {
         #endif
         .toolbar {
             #if !os(macOS)
-            ToolbarItem(placement: .bottomBar) {
-                HStack {
+            ToolbarItemGroup(placement: .bottomBar){
                     Spacer()
                     Button(action: {
-                        // Action for the home button
                         isSheet.toggle()
                     }) {
                         Image(systemName: "list.bullet")
                             .font(.subheadline)
                     }
-                }
             }
             #endif
         }
-        
-        //        .sheet(isPresented: $isSheet, content: {
-        //            ManualLocationView(isSheet: $isSheet)
-        //        })
     }
 }
 

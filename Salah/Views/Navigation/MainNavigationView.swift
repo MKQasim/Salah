@@ -25,7 +25,6 @@ struct MainNavigationView: View {
                     .background(
                         AngularGradient(colors: [.sunset,.sunset2], center: .bottomTrailing)
                     )
-                    
             }
         case .regular:
             NavigationSplitDetailView()

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TabbarView: View {
+    @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var navigationState: NavigationState
     @EnvironmentObject var locationState: LocationState
     @State private var selectionTabbar = 0
@@ -15,13 +16,23 @@ struct TabbarView: View {
     
     var body: some View {
         TabView(selection: $navigationState.tabbarSelection) {
-            if locationState.isLocation {
-                PrayerDetailView(city: Cities(city: "Nuremberg", lat: 43.33, long: 19.23, timeZone: 1.0))
-                    .navigationTitle("Nuremberg")
-                    .tag(NavigationItem.currentLocation)
-                    .tabItem {
-                        Label("Current Location", systemImage: "location.fill")
+            if locationManager.locationStatus == .denied {
+                if locationState.cities.count == 0 {
+                    VStack{
+                        Text("Add Location to View screen")
                     }
+                    .tag(NavigationItem.nocurrentLocation)
+                }
+            }
+            else{
+                if locationState.isLocation {
+                    PrayerDetailView(city: Cities(city: "Nuremberg", lat: 43.33, long: 19.23, timeZone: 1.0))
+                        .navigationTitle("Nuremberg")
+                        .tag(NavigationItem.currentLocation)
+                        .tabItem {
+                            Label("Current Location", systemImage: "location.fill")
+                        }
+                }
             }
             ForEach(locationState.cities, id: \.self){location in
                 VStack{
@@ -34,7 +45,19 @@ struct TabbarView: View {
         #if !os(macOS)
         .tabViewStyle(.page(indexDisplayMode: .always))
         .fullScreenCover(isPresented: $isSheet, content: {
-            ManualLocationView(isSheet: $isSheet)
+            NavigationStack{
+                ManualLocationView(isSheet: $isSheet)
+                    .toolbar{
+                        ToolbarItem(placement: .cancellationAction, content: {
+                            Button(action: {
+                                isSheet.toggle()
+                            }, label: {
+                                Text("Cancel")
+                            })
+                        })
+                    }
+            }
+            
         })
         #endif
         .toolbar {

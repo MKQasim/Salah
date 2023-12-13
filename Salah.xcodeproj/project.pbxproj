@@ -8,14 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		0504785F2B20DF6800E6BE85 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* cities.json */; };
-		050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* SidebarView.swift */; };
+		050478642B20EDFA00E6BE85 /* NavigationSplitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* NavigationSplitDetailView.swift */; };
 		050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478652B20EE2F00E6BE85 /* MainNavigationView.swift */; };
 		0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786A2B20F33600E6BE85 /* LocationManager.swift */; };
 		0504786D2B20F52000E6BE85 /* PrayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786C2B20F52000E6BE85 /* PrayerDetailView.swift */; };
 		050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */; };
+		0529B76F2B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B76E2B2A2CBE00842B19 /* PrayerTimeHelper.swift */; };
+		0529B7702B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B76E2B2A2CBE00842B19 /* PrayerTimeHelper.swift */; };
+		0529B7762B2A2F4700842B19 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B7752B2A2F4700842B19 /* DateExtensions.swift */; };
+		0529B7772B2A2F4700842B19 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B7752B2A2F4700842B19 /* DateExtensions.swift */; };
+		0529B7782B2A2F4700842B19 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B7752B2A2F4700842B19 /* DateExtensions.swift */; };
+		0529B7792B2A2F4700842B19 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B7752B2A2F4700842B19 /* DateExtensions.swift */; };
+		0529B77B2B2A485400842B19 /* PrayerTomorowSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B77A2B2A485400842B19 /* PrayerTomorowSection.swift */; };
+		0529B77C2B2A485400842B19 /* PrayerTomorowSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B77A2B2A485400842B19 /* PrayerTomorowSection.swift */; };
+		0529B77E2B2A631800842B19 /* PrayerTodayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B77D2B2A631800842B19 /* PrayerTodayCellView.swift */; };
+		0529B77F2B2A631800842B19 /* PrayerTodayCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0529B77D2B2A631800842B19 /* PrayerTodayCellView.swift */; };
+		052E30002B29CF6500D8B6D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E30D2B20793C00964AF0 /* Assets.xcassets */; };
+		052E30012B29CF6500D8B6D5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E30D2B20793C00964AF0 /* Assets.xcassets */; };
 		052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052F0CAB2B2310E30037ADAE /* LocationState.swift */; };
-		0531E64E2B2635A500FBA29B /* PrayerDailySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E64D2B2635A500FBA29B /* PrayerDailySectionView.swift */; };
-		0531E64F2B26372600FBA29B /* PrayerDailySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E64D2B2635A500FBA29B /* PrayerDailySectionView.swift */; };
+		0531E64E2B2635A500FBA29B /* PrayerTodaySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E64D2B2635A500FBA29B /* PrayerTodaySectionView.swift */; };
+		0531E64F2B26372600FBA29B /* PrayerTodaySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E64D2B2635A500FBA29B /* PrayerTodaySectionView.swift */; };
 		0531E6512B26377400FBA29B /* PrayerHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6502B26377400FBA29B /* PrayerHeaderSection.swift */; };
 		0531E6522B26377400FBA29B /* PrayerHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6502B26377400FBA29B /* PrayerHeaderSection.swift */; };
 		0531E6542B26392800FBA29B /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6532B26392800FBA29B /* TabbarView.swift */; };
@@ -43,21 +55,19 @@
 		C96F50BC2B29A401005D09A5 /* SalahWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50BB2B29A401005D09A5 /* SalahWidgetLiveActivity.swift */; };
 		C96F50BE2B29A401005D09A5 /* SalahWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50BD2B29A401005D09A5 /* SalahWidget.swift */; };
 		C96F50C02B29A401005D09A5 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50BF2B29A401005D09A5 /* AppIntent.swift */; };
-		C96F50C22B29A403005D09A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C96F50C12B29A403005D09A5 /* Assets.xcassets */; };
 		C96F50C62B29A403005D09A5 /* SalahWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C96F50B22B29A401005D09A5 /* SalahWidgetExtension.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C96F50D02B29A5E7005D09A5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C96F50B42B29A401005D09A5 /* WidgetKit.framework */; };
 		C96F50D12B29A5E7005D09A5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C96F50B62B29A401005D09A5 /* SwiftUI.framework */; };
 		C96F50D42B29A5E7005D09A5 /* SalahMacWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50D32B29A5E7005D09A5 /* SalahMacWidgetBundle.swift */; };
 		C96F50D62B29A5E7005D09A5 /* SalahMacWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50D52B29A5E7005D09A5 /* SalahMacWidget.swift */; };
 		C96F50D82B29A5E7005D09A5 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50D72B29A5E7005D09A5 /* AppIntent.swift */; };
-		C96F50DA2B29A5E8005D09A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C96F50D92B29A5E8005D09A5 /* Assets.xcassets */; };
 		C96F50DF2B29A5E8005D09A5 /* SalahMacWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C96F50CF2B29A5E7005D09A5 /* SalahMacWidgetExtension.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C98C93D52B248AE900C4BC37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */; };
 		C98C93D82B248AE900C4BC37 /* Salah.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C98C93CB2B248AE700C4BC37 /* Salah.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
 		C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E30B2B20793A00964AF0 /* ContentView.swift */; };
 		C98C93DF2B248BA300C4BC37 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478652B20EE2F00E6BE85 /* MainNavigationView.swift */; };
-		C98C93E02B248BA600C4BC37 /* SidebarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* SidebarView.swift */; };
+		C98C93E02B248BA600C4BC37 /* NavigationSplitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* NavigationSplitDetailView.swift */; };
 		C98C93E12B248BAA00C4BC37 /* PrayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786C2B20F52000E6BE85 /* PrayerDetailView.swift */; };
 		C98C93E22B248BAE00C4BC37 /* ManualLocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */; };
 		C98C93E32B248BB100C4BC37 /* LocationPermissionOnboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */; };
@@ -128,14 +138,18 @@
 		0504785C2B20DF6800E6BE85 /* PrayTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrayTime.h; sourceTree = "<group>"; };
 		0504785D2B20DF6800E6BE85 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		0504785E2B20DF6800E6BE85 /* PrayTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrayTime.m; sourceTree = "<group>"; };
-		050478632B20EDFA00E6BE85 /* SidebarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarView.swift; sourceTree = "<group>"; };
+		050478632B20EDFA00E6BE85 /* NavigationSplitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSplitDetailView.swift; sourceTree = "<group>"; };
 		050478652B20EE2F00E6BE85 /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
 		0504786A2B20F33600E6BE85 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		0504786C2B20F52000E6BE85 /* PrayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerDetailView.swift; sourceTree = "<group>"; };
 		0504786E2B20F63500E6BE85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionOnboard.swift; sourceTree = "<group>"; };
+		0529B76E2B2A2CBE00842B19 /* PrayerTimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTimeHelper.swift; sourceTree = "<group>"; };
+		0529B7752B2A2F4700842B19 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		0529B77A2B2A485400842B19 /* PrayerTomorowSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTomorowSection.swift; sourceTree = "<group>"; };
+		0529B77D2B2A631800842B19 /* PrayerTodayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTodayCellView.swift; sourceTree = "<group>"; };
 		052F0CAB2B2310E30037ADAE /* LocationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationState.swift; sourceTree = "<group>"; };
-		0531E64D2B2635A500FBA29B /* PrayerDailySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerDailySectionView.swift; sourceTree = "<group>"; };
+		0531E64D2B2635A500FBA29B /* PrayerTodaySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTodaySectionView.swift; sourceTree = "<group>"; };
 		0531E6502B26377400FBA29B /* PrayerHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerHeaderSection.swift; sourceTree = "<group>"; };
 		0531E6532B26392800FBA29B /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		0531E6562B263E8C00FBA29B /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
@@ -155,13 +169,11 @@
 		C96F50BB2B29A401005D09A5 /* SalahWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahWidgetLiveActivity.swift; sourceTree = "<group>"; };
 		C96F50BD2B29A401005D09A5 /* SalahWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahWidget.swift; sourceTree = "<group>"; };
 		C96F50BF2B29A401005D09A5 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
-		C96F50C12B29A403005D09A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C96F50C32B29A403005D09A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C96F50CF2B29A5E7005D09A5 /* SalahMacWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SalahMacWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C96F50D32B29A5E7005D09A5 /* SalahMacWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahMacWidgetBundle.swift; sourceTree = "<group>"; };
 		C96F50D52B29A5E7005D09A5 /* SalahMacWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahMacWidget.swift; sourceTree = "<group>"; };
 		C96F50D72B29A5E7005D09A5 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
-		C96F50D92B29A5E8005D09A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C96F50DB2B29A5E8005D09A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C96F50DC2B29A5E8005D09A5 /* SalahMacWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SalahMacWidget.entitlements; sourceTree = "<group>"; };
 		C98C93CB2B248AE700C4BC37 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,7 +236,7 @@
 		050478622B20EDD400E6BE85 /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				050478632B20EDFA00E6BE85 /* SidebarView.swift */,
+				050478632B20EDFA00E6BE85 /* NavigationSplitDetailView.swift */,
 				050478652B20EE2F00E6BE85 /* MainNavigationView.swift */,
 				0531E6532B26392800FBA29B /* TabbarView.swift */,
 			);
@@ -269,6 +281,15 @@
 			path = OnBoarding;
 			sourceTree = "<group>";
 		};
+		0529B76D2B2A2C7D00842B19 /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				0529B76E2B2A2CBE00842B19 /* PrayerTimeHelper.swift */,
+				0529B7752B2A2F4700842B19 /* DateExtensions.swift */,
+			);
+			path = Extras;
+			sourceTree = "<group>";
+		};
 		052F0CAA2B23101B0037ADAE /* State */ = {
 			isa = PBXGroup;
 			children = (
@@ -301,8 +322,10 @@
 		0575B0BF2B2901C300809387 /* Daily Section */ = {
 			isa = PBXGroup;
 			children = (
-				0531E64D2B2635A500FBA29B /* PrayerDailySectionView.swift */,
+				0531E64D2B2635A500FBA29B /* PrayerTodaySectionView.swift */,
 				055E27C62B28E7F50087024E /* PrayerDailyCellView.swift */,
+				0529B77A2B2A485400842B19 /* PrayerTomorowSection.swift */,
+				0529B77D2B2A631800842B19 /* PrayerTodayCellView.swift */,
 			);
 			path = "Daily Section";
 			sourceTree = "<group>";
@@ -331,7 +354,6 @@
 				C96F50BB2B29A401005D09A5 /* SalahWidgetLiveActivity.swift */,
 				C96F50BD2B29A401005D09A5 /* SalahWidget.swift */,
 				C96F50BF2B29A401005D09A5 /* AppIntent.swift */,
-				C96F50C12B29A403005D09A5 /* Assets.xcassets */,
 				C96F50C32B29A403005D09A5 /* Info.plist */,
 			);
 			path = SalahWidget;
@@ -343,7 +365,6 @@
 				C96F50D32B29A5E7005D09A5 /* SalahMacWidgetBundle.swift */,
 				C96F50D52B29A5E7005D09A5 /* SalahMacWidget.swift */,
 				C96F50D72B29A5E7005D09A5 /* AppIntent.swift */,
-				C96F50D92B29A5E8005D09A5 /* Assets.xcassets */,
 				C96F50DB2B29A5E8005D09A5 /* Info.plist */,
 				C96F50DC2B29A5E8005D09A5 /* SalahMacWidget.entitlements */,
 			);
@@ -393,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				0504786E2B20F63500E6BE85 /* Info.plist */,
+				050478682B20F18B00E6BE85 /* Main */,
 				056F97C52B22812B006AC7F8 /* Data */,
 				056F97C22B223264006AC7F8 /* Models */,
 				050478692B20F32400E6BE85 /* Services */,
@@ -400,7 +422,7 @@
 				052F0CAA2B23101B0037ADAE /* State */,
 				C9F5E3092B20793A00964AF0 /* SalahApp.swift */,
 				C9F5E30B2B20793A00964AF0 /* ContentView.swift */,
-				050478682B20F18B00E6BE85 /* Main */,
+				0529B76D2B2A2C7D00842B19 /* Extras */,
 				C9F5E30D2B20793C00964AF0 /* Assets.xcassets */,
 				C9F5E30F2B20793C00964AF0 /* Salah.entitlements */,
 				C9F5E31A2B207EBC00964AF0 /* Salah-Bridging-Header.h */,
@@ -544,7 +566,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C96F50C22B29A403005D09A5 /* Assets.xcassets in Resources */,
+				052E30002B29CF6500D8B6D5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,7 +574,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C96F50DA2B29A5E8005D09A5 /* Assets.xcassets in Resources */,
+				052E30012B29CF6500D8B6D5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +608,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C96F50BE2B29A401005D09A5 /* SalahWidget.swift in Sources */,
+				0529B7782B2A2F4700842B19 /* DateExtensions.swift in Sources */,
 				C96F50C02B29A401005D09A5 /* AppIntent.swift in Sources */,
 				C96F50BC2B29A401005D09A5 /* SalahWidgetLiveActivity.swift in Sources */,
 				C96F50BA2B29A401005D09A5 /* SalahWidgetBundle.swift in Sources */,
@@ -597,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C96F50D42B29A5E7005D09A5 /* SalahMacWidgetBundle.swift in Sources */,
+				0529B7792B2A2F4700842B19 /* DateExtensions.swift in Sources */,
 				C96F50D62B29A5E7005D09A5 /* SalahMacWidget.swift in Sources */,
 				C96F50D82B29A5E7005D09A5 /* AppIntent.swift in Sources */,
 			);
@@ -611,21 +635,25 @@
 				C98C93EB2B248D8D00C4BC37 /* PrayTime.m in Sources */,
 				C98C93E52B248BB800C4BC37 /* LocationManager.swift in Sources */,
 				C98C93E62B248BBB00C4BC37 /* Country.swift in Sources */,
+				0529B7772B2A2F4700842B19 /* DateExtensions.swift in Sources */,
+				0529B7702B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */,
 				C98C93EA2B248CCB00C4BC37 /* LocationState.swift in Sources */,
 				0531E6522B26377400FBA29B /* PrayerHeaderSection.swift in Sources */,
 				C98C93E72B248BBE00C4BC37 /* Location.swift in Sources */,
 				C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */,
 				05FC81712B27BEFA0046E93C /* NavigationState.swift in Sources */,
+				0529B77C2B2A485400842B19 /* PrayerTomorowSection.swift in Sources */,
 				0531E6582B263E8C00FBA29B /* Cities.swift in Sources */,
 				055E27C82B28E8600087024E /* PrayerDailyCellView.swift in Sources */,
 				0575B0C32B29087000809387 /* PrayerWeeklySectionView.swift in Sources */,
 				C98C93E32B248BB100C4BC37 /* LocationPermissionOnboard.swift in Sources */,
 				C98C93DF2B248BA300C4BC37 /* MainNavigationView.swift in Sources */,
 				0531E6552B26392800FBA29B /* TabbarView.swift in Sources */,
+				0529B77F2B2A631800842B19 /* PrayerTodayCellView.swift in Sources */,
 				C98C93E22B248BAE00C4BC37 /* ManualLocationView.swift in Sources */,
-				0531E64F2B26372600FBA29B /* PrayerDailySectionView.swift in Sources */,
+				0531E64F2B26372600FBA29B /* PrayerTodaySectionView.swift in Sources */,
 				C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */,
-				C98C93E02B248BA600C4BC37 /* SidebarView.swift in Sources */,
+				C98C93E02B248BA600C4BC37 /* NavigationSplitDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,25 +661,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0529B7762B2A2F4700842B19 /* DateExtensions.swift in Sources */,
 				0531E6542B26392800FBA29B /* TabbarView.swift in Sources */,
 				05FC81702B27BEFA0046E93C /* NavigationState.swift in Sources */,
 				0504786D2B20F52000E6BE85 /* PrayerDetailView.swift in Sources */,
+				0529B76F2B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */,
 				056F97C42B223274006AC7F8 /* Location.swift in Sources */,
 				0531E6572B263E8C00FBA29B /* Cities.swift in Sources */,
-				0531E64E2B2635A500FBA29B /* PrayerDailySectionView.swift in Sources */,
+				0531E64E2B2635A500FBA29B /* PrayerTodaySectionView.swift in Sources */,
 				055E27C72B28E7F60087024E /* PrayerDailyCellView.swift in Sources */,
 				C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */,
 				052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */,
 				0575B0C22B29020200809387 /* PrayerWeeklySectionView.swift in Sources */,
+				0529B77B2B2A485400842B19 /* PrayerTomorowSection.swift in Sources */,
 				050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */,
 				05FC81732B27BF130046E93C /* NavigationItem.swift in Sources */,
 				C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */,
 				056F97C92B228654006AC7F8 /* Country.swift in Sources */,
 				056F97BF2B21C732006AC7F8 /* ManualLocationView.swift in Sources */,
-				050478642B20EDFA00E6BE85 /* SidebarView.swift in Sources */,
+				050478642B20EDFA00E6BE85 /* NavigationSplitDetailView.swift in Sources */,
 				C964588F2B24B4BF002B4E3A /* AppLandingView.swift in Sources */,
 				0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */,
 				0531E6512B26377400FBA29B /* PrayerHeaderSection.swift in Sources */,
+				0529B77E2B2A631800842B19 /* PrayerTodayCellView.swift in Sources */,
 				050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */,
 				C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */,
 			);
@@ -691,7 +723,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahWidget;
@@ -721,7 +753,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahWidget;
@@ -753,7 +785,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;
@@ -783,7 +815,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;
@@ -816,7 +848,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -851,7 +883,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1002,7 +1034,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;
@@ -1050,7 +1082,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;

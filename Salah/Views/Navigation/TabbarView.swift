@@ -8,28 +8,17 @@
 import SwiftUI
 
 struct TabbarView: View {
-    
+    @EnvironmentObject private var navigationState: NavigationState
     @EnvironmentObject var locationState: LocationState
     @State private var selectionTabbar = 0
     @State private var isSheet = false
     
-    init(){
-#if os(iOS)
-        let coloredAppearance = UIToolbarAppearance()
-        coloredAppearance.configureWithTransparentBackground()
-        coloredAppearance.backgroundColor = .orange.withAlphaComponent(0.1)
-              UIToolbar.appearance().standardAppearance = coloredAppearance
-        UIToolbar.appearance().compactAppearance = coloredAppearance
-        UIToolbar.appearance().scrollEdgeAppearance = coloredAppearance
-        UIToolbar.appearance().tintColor = .red
-#endif
-    }
-    
     var body: some View {
-        TabView(selection: $selectionTabbar) {
+        TabView(selection: $navigationState.tabbarSelection) {
             if locationState.isLocation {
                 PrayerDetailView(city: Cities(city: "Nuremberg", lat: 43.33, long: 19.23, timeZone: 1.0))
-                    .tag(0)
+                    .navigationTitle("Nuremberg")
+                    .tag(NavigationItem.currentLocation)
                     .tabItem {
                         Label("Current Location", systemImage: "location.fill")
                     }
@@ -38,7 +27,8 @@ struct TabbarView: View {
                 VStack{
                     PrayerDetailView(city: location)
                 }
-                .tag(location)
+                .navigationTitle(location.city)
+                .tag(NavigationItem.city(location))
             }
         }
         #if !os(macOS)

@@ -14,157 +14,92 @@ struct SalahTiming: Identifiable, Hashable {
 
 struct PrayerDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
-    @State private var prayerTimes: [SalahTiming] = []
+    let city: Cities
+    // MARK: View States
+    @State private var todayPrayersTimes: [SalahTiming] = []
+    @State private var tomorrowPrayerTimes: [SalahTiming] = []
     @State private var sunTimes: [SalahTiming] = []
     @State private var selectedPrayer: SalahTiming? = nil
     @State private var isUpdate = true
-    
-    let city: Cities
-    
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var timeNow = ""
     @State private var nextSalah = ""
     @State private var remainingTime: TimeInterval = 0
-    @State private var targetDate: Date = Date() // Set your specific time here
+    @State private var targetDate: Date = Date()
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .center, spacing: 15) {
-                
-                HStack {
-                    Image(systemName: "house")
-                        .foregroundColor(.brown)
-                    Text(city.city)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(.thinMaterial)
-                .cornerRadius(10)
-              
-//                .background(
-//                    RoundedRectangle(cornerRadius: 10)
-////                        .fill(
-////                            LinearGradient(
-////                                gradient: Gradient(colors: [Color.orange, Color.red]),
-////                                startPoint: .topLeading,
-////                                endPoint: .bottomTrailing
-////                            )
-////                        )
-//                        .background(.thinMaterial)
-//                )
-                
-                HStack {
-                    Image(systemName: "clock")
-                        .foregroundColor(.green)
-                    Text("Currently: \(timeNow)")
-                        .font(.subheadline)
-                        .foregroundColor(.black)
-                        .onReceive(timer) { _ in updateTime() }
-                                            .onAppear { }
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(.thinMaterial)
-                .cornerRadius(10)
-                
-//                .background(
-//                    RoundedRectangle(cornerRadius: 10)
-////                        .fill(
-////                            LinearGradient(
-////                                gradient: Gradient(colors: [Color.green, Color.blue]),
-////                                startPoint: .topLeading,
-////                                endPoint: .bottomTrailing
-////                            )
-////                        )
-//                        .background(.thinMaterial)
-//                )
-                
-                HStack {
-                    Image(systemName: "alarm")
-                        .foregroundColor(.orange)
-                    Text("Next Salah: \(nextSalah)")
-                        .font(.subheadline)
-                        .foregroundColor(.black)
-                }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(.thinMaterial)
-                .cornerRadius(10)
-                
-//                .background(
-//                    RoundedRectangle(cornerRadius: 10)
-////                        .fill(
-////                            LinearGradient(
-////                                gradient: Gradient(colors: [Color.purple, Color.pink]),
-////                                startPoint: .topLeading,
-////                                endPoint: .bottomTrailing
-////                            )
-////                        )
-//                        .background(.thinMaterial)
-//                )
-                
-                if let selectedPrayer = selectedPrayer {
-                    HStack {
-                        Image(systemName: "hourglass")
-                            .foregroundColor(.black)
-                        Text("Remaining Time for \(selectedPrayer.name): \(formattedTime())")
+                VStack{
+                    VStack {
+                        Image(systemName: "clock")
+                            .foregroundColor(.green)
+                            .font(.title)
+                        Text("Currently: \(timeNow)")
                             .font(.subheadline)
-                            .foregroundColor(.black)
+                            .onReceive(timer) { _ in updateTime() }
+                            .onAppear { }
                     }
-                    .frame(maxWidth: .infinity)
-                    .padding()
+                    .frame(maxWidth: .infinity, minHeight: 120)
                     .background(.thinMaterial)
                     .cornerRadius(10)
+                    .padding([.leading,.trailing])
                     
-//                    .background(
-//                        RoundedRectangle(cornerRadius: 10)
-////                            .fill(
-////                                LinearGradient(
-////                                    gradient: Gradient(colors: [Color.yellow, Color.orange]),
-////                                    startPoint: .topLeading,
-////                                    endPoint: .bottomTrailing
-////                                )
-////                            )
-//
-//                    )
-                }
-                
-                PrayerHeaderSection(sunTimes: $sunTimes)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(10)
-                PrayerDailySectionView(prayerTimes: $prayerTimes)
-                    .background(.ultraThinMaterial)
-                    .cornerRadius(10)
-                PrayerWeeklySectionView(city: city)
-                    .background(.ultraThickMaterial)
-                .cornerRadius(10)
-//                .background(
-//                    RoundedRectangle(cornerRadius: 10)
-//                        .fill(
-//                            LinearGradient(
-//                                gradient: Gradient(colors: [Color.yellow, Color.orange]),
-//                                startPoint: .topLeading,
-//                                endPoint: .bottomTrailing
-//                            )
-//                        )
+                    
+                    LazyVGrid(columns: [.init(.flexible(minimum: 120, maximum: .infinity)), .init(.flexible(minimum: 120, maximum: .infinity))]){
+                        VStack {
+                            Image(systemName: "alarm")
+                                .foregroundColor(.orange)
+                            Text("Next Salah: \(nextSalah)")
+                                .font(.subheadline)
+                        }
+                        .frame(maxWidth: .infinity, minHeight: 120)
+                        .background(.thinMaterial)
+                        .cornerRadius(10)
                         
-//                )
-            }
-            .padding()
+                        
+                        if let selectedPrayer = selectedPrayer {
+                            VStack {
+                                Image(systemName: "hourglass")
+                                    .foregroundColor(.black)
+                                Text("Remaining Time for \(selectedPrayer.name): \(formattedTime())")
+                                    .font(.subheadline)
+                            }
+                            .frame(maxWidth: .infinity, minHeight: 120)
+                            .background(.thinMaterial)
+                            .cornerRadius(10)
+                        }
+                    }
+                    .padding([.leading,.trailing])
+                    
+                    VStack{
+                        PrayerHeaderSection(sunTimes: $sunTimes)
+                        PrayerTodaySectionView(prayerTimes: $todayPrayersTimes)
+                        PrayerTomorowSection(prayerTimes: $tomorrowPrayerTimes)
+                        PrayerWeeklySectionView(city: city)
+                    }
+                    .padding([.leading,.trailing])
+                }
+                .padding(.top,10)
         }
-#if os(iOS)
-        .navigationBarTitle(city.city)
-#endif
-        .onAppear {
-            if isUpdate {
-                getSalahTimings(lat: city.lat, long: city.long, timeZone: city.timeZone)
-                isUpdate = false
+        .onAppear{
+            setUpView()
             }
+        
+        
+    }
+    
+    private func setUpView() {
+        if isUpdate {
+            todayPrayersTimes = []
+            tomorrowPrayerTimes = []
+            let today = Date()
+            todayPrayersTimes = PrayerTimeHelper.getSalahTimings(lat: city.lat, long: city.long, timeZone: city.timeZone)
+            if let cal = Calendar.current.date(byAdding: .day,value: 1, to: today) {
+                tomorrowPrayerTimes = PrayerTimeHelper.getSalahTimings(lat: city.lat, long: city.long, timeZone: city.timeZone,date: cal)
+            }
+            isUpdate = false
         }
-        .background(Color.white.edgesIgnoringSafeArea(.all))
+
     }
 
 
@@ -185,7 +120,7 @@ struct PrayerDetailView: View {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         
-        for prayer in prayerTimes {
+        for prayer in todayPrayersTimes {
             let addedCurrentDate = dateFormatter.string(from: currentDate!) + " " + prayer.time
             if let prayerTime = convertTimeStringToDate(addedCurrentDate, format: "dd/MM/yyyy HH:mm") {
                 if prayerTime > currentDate! {
@@ -199,9 +134,9 @@ struct PrayerDetailView: View {
         }
         
         if nextSalah.isEmpty {
-            nextSalah = "\(prayerTimes[0].name) at \(prayerTimes[0].time)"
-            selectedPrayer = prayerTimes.first
-            targetDate = convertTimeStringToDate(prayerTimes[0].time, format: "HH:mm") ?? Date()
+            nextSalah = "\(todayPrayersTimes[0].name) at \(todayPrayersTimes[0].time)"
+            selectedPrayer = todayPrayersTimes.first
+            targetDate = convertTimeStringToDate(todayPrayersTimes[0].time, format: "HH:mm") ?? Date()
             startTimer()
         }
     }
@@ -236,77 +171,7 @@ struct PrayerDetailView: View {
             return ""
         }
     }
-    
-    private func getSalahTimings(lat: Double, long: Double, timeZone: Double) {
-        let date = Date()
-        let time = PrayTime()
-        time.setCalcMethod(3)
-        let mutableNames = time.timeNames!
-        let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
-        
-        let getTime = time.getDatePrayerTimes(Int32(date.get(.year)),
-                                              andMonth: Int32(date.get(.month)),
-                                              andDay: Int32(date.get(.day)),
-                                              andLatitude: lat,
-                                              andLongitude: long,
-                                              andtimeZone: timeZone)!
-        let salahTiming = getTime.compactMap({ $0 as? String })
-        
-        for (index, name) in salahNaming.enumerated() {
-            let newSalahTiming = SalahTiming(name: name, time: salahTiming[index])
-            
-            if (name != "Sunset" && name != "Sunrise") {
-                prayerTimes.append(newSalahTiming)
-                isUpdate = true
-            } else {
-                sunTimes.append(newSalahTiming)
-                isUpdate = true
-            }
-        }
-    }
 }
-
-
-extension Date {
-    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
-        return calendar.dateComponents(Set(components), from: self)
-    }
-    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
-        return calendar.component(component, from: self)
-    }
-}
-
-extension Date {
-    func adjusted(byHours hours: Int, minutes: Int, seconds: Int) -> Date {
-        let calendar = Calendar.current
-        var dateComponents = DateComponents()
-        dateComponents.hour = hours
-        dateComponents.minute = minutes
-        dateComponents.second = seconds
-        
-        return calendar.date(byAdding: dateComponents, to: self) ?? self
-    }
-}
-
-extension Date {
-    func dateByAdding(hours: Int, minutes: Int) -> Date? {
-        let calendar = Calendar.current
-        var dateComponents = DateComponents()
-        dateComponents.hour = hours
-        dateComponents.minute = minutes
-        
-        return calendar.date(byAdding: dateComponents, to: self)
-    }
-    
-    func dateByAdding(timeZoneOffset: Double) -> Date? {
-        let hours = Int(timeZoneOffset)
-        let minutes = Int((timeZoneOffset - Double(hours)) * 60)
-        return dateByAdding(hours: hours, minutes: minutes)
-    }
-}
-
-
-
 
 #Preview {
     let city = Cities(city: "Nurember", lat: 43.22, long: 11.32, timeZone: +1.0)

@@ -8,5 +8,6 @@
 import Foundation
 
 class NavigationState:ObservableObject{
+    @Published var tabbarSelection:NavigationItem = .currentLocation
     @Published var sidebarSelection: NavigationItem?
 }

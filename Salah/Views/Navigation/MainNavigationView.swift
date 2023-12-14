@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct MainNavigationView: View {
-
+    
     @Environment (\.horizontalSizeClass) private var horizontalSize
-    @StateObject var navigationState = NavigationState()
-
+    
     var body: some View {
         switch horizontalSize{
         case .compact:
             NavigationStack{
                 TabbarView()
+                #if !os(macOS)
+                    .toolbarBackground(.visible, for: .navigationBar)
+                    .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
+                    .toolbarBackground(.visible, for: .bottomBar)
+                    .toolbarBackground(.ultraThinMaterial, for: .bottomBar)
+                #endif
+                    .background(
+                        AngularGradient(colors: [.sunset,.sunset2], center: .bottomTrailing)
+                    )
             }
         case .regular:
-            SidebarView()
-                .environmentObject(navigationState)
+            NavigationSplitDetailView()
         case .none:
-            SidebarView()
-                .environmentObject(navigationState)
+            NavigationSplitDetailView()
         default:
             Text("Regular")
         }

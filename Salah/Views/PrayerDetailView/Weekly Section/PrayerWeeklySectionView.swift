@@ -7,65 +7,67 @@
 
 import SwiftUI
 
+struct PrayerWeekly:Identifiable, Hashable{
+    var id = UUID()
+    let date: Date
+    let dayPrayerTime:[SalahTiming]
+}
+
 struct PrayerWeeklySectionView: View {
     let city: Cities
-    @State private var weeklyPrayerTiming: [[SalahTiming]] = []
+    @State private var weeklyPrayerTiming: [PrayerWeekly] = []
     @State var isUpdate = true
 
     var body: some View {
-        VStack{
-            Section(header: Text("Weekly Timeing").bold()) {
+        LazyVGrid(columns: [.init(.flexible(maximum: .infinity))],pinnedViews: .sectionHeaders){
+            Section(header: VStack{
+                Text("Weekly Prayers Times").font(.title3).bold()
+            }
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(.thinMaterial)
+                .cornerRadius(10)
+            ) {
                 ForEach(weeklyPrayerTiming, id: \.self){item in
-                    
                     HStack{
                         ScrollView(.horizontal,showsIndicators: false){
-                            HStack{
-                                ForEach(item, id: \.self){
-                                    oneDaySalah in
-                                    VStack{
-                                        Text(oneDaySalah.name)
+                            Section(header: Text(item.date, style: .date)){
+                                HStack{
+                                    ForEach(item.dayPrayerTime, id: \.self){
+                                        oneDaySalah in
                                         
-                                        Text(oneDaySalah.time)
-                                        
+                                        PrayerDailyCellView(prayer: oneDaySalah)
                                     }
-                                    .padding()
-                                    .background(.thinMaterial)
-                                    .cornerRadius(10)
                                 }
                             }
+                            
                         }
                     }
                 }
             }
         }
-        .padding()
         .onAppear{
             if isUpdate{
-                getSalahTimings(lat: city.lat, long: city.long, timeZone: city.timeZone)
+                setUpWeeklyPrayersTiming(lat: city.lat, long: city.long, timeZone: city.timeZone)
                 isUpdate = false
             }
         }
     }
     
-    func getSalahTimings(lat: Double, long:Double, timeZone:Double){
-        //        guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-        let time = PrayTime()
-        time.setCalcMethod(3)
+    func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double){
         
         if let date = Date().dateByAdding(timeZoneOffset: city.timeZone){
             let cal = Calendar.current
             for i in 1...7{
                 if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
-                    let mutableNames = time.timeNames!
-                    let salahNaming:[String] = mutableNames.compactMap({$0 as? String})
-                    let getTime = time.getDatePrayerTimes(Int32(newDate.get(.year)), andMonth: Int32(newDate.get(.month)), andDay: Int32(newDate.get(.day)), andLatitude: lat, andLongitude: long, andtimeZone: timeZone)!
-                    let salahTiming = getTime.compactMap({$0 as? String})
                     var oneDaySalah:[SalahTiming] = []
-                    for (index,name) in salahNaming.enumerated(){
-                        let newSalahTiming = SalahTiming(name: name, time: salahTiming[index])
+                    let getDailyPrayerTiming = PrayerTimeHelper.getSalahTimings(lat: lat, long: long, timeZone: timeZone, date: newDate)
+                    for getDailyPrayerTime in getDailyPrayerTiming {
+                        let newSalahTiming = SalahTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
                         oneDaySalah.append(newSalahTiming)
                     }
-                    weeklyPrayerTiming.append(oneDaySalah)
+                    let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)
+                    weeklyPrayerTiming.append(dayPrayerTime)
                         }
                 
                 

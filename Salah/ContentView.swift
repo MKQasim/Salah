@@ -9,12 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var locationState = LocationState()
+    @StateObject var navigationState = NavigationState()
     @StateObject var locationManager = LocationManager()
     @State private var prayerTimes:[String] = []
     var body: some View {
         MainNavigationView()        
         .environmentObject(locationManager)
         .environmentObject(locationState)
+        .environmentObject(navigationState)
         .onAppear{
             locationManager.requestLocation()
             switch locationManager.locationStatus{

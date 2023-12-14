@@ -43,6 +43,10 @@
 		056F97C92B228654006AC7F8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C82B228654006AC7F8 /* Country.swift */; };
 		0575B0C22B29020200809387 /* PrayerWeeklySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B0C12B29020200809387 /* PrayerWeeklySectionView.swift */; };
 		0575B0C32B29087000809387 /* PrayerWeeklySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B0C12B29020200809387 /* PrayerWeeklySectionView.swift */; };
+		05E01DE82B2B96F9002ED7FC /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */; };
+		05E01DE92B2B96F9002ED7FC /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */; };
+		05E01DEA2B2B96F9002ED7FC /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */; };
+		05E01DEB2B2B96F9002ED7FC /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */; };
 		05FC81702B27BEFA0046E93C /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC816F2B27BEFA0046E93C /* NavigationState.swift */; };
 		05FC81712B27BEFA0046E93C /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC816F2B27BEFA0046E93C /* NavigationState.swift */; };
 		05FC81732B27BF130046E93C /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC81722B27BF130046E93C /* NavigationItem.swift */; };
@@ -159,6 +163,7 @@
 		056F97C62B228573006AC7F8 /* country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
 		056F97C82B228654006AC7F8 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		0575B0C12B29020200809387 /* PrayerWeeklySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerWeeklySectionView.swift; sourceTree = "<group>"; };
+		05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		05FC816F2B27BEFA0046E93C /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 		05FC81722B27BF130046E93C /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		C964588E2B24B4BF002B4E3A /* AppLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLandingView.swift; sourceTree = "<group>"; };
@@ -286,6 +291,7 @@
 			children = (
 				0529B76E2B2A2CBE00842B19 /* PrayerTimeHelper.swift */,
 				0529B7752B2A2F4700842B19 /* DateExtensions.swift */,
+				05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 			files = (
 				C96F50BE2B29A401005D09A5 /* SalahWidget.swift in Sources */,
 				0529B7782B2A2F4700842B19 /* DateExtensions.swift in Sources */,
+				05E01DEA2B2B96F9002ED7FC /* TimeHelper.swift in Sources */,
 				C96F50C02B29A401005D09A5 /* AppIntent.swift in Sources */,
 				C96F50BC2B29A401005D09A5 /* SalahWidgetLiveActivity.swift in Sources */,
 				C96F50BA2B29A401005D09A5 /* SalahWidgetBundle.swift in Sources */,
@@ -620,6 +627,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C96F50D42B29A5E7005D09A5 /* SalahMacWidgetBundle.swift in Sources */,
+				05E01DEB2B2B96F9002ED7FC /* TimeHelper.swift in Sources */,
 				0529B7792B2A2F4700842B19 /* DateExtensions.swift in Sources */,
 				C96F50D62B29A5E7005D09A5 /* SalahMacWidget.swift in Sources */,
 				C96F50D82B29A5E7005D09A5 /* AppIntent.swift in Sources */,
@@ -646,6 +654,7 @@
 				0531E6582B263E8C00FBA29B /* Cities.swift in Sources */,
 				055E27C82B28E8600087024E /* PrayerDailyCellView.swift in Sources */,
 				0575B0C32B29087000809387 /* PrayerWeeklySectionView.swift in Sources */,
+				05E01DE92B2B96F9002ED7FC /* TimeHelper.swift in Sources */,
 				C98C93E32B248BB100C4BC37 /* LocationPermissionOnboard.swift in Sources */,
 				C98C93DF2B248BA300C4BC37 /* MainNavigationView.swift in Sources */,
 				0531E6552B26392800FBA29B /* TabbarView.swift in Sources */,
@@ -675,6 +684,7 @@
 				0575B0C22B29020200809387 /* PrayerWeeklySectionView.swift in Sources */,
 				0529B77B2B2A485400842B19 /* PrayerTomorowSection.swift in Sources */,
 				050478712B20F9E900E6BE85 /* LocationPermissionOnboard.swift in Sources */,
+				05E01DE82B2B96F9002ED7FC /* TimeHelper.swift in Sources */,
 				05FC81732B27BF130046E93C /* NavigationItem.swift in Sources */,
 				C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */,
 				056F97C92B228654006AC7F8 /* Country.swift in Sources */,

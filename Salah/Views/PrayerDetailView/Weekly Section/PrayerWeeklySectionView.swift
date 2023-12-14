@@ -56,7 +56,7 @@ struct PrayerWeeklySectionView: View {
     
     func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double){
         
-        if let date = Date().dateByAdding(timeZoneOffset: city.timeZone){
+        if Date().dateByAdding(timeZoneOffset: city.timeZone) != nil{
             let cal = Calendar.current
             for i in 1...7{
                 if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {

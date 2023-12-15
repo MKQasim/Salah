@@ -12,28 +12,32 @@ struct PrayerHeaderSection: View {
     
     var body: some View {
         if !sunTimes.isEmpty {
-            VStack(alignment: .center){
-                Section(header: Text("Sun Times").bold()) {
-                    VStack{
-                        LazyVGrid(columns: [.init(.flexible(minimum: 150,maximum: .infinity)), .init(.flexible(minimum: 150,maximum: .infinity))], content: {
-                            ForEach(sunTimes, id: \.self) { sunTime in
-                                VStack{
-                                    Image(systemName: "sun.max.fill")
-                                        .foregroundColor(.yellow)
-                                        .font(.title)
-                                    Text("\(sunTime.name): \(sunTime.time)")
-                                        .font(.headline)
-                                }
-                                .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(.thinMaterial)
-                                .cornerRadius(20)
-                                
-                            }
-                        })
+            LazyVGrid(columns: [.init(.flexible(minimum: 150,maximum: .infinity)), .init(.flexible(minimum: 150,maximum: .infinity))], pinnedViews: .sectionHeaders,content: {
+                Section(header: VStack{
+                    Text("Sun Times").font(.title3).bold()
+                }
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(.thinMaterial)
+                    .cornerRadius(10)
+                        
+                ){
+                    ForEach(sunTimes, id: \.self) { sunTime in
+                        VStack{
+                            Image(systemName: "sun.max.fill")
+                                .foregroundColor(.yellow)
+                                .font(.title)
+                            Text("\(sunTime.name): \(sunTime.time)")
+                                .font(.headline)
+                        }
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .background(.thinMaterial)
+                        .cornerRadius(20)
+                        
                     }
                 }
-            }
+            })
         } else {
             EmptyView()
         }

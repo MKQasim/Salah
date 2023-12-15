@@ -35,7 +35,7 @@ struct PrayerDetailView: View {
                     HStack{
                         Image(systemName: "clock").font(.title2)
                             .foregroundColor(.blue)
-                        Text("\(timeNow)")
+                        Text("Now : \(timeNow)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title2)
                             .fontWeight(.black)
@@ -82,6 +82,12 @@ struct PrayerDetailView: View {
         }
         .onAppear{
             setUpView()
+            // Example usage
+            let handler = TimeZoneHandler()
+
+            print(handler.remainingTime)
+            print(handler.reminderDate)
+            print(handler.reminderTimer)
         }
         
         
@@ -103,7 +109,7 @@ struct PrayerDetailView: View {
     
     
     private func updateTime() {
-        timeNow = TimeHelper.currentTime(for: city.timeZone,dateFormatString: "MMMM dd HH:mm:ss") ?? ""
+        timeNow = TimeHelper.currentTime(for: city.timeZone,dateFormatString: "dd MMMM HH:mm:ss") ?? ""
         getNextPrayerTime()
     }
     
@@ -177,4 +183,91 @@ struct PrayerDetailView: View {
         .environmentObject(LocationManager())
         .environmentObject(LocationState())
 }
+
+import Foundation
+
+extension Date {
+    static func localTime(for country: String) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: country)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: Date())
+    }
+
+    func convertUTCtoGMT() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: self)
+    }
+
+    static func convertGMTtoUTC(dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.date(from: dateString)
+    }
+
+    func updateDateTimeFormat(fromFormat: String, toFormat: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = fromFormat
+        dateFormatter.timeZone = TimeZone.current
+        if let date = dateFormatter.date(from: dateFormatter.string(from: self)) {
+            dateFormatter.dateFormat = toFormat
+            return dateFormatter.string(from: date)
+        }
+        return nil
+    }
+
+    func getTimeDifference(from secondDate: Date) -> TimeInterval {
+        return secondDate.timeIntervalSince(self)
+    }
+
+    func getCurrentDateTime(for country: String) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: country)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: self)
+    }
+}
+
+class TimeZoneHandler {
+    var reminderTimer: Timer?
+    var reminderDate: Date?
+    var remainingTime: TimeInterval = 0
+
+    func setReminder(reminderDate: Date, completion: @escaping () -> Void) {
+        self.reminderDate = reminderDate
+        let currentTime = Date()
+
+        let timeDifference = reminderDate.timeIntervalSince(currentTime)
+
+        // Check if the reminderDate is in the future
+        guard timeDifference > 0 else {
+            print("Reminder date should be in the future.")
+            return
+        }
+
+        reminderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            guard let self = self else { return }
+            self.remainingTime = max(0, self.reminderDate?.timeIntervalSince(Date()) ?? 0)
+            if self.remainingTime == 0 {
+                timer.invalidate()
+                completion()
+            }
+        }
+        RunLoop.current.add(reminderTimer!, forMode: .common)
+    }
+
+    func cancelReminder() {
+        reminderTimer?.invalidate()
+    }
+
+    func getCurrentDateTime(for country: String) -> String {
+        return Date().getCurrentDateTime(for: country)
+    }
+
+    // Other methods from the previous implementation remain unchanged...
+}
+
 

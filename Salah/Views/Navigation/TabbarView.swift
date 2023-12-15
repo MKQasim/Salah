@@ -78,4 +78,7 @@ struct TabbarView: View {
 
 #Preview {
     TabbarView()
+        .environmentObject(LocationManager())
+        .environmentObject(LocationState())
+        .environmentObject(NavigationState())
 }

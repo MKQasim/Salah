@@ -733,7 +733,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahWidget;
@@ -763,7 +763,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahWidget;
@@ -795,7 +795,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;
@@ -825,7 +825,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;
@@ -858,7 +858,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -893,7 +893,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -1044,7 +1044,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;
@@ -1092,7 +1092,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;

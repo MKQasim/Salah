@@ -23,7 +23,7 @@ struct MainNavigationView: View {
                     .toolbarBackground(.ultraThinMaterial, for: .bottomBar)
                 #endif
                     .background(
-                        AngularGradient(colors: [.sunset,.sunset2], center: .bottomTrailing)
+                        AngularGradient(colors: [.sky,.sky2], center: .bottomTrailing)
                     )
             }
         case .regular:

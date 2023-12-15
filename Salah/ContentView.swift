@@ -11,13 +11,18 @@ struct ContentView: View {
     @StateObject var locationState = LocationState()
     @StateObject var navigationState = NavigationState()
     @StateObject var locationManager = LocationManager()
+    @StateObject var notificationManager = NotificationManager()
+    
     @State private var prayerTimes:[String] = []
     var body: some View {
-        MainNavigationView()        
+        MainNavigationView() 
+//        PermissionBoard()
         .environmentObject(locationManager)
+        .environmentObject(notificationManager)
         .environmentObject(locationState)
         .environmentObject(navigationState)
         .onAppear{
+            notificationManager.getNotificationSetting()
             locationManager.requestLocation()
             switch locationManager.locationStatus{
             case .authorizedWhenInUse,.authorizedAlways:

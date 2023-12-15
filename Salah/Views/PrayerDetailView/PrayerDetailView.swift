@@ -6,21 +6,15 @@
 //
 import SwiftUI
 
-struct SalahTiming: Identifiable, Hashable {
-    var id = UUID()
-    let name: String
-    let time: String
-}
-
 struct PrayerDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
     let currentDate = Date()
     let city: Cities
     // MARK: View States
-    @State private var todayPrayersTimes: [SalahTiming] = []
-    @State private var tomorrowPrayerTimes: [SalahTiming] = []
-    @State private var sunTimes: [SalahTiming] = []
-    @State private var selectedPrayer: SalahTiming? = nil
+    @State private var todayPrayersTimes: [PrayerTiming] = []
+    @State private var tomorrowPrayerTimes: [PrayerTiming] = []
+    @State private var sunTimes: [PrayerTiming] = []
+    @State private var selectedPrayer: PrayerTiming? = nil
     @State private var isUpdate = true
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var timeNow = ""
@@ -65,7 +59,6 @@ struct PrayerDetailView: View {
                         }
                         .frame(maxWidth: .infinity,alignment: .leading)
                     }
-                    
                 }
                 .padding()
                 .background(.thinMaterial)
@@ -182,53 +175,6 @@ struct PrayerDetailView: View {
     return PrayerDetailView(city: city)
         .environmentObject(LocationManager())
         .environmentObject(LocationState())
-}
-
-import Foundation
-
-extension Date {
-    static func localTime(for country: String) -> String {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: country)
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.string(from: Date())
-    }
-
-    func convertUTCtoGMT() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return dateFormatter.string(from: self)
-    }
-
-    static func convertGMTtoUTC(dateString: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return dateFormatter.date(from: dateString)
-    }
-
-    func updateDateTimeFormat(fromFormat: String, toFormat: String) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = fromFormat
-        dateFormatter.timeZone = TimeZone.current
-        if let date = dateFormatter.date(from: dateFormatter.string(from: self)) {
-            dateFormatter.dateFormat = toFormat
-            return dateFormatter.string(from: date)
-        }
-        return nil
-    }
-
-    func getTimeDifference(from secondDate: Date) -> TimeInterval {
-        return secondDate.timeIntervalSince(self)
-    }
-
-    func getCurrentDateTime(for country: String) -> String {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: country)
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.string(from: self)
-    }
 }
 
 class TimeZoneHandler {

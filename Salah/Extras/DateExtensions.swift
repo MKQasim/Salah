@@ -55,4 +55,48 @@ extension Date {
     func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
         return calendar.component(component, from: self)
     }
+    
+    static func localTime(for country: String) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: country)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: Date())
+    }
+
+    func convertUTCtoGMT() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: self)
+    }
+
+    static func convertGMTtoUTC(dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.date(from: dateString)
+    }
+
+    func updateDateTimeFormat(fromFormat: String, toFormat: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = fromFormat
+        dateFormatter.timeZone = TimeZone.current
+        if let date = dateFormatter.date(from: dateFormatter.string(from: self)) {
+            dateFormatter.dateFormat = toFormat
+            return dateFormatter.string(from: date)
+        }
+        return nil
+    }
+
+    func getTimeDifference(from secondDate: Date) -> TimeInterval {
+        return secondDate.timeIntervalSince(self)
+    }
+
+    func getCurrentDateTime(for country: String) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: country)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: self)
+    }
 }
+

@@ -58,7 +58,7 @@ struct NavigationSplitDetailView: View {
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
                 #endif
                     .background(
-                        AngularGradient(colors: [.sunset,.sunset2], center: .bottomTrailing)
+                        AngularGradient(colors: [.sky,.sky2], center: .bottomTrailing)
                     )
             case .city(let cities):
                     PrayerDetailView(city: cities)
@@ -68,7 +68,7 @@ struct NavigationSplitDetailView: View {
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
                 #endif
                     .background(
-                        AngularGradient(colors: [.sunset,.sunset2], center: .bottomTrailing)
+                        AngularGradient(colors: [.sky,.sky2], center: .bottomTrailing)
                     )
             case .none:
                 VStack{
@@ -93,7 +93,19 @@ struct NavigationSplitDetailView: View {
             .frame(minWidth: 600, minHeight: 400)
             #endif
         }
-        
+        .onAppear{
+            if navigationState.sidebarSelection == nil {
+                if locationState.isLocation {
+                    navigationState.sidebarSelection = .currentLocation
+                }
+                else if locationState.cities.count > 0 {
+                    navigationState.sidebarSelection = .city(locationState.cities[0])
+                }
+                else{
+                    navigationState.sidebarSelection = .nocurrentLocation
+                }
+            }
+        }
     }
 }
 

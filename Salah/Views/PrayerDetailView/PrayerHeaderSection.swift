@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrayerHeaderSection: View {
-    @Binding var sunTimes: [SalahTiming]
+    @Binding var sunTimes: [PrayerTiming]
     
     var body: some View {
         if !sunTimes.isEmpty {
@@ -45,6 +45,6 @@ struct PrayerHeaderSection: View {
 }
 
 #Preview {
-    @State var sunTime = [SalahTiming(name: "Sun Rise", time: "8:00"), SalahTiming(name: "Sun Set", time: "18:00")]
+    @State var sunTime = [PrayerTiming(name: "Sun Rise", time: "8:00"), PrayerTiming(name: "Sun Set", time: "18:00")]
     return PrayerHeaderSection(sunTimes: $sunTime)
 }

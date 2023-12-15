@@ -8,8 +8,8 @@
 import Foundation
 
 class PrayerTimeHelper {
-    static func getSalahTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [SalahTiming] {
-        var prayerTiming:[SalahTiming] = []
+    static func getSalahTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming] {
+        var prayerTiming:[PrayerTiming] = []
         let time = PrayTime()
         time.setCalcMethod(3)
         let mutableNames = time.timeNames!
@@ -24,7 +24,7 @@ class PrayerTimeHelper {
         let salahTiming = getTime.compactMap({ $0 as? String })
         
         for (index, name) in salahNaming.enumerated() {
-            let newSalahTiming = SalahTiming(name: name, time: salahTiming[index])
+            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
             
             if (name != "Sunset" && name != "Sunrise") {
                 prayerTiming.append(newSalahTiming)
@@ -33,8 +33,8 @@ class PrayerTimeHelper {
         return prayerTiming
     }
     
-    static func getSunTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [SalahTiming]{
-        var sunTimings:[SalahTiming] = []
+    static func getSunTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming]{
+        var sunTimings:[PrayerTiming] = []
         let time = PrayTime()
         time.setCalcMethod(3)
         let mutableNames = time.timeNames!
@@ -49,7 +49,7 @@ class PrayerTimeHelper {
         let salahTiming = getTime.compactMap({ $0 as? String })
         
         for (index, name) in salahNaming.enumerated() {
-            let newSalahTiming = SalahTiming(name: name, time: salahTiming[index])
+            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
             
             if (name == "Sunset" || name == "Sunrise") {
                 sunTimings.append(newSalahTiming)

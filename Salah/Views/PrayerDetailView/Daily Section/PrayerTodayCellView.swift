@@ -14,11 +14,11 @@ struct PrayerTodayCellView: View {
             HStack{
                 Spacer()
                 Image(systemName: "bell.fill")
-                    .padding()
+                    .font(.headline)
+                    .padding(5)
                     .background(.white)
-                    .cornerRadius(50)
+                    .cornerRadius(20)
                     .foregroundColor(.blue)
-                    .font(.title3)
             }
             .frame(maxWidth: .infinity)
             
@@ -30,10 +30,7 @@ struct PrayerTodayCellView: View {
             Text(prayer.time)
                 .fontWeight(.medium)
         }
-        .padding()
-        .frame(maxWidth: .infinity,minHeight: 120)
-        .background(.thinMaterial)
-        .cornerRadius(10)
+        
     }
 }
 

@@ -25,20 +25,20 @@ struct TabbarView: View {
                 }
             }
             else{
-                if locationState.isLocation {
-                    PrayerDetailView(city: Cities(city: "Nuremberg", lat: 43.33, long: 19.23, timeZone: 1.0))
-                        .navigationTitle("Nuremberg")
-                        .tag(NavigationItem.currentLocation)
-                        .tabItem {
-                            Label("Current Location", systemImage: "location.fill")
-                        }
-                }
+//                if locationState.isLocation {
+//                    PrayerDetailView(city: Cities(country: "", city: "Nuremberg", lat: 43.33, long: 19.23, timeZone)))
+//                        .navigationTitle("Nuremberg")
+//                        .tag(NavigationItem.currentLocation)
+//                        .tabItem {
+//                            Label("Current Location", systemImage: "location.fill")
+//                        }
+//                }
             }
             ForEach(locationState.cities, id: \.self){location in
                 VStack{
                     PrayerDetailView(city: location)
                 }
-                .navigationTitle(location.city)
+                .navigationTitle(location.city ?? "Title")
                 .tag(NavigationItem.city(location))
             }
         }

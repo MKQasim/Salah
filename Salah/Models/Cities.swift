@@ -9,8 +9,9 @@ import Foundation
 
 struct Cities: Identifiable, Hashable {
     var id = UUID()
-    let city: String
-    let lat: Double
-    let long: Double
-    let timeZone: Double
+    let country : String?
+    let city: String?
+    let lat: Double?
+    let long: Double?
+    let timeZone: TimeZone?
 }

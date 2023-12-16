@@ -48,41 +48,41 @@ struct PrayerWeeklySectionView: View {
         }
         .onAppear{
             if isUpdate{
-                setUpWeeklyPrayersTiming(lat: city.lat, long: city.long, timeZone: city.timeZone)
+//                setUpWeeklyPrayersTiming(lat: city.lat, long: city.long, timeZone: city.timeZone)
                 isUpdate = false
             }
         }
     }
     
-    func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double){
-        
-        if Date().dateByAdding(timeZoneOffset: city.timeZone) != nil{
-            let cal = Calendar.current
-            for i in 1...7{
-                if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
-                    var oneDaySalah:[PrayerTiming] = []
-                    let getDailyPrayerTiming = PrayerTimeHelper.getSalahTimings(lat: lat, long: long, timeZone: timeZone, date: newDate)
-                    for getDailyPrayerTime in getDailyPrayerTiming {
-                        let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
-                        oneDaySalah.append(newSalahTiming)
-                    }
-                    let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)
-                    weeklyPrayerTiming.append(dayPrayerTime)
-                        }
-                
-                
-            }
-            
-            
-        }
-        
-        
-    }
+//    func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double){
+//        
+//        if Date().dateByAdding(timeZoneOffset: city.timeZone) != nil{
+//            let cal = Calendar.current
+//            for i in 1...7{
+////                if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
+////                    var oneDaySalah:[PrayerTiming] = []
+////                    let getDailyPrayerTiming = PrayerTimeHelper.getSalahTimings(lat: lat, long: long, timeZone: timeZone, date: newDate)
+////                    for getDailyPrayerTime in getDailyPrayerTiming {
+////                        let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
+////                        oneDaySalah.append(newSalahTiming)
+////                    }
+////                    let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)
+////                    weeklyPrayerTiming.append(dayPrayerTime)
+////                        }
+//                
+//                
+//            }
+//            
+//            
+//        }
+//        
+//        
+//    }
     
 
 }
 
-#Preview {
-    let city = Cities(city: "Nurember", lat: 43.22, long: 11.2, timeZone: 1.0)
-    return PrayerWeeklySectionView(city: city)
-}
+//#Preview {
+//    let city = Cities(country: "", city: "Nurember", lat: 43.22, long: 11.2, timeZone: 1.0)
+//    return PrayerWeeklySectionView(city: city)
+//}

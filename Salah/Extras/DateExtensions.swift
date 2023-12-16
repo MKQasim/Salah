@@ -98,5 +98,15 @@ extension Date {
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         return formatter.string(from: self)
     }
+    
+    func getCurrentDateTime(for country: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = TimeZone(identifier: country)
+        
+        let dateString = formatter.string(from: Date())
+        return formatter.date(from: dateString)
+    }
+
 }
 

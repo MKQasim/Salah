@@ -26,37 +26,10 @@ struct PermissionBoard: View {
                 Spacer()
                 VStack(spacing: 20){
                     HStack{
-                        switch locationManager.locationStatus {
-                        case .notDetermined:
-                            LocationPermissionButtonView(image: "circle", checkBoxColor: .gray, buttonColor: .blue)
-                        case .restricted, .denied:
-                            LocationPermissionButtonView(image: "circle", checkBoxColor: .red, buttonColor: .red)
-                        case .authorizedAlways, .authorizedWhenInUse:
-                            LocationPermissionButtonView(image: "checkmark.circle.fill", checkBoxColor: .green, buttonColor: .green)
-                            #if !os(watchOS)
-                        case .authorized:
-                            LocationPermissionButtonView(image: "checkmark.circle", checkBoxColor: .green, buttonColor: .green)
-                            #endif
-                        default:
-                            LocationPermissionButtonView(image: "circle", checkBoxColor: .gray, buttonColor: .gray)
-                        }
-                        
+                        getlocationStatus()
                     }
                     HStack{
-                        switch notificationManager.notificationStatus {
-                        case .notDetermined:
-                            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
-                        case .denied:
-                            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .red, buttonColor: .red)
-                        case .authorized, .provisional:
-                            NotificationPermissionButtonView(image: "checkmark.circle.fill", checkBoxColor: .green, buttonColor: .green)
-                            #if !os(watchOS)
-                        case .ephemeral:
-                            NotificationPermissionButtonView(image: "circle", checkBoxColor: .green, buttonColor: .green)
-                            #endif
-                        default:
-                            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
-                        }
+                        getNotificationStatus()
                     }
                 }
                 .frame(maxWidth: .infinity,minHeight: 200)
@@ -69,12 +42,45 @@ struct PermissionBoard: View {
                     Text("Skip")
                         .frame(minWidth: 200)
                 })
-                    .buttonStyle(.borderedProminent)
-                    .tint(.gray)
+                .buttonStyle(.borderedProminent)
+                .tint(.gray)
             }
         }
     }
     
+    func getlocationStatus() -> some View{
+        switch locationManager.locationStatus {
+        case .notDetermined:
+            LocationPermissionButtonView(image: "circle", checkBoxColor: .gray, buttonColor: .blue)
+        case .restricted, .denied:
+            LocationPermissionButtonView(image: "circle", checkBoxColor: .red, buttonColor: .red)
+        case .authorizedAlways, .authorizedWhenInUse:
+            LocationPermissionButtonView(image: "checkmark.circle.fill", checkBoxColor: .green, buttonColor: .green)
+#if !os(watchOS)
+        case .authorized:
+            LocationPermissionButtonView(image: "checkmark.circle", checkBoxColor: .green, buttonColor: .green)
+#endif
+        default:
+            LocationPermissionButtonView(image: "circle", checkBoxColor: .gray, buttonColor: .gray)
+        }
+    }
+    
+    func getNotificationStatus()-> some View{
+        switch notificationManager.notificationStatus {
+        case .notDetermined:
+            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
+        case .denied:
+            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .red, buttonColor: .red)
+        case .authorized, .provisional:
+            NotificationPermissionButtonView(image: "checkmark.circle.fill", checkBoxColor: .green, buttonColor: .green)
+#if !os(watchOS)
+        case .ephemeral:
+            NotificationPermissionButtonView(image: "circle", checkBoxColor: .green, buttonColor: .green)
+#endif
+        default:
+            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
+        }
+    }
 }
 
 

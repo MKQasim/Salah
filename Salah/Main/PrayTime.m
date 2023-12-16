@@ -478,13 +478,13 @@ double JDate;      // Julian date
 }
 
 // return prayer times for a given date
--(NSMutableArray*)getPrayerTimes: (NSDateComponents*)date andLatitude:(double)latitude andLongitude:(double)longitude andtimeZone:(double)tZone {
-
+-(NSMutableArray*)getPrayerTimes:(NSDateComponents*)date andLatitude:(double)latitude andLongitude:(double)longitude andtimeZone:(double)tZone {
     NSInteger year = [date year];
     NSInteger month = [date month];
     NSInteger day = [date day];
     return [self getDatePrayerTimes:year andMonth:month andDay:day andLatitude:latitude andLongitude:longitude andtimeZone:tZone];
 }
+
 
 // set the calculation method
 -(void)setCalcMethod: (int)methodID {

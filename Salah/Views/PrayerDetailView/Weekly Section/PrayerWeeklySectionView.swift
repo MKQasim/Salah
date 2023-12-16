@@ -10,7 +10,7 @@ import SwiftUI
 struct PrayerWeekly:Identifiable, Hashable{
     var id = UUID()
     let date: Date
-    let dayPrayerTime:[SalahTiming]
+    let dayPrayerTime:[PrayerTiming]
 }
 
 struct PrayerWeeklySectionView: View {
@@ -60,10 +60,10 @@ struct PrayerWeeklySectionView: View {
             let cal = Calendar.current
             for i in 1...7{
                 if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
-                    var oneDaySalah:[SalahTiming] = []
+                    var oneDaySalah:[PrayerTiming] = []
                     let getDailyPrayerTiming = PrayerTimeHelper.getSalahTimings(lat: lat, long: long, timeZone: timeZone, date: newDate)
                     for getDailyPrayerTime in getDailyPrayerTiming {
-                        let newSalahTiming = SalahTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
+                        let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
                         oneDaySalah.append(newSalahTiming)
                     }
                     let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)

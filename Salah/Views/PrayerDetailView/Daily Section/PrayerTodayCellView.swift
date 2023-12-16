@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrayerTodayCellView: View {
-    let prayer: SalahTiming
+    let prayer: PrayerTiming
     var body: some View {
         VStack(alignment: .leading){
             HStack{
@@ -35,6 +35,6 @@ struct PrayerTodayCellView: View {
 }
 
 #Preview {
-    let prayerTime = SalahTiming(name: "Fajr", time: "6:00")
+    let prayerTime = PrayerTiming(name: "Fajr", time: "6:00")
     return PrayerTodayCellView(prayer: prayerTime)
 }

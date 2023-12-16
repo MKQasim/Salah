@@ -6,21 +6,15 @@
 //
 import SwiftUI
 
-struct SalahTiming: Identifiable, Hashable {
-    var id = UUID()
-    let name: String
-    let time: String
-}
-
 struct PrayerDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
     let currentDate = Date()
     let city: Cities
     // MARK: View States
-    @State private var todayPrayersTimes: [SalahTiming] = []
-    @State private var tomorrowPrayerTimes: [SalahTiming] = []
-    @State private var sunTimes: [SalahTiming] = []
-    @State private var selectedPrayer: SalahTiming? = nil
+    @State private var todayPrayersTimes: [PrayerTiming] = []
+    @State private var tomorrowPrayerTimes: [PrayerTiming] = []
+    @State private var sunTimes: [PrayerTiming] = []
+    @State private var selectedPrayer: PrayerTiming? = nil
     @State private var isUpdate = true
     @State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var timeNow = ""
@@ -35,7 +29,7 @@ struct PrayerDetailView: View {
                     HStack{
                         Image(systemName: "clock").font(.title2)
                             .foregroundColor(.blue)
-                        Text("\(timeNow)")
+                        Text("Now : \(timeNow)")
                             .frame(maxWidth: .infinity, alignment: .leading)
                             .font(.title2)
                             .fontWeight(.black)
@@ -65,7 +59,6 @@ struct PrayerDetailView: View {
                         }
                         .frame(maxWidth: .infinity,alignment: .leading)
                     }
-                    
                 }
                 .padding()
                 .background(.thinMaterial)
@@ -82,6 +75,12 @@ struct PrayerDetailView: View {
         }
         .onAppear{
             setUpView()
+            // Example usage
+            let handler = TimeZoneHandler()
+
+            print(handler.remainingTime)
+            print(handler.reminderDate)
+            print(handler.reminderTimer)
         }
         
         
@@ -103,7 +102,7 @@ struct PrayerDetailView: View {
     
     
     private func updateTime() {
-        timeNow = TimeHelper.currentTime(for: city.timeZone,dateFormatString: "MMMM dd HH:mm:ss") ?? ""
+        timeNow = TimeHelper.currentTime(for: city.timeZone,dateFormatString: "dd MMMM HH:mm:ss") ?? ""
         getNextPrayerTime()
     }
     
@@ -177,4 +176,44 @@ struct PrayerDetailView: View {
         .environmentObject(LocationManager())
         .environmentObject(LocationState())
 }
+
+class TimeZoneHandler {
+    var reminderTimer: Timer?
+    var reminderDate: Date?
+    var remainingTime: TimeInterval = 0
+
+    func setReminder(reminderDate: Date, completion: @escaping () -> Void) {
+        self.reminderDate = reminderDate
+        let currentTime = Date()
+
+        let timeDifference = reminderDate.timeIntervalSince(currentTime)
+
+        // Check if the reminderDate is in the future
+        guard timeDifference > 0 else {
+            print("Reminder date should be in the future.")
+            return
+        }
+
+        reminderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            guard let self = self else { return }
+            self.remainingTime = max(0, self.reminderDate?.timeIntervalSince(Date()) ?? 0)
+            if self.remainingTime == 0 {
+                timer.invalidate()
+                completion()
+            }
+        }
+        RunLoop.current.add(reminderTimer!, forMode: .common)
+    }
+
+    func cancelReminder() {
+        reminderTimer?.invalidate()
+    }
+
+    func getCurrentDateTime(for country: String) -> String {
+        return Date().getCurrentDateTime(for: country)
+    }
+
+    // Other methods from the previous implementation remain unchanged...
+}
+
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PrayerTodaySectionView: View {
-    @Binding var prayerTimes:[SalahTiming]
+    @Binding var prayerTimes:[PrayerTiming]
     @State private var remainingTime: String = ""
     let column = [GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150))]
     
@@ -41,7 +41,7 @@ struct PrayerTodaySectionView: View {
 
 
 #Preview {
-    @State var prayerTime = [SalahTiming(name: "Fajr", time: "06:00"), SalahTiming(name: "Duhr", time: "12:00"), SalahTiming(name: "Asr", time: "14:00"),SalahTiming(name: "Magrib", time: "17:00"),SalahTiming(name: "Isah", time: "19:00")]
-    @State var selectedPrayer = SalahTiming(name: "Fajr", time: "6:00")
+    @State var prayerTime = [PrayerTiming(name: "Fajr", time: "06:00"), PrayerTiming(name: "Duhr", time: "12:00"), PrayerTiming(name: "Asr", time: "14:00"),PrayerTiming(name: "Magrib", time: "17:00"),PrayerTiming(name: "Isah", time: "19:00")]
+    @State var selectedPrayer = PrayerTiming(name: "Fajr", time: "6:00")
     return PrayerTodaySectionView(prayerTimes: $prayerTime)
 }

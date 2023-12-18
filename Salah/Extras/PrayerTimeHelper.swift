@@ -39,91 +39,55 @@ struct Location: Codable, Identifiable, Hashable {
 }
 
 struct PrayerTimeHelper {
-    let prayTimeObj: PrayTime?
-   
+    let prayTimeObj: PrayTime
+    
     init() {
         prayTimeObj = PrayTime()
-        prayTimeObj?.setCalcMethod(3)
+        prayTimeObj.setCalcMethod(3)
+    }
+    
+    private func getPrayerTimes(lat: Double, long: Double, timeZone: Double, date: Date) -> [String]? {
+        return prayTimeObj.getDatePrayerTimes(
+            Int32(date.get(.year)),
+            andMonth: Int32(date.get(.month)),
+            andDay: Int32(date.get(.day)),
+            andLatitude: lat,
+            andLongitude: long,
+            andtimeZone: timeZone
+        )?.compactMap { $0 as? String }
+    }
+    
+    func getSalahTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> (sunTimes: [PrayerTiming], prayerTimes: [PrayerTiming]) {
+        guard let prayerTimes = getPrayerTimes(lat: lat, long: long, timeZone: timeZone, date: date) else {
+            return ([], [])
         }
-
-  
-    func getPrayerTimings(location: Location, timeZone: Double, date: Date = Date(), completion: @escaping (Location?) -> Void) {
-        prayTimeObj?.setCalcMethod(3)
         
-        print(timeZone)
-        print(location.timezone)
-       
-        guard let returnedArray = prayTimeObj?.getDatePrayerTimes(Int32(date.yearFourDigit) ?? 2023, andMonth: Int32(date.monthTwoDigit) ?? 12, andDay: Int32(date.dayTwoDigit) ?? 17, andLatitude: location.lat ?? 0.0, andLongitude: location.lng ?? 0.0, andtimeZone: timeZone) else {return }
-        guard let timeNames = prayTimeObj?.timeNames as? [String] else { return  }
-      
-        print("prayers timing of the day",returnedArray)
- 
-        let originalTimeZone = TimeZone(identifier: "UTC")! // Set the original timezone of the times
-           
-        let updatedTimes = updateTimeZoneForTimes(timeArray: returnedArray as! [String], from: originalTimeZone, to: location.timezone!)
+        let time = PrayTime()
+        let mutableNames = time.timeNames as? [String] ?? []
+        print(prayerTimes)
+        print(mutableNames)
+        // Filter out Sunset and Sunrise times from prayerTimes
+        let filteredPrayerTimes = prayerTimes.filter { !$0.contains("Sunrise") && !$0.contains("Sunset") }
         
-        print("returnedArray:\(returnedArray)")
-        print("updatedTimes:\(updatedTimes)")
-        let salahTiming = updatedTimes.compactMap { $0 }
-        let salahNaming = timeNames.compactMap { $0 }
-        guard salahNaming.count == updatedTimes.count else {
-            print("Names count and times count mismatch")
-            completion(nil)
-            return
-        }
-      
-        var prayerTimings: [PrayerTiming] = []
-        for (index, name) in salahNaming.enumerated() {
-            let newSalahTiming = PrayerTiming(name: name, time: "\(salahTiming[index])")
-            guard let timeZone = location.timezone else { return  }
+        // Separate sunset and sunrise times
+        let sunriseTime = mutableNames.first { $0 == "Sunrise" }
+        let sunsetTime = mutableNames.first { $0 == "Sunset" }
+        
+        
+        var sunTimes: [PrayerTiming] = []
+        var prayerTimesFiltered: [PrayerTiming] = []
+        
+        for (index, prayer) in filteredPrayerTimes.enumerated() {
            
-            if name == "Sunset" {
-                print("SunSet \(salahTiming[index])")
-            }else if name == "Sunrise"  {
-                print("Sunrise \(salahTiming[index])")
+            if let sunrise = sunriseTime, index == 1 {
+                sunTimes.append(PrayerTiming(name: sunrise, time: prayer))
+            }else if let sunset = sunsetTime, index == 4 {
+                sunTimes.append(PrayerTiming(name: sunset, time: prayer))
             }else{
-                prayerTimings.append(newSalahTiming)
+                prayerTimesFiltered.append(PrayerTiming(name: mutableNames[index], time: prayer))
             }
         }
-        var updatedLocation = location
-        updatedLocation.prayerTimings = prayerTimings
-        completion(updatedLocation)
-    }
-
-    func updateTimeZoneForTimes(timeArray: [String], from originalTimeZone: TimeZone, to targetTimeZone: TimeZone) -> [String] {
-        var updatedTimes: [String] = []
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
-        dateFormatter.timeZone = originalTimeZone // Set the original timezone
-        
-        for timeString in timeArray {
-            if let timeDate = dateFormatter.date(from: timeString) {
-                dateFormatter.timeZone = targetTimeZone // Set the target timezone
-                let updatedTime = dateFormatter.string(from: timeDate)
-                updatedTimes.append(updatedTime)
-            }
-        }
-
-        return updatedTimes
-    }
-
-//
-
-    func convertDateTimeString(_ originalDateTimeString: String, from originalFormat: String? = "yyyy-MM-dd HH:mm:ss Z", to targetFormat: String? = "MMM dd, yyyy HH:mm:ss Z", originalTimeZone: TimeZone, targetTimeZone: TimeZone) -> String? {
-        let originalDateFormatter = DateFormatter()
-        originalDateFormatter.dateFormat = originalFormat
-        originalDateFormatter.timeZone = originalTimeZone
-        
-        if let originalDate = originalDateFormatter.date(from: originalDateTimeString) {
-            let targetDateFormatter = DateFormatter()
-            targetDateFormatter.dateFormat = targetFormat
-            targetDateFormatter.timeZone = targetTimeZone
-            print(targetDateFormatter.string(from: originalDate))
-            return targetDateFormatter.string(from: originalDate)
-        } else {
-            print("Failed to convert original date and time string to Date.")
-            return nil
-        }
+        return (sunTimes, prayerTimesFiltered)
     }
 }
+

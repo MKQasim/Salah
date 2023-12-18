@@ -26,15 +26,18 @@ struct ManualLocationView: View {
                 ForEach(dropDownList.filter({searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable)}), id: \.self.id){item in
                     VStack(alignment: .leading){
                         HStack{
-                            Text(item.city ?? "")
-                            Spacer()
+                            VStack(alignment: .leading){
+                                Text(item.city ?? "")
+                                Text(item.country ?? "")
+                                    .foregroundStyle(.gray)
+                            }
+                            .frame(maxWidth: .infinity,alignment:.leading)
                             if (selectedLocation == item) {
                                 Image(systemName: "checkmark").foregroundStyle(.blue)
                             }
                         }
-                        Text(item.country ?? "")
-                            .foregroundStyle(.gray)
                     }
+                    .frame(maxWidth: .infinity,alignment: .leading)
                     .onTapGesture {
                         selectedLocation = item
 #if os(macOS)
@@ -129,7 +132,8 @@ struct ManualLocationView: View {
     
 }
 
-//#Preview {
-//    ManualLocationView()
-//        .environmentObject(LocationState())
-//}
+#Preview {
+    @State var isSheet = false
+    return ManualLocationView(isSheet: $isSheet)
+        .environmentObject(LocationState())
+}

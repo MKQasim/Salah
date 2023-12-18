@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     @StateObject var locationState = LocationState()
@@ -15,35 +16,15 @@ struct ContentView: View {
     
     @State private var prayerTimes:[String] = []
     var body: some View {
-        MainNavigationView() 
-//        PermissionBoard()
-        .environmentObject(locationManager)
-        .environmentObject(notificationManager)
-        .environmentObject(locationState)
-        .environmentObject(navigationState)
-        .onAppear{
-            notificationManager.getNotificationSetting()
-            locationManager.requestLocation()
-            switch locationManager.locationStatus{
-            case .authorizedWhenInUse,.authorizedAlways:
-                location()
-                #if !os(watchOS)
-            case .authorized:
-                location()
-                #endif
-            default:
-                locationState.isLocation = true
-            }
-        }
+        MainNavigationView()
+            .environmentObject(locationManager)
+            .environmentObject(notificationManager)
+            .environmentObject(locationState)
+            .environmentObject(navigationState)
+        
     }
     
-    func location(){
-        locationManager.requestLocation()
-        guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-        locationState.defaultLatitude = userCoordinates.latitude
-        locationState.defaultLongitude = userCoordinates.longitude
-        locationState.isLocation = true
-    }
+   
 }
 
 #Preview {

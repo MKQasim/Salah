@@ -26,8 +26,8 @@ struct TabbarView: View {
             }
             else{
                 if locationState.isLocation {
-                    PrayerDetailView(city: Cities(city: "Nuremberg", lat: 43.33, long: 19.23, timeZone: 1.0))
-                        .navigationTitle("Nuremberg")
+                    PrayerDetailView(city: Cities(city: locationState.defaultCityName, lat: locationState.defaultLatitude, long: locationState.defaultLongitude, timeZone: locationState.defaultTimeZone))
+                        .navigationTitle(locationState.defaultCityName)
                         .tag(NavigationItem.currentLocation)
                         .tabItem {
                             Label("Current Location", systemImage: "location.fill")
@@ -46,32 +46,47 @@ struct TabbarView: View {
         .tabViewStyle(.page(indexDisplayMode: .always))
         .fullScreenCover(isPresented: $isSheet, content: {
             NavigationStack{
+//                LocationDetailView()
                 ManualLocationView(isSheet: $isSheet)
-                    .toolbar{
-                        ToolbarItem(placement: .cancellationAction, content: {
-                            Button(action: {
-                                isSheet.toggle()
-                            }, label: {
-                                Text("Cancel")
-                            })
-                        })
-                    }
+                                    .toolbar{
+                                        ToolbarItem(placement: .cancellationAction, content: {
+                                            Button(action: {
+                                                isSheet.toggle()
+                                            }, label: {
+                                                Text("Cancel")
+                                            })
+                                        })
+                                    }
             }
-            
         })
         #endif
-        .toolbar {
-            #if !os(macOS)
-            ToolbarItemGroup(placement: .bottomBar){
-                    Spacer()
-                    Button(action: {
-                        isSheet.toggle()
-                    }) {
-                        Image(systemName: "list.bullet")
-                            .font(.subheadline)
-                    }
+//        .toolbar {
+//            #if !os(macOS)
+//            ToolbarItemGroup(placement: .bottomBar){
+//                    Spacer()
+//                    Button(action: {
+//                        isSheet.toggle()
+//                    }) {
+//                        Image(systemName: "list.bullet")
+//                            .font(.subheadline)
+//                    }
+//            }
+//            #endif
+//        }
+        .overlay(alignment: .bottom){
+            HStack{
+                Spacer()
+                Button(action: {
+                    isSheet.toggle()
+                }) {
+                    Image(systemName: "list.bullet")
+                        .font(.title2)
+                }
+                .padding()
             }
-            #endif
+            .background(.thinMaterial)
+            .frame(minHeight: 50)
+
         }
     }
 }

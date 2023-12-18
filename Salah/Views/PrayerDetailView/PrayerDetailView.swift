@@ -20,7 +20,10 @@ struct PrayerDetailView: View {
     @State private var timeNow = ""
     @State private var nextSalah = ""
     @State private var remainingTime: TimeInterval = 0
+    @State private var remTime = "00:00:00"
     @State private var targetDate: Date = Date()
+    
+    @State private var timer2:Timer?
     
     var body: some View {
         ScrollView {
@@ -52,7 +55,7 @@ struct PrayerDetailView: View {
                                 .fontWeight(.black)
                             
                             
-                            Text("Comming in : \(formattedTime())")
+                            Text("Comming in : \(remTime)")
                                 .font(.title3)
                                 .fontWeight(.black)
                             
@@ -75,12 +78,6 @@ struct PrayerDetailView: View {
         }
         .onAppear{
             setUpView()
-            // Example usage
-            let handler = TimeZoneHandler()
-
-            print(handler.remainingTime)
-            print(handler.reminderDate)
-            print(handler.reminderTimer)
         }
         
         
@@ -115,52 +112,116 @@ struct PrayerDetailView: View {
     
     private func getNextPrayerTime() {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        let seconds = TimeZone.current.secondsFromGMT()
+        let hours = Double(seconds/3600)
+        var nextPrayerTime = Date()
+        if  city.timeZone != hours {
+            let differentInTimeZone = city.timeZone - hours
+            if let dateTime = currentDate.dateByAdding(timeZoneOffset: differentInTimeZone) {
+                nextPrayerTime = dateTime
+            } else {
+                print("Error occurred while calculating the date.")
+            }
+        }
         for prayer in todayPrayersTimes {
-            let addedCurrentDate = dateFormatter.string(from: currentDate) + " " + prayer.time
-            if let prayerTime = TimeHelper.convertTimeStringToDate(addedCurrentDate, format: "dd/MM/yyyy HH:mm") {
-                if prayerTime > currentDate {
+            let prayerDateFormatter = DateFormatter()
+            prayerDateFormatter.dateFormat = "yyyy/MM/dd"
+            let addedCurrentDate = prayerDateFormatter.string(from: nextPrayerTime) + " " + prayer.time + ":00"
+            if let prayerTime = dateFormatter.date(from: addedCurrentDate) {
+                if prayerTime > nextPrayerTime {
+                    print(prayerTime)
                     nextSalah = "\(prayer.name) at \(prayer.time)"
                     selectedPrayer = prayer
                     targetDate = prayerTime
-                    startTimer()
+                    newStartTimer()
                     return
                 }
             }
         }
         
         if nextSalah.isEmpty {
-            nextSalah = "\(todayPrayersTimes[0].name) at \(todayPrayersTimes[0].time)"
+            nextSalah = "\(tomorrowPrayerTimes[0].name) at \(tomorrowPrayerTimes[0].time)"
             selectedPrayer = todayPrayersTimes.first
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MMMM dd HH:mm:ss"
-            let seconds = TimeZone.current.secondsFromGMT()
-            let hours = Double(seconds/3600)
             
-            if  city.timeZone != hours {
-                let differentInTimeZone = abs(city.timeZone) - abs(hours)
+            if city.timeZone != hours {
+                let differentInTimeZone = city.timeZone - abs(hours)
                 if let dateTime = currentDate.dateByAdding(timeZoneOffset: differentInTimeZone) {
-                    let nextDate = "\(dateTime.get(.year))-\(dateTime.get(.month))-\(dateTime.get(.day)) \(todayPrayersTimes[0].time)"
+                    print("Date Time :",dateTime)
+                    let nextDate = "\(dateTime.get(.year))-\(dateTime.get(.month))-\(dateTime.get(.day)+1) \(todayPrayersTimes[0].time)"
                     let convertedString = TimeHelper.convertTimeStringToDate(nextDate, format: "yyyy-MM-dd HH:mm") ?? Date()
-                    print(convertedString)
                     targetDate = convertedString
                 }
             }
             else{
-                let nextDate = "\(currentDate.get(.year))-\(currentDate.get(.month))-\(currentDate.get(.day)+1) \(todayPrayersTimes[0].time)"
-                let convertedString = TimeHelper.convertTimeStringToDate(nextDate, format: "yyyy-MM-dd HH:mm") ?? Date()
+                let nextDate = "\(currentDate.get(.year))-\(currentDate.get(.month))-\(currentDate.get(.day)+1) \(todayPrayersTimes[0].time):00"
+                let convertedString = TimeHelper.convertTimeStringToDate(nextDate, format: "yyyy-MM-dd HH:mm:ss") ?? Date()
+                print(convertedString)
                 targetDate = convertedString
             }
             
-            startTimer()
+//            startTimer()
+            newStartTimer()
         }
     }
     
+    func newStartTimer() {
+        // Set your start and end dates
+        var startDate = Date()
+        let seconds = TimeZone.current.secondsFromGMT()
+        let hours = Double(seconds/3600)
+        if  city.timeZone != hours {
+            let differentInTimeZone = city.timeZone - hours
+            if let dateTime = startDate.dateByAdding(timeZoneOffset: differentInTimeZone) {
+                startDate = dateTime
+            } else {
+                print("Error occurred while calculating the date.")
+            }
+        }
+        let endDate = targetDate
+        // Update the remaining time immediately
+        updateTimer(startDate, endDate)
+        
+        // Set up a timer to update the remaining time every second
+        self.timer2 = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.updateTimer(startDate, endDate)
+        }
+        RunLoop.main.add(timer2!, forMode: .common)
+        
+    }
+    
+    func updateTimer(_ startDate: Date, _ endDate: Date) {
+        // Calculate the time difference between end date and current date
+        var startDate = Date()
+        let seconds = TimeZone.current.secondsFromGMT()
+        let hours = Double(seconds/3600)
+        if  city.timeZone != hours {
+            let differentInTimeZone = city.timeZone - hours
+            if let dateTime = startDate.dateByAdding(timeZoneOffset: differentInTimeZone) {
+                startDate = dateTime
+            } else {
+                print("Error occurred while calculating the date.")
+            }
+        }
+        let components = Calendar.current.dateComponents([.hour, .minute, .second], from: startDate, to: endDate)
+        // Update the remaining time
+        let hoursCom = components.hour ?? 0
+        let minutes = components.minute ?? 0
+        let secondsCom = components.second ?? 0
+        
+        print(components)
+        remTime = String(format: "%02d:%02d:%02d", hoursCom, minutes, secondsCom)
+        
+        // Check if the end date is reached
+        if startDate >= endDate {
+            // Stop the timer when the end date is reached
+            timer2?.invalidate()
+            print("Timer Completed")
+        }
+    }
     private func startTimer() {
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
             remainingTime = max(self.targetDate.timeIntervalSinceNow, 0)
-            
             if remainingTime == 0 {
                 timer.invalidate()
                 // Timer reached zero
@@ -170,30 +231,30 @@ struct PrayerDetailView: View {
     }
 }
 
-#Preview {
-    let city = Cities(city: "Nuremberg", lat: 28.61, long: 77.20, timeZone: +5.5)
-    return PrayerDetailView(city: city)
-        .environmentObject(LocationManager())
-        .environmentObject(LocationState())
-}
+//#Preview {
+//    let city = Cities(city: "Nuremberg", lat: 28.61, long: 77.20, timeZone: +5.5)
+//    return PrayerDetailView(city: city)
+//        .environmentObject(LocationManager())
+//        .environmentObject(LocationState())
+//}
 
 class TimeZoneHandler {
     var reminderTimer: Timer?
     var reminderDate: Date?
     var remainingTime: TimeInterval = 0
-
+    
     func setReminder(reminderDate: Date, completion: @escaping () -> Void) {
         self.reminderDate = reminderDate
         let currentTime = Date()
-
+        
         let timeDifference = reminderDate.timeIntervalSince(currentTime)
-
+        
         // Check if the reminderDate is in the future
         guard timeDifference > 0 else {
             print("Reminder date should be in the future.")
             return
         }
-
+        
         reminderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             guard let self = self else { return }
             self.remainingTime = max(0, self.reminderDate?.timeIntervalSince(Date()) ?? 0)
@@ -204,15 +265,15 @@ class TimeZoneHandler {
         }
         RunLoop.current.add(reminderTimer!, forMode: .common)
     }
-
+    
     func cancelReminder() {
         reminderTimer?.invalidate()
     }
-
+    
     func getCurrentDateTime(for country: String) -> String {
         return Date().getCurrentDateTime(for: country)
     }
-
+    
     // Other methods from the previous implementation remain unchanged...
 }
 

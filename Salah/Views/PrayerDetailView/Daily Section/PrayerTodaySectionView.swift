@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PrayerTodaySectionView: View {
     @Binding var prayerTimes:[PrayerTiming]
+    
     @State private var remainingTime: String = ""
     let column = [GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150))]
     

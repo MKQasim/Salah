@@ -32,6 +32,26 @@ struct PrayerTodayCellView: View {
         }
         
     }
+    
+    func convertDateTimeString(_ originalDateTimeString: String, from originalFormat: String? = "yyyy-MM-dd HH:mm:ss Z", to targetFormat: String? = "MMM dd, yyyy HH:mm:ss Z", originalTimeZone: TimeZone, targetTimeZone: TimeZone) -> String? {
+        let originalDateFormatter = DateFormatter()
+        originalDateFormatter.dateFormat = originalFormat
+        originalDateFormatter.timeZone = originalTimeZone
+        
+        if let originalDate = originalDateFormatter.date(from: originalDateTimeString) {
+            let targetDateFormatter = DateFormatter()
+            targetDateFormatter.dateFormat = targetFormat
+            targetDateFormatter.timeZone = targetTimeZone
+            
+            return targetDateFormatter.string(from: originalDate)
+        } else {
+            print("Failed to convert original date and time string to Date.")
+            return nil
+        }
+    }
+
+
+
 }
 
 #Preview {

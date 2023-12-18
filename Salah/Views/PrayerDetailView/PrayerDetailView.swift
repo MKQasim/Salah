@@ -147,23 +147,43 @@ struct PrayerDetailView: View {
         guard let offset = getOffsetHoursForTimeZone(identifier: location.timezone?.identifier ?? "") else { return  }
         let regionDate = updateDateWithTimeZoneOffset(date: Date(), timeZoneOffset: offset)
         
-        todayPrayersTimes = prayerTimeHelper.getSalahTimings(lat: location.lat!, long: location.lng!, timeZone: offset,date: regionDate ?? Date()).prayerTimes
-        sunTimes = prayerTimeHelper.getSalahTimings(lat: location.lat!, long: location.lng!, timeZone: offset,date: regionDate ?? Date()).sunTimes
-       
+        if let formattedDateString = updateDateWithTimeZoneOffset(date: Date(), timeZoneOffset: offset) {
+            if let formattedDate = formatDateToDate(dateString: formattedDateString, format: "yyyy-MM-dd HH:mm:ss", timeZone: selectedLocation?.timezone) {
+                print("Formatted Date: \(formattedDate)")
+                timeNow = "\(formattedDate)"
+                todayPrayersTimes = prayerTimeHelper.getSalahTimings(lat: location.lat!, long: location.lng!, timeZone: offset,date: formattedDate ?? Date()).prayerTimes
+                sunTimes = prayerTimeHelper.getSalahTimings(lat: location.lat!, long: location.lng!, timeZone: offset,date: formattedDate ?? Date()).sunTimes
+            } else {
+                print("Failed to format date string to date.")
+            }
+        } else {
+            print("Failed to update date.")
+        }
+        
+        
+        
     }
     
     private func updateTime() {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yy-MM-dd HH:mm:ss"
-        
+        dateFormatter.timeZone = selectedLocation?.timezone
         guard let offset = getOffsetHoursForTimeZone(identifier: selectedLocation?.timezone?.identifier ?? "") else { return  }
-        let currentTime = dateFormatter.string(from: updateDateWithTimeZoneOffset(date: Date(), timeZoneOffset: offset) ?? Date())
-        timeNow = dateFormatter.string(from: updateDateWithTimeZoneOffset(date: Date(), timeZoneOffset: offset) ?? Date())
-        if let nextSalahTime = getNextPrayerTime(from: todayPrayersTimes, currentTime: currentTime, selectedLocation: selectedLocation!) {
-            nextSalah = "\(nextSalahTime.name) at \(nextSalahTime.time)"
-            startTimer()
+        print("offset : \(offset)")
+        if let formattedDateString = updateDateWithTimeZoneOffset(date: Date(), timeZoneOffset: offset) {
+            if let formattedDate = formatDateToDate(dateString: formattedDateString, format: "yyyy-MM-dd HH:mm:ss", timeZone: selectedLocation?.timezone) {
+                print("Formatted Date: \(formattedDate)")
+                timeNow = "\(formattedDate)"
+                if let nextSalahTime = getNextPrayerTime(from: todayPrayersTimes, currentTime: "\(formattedDate)", selectedLocation: selectedLocation!) {
+                    nextSalah = "\(nextSalahTime.name) at \(nextSalahTime.time)"
+                    startTimer()
+                }
+            } else {
+                print("Failed to format date string to date.")
+            }
+        } else {
+            print("Failed to update date.")
         }
-        
     }
     
     func getNextPrayerTime(from todayPrayersTimes: [PrayerTiming], currentTime: String, selectedLocation: Location) -> PrayerTiming? {
@@ -171,12 +191,9 @@ struct PrayerDetailView: View {
         timeFormatter.dateFormat = "HH:mm"
         guard let timeZone = selectedLocation.timezone else { return nil }
         timeFormatter.timeZone = timeZone
-
+        
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
         var nearestPrayerTime: PrayerTiming?
-
-        
-
         for prayerTime in todayPrayersTimes {
             
             if let prayerTimeDate = timeFormatter.date(from: prayerTime.time)?.time {
@@ -197,22 +214,30 @@ struct PrayerDetailView: View {
             formatter.allowedUnits = [.hour, .minute, .second]
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yy-MM-dd HH:mm:ss"
-            
             guard let offset = getOffsetHoursForTimeZone(identifier: selectedLocation?.timezone?.identifier ?? "") else { return  }
-            let remainingTimeInterval = (updateDateWithTimeZoneOffset(date: Date(), timeZoneOffset: offset) ?? Date()).getTimeDifference(from: targetDate)
-            self.remainingTime = formatter.string(from: remainingTimeInterval) ?? ""
-            print(self.remainingTime)
-
-            if remainingTimeInterval <= 0 {
-                timer.invalidate()
+            if let formattedDateString = updateDateWithTimeZoneOffset(date: Date(), timeZoneOffset: offset) {
+                if let formattedDate = formatDateToDate(dateString: formattedDateString, format: "yyyy-MM-dd HH:mm:ss", timeZone: selectedLocation?.timezone) {
+                    print("Formatted Date: \(formattedDate)")
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                    remainingTime = timeRemaining(until: targetDate, timeZoneOffset: offset)
+                    print("Time remaining: \(remainingTime)")
+                    self.targetDate = self.targetDate.addingTimeInterval(-1)
+                } else {
+                    print("Failed to format date string to date.")
+                }
             } else {
-                self.targetDate = self.targetDate.addingTimeInterval(-1) // Decrement the target date by 1 second
+                print("Failed to update date.")
             }
+            
+            
         }
         RunLoop.current.add(timer, forMode: .common)
+        
     }
-
-
+    
+    
     func getOffsetHoursForTimeZone(identifier: String) -> Double? {
         if let timeZone = TimeZone(identifier: identifier) {
             let secondsOffset = timeZone.secondsFromGMT()
@@ -223,7 +248,7 @@ struct PrayerDetailView: View {
         }
     }
     
-    func updateDateWithTimeZoneOffset(date: Date, timeZoneOffset: Double) -> Date? {
+    func updateDateWithTimeZoneOffset(date: Date, timeZoneOffset: Double) -> String? {
         // Create a Calendar instance
         let calendar = Calendar.current
         
@@ -235,10 +260,55 @@ struct PrayerDetailView: View {
         
         // Apply the offset to the date
         if let updatedDate = calendar.date(byAdding: offsetComponents, to: date) {
-            return updatedDate
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            let formattedDate = dateFormatter.string(from: updatedDate)
+            return formattedDate
         } else {
             return nil
         }
+    }
+    
+    func formatDateToDate(dateString: String, format: String, timeZone: TimeZone?) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = timeZone
+        
+        if let formattedDate = dateFormatter.date(from: dateString) {
+            return formattedDate
+        } else {
+            return nil
+        }
+    }
+    
+    func timeRemaining(until targetDate: Date, timeZoneOffset: Double) -> String {
+        let calendar = Calendar.current
+        
+        // Apply the time zone offset to the current date
+        if let modifiedCurrentDate = calendar.date(byAdding: .hour, value: Int(timeZoneOffset), to: Date()) {
+            
+            // Apply the time zone offset to the target date
+            let modifiedTargetDate = calendar.date(byAdding: .hour, value: Int(timeZoneOffset), to: targetDate) ?? targetDate
+            
+            // Calculate time difference between the modified current date and the modified target date
+            let timeDifference = calendar.dateComponents([.day, .hour, .minute, .second], from: modifiedCurrentDate, to: targetDate)
+            
+            if let days = timeDifference.day, let hours = timeDifference.hour, let minutes = timeDifference.minute, let seconds = timeDifference.second {
+                if days > 0 {
+                    return "\(days) days, \(hours) hours, \(minutes) minutes, \(seconds) seconds remaining"
+                } else if hours > 0 {
+                    return "\(hours) hours, \(minutes) minutes, \(seconds) seconds remaining"
+                } else if minutes > 0 {
+                    return "\(minutes) minutes, \(seconds) seconds remaining"
+                } else if seconds > 0 {
+                    return "\(seconds) seconds remaining"
+                } else {
+                    return "The target date has passed"
+                }
+            }
+        }
+        
+        return "Error calculating time remaining"
     }
     
 }

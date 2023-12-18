@@ -829,7 +829,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;
@@ -859,7 +859,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				DEVELOPMENT_TEAM = CT7H96YF74;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;

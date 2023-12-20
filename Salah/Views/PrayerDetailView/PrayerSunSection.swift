@@ -7,28 +7,25 @@
 
 import SwiftUI
 
-struct PrayerHeaderSection: View {
+struct PrayerSunSection: View {
     @Binding var sunTimes: [PrayerTiming]
     
     var body: some View {
         if !sunTimes.isEmpty {
             LazyVGrid(columns: [.init(.flexible(minimum: 150,maximum: .infinity)), .init(.flexible(minimum: 150,maximum: .infinity))], pinnedViews: .sectionHeaders,content: {
-                Section(header: VStack{
-                    Text("Sun Times").font(.title3).bold()
-                }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(.thinMaterial)
-                    .cornerRadius(10)
-                        
+                Section(header: SectionHeaderView(title: "Sun Times")
                 ){
                     ForEach(sunTimes, id: \.self) { sunTime in
                         VStack{
                             Image(systemName: "sun.max.fill")
                                 .foregroundColor(.yellow)
                                 .font(.title)
-                            Text("\(sunTime.name): \(sunTime.time)")
-                                .font(.headline)
+                            HStack{
+                                Text("\(sunTime.name)")
+                                Text(": \(sunTime.time)")
+                                    .foregroundStyle(.gray)
+                            }
+                            
                         }
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -46,5 +43,5 @@ struct PrayerHeaderSection: View {
 
 #Preview {
     @State var sunTime = [PrayerTiming(name: "Sun Rise", time: "8:00"), PrayerTiming(name: "Sun Set", time: "18:00")]
-    return PrayerHeaderSection(sunTimes: $sunTime)
+    return PrayerSunSection(sunTimes: $sunTime)
 }

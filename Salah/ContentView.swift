@@ -6,44 +6,62 @@
 //
 
 import SwiftUI
+import CoreLocation
 
 struct ContentView: View {
     @StateObject var locationState = LocationState()
     @StateObject var navigationState = NavigationState()
-    @StateObject var locationManager = LocationManager()
+    @ObservedObject var locationManager = LocationManager()
     @StateObject var notificationManager = NotificationManager()
-    
     @State private var prayerTimes:[String] = []
+    
     var body: some View {
-        MainNavigationView() 
-//        PermissionBoard()
-        .environmentObject(locationManager)
-        .environmentObject(notificationManager)
-        .environmentObject(locationState)
-        .environmentObject(navigationState)
-        .onAppear{
-            notificationManager.getNotificationSetting()
-            locationManager.requestLocation()
-            switch locationManager.locationStatus{
-            case .authorizedWhenInUse,.authorizedAlways:
-                location()
-                #if !os(watchOS)
-            case .authorized:
-                location()
-                #endif
-            default:
-                locationState.isLocation = true
+        MainNavigationView()
+            .onAppear{
+                switch locationManager.locationStatus{
+                case .authorizedWhenInUse,.authorizedAlways:
+                    location()
+    #if !os(watchOS)
+                case .authorized:
+                    location()
+    #endif
+                default:
+                    print("Not det")
+                }
             }
-        }
+            .environmentObject(locationManager)
+            .environmentObject(notificationManager)
+            .environmentObject(locationState)
+            .environmentObject(navigationState)
+        
     }
     
     func location(){
         locationManager.requestLocation()
-        guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-        locationState.defaultLatitude = userCoordinates.latitude
-        locationState.defaultLongitude = userCoordinates.longitude
-        locationState.isLocation = true
+        if let lastLocation = locationManager.lastLocation {
+            var location = Location()
+            lastLocation.placemark { placemark, error in
+                    guard let placemark = placemark else {
+                        print("Error:", error ?? "nil")
+                        return
+                    }
+                if let secondsFromGMT = Double(placemark.timeZone?.secondsFromGMT() ?? 0) as? Double {
+                    location.offSet = secondsFromGMT / 3600
+                }
+                location.lat = lastLocation.coordinate.latitude
+                location.lng = lastLocation.coordinate.longitude
+                location.city = placemark.locality
+                location.country = placemark.country
+                location.dateTime = Date()
+                location.timeZone = placemark.timeZone
+                locationState.currentLocation = location
+                locationState.isLocation = true
+                }
+                
+        }
     }
+    
+   
 }
 
 #Preview {

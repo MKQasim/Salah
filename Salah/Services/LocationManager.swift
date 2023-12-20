@@ -4,18 +4,22 @@
 //
 //  Created by Haaris Iqubal on 12/6/23.
 //
-import Foundation
+import SwiftUI
+import Combine
 import CoreLocation
 
 class LocationManager: NSObject, ObservableObject{
     private let locationManager = CLLocationManager()
-    @Published var lastLocation: CLLocation?
     @Published var locationStatus: CLAuthorizationStatus?
-    
+    @Published var lastLocation: CLLocation? = nil
+
     override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
 
     }
     
@@ -34,11 +38,11 @@ class LocationManager: NSObject, ObservableObject{
             return "Authorized Always"
         case .authorizedWhenInUse:
             return "Authorized When In Use"
-            #if os(iOS)
+            #if !os(watchOS)
         case .authorized:
             return "Authorized"
             #endif
-        @unknown default:
+        default:
             return "Unknown"
         }
     }

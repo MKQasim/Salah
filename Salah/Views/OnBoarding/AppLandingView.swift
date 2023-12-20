@@ -87,17 +87,11 @@ public struct AppLandingView: View {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.defaultLatitude = userCoordinates.latitude
-            locationState.defaultLongitude = userCoordinates.longitude
-            locationState.defaultTimeZone = +1.0
             locationState.isLocation = true
             #if !os(watchOS)
         case .authorized:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.defaultLatitude = userCoordinates.latitude
-            locationState.defaultLongitude = userCoordinates.longitude
-            locationState.defaultTimeZone = +1.0
             locationState.isLocation = true
             #endif
         default:

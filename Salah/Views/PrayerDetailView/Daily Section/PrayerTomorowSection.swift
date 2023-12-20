@@ -15,15 +15,7 @@ struct PrayerTomorowSection: View {
     
     var body: some View {
         LazyVGrid(columns: column, pinnedViews: .sectionHeaders,content: {
-            Section(header: VStack{
-                Text("Tomorrow Prayers Times").font(.title3).bold()
-            }
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(.ultraThinMaterial)
-                .cornerRadius(10)
-                    
-            ){
+            Section(header: SectionHeaderView(title: "Tomorrow Salah Timings")){
                 ForEach(prayerTimes, id: \.self) { prayer in
                     PrayerDailyCellView(prayer: prayer)
                 }

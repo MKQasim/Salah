@@ -16,12 +16,11 @@ struct PrayerDailyCellView: View {
                 .foregroundColor(.orange)
                 .font(.title)
             Text(prayer.name)
-                .fontWeight(.bold)
             Text(prayer.time)
-                .fontWeight(.medium)
+                .foregroundStyle(.gray)
         }
         .padding()
-        .frame(maxWidth: .infinity,minHeight: 120)
+        .frame(minWidth: 120, maxWidth: .infinity,minHeight: 120)
         .background(.thinMaterial)
         .cornerRadius(10)
     }

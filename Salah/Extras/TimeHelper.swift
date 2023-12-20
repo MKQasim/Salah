@@ -11,11 +11,12 @@ class TimeHelper {
     static func currentTime(for timeZone: Double,dateFormatString: String = "LLLL dd, hh:mm:ss a",currentDate: Date = Date()) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormatString
+        dateFormatter.calendar = Calendar(identifier: .islamicCivil)
         let seconds = TimeZone.current.secondsFromGMT()
         let hours = Double(seconds/3600)
         
         if  timeZone != hours {
-            let differentInTimeZone = abs(timeZone) - abs(hours)
+            let differentInTimeZone = timeZone - hours
             if let dateTime = currentDate.dateByAdding(timeZoneOffset: differentInTimeZone) {
                 return dateFormatter.string(for: dateTime) ?? ""
             } else {
@@ -31,7 +32,8 @@ class TimeHelper {
     static func convertTimeStringToDate(_ timeString: String, format: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = format
-        return dateFormatter.date(from: timeString)
+        let formattedDate = dateFormatter.date(from: timeString)
+        return formattedDate
     }
     
 }

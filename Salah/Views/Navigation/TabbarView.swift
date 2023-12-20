@@ -11,8 +11,14 @@ struct TabbarView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var navigationState: NavigationState
     @EnvironmentObject var locationState: LocationState
-    @State private var selectionTabbar = 0
     @State private var isSheet = false
+    
+    init() {
+        #if os(iOS)
+        let pageControl = UIPageControl()
+        pageControl.frame = CGRectMake(100, 100, .infinity, 100);
+        #endif
+    }
     
     var body: some View {
         TabView(selection: $navigationState.tabbarSelection) {
@@ -20,19 +26,28 @@ struct TabbarView: View {
                 if locationState.cities.count == 0 {
                     VStack{
                         Text("Add Location to View screen")
+                            .foregroundStyle(.gray)
+                    }
+                    .tag(NavigationItem.nocurrentLocation)
+                }
+            } else if locationState.isLocation == false {
+                if locationState.cities.count == 0 {
+                    VStack{
+                        Text("Add Location to View screen")
+                            .foregroundStyle(.gray)
                     }
                     .tag(NavigationItem.nocurrentLocation)
                 }
             }
             else{
-//                if locationState.isLocation {
-//                    PrayerDetailView(city: Cities(country: "", city: "Nuremberg", lat: 43.33, long: 19.23, timeZone)))
-//                        .navigationTitle("Nuremberg")
-//                        .tag(NavigationItem.currentLocation)
-//                        .tabItem {
-//                            Label("Current Location", systemImage: "location.fill")
-//                        }
-//                }
+                if locationState.isLocation {
+                    PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg", lat: locationState.currentLocation?.lat ?? 49.11, long: locationState.currentLocation?.lng ?? 19.18, offSet: locationState.currentLocation?.offSet ?? 0.0))
+                        .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
+                        .tag(NavigationItem.currentLocation)
+                        .tabItem {
+                            Label("Current Location", systemImage: "location.fill")
+                        }
+                }
             }
             ForEach(locationState.cities, id: \.self){location in
                 VStack{
@@ -42,22 +57,13 @@ struct TabbarView: View {
                 .tag(NavigationItem.city(location))
             }
         }
-        #if !os(macOS)
+        #if !os(macOS) && !os(watchOS)
         .tabViewStyle(.page(indexDisplayMode: .always))
+        .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .fullScreenCover(isPresented: $isSheet, content: {
             NavigationStack{
-                ManualLocationView(isSheet: $isSheet)
-                    .toolbar{
-                        ToolbarItem(placement: .cancellationAction, content: {
-                            Button(action: {
-                                isSheet.toggle()
-                            }, label: {
-                                Text("Cancel")
-                            })
-                        })
-                    }
+                LocationDetailView(isFullScreenView: $isSheet)
             }
-            
         })
         #endif
         .toolbar {
@@ -73,8 +79,64 @@ struct TabbarView: View {
             }
             #endif
         }
+//        .overlay(alignment: .bottom){
+//            HStack{
+//                #if os(iOS)
+//                Spacer()
+////                CustomPageControl(numberOfPages: locationState.cities.count + 1, currentPage: $navigationState.tabbarSelection)
+//                #endif
+//                Spacer()
+//                Button(action: {
+//                    isSheet.toggle()
+//                }) {
+//                    Image(systemName: "list.bullet")
+//                        .font(.title2)
+//                }
+//                .padding()
+//            }
+//            .background(.thinMaterial)
+//            .frame(minHeight: 50)
+//
+//        }
     }
 }
+
+#if os(iOS)
+struct CustomPageControl: UIViewRepresentable {
+    
+    let numberOfPages: Int
+    @Binding var currentPage: Int
+    
+    func makeUIView(context: Context) -> UIPageControl {
+        let view = UIPageControl()
+        view.numberOfPages = numberOfPages
+        view.backgroundStyle = .prominent
+        view.addTarget(context.coordinator, action: #selector(Coordinator.pageChanged), for: .valueChanged)
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIPageControl, context: Context) {
+        uiView.numberOfPages = numberOfPages
+        uiView.currentPage = currentPage
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject {
+        var parent: CustomPageControl
+        
+        init(_ parent: CustomPageControl) {
+            self.parent = parent
+        }
+        
+        @objc func pageChanged(sender: UIPageControl) {
+            parent.currentPage = sender.currentPage
+        }
+    }
+}
+#endif
 
 #Preview {
     TabbarView()

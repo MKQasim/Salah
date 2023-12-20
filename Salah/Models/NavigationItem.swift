@@ -17,8 +17,8 @@ enum NavigationItem: Hashable{
         switch self {
         case .currentLocation:
             return "Current Location"
-        case .city(_):
-            return "City"
+        case .city(let city):
+            return "\(city.city)"
         case .nocurrentLocation:
             return "No Current Location"
         }

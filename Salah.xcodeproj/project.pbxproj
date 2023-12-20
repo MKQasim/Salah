@@ -28,12 +28,17 @@
 		052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052F0CAB2B2310E30037ADAE /* LocationState.swift */; };
 		0531E64E2B2635A500FBA29B /* PrayerTodaySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E64D2B2635A500FBA29B /* PrayerTodaySectionView.swift */; };
 		0531E64F2B26372600FBA29B /* PrayerTodaySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E64D2B2635A500FBA29B /* PrayerTodaySectionView.swift */; };
-		0531E6512B26377400FBA29B /* PrayerHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6502B26377400FBA29B /* PrayerHeaderSection.swift */; };
-		0531E6522B26377400FBA29B /* PrayerHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6502B26377400FBA29B /* PrayerHeaderSection.swift */; };
+		0531E6512B26377400FBA29B /* PrayerSunSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6502B26377400FBA29B /* PrayerSunSection.swift */; };
+		0531E6522B26377400FBA29B /* PrayerSunSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6502B26377400FBA29B /* PrayerSunSection.swift */; };
 		0531E6542B26392800FBA29B /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6532B26392800FBA29B /* TabbarView.swift */; };
 		0531E6552B26392800FBA29B /* TabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6532B26392800FBA29B /* TabbarView.swift */; };
 		0531E6572B263E8C00FBA29B /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6562B263E8C00FBA29B /* Cities.swift */; };
 		0531E6582B263E8C00FBA29B /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0531E6562B263E8C00FBA29B /* Cities.swift */; };
+		055324D12B331FC900241894 /* TimeLineProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055324D02B331FC900241894 /* TimeLineProvider.swift */; };
+		055324D22B33206F00241894 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
+		055324D32B33206F00241894 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
+		055324D52B33218500241894 /* TimelineEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055324D42B33218500241894 /* TimelineEntry.swift */; };
+		055324DC2B332CE600241894 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E3112B20793C00964AF0 /* Preview Assets.xcassets */; };
 		055E27C52B28E4470087024E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E30D2B20793C00964AF0 /* Assets.xcassets */; };
 		055E27C72B28E7F60087024E /* PrayerDailyCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E27C62B28E7F50087024E /* PrayerDailyCellView.swift */; };
 		055E27C82B28E8600087024E /* PrayerDailyCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055E27C62B28E7F50087024E /* PrayerDailyCellView.swift */; };
@@ -43,6 +48,14 @@
 		056F97C92B228654006AC7F8 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C82B228654006AC7F8 /* Country.swift */; };
 		0575B0C22B29020200809387 /* PrayerWeeklySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B0C12B29020200809387 /* PrayerWeeklySectionView.swift */; };
 		0575B0C32B29087000809387 /* PrayerWeeklySectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0575B0C12B29020200809387 /* PrayerWeeklySectionView.swift */; };
+		05A11D2A2B32ED780034FFAA /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A11D292B32ED780034FFAA /* SectionHeaderView.swift */; };
+		05A11D2B2B32ED780034FFAA /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A11D292B32ED780034FFAA /* SectionHeaderView.swift */; };
+		05B545712B30B0EB00DC27C2 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B545702B30B0EB00DC27C2 /* CLLocationExtensions.swift */; };
+		05B545722B30B14D00DC27C2 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B545702B30B0EB00DC27C2 /* CLLocationExtensions.swift */; };
+		05B545732B30B15200DC27C2 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B545702B30B0EB00DC27C2 /* CLLocationExtensions.swift */; };
+		05B545742B30B15200DC27C2 /* CLLocationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B545702B30B0EB00DC27C2 /* CLLocationExtensions.swift */; };
+		05B545762B30E22D00DC27C2 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B545752B30E22D00DC27C2 /* LocationDetailView.swift */; };
+		05B545772B30E22D00DC27C2 /* LocationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05B545752B30E22D00DC27C2 /* LocationDetailView.swift */; };
 		05D78FA72B2CCB6900CAB017 /* PrayerTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D78FA62B2CCB6900CAB017 /* PrayerTiming.swift */; };
 		05D78FA82B2CCB6900CAB017 /* PrayerTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D78FA62B2CCB6900CAB017 /* PrayerTiming.swift */; };
 		05D78FA92B2CCB6900CAB017 /* PrayerTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D78FA62B2CCB6900CAB017 /* PrayerTiming.swift */; };
@@ -79,7 +92,6 @@
 		C96F50D62B29A5E7005D09A5 /* SalahMacWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50D52B29A5E7005D09A5 /* SalahMacWidget.swift */; };
 		C96F50D82B29A5E7005D09A5 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C96F50D72B29A5E7005D09A5 /* AppIntent.swift */; };
 		C96F50DF2B29A5E8005D09A5 /* SalahMacWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C96F50CF2B29A5E7005D09A5 /* SalahMacWidgetExtension.appex */; platformFilters = (macos, ); settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		C98C93D52B248AE900C4BC37 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */; };
 		C98C93D82B248AE900C4BC37 /* Salah.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C98C93CB2B248AE700C4BC37 /* Salah.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
 		C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E30B2B20793A00964AF0 /* ContentView.swift */; };
@@ -167,15 +179,20 @@
 		0529B77D2B2A631800842B19 /* PrayerTodayCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTodayCellView.swift; sourceTree = "<group>"; };
 		052F0CAB2B2310E30037ADAE /* LocationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationState.swift; sourceTree = "<group>"; };
 		0531E64D2B2635A500FBA29B /* PrayerTodaySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTodaySectionView.swift; sourceTree = "<group>"; };
-		0531E6502B26377400FBA29B /* PrayerHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerHeaderSection.swift; sourceTree = "<group>"; };
+		0531E6502B26377400FBA29B /* PrayerSunSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerSunSection.swift; sourceTree = "<group>"; };
 		0531E6532B26392800FBA29B /* TabbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarView.swift; sourceTree = "<group>"; };
 		0531E6562B263E8C00FBA29B /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
+		055324D02B331FC900241894 /* TimeLineProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineProvider.swift; sourceTree = "<group>"; };
+		055324D42B33218500241894 /* TimelineEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineEntry.swift; sourceTree = "<group>"; };
 		055E27C62B28E7F50087024E /* PrayerDailyCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerDailyCellView.swift; sourceTree = "<group>"; };
 		056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualLocationView.swift; sourceTree = "<group>"; };
 		056F97C32B223274006AC7F8 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		056F97C62B228573006AC7F8 /* country.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = country.json; sourceTree = "<group>"; };
 		056F97C82B228654006AC7F8 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		0575B0C12B29020200809387 /* PrayerWeeklySectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerWeeklySectionView.swift; sourceTree = "<group>"; };
+		05A11D292B32ED780034FFAA /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		05B545702B30B0EB00DC27C2 /* CLLocationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationExtensions.swift; sourceTree = "<group>"; };
+		05B545752B30E22D00DC27C2 /* LocationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailView.swift; sourceTree = "<group>"; };
 		05D78FA62B2CCB6900CAB017 /* PrayerTiming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrayerTiming.swift; sourceTree = "<group>"; };
 		05D78FAB2B2CD0EB00CAB017 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		05D78FB02B2CDBA100CAB017 /* NotificationPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermission.swift; sourceTree = "<group>"; };
@@ -261,6 +278,7 @@
 				050478632B20EDFA00E6BE85 /* NavigationSplitDetailView.swift */,
 				050478652B20EE2F00E6BE85 /* MainNavigationView.swift */,
 				0531E6532B26392800FBA29B /* TabbarView.swift */,
+				05B545752B30E22D00DC27C2 /* LocationDetailView.swift */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -271,7 +289,8 @@
 				0504786C2B20F52000E6BE85 /* PrayerDetailView.swift */,
 				0575B0C02B2901CE00809387 /* Weekly Section */,
 				0575B0BF2B2901C300809387 /* Daily Section */,
-				0531E6502B26377400FBA29B /* PrayerHeaderSection.swift */,
+				0531E6502B26377400FBA29B /* PrayerSunSection.swift */,
+				05A11D292B32ED780034FFAA /* SectionHeaderView.swift */,
 			);
 			path = PrayerDetailView;
 			sourceTree = "<group>";
@@ -312,6 +331,7 @@
 				0529B76E2B2A2CBE00842B19 /* PrayerTimeHelper.swift */,
 				0529B7752B2A2F4700842B19 /* DateExtensions.swift */,
 				05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */,
+				05B545702B30B0EB00DC27C2 /* CLLocationExtensions.swift */,
 			);
 			path = Extras;
 			sourceTree = "<group>";
@@ -382,6 +402,8 @@
 				C96F50BD2B29A401005D09A5 /* SalahWidget.swift */,
 				C96F50BF2B29A401005D09A5 /* AppIntent.swift */,
 				C96F50C32B29A403005D09A5 /* Info.plist */,
+				055324D02B331FC900241894 /* TimeLineProvider.swift */,
+				055324D42B33218500241894 /* TimelineEntry.swift */,
 			);
 			path = SalahWidget;
 			sourceTree = "<group>";
@@ -550,7 +572,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1510;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					C96F50B12B29A401005D09A5 = {
 						CreatedOnToolsVersion = 15.1;
@@ -609,8 +631,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055324DC2B332CE600241894 /* Preview Assets.xcassets in Resources */,
 				C98C93E92B248BD200C4BC37 /* cities.json in Resources */,
-				C98C93D52B248AE900C4BC37 /* Preview Assets.xcassets in Resources */,
 				C98C93E82B248BC300C4BC37 /* country.json in Resources */,
 				055E27C52B28E4470087024E /* Assets.xcassets in Resources */,
 			);
@@ -634,13 +656,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				055324D22B33206F00241894 /* PrayTime.m in Sources */,
 				C96F50BE2B29A401005D09A5 /* SalahWidget.swift in Sources */,
+				055324D12B331FC900241894 /* TimeLineProvider.swift in Sources */,
+				055324D52B33218500241894 /* TimelineEntry.swift in Sources */,
 				0529B7782B2A2F4700842B19 /* DateExtensions.swift in Sources */,
 				05E01DEA2B2B96F9002ED7FC /* TimeHelper.swift in Sources */,
 				C96F50C02B29A401005D09A5 /* AppIntent.swift in Sources */,
 				C96F50BC2B29A401005D09A5 /* SalahWidgetLiveActivity.swift in Sources */,
 				C96F50BA2B29A401005D09A5 /* SalahWidgetBundle.swift in Sources */,
 				05D78FAE2B2CD0EB00CAB017 /* NotificationManager.swift in Sources */,
+				05B545732B30B15200DC27C2 /* CLLocationExtensions.swift in Sources */,
 				05D78FA92B2CCB6900CAB017 /* PrayerTiming.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,9 +677,11 @@
 			files = (
 				C96F50D42B29A5E7005D09A5 /* SalahMacWidgetBundle.swift in Sources */,
 				05E01DEB2B2B96F9002ED7FC /* TimeHelper.swift in Sources */,
+				055324D32B33206F00241894 /* PrayTime.m in Sources */,
 				05D78FAA2B2CCB6900CAB017 /* PrayerTiming.swift in Sources */,
 				0529B7792B2A2F4700842B19 /* DateExtensions.swift in Sources */,
 				05D78FAF2B2CD0EB00CAB017 /* NotificationManager.swift in Sources */,
+				05B545742B30B15200DC27C2 /* CLLocationExtensions.swift in Sources */,
 				C96F50D62B29A5E7005D09A5 /* SalahMacWidget.swift in Sources */,
 				C96F50D82B29A5E7005D09A5 /* AppIntent.swift in Sources */,
 			);
@@ -673,7 +701,7 @@
 				0529B7702B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */,
 				C98C93EA2B248CCB00C4BC37 /* LocationState.swift in Sources */,
 				05D78FB62B2CDEF300CAB017 /* PermissionBoard.swift in Sources */,
-				0531E6522B26377400FBA29B /* PrayerHeaderSection.swift in Sources */,
+				0531E6522B26377400FBA29B /* PrayerSunSection.swift in Sources */,
 				C98C93E72B248BBE00C4BC37 /* Location.swift in Sources */,
 				C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */,
 				05D78FAD2B2CD0EB00CAB017 /* NotificationManager.swift in Sources */,
@@ -685,14 +713,17 @@
 				0575B0C32B29087000809387 /* PrayerWeeklySectionView.swift in Sources */,
 				05E01DE92B2B96F9002ED7FC /* TimeHelper.swift in Sources */,
 				C98C93E32B248BB100C4BC37 /* LocationPermissionOnboard.swift in Sources */,
+				05A11D2B2B32ED780034FFAA /* SectionHeaderView.swift in Sources */,
 				C98C93DF2B248BA300C4BC37 /* MainNavigationView.swift in Sources */,
 				0531E6552B26392800FBA29B /* TabbarView.swift in Sources */,
 				0529B77F2B2A631800842B19 /* PrayerTodayCellView.swift in Sources */,
 				C98C93E22B248BAE00C4BC37 /* ManualLocationView.swift in Sources */,
+				05B545772B30E22D00DC27C2 /* LocationDetailView.swift in Sources */,
 				0531E64F2B26372600FBA29B /* PrayerTodaySectionView.swift in Sources */,
 				05D78FB32B2CDBAA00CAB017 /* AppLandingView.swift in Sources */,
 				C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */,
 				C98C93E02B248BA600C4BC37 /* NavigationSplitDetailView.swift in Sources */,
+				05B545722B30B14D00DC27C2 /* CLLocationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,14 +753,17 @@
 				C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */,
 				05D78FAC2B2CD0EB00CAB017 /* NotificationManager.swift in Sources */,
 				056F97C92B228654006AC7F8 /* Country.swift in Sources */,
+				05A11D2A2B32ED780034FFAA /* SectionHeaderView.swift in Sources */,
 				056F97BF2B21C732006AC7F8 /* ManualLocationView.swift in Sources */,
 				050478642B20EDFA00E6BE85 /* NavigationSplitDetailView.swift in Sources */,
 				C964588F2B24B4BF002B4E3A /* AppLandingView.swift in Sources */,
 				0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */,
-				0531E6512B26377400FBA29B /* PrayerHeaderSection.swift in Sources */,
+				05B545762B30E22D00DC27C2 /* LocationDetailView.swift in Sources */,
+				0531E6512B26377400FBA29B /* PrayerSunSection.swift in Sources */,
 				0529B77E2B2A631800842B19 /* PrayerTodayCellView.swift in Sources */,
 				050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */,
 				C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */,
+				05B545712B30B0EB00DC27C2 /* CLLocationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,15 +798,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				"GCC_WARN_64_TO_32_BIT_CONVERSION[arch=*64]" = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -794,15 +832,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -825,11 +866,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = SalahMacWidget/SalahMacWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;
@@ -839,7 +884,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kamsque.Salah.SalahMacWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -855,11 +900,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CODE_SIGN_ENTITLEMENTS = SalahMacWidget/SalahMacWidget.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SalahMacWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SalahMacWidget;
@@ -869,7 +918,7 @@
 					"@executable_path/../Frameworks",
 					"@executable_path/../../../../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 14.2;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kamsque.Salah.SalahMacWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -890,10 +939,11 @@
 				CLANG_ENABLE_OBJC_ARC_EXCEPTIONS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kamsque.Salah;
@@ -925,10 +975,11 @@
 				CLANG_ENABLE_OBJC_ARC_EXCEPTIONS = NO;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.1;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kamsque.Salah;
@@ -985,6 +1036,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -1046,6 +1098,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1077,14 +1130,15 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Salah;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationUsageDescription = "This app require you location coodinates to calculate salah timing natively";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app require you location coodinates to calculate salah timing natively";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
@@ -1125,14 +1179,15 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.1;
+				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
-				DEVELOPMENT_TEAM = CT7H96YF74;
+				DEVELOPMENT_TEAM = KN3ZJQBK7N;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Salah/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Salah;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationUsageDescription = "This app require you location coodinates to calculate salah timing natively";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app require you location coodinates to calculate salah timing natively";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;

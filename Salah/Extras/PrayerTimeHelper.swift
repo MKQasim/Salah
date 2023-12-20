@@ -25,6 +25,7 @@ struct Location: Codable, Identifiable, Hashable {
     var country: String?
     var dateTime: Date?
     var timezone: TimeZone?
+    var timezoneDouble: Double?
     var prayerTimings: [PrayerTiming]?
 
     enum CodingKeys: String, CodingKey {

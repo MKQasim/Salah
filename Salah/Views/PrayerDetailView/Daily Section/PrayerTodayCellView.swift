@@ -26,9 +26,8 @@ struct PrayerTodayCellView: View {
                 .foregroundColor(.orange)
                 .font(.title)
             Text(prayer.name)
-                .fontWeight(.bold)
             Text(prayer.time)
-                .fontWeight(.medium)
+                .foregroundStyle(.gray)
         }
         
     }

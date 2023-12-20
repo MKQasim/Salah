@@ -11,8 +11,9 @@ struct NavigationSplitDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var locationState:LocationState
     @EnvironmentObject private var navigationState: NavigationState
-    
+    @State private var searchable = ""
     @State private var isSheet = false
+    @State private var isDetail = false
     var body: some View {
         NavigationSplitView{
             List(selection: $navigationState.sidebarSelection){
@@ -51,14 +52,14 @@ struct NavigationSplitDetailView: View {
                     Text("No Location Added")
                 }
             case .currentLocation:
-                PrayerDetailView(city: Cities(city: "Nuremberg", lat: 49.10, long: 11.01, timeZone: +1.0))
+                PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg" , lat: locationState.currentLocation?.lat ?? 49.10, long: locationState.currentLocation?.lng ?? 19.01, offSet: locationState.currentLocation?.offSet ?? 0.0))
                     .navigationTitle("Nuremberg")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
                 #endif
                     .background(
-                        AngularGradient(colors: [.sky,.sky2], center: .bottomTrailing)
+                        AngularGradient(colors: [.journal,.journal2], center: .bottomTrailing)
                     )
             case .city(let cities):
                     PrayerDetailView(city: cities)
@@ -68,7 +69,7 @@ struct NavigationSplitDetailView: View {
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
                 #endif
                     .background(
-                        AngularGradient(colors: [.sky,.sky2], center: .bottomTrailing)
+                        AngularGradient(colors: [.journal,.journal2], center: .bottomTrailing)
                     )
             case .none:
                 VStack{
@@ -78,7 +79,7 @@ struct NavigationSplitDetailView: View {
         }
         .sheet(isPresented: $isSheet){
             NavigationStack{
-                ManualLocationView(isSheet: $isSheet)
+                ManualLocationView(isSheet: $isSheet, searchable: $searchable, isDetailView: $isDetail)
                     .toolbar{
                         ToolbarItem(placement: .cancellationAction, content: {
                             Button(action: {

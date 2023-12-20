@@ -12,5 +12,5 @@ struct Cities: Identifiable, Hashable {
     let city: String
     let lat: Double
     let long: Double
-    let timeZone: Double
+    let offSet: Double
 }

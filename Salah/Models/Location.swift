@@ -15,15 +15,17 @@ struct Location: Codable, Identifiable, Hashable {
     var country: String?
     var id: Int?
     var dateTime: Date?
-    var timezone: Double? // Updated property for timezone
-
+    var offSet: Double? // Updated property for timezone
+    var timeZone : TimeZone?
+    
     enum CodingKeys: String, CodingKey {
         case city
         case lat, lng
         case country
         case id
         case dateTime
-        case timezone // Added timezone property in CodingKeys
+        case offSet
+        case timeZone // Added timezone property in CodingKeys
     }
 }
 

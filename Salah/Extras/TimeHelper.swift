@@ -11,6 +11,7 @@ class TimeHelper {
     static func currentTime(for timeZone: Double,dateFormatString: String = "LLLL dd, hh:mm:ss a",currentDate: Date = Date()) -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = dateFormatString
+        dateFormatter.calendar = Calendar(identifier: .islamicCivil)
         let seconds = TimeZone.current.secondsFromGMT()
         let hours = Double(seconds/3600)
         

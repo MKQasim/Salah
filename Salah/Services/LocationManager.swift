@@ -11,12 +11,13 @@ import CoreLocation
 class LocationManager: NSObject, ObservableObject{
     private let locationManager = CLLocationManager()
     @Published var locationStatus: CLAuthorizationStatus?
-    @Published var lastLocation: CLLocation?
+    @Published var lastLocation: CLLocation? = nil
 
     override init() {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
 

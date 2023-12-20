@@ -85,5 +85,9 @@ class NotificationManager: NSObject, ObservableObject {
 }
 
 extension NotificationManager: UNUserNotificationCenterDelegate{
-    
+    func notificationCenterDidChangeAuthorization(_ center: UNUserNotificationCenter){
+        center.getNotificationSettings(completionHandler: { (setting) in
+            self.notificationStatus = setting.authorizationStatus
+        })
+    }
 }

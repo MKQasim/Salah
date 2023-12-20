@@ -92,15 +92,11 @@ struct LocationPermissionOnboard: View {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.defaultLatitude = userCoordinates.latitude
-            locationState.defaultLongitude = userCoordinates.longitude
             locationState.isLocation = true
             #if os(iOS)
         case .authorized:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.defaultLatitude = userCoordinates.latitude
-            locationState.defaultLongitude = userCoordinates.longitude
             locationState.isLocation = true
             #endif
         default:

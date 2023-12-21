@@ -41,10 +41,10 @@ struct ManualLocationView: View {
                         }
                         .frame(maxWidth: .infinity,alignment:.leading)
                         
-                        Spacer()
-                        if (selectedLocation == item) {
-                            Image(systemName: "checkmark").foregroundStyle(.blue)
-                        }
+//                        Spacer()
+//                        if (selectedLocation == item) {
+//                            Image(systemName: "checkmark").foregroundStyle(.blue)
+//                        }
                     })
                     .frame(maxWidth: .infinity,alignment:.leading)
                     .buttonStyle(.borderedProminent)

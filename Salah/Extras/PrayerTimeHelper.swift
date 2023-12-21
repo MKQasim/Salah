@@ -5,13 +5,16 @@
 //  Created by Haaris Iqubal on 12/13/23.
 //
 
-import Foundation
+import SwiftUI
 
 class PrayerTimeHelper {
+    @AppStorage("SetCalculationMethod") private var calculationMethod = 0
+    @AppStorage("SetFajrJuridiction") private var juridictionMethod = 0
     static func getSalahTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming] {
         var prayerTiming:[PrayerTiming] = []
         let time = PrayTime()
         time.setCalcMethod(3)
+        time.setAsrMethod(Int32(1))
         let mutableNames = time.timeNames!
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
         
@@ -57,4 +60,6 @@ class PrayerTimeHelper {
         }
         return sunTimings
     }
+    
+    
 }

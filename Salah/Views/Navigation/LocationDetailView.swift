@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct LocationDetailView: View {
+    @Environment (\.colorScheme) var colorScheme
     @Environment (\.isSearching) var isSearching
     @EnvironmentObject private var locationState: LocationState
     @EnvironmentObject private var navigationState: NavigationState
@@ -20,28 +21,21 @@ struct LocationDetailView: View {
             Group{
                 if !isSearching {
                     if locationState.currentLocation != nil {
-                        VStack{
-                            Text(locationState.currentLocation?.city ?? "Nuremberg")
-                        }
-                        .onTapGesture {
-                            navigationState.tabbarSelection = .currentLocation
-                            isFullScreenView.toggle()
-                        }
+                        ListRowCellView(navigationItem: .currentLocation, city: locationState.currentLocation ?? Cities(city: "No City", lat: 49.19, long: 19.11, offSet: +1.0))
                     }
                     
                     ForEach(locationState.cities,id: \.self){city in
-                        VStack{
-                            Text(city.city)
-                                .frame(maxWidth: .infinity,alignment: .leading)
-                        }
-                            .onTapGesture {
-                                navigationState.tabbarSelection = .city(city)
-                                isFullScreenView.toggle()
-                            }
+                        ListRowCellView(navigationItem: .city(city), city: city)
                     }
                 }
             }
+#if !os(watchOS)
+            .listRowSeparator(.hidden, edges: .all)
+#endif
         }
+#if !os(watchOS)
+        .listStyle(.plain)
+#endif
         .navigationTitle("Cities")
         .searchable(text: $searchableText, prompt: "Search for a city")
         .overlay{
@@ -73,6 +67,39 @@ struct LocationDetailView: View {
             }
         }
     }
+    
+    @ViewBuilder
+    func ListRowCellView(navigationItem: NavigationItem, city: Cities) -> some View {
+        Button(action: {
+            navigationState.tabbarSelection = navigationItem
+            isFullScreenView.toggle()
+        }, label: {
+            HStack{
+                VStack(alignment: .leading){
+                    Text(city.city)
+//                    Text("Dec 21 12:10")
+//                        .foregroundStyle(.gray)
+                }
+                Spacer()
+//                VStack(alignment: .trailing){
+//                    Text("Next Salah Asr")
+//                    Text("In 10 mins")
+//                }
+            }
+            .padding(10)
+            .frame(maxWidth: .infinity)
+            .background(.thinMaterial)
+            .foregroundStyle(colorScheme == .light ? .black : .white)
+            .cornerRadius(5)
+        })
+        .background(LinearGradient(colors: [.journal, .journal2], startPoint: .topLeading, endPoint: .bottomTrailing))
+        .cornerRadius(5)
+        .padding(5)
+        .background(navigationState.tabbarSelection == navigationItem ? .gray : .clear)
+        .buttonStyle(.borderless)
+        .cornerRadius(5)
+    }
+
 }
 
 #Preview {

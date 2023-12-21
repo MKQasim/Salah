@@ -20,7 +20,6 @@ class LocationManager: NSObject, ObservableObject{
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-
     }
     
     var statusString: String {

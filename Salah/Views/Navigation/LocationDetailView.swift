@@ -66,6 +66,15 @@ struct LocationDetailView: View {
                 }
             }
         }
+        .toolbar {
+#if !os(watchOS)
+            ToolbarItem(placement: .navigationBarTrailing) {
+                NavigationLink(destination: SettingsView(), label: {
+                    Label("Settings", systemImage: "gear.circle")
+                })
+            }
+#endif
+        }
     }
     
     @ViewBuilder
@@ -77,14 +86,14 @@ struct LocationDetailView: View {
             HStack{
                 VStack(alignment: .leading){
                     Text(city.city)
-//                    Text("Dec 21 12:10")
-//                        .foregroundStyle(.gray)
+                    //                    Text("Dec 21 12:10")
+                    //                        .foregroundStyle(.gray)
                 }
                 Spacer()
-//                VStack(alignment: .trailing){
-//                    Text("Next Salah Asr")
-//                    Text("In 10 mins")
-//                }
+                //                VStack(alignment: .trailing){
+                //                    Text("Next Salah Asr")
+                //                    Text("In 10 mins")
+                //                }
             }
             .padding(10)
             .frame(maxWidth: .infinity)
@@ -99,7 +108,7 @@ struct LocationDetailView: View {
         .buttonStyle(.borderless)
         .cornerRadius(5)
     }
-
+    
 }
 
 #Preview {

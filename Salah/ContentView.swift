@@ -26,7 +26,7 @@ struct ContentView: View {
                     location()
     #endif
                 default:
-                    print("Not det")
+                    print("")
                 }
             }
             .environmentObject(locationManager)

@@ -41,7 +41,7 @@ struct TabbarView: View {
             }
             else{
                 if locationState.isLocation {
-                    PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg", lat: locationState.currentLocation?.lat ?? 49.11, long: locationState.currentLocation?.long ?? 19.18, offSet: locationState.currentLocation?.offSet ?? 0.0))
+                    PrayerDetailView(selectedLocation:locationState.currentLocation ?? Location())
                         .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
                         .tag(NavigationItem.currentLocation)
                         .tabItem {
@@ -51,10 +51,10 @@ struct TabbarView: View {
             }
             ForEach(locationState.cities, id: \.self){location in
                 VStack{
-                    PrayerDetailView(city: location)
+                    PrayerDetailView(selectedLocation: location)
                 }
-                .navigationTitle(location.city ?? "Title")
-                .tag(NavigationItem.city(location))
+                .navigationTitle(location.city ?? "")
+                .tag(NavigationItem.location(location))
             }
         }
         #if !os(macOS) && !os(watchOS)

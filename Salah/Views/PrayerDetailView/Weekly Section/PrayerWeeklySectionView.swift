@@ -14,7 +14,7 @@ struct PrayerWeekly:Identifiable, Hashable{
 }
 
 struct PrayerWeeklySectionView: View {
-    let city: Cities
+    let selectedLocation: Location
     @State private var weeklyPrayerTiming: [PrayerWeekly] = []
     @State var isUpdate = true
     
@@ -58,7 +58,7 @@ struct PrayerWeeklySectionView: View {
         }
         .onAppear{
             if isUpdate{
-                setUpWeeklyPrayersTiming(lat: city.lat, long: city.long, timeZone: city.offSet)
+                setUpWeeklyPrayersTiming(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, timeZone: selectedLocation.offSet ?? 0.0)
                 isUpdate = false
             }
         }
@@ -66,18 +66,22 @@ struct PrayerWeeklySectionView: View {
     
     func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double){
         
-        if Date().dateByAdding(timeZoneOffset: city.offSet) != nil{
+        if Date().dateByAdding(timeZoneOffset: selectedLocation.offSet ?? 0.0) != nil{
             let cal = Calendar.current
             for i in 2...8{
                 if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
                     var oneDaySalah:[PrayerTiming] = []
-                    let getDailyPrayerTiming = PrayerTimeHelper.getSalahTimings(lat: lat, long: long, timeZone: timeZone, date: newDate)
-                    for getDailyPrayerTime in getDailyPrayerTiming {
-                        let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
-                        oneDaySalah.append(newSalahTiming)
-                    }
-                    let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)
-                    weeklyPrayerTiming.append(dayPrayerTime)
+                    let getDailyPrayerTiming: () = PrayerTimeHelper.shared.getSalahTimings(lat: lat, long: long, offSet: timeZone, date: newDate, completion: { location in
+                        guard let getDailyPrayerTiming = location.prayerTimings else { return  }
+                        
+                        for getDailyPrayerTime in getDailyPrayerTiming {
+                            let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
+                            oneDaySalah.append(newSalahTiming)
+                        }
+                        let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)
+                        weeklyPrayerTiming.append(dayPrayerTime)
+                    })
+                   
                 }
                 
                 
@@ -93,6 +97,6 @@ struct PrayerWeeklySectionView: View {
 }
 
 #Preview {
-    let city = Cities(city: "Nurember", lat: 43.22, long: 11.2, offSet: 1.0)
-    return PrayerWeeklySectionView(city: city)
+    let selectedLocation = Location(prayerTimings: [])
+    return PrayerWeeklySectionView(selectedLocation: selectedLocation)
 }

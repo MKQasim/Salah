@@ -17,6 +17,7 @@ struct Location: Codable, Identifiable, Hashable {
     var dateTime: Date?
     var offSet: Double? // Updated property for timezone
     var timeZone : TimeZone?
+    var prayerTimings : [PrayerTiming]?
     
     enum CodingKeys: String, CodingKey {
         case city
@@ -26,6 +27,7 @@ struct Location: Codable, Identifiable, Hashable {
         case dateTime
         case offSet
         case timeZone // Added timezone property in CodingKeys
+        case prayerTimings
     }
 }
 

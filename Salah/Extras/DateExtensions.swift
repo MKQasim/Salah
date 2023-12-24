@@ -23,22 +23,6 @@ extension Date {
         }
     }
     
-    static func timeZoneDifference(offsetOfTimeZone: Double) -> Date{
-        let seconds = TimeZone.current.secondsFromGMT()
-        let hours = Double(seconds/3600)
-        var currentTime = Date()
-        if  offsetOfTimeZone != hours {
-            let differentInTimeZone = offsetOfTimeZone - abs(hours)
-            if let dateTime = currentTime.dateByAdding(timeZoneOffset: differentInTimeZone) {
-                currentTime = dateTime
-            } else {
-                print("Error occurred while calculating the date.")
-            }
-        }
-        return currentTime
-    }
-
-    
     func dateByAdding(hours: Int, minutes: Int) -> Date? {
         let calendar = Calendar.current
         var dateComponents = DateComponents()
@@ -48,11 +32,11 @@ extension Date {
         return calendar.date(byAdding: dateComponents, to: self)
     }
     
-    func dateByAdding(timeZoneOffset: Double) -> Date? {
-        let hours = Int(timeZoneOffset)
-        let minutes = Int((timeZoneOffset - Double(hours)) * 60)
-        return dateByAdding(hours: hours, minutes: minutes)
-    }
+//    func dateByAdding(timeZoneOffset: Double) -> Date? {
+//        let hours = Int(timeZoneOffset)
+//        let minutes = Int((timeZoneOffset - Double(hours)) * 60)
+//        return dateByAdding(hours: hours, minutes: minutes)
+//    }
     
     func adjusted(byHours hours: Int, minutes: Int, seconds: Int) -> Date {
         let calendar = Calendar.current

@@ -11,16 +11,21 @@ import SwiftUI
 enum NavigationItem: Hashable{
     case currentLocation
     case nocurrentLocation
-    case city(Cities)
+    case location(Location)
     
-    var localizedName:LocalizedStringKey{
+    var localizedName: LocalizedStringKey {
         switch self {
         case .currentLocation:
-            return "Current Location"
-        case .city(let city):
-            return "\(city.city)"
+            return LocalizedStringKey("Current Location")
+        case .location(let selectedLocation):
+            if let city = selectedLocation.city {
+                return LocalizedStringKey(city)
+            } else {
+                return LocalizedStringKey("Unknown City")
+            }
         case .nocurrentLocation:
-            return "No Current Location"
+            return LocalizedStringKey("No Current Location")
         }
     }
+
 }

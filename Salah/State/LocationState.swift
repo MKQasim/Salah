@@ -8,7 +8,7 @@
 import Foundation
 
 class LocationState: ObservableObject {
-    @Published var currentLocation:Cities?
+    @Published var currentLocation:Location?
     @Published var isLocation = false
-    @Published var cities:[Cities] = []
+    @Published var cities:[Location] = []
 }

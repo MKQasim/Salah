@@ -48,7 +48,7 @@ struct ContentView: View {
                 if let secondsFromGMT = Double(placemark.timeZone?.secondsFromGMT() ?? 0) as? Double {
                     offset = secondsFromGMT / 3600
                 }
-                var location = Cities(city: placemark.locality ?? "No City", lat: lastLocation.coordinate.latitude, long: lastLocation.coordinate.longitude, offSet: offset)
+                var location = Location(city: placemark.city, lat: placemark.location?.coordinate.latitude, lng: placemark.location?.coordinate.longitude, country: placemark.country, dateTime: Date(), offSet: offset, timeZone: placemark.timeZone, prayerTimings:[])
                 locationState.currentLocation = location
                 locationState.isLocation = true
                 }

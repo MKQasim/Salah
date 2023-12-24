@@ -27,9 +27,9 @@ struct NavigationSplitDetailView: View {
                         Text("Current Location")
                     })
                 }
-                ForEach(locationState.cities){city in
-                    NavigationLink(value: NavigationItem.city(city), label: {
-                        Text(city.city)
+                ForEach(locationState.cities){ location in
+                    NavigationLink(value: NavigationItem.location(location), label: {
+                        Text(location.city ?? "")
                     })
                 }
             }
@@ -50,7 +50,7 @@ struct NavigationSplitDetailView: View {
                     Text("No Location Added")
                 }
             case .currentLocation:
-                PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg" , lat: locationState.currentLocation?.lat ?? 49.10, long: locationState.currentLocation?.long ?? 19.01, offSet: locationState.currentLocation?.offSet ?? 0.0))
+                PrayerDetailView(selectedLocation:locationState.currentLocation ?? Location( prayerTimings: []))
                     .navigationTitle("Nuremberg")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)
@@ -59,9 +59,9 @@ struct NavigationSplitDetailView: View {
                     .background(
                         AngularGradient(colors: [.journal,.journal2], center: .bottomTrailing)
                     )
-            case .city(let cities):
-                    PrayerDetailView(city: cities)
-                    .navigationTitle(cities.city)
+            case .location(let location):
+                PrayerDetailView(selectedLocation:location)
+                    .navigationTitle(location.city ?? "")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -98,7 +98,7 @@ struct NavigationSplitDetailView: View {
                     navigationState.sidebarSelection = .currentLocation
                 }
                 else if locationState.cities.count > 0 {
-                    navigationState.sidebarSelection = .city(locationState.cities[0])
+                    navigationState.sidebarSelection = .location(locationState.cities[0])
                 }
                 else{
                     navigationState.sidebarSelection = .nocurrentLocation

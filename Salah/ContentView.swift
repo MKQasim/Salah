@@ -26,7 +26,7 @@ struct ContentView: View {
                     location()
     #endif
                 default:
-                    print("Not det")
+                    print("")
                 }
             }
             .environmentObject(locationManager)
@@ -39,21 +39,16 @@ struct ContentView: View {
     func location(){
         locationManager.requestLocation()
         if let lastLocation = locationManager.lastLocation {
-            var location = Location()
+            var offset = 0.0
             lastLocation.placemark { placemark, error in
                     guard let placemark = placemark else {
                         print("Error:", error ?? "nil")
                         return
                     }
                 if let secondsFromGMT = Double(placemark.timeZone?.secondsFromGMT() ?? 0) as? Double {
-                    location.offSet = secondsFromGMT / 3600
+                    offset = secondsFromGMT / 3600
                 }
-                location.lat = lastLocation.coordinate.latitude
-                location.lng = lastLocation.coordinate.longitude
-                location.city = placemark.locality
-                location.country = placemark.country
-                location.dateTime = Date()
-                location.timeZone = placemark.timeZone
+                var location = Cities(city: placemark.locality ?? "No City", lat: lastLocation.coordinate.latitude, long: lastLocation.coordinate.longitude, offSet: offset)
                 locationState.currentLocation = location
                 locationState.isLocation = true
                 }

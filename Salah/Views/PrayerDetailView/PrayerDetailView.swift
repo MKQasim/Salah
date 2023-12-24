@@ -27,7 +27,7 @@ struct PrayerDetailView: View {
     @State private var timer2:Timer?
         
     var body: some View {
-        ScrollView {
+        ScrollView(.vertical) {
             VStack{
                 VStack(spacing:10) {
                     if selectedPrayer != nil {
@@ -110,20 +110,6 @@ struct PrayerDetailView: View {
     }
     
     
-    private func timeZoneDifference() -> Date{
-        let seconds = TimeZone.current.secondsFromGMT()
-        let hours = Double(seconds/3600)
-        var nextPrayerTime = Date()
-        if  city.offSet != hours {
-            let differentInTimeZone = city.offSet - abs(hours)
-            if let dateTime = nextPrayerTime.dateByAdding(timeZoneOffset: differentInTimeZone) {
-                nextPrayerTime = dateTime
-            } else {
-                print("Error occurred while calculating the date.")
-            }
-        }
-        return nextPrayerTime
-    }
     
     private func getNextPrayerTime() {
         let dateFormatter = DateFormatter()
@@ -141,7 +127,7 @@ struct PrayerDetailView: View {
 //            }
 //        }
         
-        let nextPrayerTime = timeZoneDifference()
+        let nextPrayerTime = Date.timeZoneDifference(offsetOfTimeZone: city.offSet)
 
         for prayer in todayPrayersTimes {
             let prayerDateFormatter = DateFormatter()
@@ -162,7 +148,7 @@ struct PrayerDetailView: View {
         if nextSalah.isEmpty {
             nextSalah = "\(tomorrowPrayerTimes[0].name) at \(tomorrowPrayerTimes[0].time)"
             selectedPrayer = todayPrayersTimes.first
-            let dateTime = timeZoneDifference()
+            let dateTime = Date.timeZoneDifference(offsetOfTimeZone: city.offSet)
             print("Date Time :",dateTime)
             let nextDate = "\(dateTime.get(.year))-\(dateTime.get(.month))-\(dateTime.get(.day)+1) \(todayPrayersTimes[0].time)"
             let convertedString = TimeHelper.convertTimeStringToDate(nextDate, format: "yyyy-MM-dd HH:mm") ?? Date()
@@ -187,7 +173,7 @@ struct PrayerDetailView: View {
     
     func newStartTimer() {
         // Set your start and end dates
-        let startDate = timeZoneDifference()
+        let startDate = Date.timeZoneDifference(offsetOfTimeZone: city.offSet)
 //        let seconds = TimeZone.current.secondsFromGMT()
 //        let hours = Double(seconds/3600)
 //        if  city.timeZone != hours {
@@ -212,7 +198,7 @@ struct PrayerDetailView: View {
     
     func updateTimer(_ startDate: Date, _ endDate: Date) {
         // Calculate the time difference between end date and current date
-        let startDate = timeZoneDifference()
+        let startDate = Date.timeZoneDifference(offsetOfTimeZone: city.offSet)
 //        let seconds = TimeZone.current.secondsFromGMT()
 //        let hours = Double(seconds/3600)
 //        if  city.timeZone != hours {

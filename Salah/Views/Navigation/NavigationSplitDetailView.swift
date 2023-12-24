@@ -17,12 +17,10 @@ struct NavigationSplitDetailView: View {
     var body: some View {
         NavigationSplitView{
             List(selection: $navigationState.sidebarSelection){
-                if locationManager.locationStatus == .denied {
-                    if locationState.cities.count == 0{
+                if locationManager.locationStatus == .denied && locationState.cities.count == 0 {
                         NavigationLink(value: NavigationItem.nocurrentLocation, label: {
                             Text("Location Denied")
                         })
-                    }
                 }
                 else{
                     NavigationLink(value: NavigationItem.currentLocation, label: {
@@ -52,7 +50,7 @@ struct NavigationSplitDetailView: View {
                     Text("No Location Added")
                 }
             case .currentLocation:
-                PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg" , lat: locationState.currentLocation?.lat ?? 49.10, long: locationState.currentLocation?.lng ?? 19.01, offSet: locationState.currentLocation?.offSet ?? 0.0))
+                PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg" , lat: locationState.currentLocation?.lat ?? 49.10, long: locationState.currentLocation?.long ?? 19.01, offSet: locationState.currentLocation?.offSet ?? 0.0))
                     .navigationTitle("Nuremberg")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)

@@ -41,7 +41,7 @@ struct TabbarView: View {
             }
             else{
                 if locationState.isLocation {
-                    PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg", lat: locationState.currentLocation?.lat ?? 49.11, long: locationState.currentLocation?.lng ?? 19.18, offSet: locationState.currentLocation?.offSet ?? 0.0))
+                    PrayerDetailView(city: Cities(city: locationState.currentLocation?.city ?? "Nuremberg", lat: locationState.currentLocation?.lat ?? 49.11, long: locationState.currentLocation?.long ?? 19.18, offSet: locationState.currentLocation?.offSet ?? 0.0))
                         .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
                         .tag(NavigationItem.currentLocation)
                         .tabItem {

@@ -107,6 +107,8 @@
 		C98C93E92B248BD200C4BC37 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* cities.json */; };
 		C98C93EA2B248CCB00C4BC37 /* LocationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052F0CAB2B2310E30037ADAE /* LocationState.swift */; };
 		C98C93EB2B248D8D00C4BC37 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
+		C9DF63652B39345B00DE9FEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DF63642B39345B00DE9FEB /* SettingsView.swift */; };
+		C9DF63662B39345B00DE9FEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DF63642B39345B00DE9FEB /* SettingsView.swift */; };
 		C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
 		C9F5E30C2B20793A00964AF0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E30B2B20793A00964AF0 /* ContentView.swift */; };
 		C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9F5E30D2B20793C00964AF0 /* Assets.xcassets */; };
@@ -217,6 +219,7 @@
 		C96F50DC2B29A5E8005D09A5 /* SalahMacWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SalahMacWidget.entitlements; sourceTree = "<group>"; };
 		C98C93CB2B248AE700C4BC37 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C9DF63642B39345B00DE9FEB /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Salah/Views/SettingsView/SettingsView.swift; sourceTree = SOURCE_ROOT; };
 		C9F5E3062B20793A00964AF0 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5E3092B20793A00964AF0 /* SalahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahApp.swift; sourceTree = "<group>"; };
 		C9F5E30B2B20793A00964AF0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -316,6 +319,7 @@
 		0504786F2B20F97800E6BE85 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				C9DF63642B39345B00DE9FEB /* SettingsView.swift */,
 				050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */,
 				056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */,
 				C964588E2B24B4BF002B4E3A /* AppLandingView.swift */,
@@ -696,6 +700,7 @@
 				C98C93EB2B248D8D00C4BC37 /* PrayTime.m in Sources */,
 				C98C93E52B248BB800C4BC37 /* LocationManager.swift in Sources */,
 				C98C93E62B248BBB00C4BC37 /* Country.swift in Sources */,
+				C9DF63662B39345B00DE9FEB /* SettingsView.swift in Sources */,
 				0529B7772B2A2F4700842B19 /* DateExtensions.swift in Sources */,
 				05D78FA82B2CCB6900CAB017 /* PrayerTiming.swift in Sources */,
 				0529B7702B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */,
@@ -736,6 +741,7 @@
 				05FC81702B27BEFA0046E93C /* NavigationState.swift in Sources */,
 				0504786D2B20F52000E6BE85 /* PrayerDetailView.swift in Sources */,
 				0529B76F2B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */,
+				C9DF63652B39345B00DE9FEB /* SettingsView.swift in Sources */,
 				05D78FA72B2CCB6900CAB017 /* PrayerTiming.swift in Sources */,
 				056F97C42B223274006AC7F8 /* Location.swift in Sources */,
 				0531E6572B263E8C00FBA29B /* Cities.swift in Sources */,

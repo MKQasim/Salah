@@ -65,11 +65,13 @@ struct LocationDetailView: View {
             }
         }
         .toolbar {
-//            ToolbarItem(placement: .navigationBarTrailing) {
-////                 NavigationLink(destination: SettingsView(), label: {
-////                     Label("Settings", systemImage: "gear.circle").foregroundColor(.white)
-////                 })
-//            }
+            #if os(iOS)
+            ToolbarItem(placement: .navigationBarTrailing) {
+                 NavigationLink(destination: SettingsView(), label: {
+                     Label("Settings", systemImage: "gear.circle").foregroundColor(.gray)
+                 })
+            }
+            #endif
         }
     }
 }
@@ -128,6 +130,11 @@ struct ListRowCellView: View {
                 viewModel.fetchNextPrayerTime(for: location)
             }
         }
+        .background(
+        RoundedRectangle(cornerRadius: 10)
+                .fill(Color(UIColor.lightGray))
+                .shadow(radius: 3)
+        )
     }
 }
 

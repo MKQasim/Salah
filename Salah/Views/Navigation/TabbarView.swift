@@ -75,6 +75,7 @@ struct TabbarView: View {
                     }) {
                         Image(systemName: "list.bullet")
                             .font(.subheadline)
+                            .foregroundColor(.gray)
                     }
             }
             #endif

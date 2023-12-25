@@ -158,7 +158,7 @@ struct ManualLocationView: View {
             updatedLocation.city = place.locality
             updatedLocation.country = place.country
             updatedLocation.dateTime = Date()
-            
+            updatedLocation.timeZone = place.timeZone
             if let secondsFromGMT = Double(place.timeZone?.secondsFromGMT() ?? 0) as? Double {
                 let hours = secondsFromGMT / 3600
                 updatedLocation.offSet = hours

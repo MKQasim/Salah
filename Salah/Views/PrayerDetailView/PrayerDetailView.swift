@@ -78,8 +78,23 @@ struct PrayerDetailView: View {
     private func setUpView() {
         if isUpdate {
             PrayerTimeHelper.shared.getSalahTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, offSet: selectedLocation.offSet ?? 0.0, completion: { location in
+                guard let location = location else { return  }
+             
                 selectedLocation = location
-                 print(selectedLocation.offSet)
+                todayPrayersTimes = location.prayerTimings ?? []
+                nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.time ?? "")"
+                let countdownTimer = CountdownTimer(remainingTime: 0)
+                countdownTimer.startCountdownTimer(with: location.timeDeferance ?? 0.0) { formattedTime in
+                    print("Remaining Time: \(formattedTime)")
+                    remTime = formattedTime
+                    // Update UI or perform actions with the formattedTime
+                }
+                guard let timeZone = location.timeZone else { return  }
+                let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
+               
+                timeNow = currentDate ?? ""
+                
+
                 todayPrayersTimes = location.prayerTimings ?? []
             })
             
@@ -88,6 +103,7 @@ struct PrayerDetailView: View {
             if var cal = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
                 cal.dateByAdding(timeZoneOffset: selectedLocation.offSet ?? 0)
                 PrayerTimeHelper.shared.getSalahTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, offSet: selectedLocation.offSet ?? 0.0, date: currentDate, completion: { location in
+                    guard let location = location else { return  }
                        selectedLocation = location
                     print(selectedLocation.offSet)
                      tomorrowPrayerTimes = location.prayerTimings ?? []
@@ -120,23 +136,22 @@ struct PrayerDetailView: View {
         }
         
         let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
-        let startDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").1
-        
+       
         timeNow = currentDate ?? ""
         
-        PrayerTimeHelper.shared.findNextPrayerTime(now: startDate ?? Date(), selectedLocation: selectedLocation) { nextPrayer in
-            if let nextPrayer = nextPrayer {
-                if let name = nextPrayer.name as? String, let time = nextPrayer.time as? String {
-                    self.nextSalah = "\(name) at \(time)"
-                }
-            }
-        }
+//        PrayerTimeHelper.shared.findNextPrayerTime(now: startDate ?? Date(), selectedLocation: selectedLocation) { nextPrayer in
+//            if let nextPrayer = nextPrayer {
+//                if let name = nextPrayer.name as? String, let time = nextPrayer.time as? String {
+//                    self.nextSalah = "\(name) at \(time)"
+//                }
+//            }
+//        }
         
         selectedPrayer = PrayerTimeHelper.shared.selectedPrayer
         
-        PrayerTimeHelper.shared.calculateRemainingTimeUntilNextPrayer(now: startDate ?? Date(), selectedLocation: selectedLocation) { remainingTime in
-            self.remTime = remainingTime ?? ""
-        }
+//        PrayerTimeHelper.shared.calculateRemainingTimeUntilNextPrayer(now: startDate ?? Date(), selectedLocation: selectedLocation) { remainingTime in
+//            self.remTime = remainingTime ?? ""
+//        }
     }
 
 }
@@ -151,4 +166,60 @@ struct PrayerDetailView: View {
 
 
 
+import Foundation
 
+class CountdownTimer {
+    var remainingTime: TimeInterval
+    var timer: Timer?
+    var timeUpdateHandler: ((String) -> Void)?
+
+    init(remainingTime: TimeInterval) {
+        self.remainingTime = remainingTime
+    }
+
+    func startTimer(completion: @escaping (String) -> Void) {
+        timeUpdateHandler = completion
+
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {  timer in
+//            guard let strongSelf = self else { return }
+            if self.remainingTime > 0 {
+                self.remainingTime -= 1
+                let timeComponents = self.getTimeComponents(from: self.remainingTime)
+                let formattedTime = self.formatTimeComponents(timeComponents)
+                self.timeUpdateHandler?(formattedTime)
+            } else {
+                timer.invalidate()
+                self.timeUpdateHandler?("00:00:00") // Notify completion with finished time
+                print("Countdown finished!")
+            }
+        }
+    }
+
+    func stopTimer() {
+        timer?.invalidate()
+    }
+
+    func getTimeComponents(from timeDifference: TimeInterval) -> (hours: Int, minutes: Int, seconds: Int) {
+        let hours = Int(timeDifference) / 3600
+        let minutes = Int(timeDifference) / 60 % 60
+        let seconds = Int(timeDifference) % 60
+
+        return (hours, minutes, seconds)
+    }
+
+    func formatTimeComponents(_ timeComponents: (hours: Int, minutes: Int, seconds: Int)) -> String {
+        let formattedHours = String(format: "%02d", timeComponents.hours)
+        let formattedMinutes = String(format: "%02d", timeComponents.minutes)
+        let formattedSeconds = String(format: "%02d", timeComponents.seconds)
+
+        return "\(formattedHours):\(formattedMinutes):\(formattedSeconds)"
+    }
+
+    func startCountdownTimer(with timeDifference: TimeInterval, completion: @escaping (String) -> Void) {
+     
+        print("Time difference in seconds: \(timeDifference)")
+        self.remainingTime = timeDifference
+        self.startTimer(completion: completion)
+    }
+    
+}

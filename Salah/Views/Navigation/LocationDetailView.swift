@@ -132,26 +132,33 @@ struct ListRowCellView: View {
 }
 
 class PrayerTimeViewModel: ObservableObject {
-    @Published var nextSalah: String = ""
+    @Published var nextSalah: String = "" {
+        didSet {
+            objectWillChange.send() // This will trigger UI updates in SwiftUI
+        }
+    }
+
     @Published var remTime: String = ""
 
     var prayerTimeHelper = PrayerTimeHelper.shared // Assuming PrayerTimeHelper is shared across instances
 
     func fetchNextPrayerTime(for location: Location?) {
         prayerTimeHelper.findNextPrayerTime(now: Date(), selectedLocation: location ?? Location()) { nextPrayerTime in
+            print("Next Prayer Time: \(nextPrayerTime)") // Add this line for debugging
+            
             if let prayerTime = nextPrayerTime {
                 let prayerTimeName = prayerTime.name ?? ""
                 let prayerTimeValue = prayerTime.time ?? ""
                 self.nextSalah = "\(prayerTimeName) at \(prayerTimeValue)"
                 
                 // Start the timer to update the remaining time for this specific cell
-                self.startTimerToUpdateRemainingTime(for: location)
+                // self.startTimerToUpdateRemainingTime(for: location)
             } else {
                 print("No prayer time found or an error occurred.")
                 self.nextSalah = "No prayer time found"
             }
         }
-    }
+}
 
     // Function to start the timer to update the remaining time
     func startTimerToUpdateRemainingTime(for location: Location?) {

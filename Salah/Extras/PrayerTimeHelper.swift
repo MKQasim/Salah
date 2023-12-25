@@ -121,7 +121,7 @@ typealias NextPrayerCompletion = (PrayerTiming?) -> Void
 
 
 class PrayerTimeHelper: ObservableObject {
-   
+    
     @AppStorage("SetCalculationMethod") private var calculationMethod = 0
     @AppStorage("SetFajrJuridiction") private var juridictionMethod = 0
     
@@ -139,10 +139,10 @@ class PrayerTimeHelper: ObservableObject {
     private init() {
         // Private initializer to prevent creating multiple instances
         
-        startTimerToUpdatePrayerTime(for: selectedLocation, callback: {
-            remaintime in
-            print(remaintime)
-        })
+        //        startTimerToUpdatePrayerTime(for: selectedLocation, callback: {
+        //            remaintime in
+        //            print(remaintime)
+        //        })
     }
     
     // Function to get the remaining times for each prayer
@@ -150,7 +150,7 @@ class PrayerTimeHelper: ObservableObject {
         var remainingTimes: [String: String] = [:]
         
         guard let selectedLocation = selectedLocation else { return remainingTimes }
-
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         
@@ -159,7 +159,7 @@ class PrayerTimeHelper: ObservableObject {
         guard let destinationTimeZone = TimeZone(secondsFromGMT: Int(selectedLocation.offSet ?? 0.0) * 3600) else { return ["":""]} // Location's time zone
         let currentTime = Date().convert(from: sourceTimeZone, to: destinationTimeZone)
         
-
+        
         for prayer in self.prayerTiming {
             let prayerDateFormatter = DateFormatter()
             prayerDateFormatter.dateFormat = "yyyy/MM/dd"
@@ -173,26 +173,28 @@ class PrayerTimeHelper: ObservableObject {
                 remainingTimes[prayer.name] = formattedTime
             }
         }
-
+        
         return remainingTimes
     }
-
+    
     // Function to update the remaining prayer time
     func updateRemainingPrayerTime(for location: Location?) {
         guard let selectedLocation = location else { return }
         let remainingTimes = getRemainingTimeForPrayers(selectedLocation: selectedLocation)
         self.remainingTimes = remainingTimes
     }
-
+    
     // Function to format remaining time
     func formatRemainingTime(_ remainingTime: String) -> String {
         // Implement your formatting logic here
         return remainingTime
     }
-
+    
     // Function to fetch the prayer timings
-    func getSalahTimings(lat: Double, long: Double, offSet: Double, date: Date = Date(), completion: (Location) -> Void) {
+    func getSalahTimings(lat: Double, long: Double, offSet: Double, date: Date = Date(), completion: @escaping (Location?) -> Void) {
         var prayerTiming = [PrayerTiming]()
+        var nextPrayer: PrayerTiming?
+        
         let time = PrayTime()
         time.setCalcMethod(3)
         time.setAsrMethod(Int32(1))
@@ -207,6 +209,8 @@ class PrayerTimeHelper: ObservableObject {
                                               andtimeZone: offSet)!
         let salahTiming = getTime.compactMap({ $0 as? String })
         
+        let timeFormat = "HH:mm"
+        
         for (index, name) in salahNaming.enumerated() {
             let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
             
@@ -214,14 +218,88 @@ class PrayerTimeHelper: ObservableObject {
                 prayerTiming.append(newSalahTiming)
             }
         }
-        self.prayerTiming = prayerTiming
+        
+        let result = getNextPrayerDetails(offSet: offSet, from: prayerTiming)
+        print("nextSalahName \(result.nextPrayer?.name) : nextSalahTime \(result.remainingTime)")
+        
         var loc = Location()
         loc.prayerTimings = prayerTiming
         loc.lat = lat
         loc.lng = long
         loc.offSet = offSet
-        // Call the completion handler with the result
+        loc.nextPrayer = result.nextPrayer
+        loc.remainingTime = result.remainingTime ?? ""
+        loc.timeDeferance = result.minTimeDifference ?? 0.0
         completion(loc)
+    }
+    
+    func compareTimeStrings(firstTime: String, secondTime: String) -> ComparisonResult? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        
+        // Convert time strings to Date objects
+        guard let firstDate = dateFormatter.date(from: firstTime),
+              let secondDate = dateFormatter.date(from: secondTime) else {
+            return nil // Invalid time format
+        }
+        
+        // Compare the dates
+        let comparisonResult = firstDate.compare(secondDate)
+        return comparisonResult
+    }
+    
+    func getNextPrayerDetails(offSet : Double? ,from prayerTimes: [PrayerTiming]) -> (nextPrayer: PrayerTiming?, remainingTime: String?,minTimeDifference:Double? ) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let hours = offSet ?? 0.0 // get the hours from GMT as a Double
+        let secondsFromGMT = Int(hours * 3600) // convert hours to seconds and cast to Int
+        let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) // create a TimeZone object
+        
+        guard let timeZone = timeZone else {
+            // Handle the case where timeZone is nil
+            // You might want to show an error message or handle this situation accordingly
+            return (nil, nil,nil)
+        }
+        
+        let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").1 ?? Date()
+       
+//        timeNow = currentDate ?? ""
+        // Get the current time
+        dateFormatter.timeZone = timeZone
+        
+        let currentTime = dateFormatter.string(from: currentDate)
+        
+        var earliestPrayer: PrayerTiming? = nil
+        var minTimeDifference = TimeInterval.greatestFiniteMagnitude
+
+        for prayerTime in prayerTimes {
+            let comparisonResult = compareTimeStrings(firstTime: prayerTime.time, secondTime: currentTime)
+            
+            if let comparison = comparisonResult {
+                if comparison == .orderedDescending {
+                    if let prayerDate = dateFormatter.date(from: prayerTime.time)?.dateByAdding(timeZoneOffset: offSet ?? 0),
+                       let currentDate = dateFormatter.date(from: currentTime) {
+                        let timeDifference = prayerDate.timeIntervalSince(currentDate)
+                       
+                        if timeDifference < minTimeDifference {
+                            minTimeDifference = timeDifference
+                            earliestPrayer = prayerTime
+                            print("minTimeDifference",minTimeDifference)
+                            // Calculate remaining time
+                            let remainingTime = formatTimeComponents(getTimeComponents(from: timeDifference))
+                            return (earliestPrayer, remainingTime,minTimeDifference)
+                            
+                        }
+                    } else {
+                        print("Invalid time format.")
+                    }
+                }
+            } else {
+                print("Invalid time format.")
+            }
+        }
+
+        return (nil, nil,nil) // No upcoming prayer time found
     }
 
     
@@ -240,6 +318,7 @@ class PrayerTimeHelper: ObservableObject {
                                               andLongitude: long,
                                               andtimeZone: timeZone)!
         let salahTiming = getTime.compactMap({ $0 as? String })
+        
         
         for (index, name) in salahNaming.enumerated() {
             let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
@@ -268,56 +347,11 @@ class PrayerTimeHelper: ObservableObject {
 
     // Updated findNextPrayerTime method using the callback closure
     func findNextPrayerTime(now: Date, selectedLocation: Location, completion: @escaping NextPrayerCompletion) {
-        // Convert the current time to the location's time zone
-        
-        
-        guard let locationTimeZone = TimeZone(secondsFromGMT: Int(selectedLocation.offSet ?? 0.0) * 3600) else {
-            completion(nil)
-            return
-        }
-        let nowInLocation = convertDateToTimeZone(date: now, timeZone: locationTimeZone)
-        
-        PrayerTimeHelper.shared.getSalahTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, offSet: selectedLocation.offSet ?? 0.0, completion: { location in
-            
-            
-            
-            // Initialize the next prayer and the minimum difference variables
-            var nextPrayer: PrayerTiming? = nil
-            var minDiff = Double.infinity
-            guard let prayers = location.prayerTimings else {
-                completion(nil)
-                return
-            }
-            
-            // Loop through the prayers array
-            for prayer in prayers {
-                // Convert the prayer time string to a time interval
-                guard let timeInterval = timeIntervalFromTimeString(timeString: prayer.time) else {
-                    completion(nil)
-                    return
-                }
-                
-                // Convert the time interval to a date
-                let prayerTime = dateFromTimeInterval(timeInterval: timeInterval, date: now)
-                
-                // Convert the prayer time to the location's time zone
-                let prayerTimeInLocation = convertDateToTimeZone(date: prayerTime, timeZone: locationTimeZone)
-                
-                // Calculate the difference between the current time and the prayer time in seconds
-                let diff = prayerTimeInLocation.timeIntervalSince(nowInLocation)
-                
-                // If the difference is positive and smaller than the minimum difference, update the next prayer and the minimum difference
-                if diff >= 0 && diff < minDiff {
-                    nextPrayer = prayer
-                    minDiff = diff
-                }
-            }
-            
-            // Call the completion handler with the next prayer or nil if none is found
-            completion(nextPrayer)
-        })
-        
        
+
+        PrayerTimeHelper.shared.getSalahTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, offSet: selectedLocation.offSet ?? 0.0) { location in
+            
+        }
     }
 
     // A function to get the start of the day for a given date
@@ -358,95 +392,108 @@ class PrayerTimeHelper: ObservableObject {
     }
 
     func startTimerToUpdatePrayerTime(for location: Location?, callback: @escaping (String?) -> Void) {
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
-//            guard let self = self else { return }
-            PrayerTimeHelper.shared.calculateRemainingTimeUntilNextPrayer(now: Date(), selectedLocation: location ?? Location()) { remainingTime in
-                // Update the callback with the latest remaining time
-                callback(remainingTime)
+        timer?.invalidate() // Invalidate any existing timer before starting a new one
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] timer in
+            guard let self = self else {
+                timer.invalidate() // Invalidate the timer if self is deallocated
+                return
             }
+            
+            // Ensure a valid location is provided; otherwise, use a default Location
+            let selectedLocation = location ?? Location()
+            
+//            self.calculateRemainingTimeUntilNextPrayer(now: Date(), selectedLocation: selectedLocation) { remainingTime in
+//                // Update the callback with the latest remaining time
+//                callback(remainingTime)
+//            }
         }
-        timer?.fire()
+        timer?.fire() // Immediately fire the timer
     }
 
+
+    func formatTimeComponents(_ timeComponents: (hours: Int, minutes: Int, seconds: Int)) -> String {
+        let formattedHours = String(format: "%02d", timeComponents.hours)
+        let formattedMinutes = String(format: "%02d", timeComponents.minutes)
+        let formattedSeconds = String(format: "%02d", timeComponents.seconds)
+        
+        return "\(formattedHours):\(formattedMinutes):\(formattedSeconds)"
+    }
     
-    func getTimeComponents(from timeString: String) -> (hour: Int, minute: Int, second: Int)? {
-        let components = timeString.components(separatedBy: ":")
-        guard components.count == 2,
-              let hour = Int(components[0]),
-              let minute = Int(components[1]),
-              let second = Int(0) as? Int else {
-            return nil
-        }
-        return (hour, minute, second)
+    func getTimeComponents(from timeDifference: TimeInterval) -> (hours: Int, minutes: Int, seconds: Int) {
+        let hours = Int(timeDifference) / 3600
+        let minutes = Int(timeDifference) / 60 % 60
+        let seconds = Int(timeDifference) % 60
+
+        return (hours, minutes, seconds)
     }
 
 
     // Function to update the timer
-    func calculateRemainingTimeUntilNextPrayer(now: Date, selectedLocation: Location, completion: @escaping (String?) -> Void) {
-        // Check if there's a next prayer and get its time
-        findNextPrayerTime(now: now, selectedLocation: selectedLocation) { nextPrayer in
-            // Handle the result received in the closure
-            if let prayer = nextPrayer {
-                guard let nextTime = prayer.time as? String else {
-                    completion(nil)
-                    return
-                }
-
-                guard let prayerTimeComponents = self.getTimeComponents(from: nextTime) else {
-                    completion(nil)
-                    return
-                }
-
-                // Get the current date and time
-                let currentDate = Date()
-
-                // Add the offset to the current date based on the selected location's time zone
-                let timeZoneOffset = TimeInterval(selectedLocation.offSet ?? 0.0) * 3600
-                let adjustedCurrentDate = currentDate.addingTimeInterval(timeZoneOffset)
-
-                // Create a calendar
-                let calendar = Calendar.current
-
-                // Set the date components for the next prayer
-                var dateComponents = DateComponents()
-                dateComponents.hour = prayerTimeComponents.hour
-                dateComponents.minute = prayerTimeComponents.minute
-                dateComponents.second = prayerTimeComponents.second
-
-                // Create a new date with the hour and minute of the next prayer
-                guard let nextPrayerDate = calendar.date(bySettingHour: dateComponents.hour ?? 0,
-                                                         minute: dateComponents.minute ?? 0,
-                                                         second: dateComponents.second ?? 0,
-                                                         of: adjustedCurrentDate) else {
-                    completion(nil)
-                    return
-                }
-
-                // Calculate the time difference between the current date and time and the next prayer time
-                let timeDifference = nextPrayerDate.timeIntervalSince(adjustedCurrentDate)
-
-                guard timeDifference > 0 else {
-                    completion("Prayer time has passed")
-                    return
-                }
-
-                // Convert time difference to components
-                let hours = Int(timeDifference) / 3600
-                let minutes = Int(timeDifference) % 3600 / 60
-                let seconds = Int(timeDifference) % 60
-
-                let formattedHours = String(format: "%02d", hours)
-                let formattedMinutes = String(format: "%02d", minutes)
-                let formattedSeconds = String(format: "%02d", seconds)
-
-                var remainingTime = "\(formattedHours):\(formattedMinutes):\(formattedSeconds)"
-                completion(remainingTime)
-            } else {
-                completion(nil)
-            }
-        }
-    }
-
+//    func calculateRemainingTimeUntilNextPrayer(now: Date, selectedLocation: Location, completion: @escaping (String?) -> Void) {
+//        // Check if there's a next prayer and get its time
+//        findNextPrayerTime(now: now, selectedLocation: selectedLocation) { nextPrayer in
+//            // Handle the result received in the closure
+//            if let prayer = nextPrayer {
+//                guard let nextTime = prayer.time as? String else {
+//                    completion(nil)
+//                    return
+//                }
+//
+//                guard let prayerTimeComponents = self.getTimeComponents(from: nextTime) else {
+//                    completion(nil)
+//                    return
+//                }
+//
+//                // Get the current date and time
+//                let currentDate = Date()
+//
+//                // Add the offset to the current date based on the selected location's time zone
+//                let timeZoneOffset = TimeInterval(selectedLocation.offSet ?? 0.0) * 3600
+//                let adjustedCurrentDate = currentDate.addingTimeInterval(timeZoneOffset)
+//
+//                // Create a calendar
+//                let calendar = Calendar.current
+//
+//                // Set the date components for the next prayer
+//                var dateComponents = DateComponents()
+//                dateComponents.hour = prayerTimeComponents.hour
+//                dateComponents.minute = prayerTimeComponents.minute
+//                dateComponents.second = prayerTimeComponents.second
+//
+//                // Create a new date with the hour and minute of the next prayer
+//                guard let nextPrayerDate = calendar.date(bySettingHour: dateComponents.hour ?? 0,
+//                                                         minute: dateComponents.minute ?? 0,
+//                                                         second: dateComponents.second ?? 0,
+//                                                         of: adjustedCurrentDate) else {
+//                    completion(nil)
+//                    return
+//                }
+//
+//                // Calculate the time difference between the current date and time and the next prayer time
+//                let timeDifference = nextPrayerDate.timeIntervalSince(adjustedCurrentDate)
+//
+//                guard timeDifference > 0 else {
+//                    completion("Prayer time has passed")
+//                    return
+//                }
+//
+//                // Convert time difference to components
+//                let hours = Int(timeDifference) / 3600
+//                let minutes = Int(timeDifference) % 3600 / 60
+//                let seconds = Int(timeDifference) % 60
+//
+//                let formattedHours = String(format: "%02d", hours)
+//                let formattedMinutes = String(format: "%02d", minutes)
+//                let formattedSeconds = String(format: "%02d", seconds)
+//
+//                var remainingTime = "\(formattedHours):\(formattedMinutes):\(formattedSeconds)"
+//                completion(remainingTime)
+//            } else {
+//                completion(nil)
+//            }
+//        }
+//    }
+//
     func currentTime(for timeZone: TimeZone, dateFormatString: String = "LLLL dd, hh:mm:ss a", currentDate: Date = Date()) -> (String?,Date?) {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = dateFormatString

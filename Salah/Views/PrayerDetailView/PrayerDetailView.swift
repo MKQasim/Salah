@@ -91,10 +91,7 @@ struct PrayerDetailView: View {
                 }
                 guard let timeZone = location.timeZone else { return  }
                 let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
-               
                 timeNow = currentDate ?? ""
-                
-
                 todayPrayersTimes = location.prayerTimings ?? []
             })
             

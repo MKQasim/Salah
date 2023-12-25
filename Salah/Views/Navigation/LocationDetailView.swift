@@ -93,9 +93,9 @@ struct ListRowCellView: View {
             }, label: {
                 HStack {
                     VStack(alignment: .leading) {
-                        Text(location?.city ?? "")
+                        Text("\(location?.city ?? "") \(location?.country ?? "")")
                             .font(.headline)
-                        Text(location?.country ?? "")
+                        Text(viewModel.timeNow )
                             .font(.subheadline)
                             .foregroundColor(.white)
                     }
@@ -139,25 +139,37 @@ class PrayerTimeViewModel: ObservableObject {
     }
 
     @Published var remTime: String = ""
+    @Published var timeNow: String = ""
 
     var prayerTimeHelper = PrayerTimeHelper.shared // Assuming PrayerTimeHelper is shared across instances
 
     func fetchNextPrayerTime(for location: Location?) {
-        prayerTimeHelper.findNextPrayerTime(now: Date(), selectedLocation: location ?? Location()) { nextPrayerTime in
-            print("Next Prayer Time: \(nextPrayerTime)") // Add this line for debugging
-            
-            if let prayerTime = nextPrayerTime {
-                let prayerTimeName = prayerTime.name ?? ""
-                let prayerTimeValue = prayerTime.time ?? ""
-                self.nextSalah = "\(prayerTimeName) at \(prayerTimeValue)"
+        PrayerTimeHelper.shared.getSalahTimings(lat: location?.lat ?? 0.0, long: location?.lng ?? 0.0, offSet: location?.offSet ?? 0.0, completion: { location in
+            guard let location = location else { return  }
+         
+            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.time ?? "")"
+            let countdownTimer = CountdownTimer(remainingTime: 0)
+            countdownTimer.startCountdownTimer(with: location.timeDeferance ?? 0.0) { formattedTime in
+                print("Remaining Time: \(formattedTime)")
+                self.remTime = "Next Prayer In : \(formattedTime)"
+                // Update UI or perform actions with the formattedTime
+                let hours = location.offSet ?? 0.0 // get the hours from GMT as a Double
+                let secondsFromGMT = Int(hours * 3600) // convert hours to seconds and cast to Int
+                let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) // create a TimeZone object
                 
-                // Start the timer to update the remaining time for this specific cell
-                // self.startTimerToUpdateRemainingTime(for: location)
-            } else {
-                print("No prayer time found or an error occurred.")
-                self.nextSalah = "No prayer time found"
+                guard let timeZone = timeZone else {
+                    // Handle the case where timeZone is nil
+                    // You might want to show an error message or handle this situation accordingly
+                    return
+                }
+                
+                let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
+               
+                self.timeNow = currentDate ?? ""
+                
             }
-        }
+            
+        })
 }
 
     // Function to start the timer to update the remaining time

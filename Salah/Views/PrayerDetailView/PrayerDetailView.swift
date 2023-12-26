@@ -57,8 +57,11 @@ struct PrayerDetailView: View {
                             .font(.title2)
                     }
                     .onAppear {
-                        setUpView()
-                        startTimer()
+                        Task {
+                            await setUpView()
+                            startTimer()
+                        }
+                        
                     }
                 }
                 .padding()
@@ -75,31 +78,36 @@ struct PrayerDetailView: View {
         }
     }
 
-    private func setUpView() {
+    private func setUpView() async {
+        // Define a method that takes a country name as a parameter and returns a time zone object and a date object
+        // A method that takes a city name as a string and returns the time zone of the city as a string
+        
+
+       
         if isUpdate {
-            PrayerTimeHelper.shared.getSalahTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, offSet: selectedLocation.offSet ?? 0.0, completion: { location in
+           
+            
+            await PrayerTimeHelper.shared.getSalahTimings(location: selectedLocation, completion: { location in
                 guard let location = location else { return  }
              
                 selectedLocation = location
                 todayPrayersTimes = location.prayerTimings ?? []
                 nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.time ?? "")"
-                let countdownTimer = CountdownTimer(remainingTime: 0)
-                countdownTimer.startCountdownTimer(with: location.timeDeferance ?? 0.0) { formattedTime in
-                    print("Remaining Time: \(formattedTime)")
-                    remTime = formattedTime
-                    // Update UI or perform actions with the formattedTime
-                }
                 guard let timeZone = location.timeZone else { return  }
                 let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
                 timeNow = currentDate ?? ""
-                todayPrayersTimes = location.prayerTimings ?? []
+                let countdownTimer = CountdownTimer(remainingTime: 0) // Set the initial remaining time (in seconds)
+                countdownTimer.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
+                    print("Remaining Time: \(formattedTime)")
+                    remTime = formattedTime
+                }
             })
             
             sunTimes = PrayerTimeHelper.shared.getSunTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, timeZone: selectedLocation.offSet ?? 0.0)
             
             if var cal = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
                 cal.dateByAdding(timeZoneOffset: selectedLocation.offSet ?? 0)
-                PrayerTimeHelper.shared.getSalahTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, offSet: selectedLocation.offSet ?? 0.0, date: currentDate, completion: { location in
+                await PrayerTimeHelper.shared.getSalahTimings(location: selectedLocation, date: currentDate, completion: { location in
                     guard let location = location else { return  }
                        selectedLocation = location
                     print(selectedLocation.offSet)
@@ -177,16 +185,14 @@ class CountdownTimer {
     func startTimer(completion: @escaping (String) -> Void) {
         timeUpdateHandler = completion
 
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {  timer in
-//            guard let strongSelf = self else { return }
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
             if self.remainingTime > 0 {
                 self.remainingTime -= 1
-                let timeComponents = self.getTimeComponents(from: self.remainingTime)
-                let formattedTime = self.formatTimeComponents(timeComponents)
+                let formattedTime = self.formatTime(from: self.remainingTime)
                 self.timeUpdateHandler?(formattedTime)
             } else {
                 timer.invalidate()
-                self.timeUpdateHandler?("00:00:00") // Notify completion with finished time
+                self.timeUpdateHandler?("00:00:00")
                 print("Countdown finished!")
             }
         }
@@ -196,27 +202,16 @@ class CountdownTimer {
         timer?.invalidate()
     }
 
-    func getTimeComponents(from timeDifference: TimeInterval) -> (hours: Int, minutes: Int, seconds: Int) {
-        let hours = Int(timeDifference) / 3600
-        let minutes = Int(timeDifference) / 60 % 60
-        let seconds = Int(timeDifference) % 60
-
-        return (hours, minutes, seconds)
+    func formatTime(from timeInterval: TimeInterval) -> String {
+        let hours = Int(timeInterval) / 3600
+        let minutes = Int(timeInterval) / 60 % 60
+        let seconds = Int(timeInterval) % 60
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 
-    func formatTimeComponents(_ timeComponents: (hours: Int, minutes: Int, seconds: Int)) -> String {
-        let formattedHours = String(format: "%02d", timeComponents.hours)
-        let formattedMinutes = String(format: "%02d", timeComponents.minutes)
-        let formattedSeconds = String(format: "%02d", timeComponents.seconds)
-
-        return "\(formattedHours):\(formattedMinutes):\(formattedSeconds)"
-    }
-
-    func startCountdownTimer(with timeDifference: TimeInterval, completion: @escaping (String) -> Void) {
-     
+    func startCountdownTimer(with timeDifference: Double, completion: @escaping (String) -> Void) {
         print("Time difference in seconds: \(timeDifference)")
         self.remainingTime = timeDifference
         self.startTimer(completion: completion)
     }
-    
 }

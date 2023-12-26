@@ -14,8 +14,8 @@
             filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "setUpView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -134,320 +134,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "74D8EE48-D1B6-48A0-932B-76389D8BABE7"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Views/Navigation/LocationDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
-            landmarkName = "startTimerToUpdateRemainingTime(for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AFBA6313-42B4-4039-8D28-04EBB51577EE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Views/Navigation/LocationDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "185"
-            endingLineNumber = "185"
-            landmarkName = "startTimerToUpdateRemainingTime(for:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "08E61482-5B5B-444F-BACF-CC679223CECF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "startTimer(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6ACEFB31-6380-4FA2-A2A2-FA86F3176DFF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
-            landmarkName = "startTimer(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7886C68C-6F2A-45BC-968C-D52423CBE0C8"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "94"
-            endingLineNumber = "94"
-            landmarkName = "setUpView()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "7886C68C-6F2A-45BC-968C-D52423CBE0C8 - fc94577273cae6f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "2508">
-               </Location>
-               <Location
-                  uuid = "7886C68C-6F2A-45BC-968C-D52423CBE0C8 - fc94577273cae736"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "2824">
-               </Location>
-               <Location
-                  uuid = "7886C68C-6F2A-45BC-968C-D52423CBE0C8 - fc94577273cae736"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "95"
-                  endingLineNumber = "95"
-                  offsetFromSymbolStart = "3156">
-               </Location>
-               <Location
-                  uuid = "7886C68C-6F2A-45BC-968C-D52423CBE0C8 - fc94577273cae711"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "94"
-                  endingLineNumber = "94"
-                  offsetFromSymbolStart = "3016">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A825E8FD-E843-4095-9E64-814E5CB74B6D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "setUpView()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "A825E8FD-E843-4095-9E64-814E5CB74B6D - fc94577273cae6f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "2508">
-               </Location>
-               <Location
-                  uuid = "A825E8FD-E843-4095-9E64-814E5CB74B6D - fc94577273cae7f0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "2644">
-               </Location>
-               <Location
-                  uuid = "A825E8FD-E843-4095-9E64-814E5CB74B6D - fc94577273cae7f0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "2976">
-               </Location>
-               <Location
-                  uuid = "A825E8FD-E843-4095-9E64-814E5CB74B6D - fc94577273cae7f0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "93"
-                  endingLineNumber = "93"
-                  offsetFromSymbolStart = "2836">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "489B572F-07AE-4B2D-8406-645D0067BA3C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "setUpView()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "489B572F-07AE-4B2D-8406-645D0067BA3C - fc94577273cae6f8"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "101"
-                  endingLineNumber = "101"
-                  offsetFromSymbolStart = "2508">
-               </Location>
-               <Location
-                  uuid = "489B572F-07AE-4B2D-8406-645D0067BA3C - fc94577273cae7d3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "2508">
-               </Location>
-               <Location
-                  uuid = "489B572F-07AE-4B2D-8406-645D0067BA3C - fc94577273cae7d3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "2840">
-               </Location>
-               <Location
-                  uuid = "489B572F-07AE-4B2D-8406-645D0067BA3C - fc94577273cae7d3"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Salah.Location&gt;) -&gt; () in Salah.PrayerDetailView.setUpView() -&gt; ()"
-                  moduleName = "Salah"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "2732">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A984FC01-C189-4691-8E1E-2C70C991AFC7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Salah/Extras/PrayerTimeHelper.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "getSalahTimings(lat:long:offSet:date:completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "F2538319-D807-4270-9C3C-A052F605F562"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -455,8 +141,8 @@
             filePath = "Salah/Extras/PrayerTimeHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "compareTimeStrings(firstTime:secondTime:)"
             landmarkType = "7">
             <Locations>
@@ -518,8 +204,8 @@
             filePath = "Salah/Extras/PrayerTimeHelper.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "compareTimeStrings(firstTime:secondTime:)"
             landmarkType = "7">
             <Locations>
@@ -569,6 +255,528 @@
                   offsetFromSymbolStart = "1256">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3A1358B8-C308-4B2D-AD2E-9BFE72E5033A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "setUpView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA704D7D-B365-43DD-B6F4-ECD500529E59"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "setUpView()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0BB66310-04C9-4D91-BFA4-84FDB0A76151"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Extras/PrayerTimeHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "createPrayerDateTime(from:with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0BB66310-04C9-4D91-BFA4-84FDB0A76151 - cbd556167d2080e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.createPrayerDateTime(from: Swift.String, with: Foundation.TimeZone) -&gt; Swift.Optional&lt;Foundation.Date&gt;"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "261"
+                  endingLineNumber = "261"
+                  offsetFromSymbolStart = "2116">
+               </Location>
+               <Location
+                  uuid = "0BB66310-04C9-4D91-BFA4-84FDB0A76151 - cbd556167d2080e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.createPrayerDateTime(from: Swift.String, with: Foundation.TimeZone) -&gt; Swift.Optional&lt;Foundation.Date&gt;"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "261"
+                  endingLineNumber = "261"
+                  offsetFromSymbolStart = "2596">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0B295C00-F900-4492-A65B-7953A7E4F09C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Extras/PrayerTimeHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "createPrayerDateTime(from:with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0B295C00-F900-4492-A65B-7953A7E4F09C - cbd556167d2087ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.createPrayerDateTime(from: Swift.String, with: Foundation.TimeZone) -&gt; Swift.Optional&lt;Foundation.Date&gt;"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "269"
+                  endingLineNumber = "269"
+                  offsetFromSymbolStart = "2596">
+               </Location>
+               <Location
+                  uuid = "0B295C00-F900-4492-A65B-7953A7E4F09C - cbd556167d208788"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.createPrayerDateTime(from: Swift.String, with: Foundation.TimeZone) -&gt; Swift.Optional&lt;Foundation.Date&gt;"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "268"
+                  endingLineNumber = "268"
+                  offsetFromSymbolStart = "3068">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B2C1E77-326A-4B13-810E-0AB8A07F6515"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Extras/PrayerTimeHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "createPrayerDateTime(from:with:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9B2C1E77-326A-4B13-810E-0AB8A07F6515 - cbd556167d2081ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.createPrayerDateTime(from: Swift.String, with: Foundation.TimeZone) -&gt; Swift.Optional&lt;Foundation.Date&gt;"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "1888">
+               </Location>
+               <Location
+                  uuid = "9B2C1E77-326A-4B13-810E-0AB8A07F6515 - cbd556167d2081ff"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.createPrayerDateTime(from: Swift.String, with: Foundation.TimeZone) -&gt; Swift.Optional&lt;Foundation.Date&gt;"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "253"
+                  endingLineNumber = "253"
+                  offsetFromSymbolStart = "2116">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Extras/PrayerTimeHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "getSalahTimings(location:date:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5 - 38d9f0b3a8cc0980"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "3276">
+               </Location>
+               <Location
+                  uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5 - 825083b44fc5a87d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5 - 15754e9752174dbe"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "225"
+                  endingLineNumber = "225"
+                  offsetFromSymbolStart = "348">
+               </Location>
+               <Location
+                  uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5 - 38d9f0b3a8cc0846"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "231"
+                  endingLineNumber = "231"
+                  offsetFromSymbolStart = "3320">
+               </Location>
+               <Location
+                  uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5 - 38d9f0b3a8cc09c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "3220">
+               </Location>
+               <Location
+                  uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5 - 38d9f0b3a8cc09c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "3348">
+               </Location>
+               <Location
+                  uuid = "FED14788-E2C4-408C-A246-1911E3CAECD5 - 38d9f0b3a8cc09e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "3392">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5C68C13E-3DB3-42D1-B144-E0AF8EE5A739"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Extras/PrayerTimeHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "getSalahTimings(location:date:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "5C68C13E-3DB3-42D1-B144-E0AF8EE5A739 - 38d9f0b3a8cc09c2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "227"
+                  endingLineNumber = "227"
+                  offsetFromSymbolStart = "3348">
+               </Location>
+               <Location
+                  uuid = "5C68C13E-3DB3-42D1-B144-E0AF8EE5A739 - eab685f149a297eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[2] = Value Promoted from Box&gt; of closure #3 (Swift.Optional&lt;Salah.PrayerTiming&gt;, Swift.Optional&lt;Swift.String&gt;) -&gt; () in Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "200"
+                  endingLineNumber = "200"
+                  offsetFromSymbolStart = "344">
+               </Location>
+               <Location
+                  uuid = "5C68C13E-3DB3-42D1-B144-E0AF8EE5A739 - 38d9f0b3a8cc09e1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Salah.PrayerTimeHelper.getSalahTimings(location: Salah.Location, date: Foundation.Date, completion: (Swift.Optional&lt;Salah.Location&gt;) -&gt; ()) async -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "226"
+                  endingLineNumber = "226"
+                  offsetFromSymbolStart = "3392">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62837B1E-787C-4D43-AA5E-F419380D49AD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Extras/PrayerTimeHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "getNextPrayerTime(for:prayerTimes:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "62837B1E-787C-4D43-AA5E-F419380D49AD - 8745ed4e1393bfe5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.getNextPrayerTime(for: Swift.String, prayerTimes: Swift.Array&lt;Salah.PrayerTiming&gt;, completion: (Swift.Optional&lt;Salah.PrayerTiming&gt;, Swift.Optional&lt;Swift.Double&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "284"
+                  endingLineNumber = "284"
+                  offsetFromSymbolStart = "2472">
+               </Location>
+               <Location
+                  uuid = "62837B1E-787C-4D43-AA5E-F419380D49AD - 8745ed4e1393bf84"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PrayerTimeHelper.getNextPrayerTime(for: Swift.String, prayerTimes: Swift.Array&lt;Salah.PrayerTiming&gt;, completion: (Swift.Optional&lt;Salah.PrayerTiming&gt;, Swift.Optional&lt;Swift.Double&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Extras/PrayerTimeHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "283"
+                  endingLineNumber = "283"
+                  offsetFromSymbolStart = "2356">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED01DC96-517B-4696-BCE8-C5E3A4E0D426"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "startTimer(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ED01DC96-517B-4696-BCE8-C5E3A4E0D426 - fb662283b271286e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (__C.NSTimer) -&gt; () in Salah.CountdownTimer.startTimer(completion: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "72">
+               </Location>
+               <Location
+                  uuid = "ED01DC96-517B-4696-BCE8-C5E3A4E0D426 - fb662283b271286e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (__C.NSTimer) -&gt; () in Salah.CountdownTimer.startTimer(completion: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "190"
+                  endingLineNumber = "190"
+                  offsetFromSymbolStart = "112">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FC2A8A30-EC43-43EF-89EE-4524D1BD08BF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "startTimer(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FC2A8A30-EC43-43EF-89EE-4524D1BD08BF - fb662283b2712905"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (__C.NSTimer) -&gt; () in Salah.CountdownTimer.startTimer(completion: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  uuid = "FC2A8A30-EC43-43EF-89EE-4524D1BD08BF - fb662283b2712905"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (__C.NSTimer) -&gt; () in Salah.CountdownTimer.startTimer(completion: (Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/qassim/Documents/UpdatedSalah/Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "195"
+                  endingLineNumber = "195"
+                  offsetFromSymbolStart = "372">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "287449CC-B49D-4312-97F6-967501C0A12C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/PrayerDetailView/PrayerDetailView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "setUpView()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

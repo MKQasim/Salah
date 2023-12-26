@@ -58,20 +58,22 @@ struct PrayerWeeklySectionView: View {
         }
         .onAppear{
             if isUpdate{
-                setUpWeeklyPrayersTiming(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, timeZone: selectedLocation.offSet ?? 0.0)
-                isUpdate = false
+                Task {
+//                    await setUpWeeklyPrayersTiming(lat: <#T##Double#>, long: <#T##Double#>, timeZone: <#T##Double#>)
+                    isUpdate = false
+                }
             }
         }
     }
     
-    func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double){
+    func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double) async{
         
         if Date().dateByAdding(timeZoneOffset: selectedLocation.offSet ?? 0.0) != nil{
             let cal = Calendar.current
             for i in 2...8{
                 if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
                     var oneDaySalah:[PrayerTiming] = []
-                    let getDailyPrayerTiming: () = PrayerTimeHelper.shared.getSalahTimings(lat: lat, long: long, offSet: timeZone, date: newDate, completion: { location in
+                    let getDailyPrayerTiming: () = await PrayerTimeHelper.shared.getSalahTimings(location: selectedLocation, date: newDate, completion: { location in
                         guard let getDailyPrayerTiming = location?.prayerTimings else { return  }
                         
                         for getDailyPrayerTime in getDailyPrayerTiming {

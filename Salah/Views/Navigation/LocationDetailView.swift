@@ -127,7 +127,9 @@ struct ListRowCellView: View {
             .onAppear {
                 // Fetch the next prayer time when the view appears
                 print(location?.country)
-                viewModel.fetchNextPrayerTime(for: location)
+                Task{
+                    await viewModel.fetchNextPrayerTime(for: location)
+                }
             }
         }
         .background(
@@ -150,13 +152,13 @@ class PrayerTimeViewModel: ObservableObject {
 
     var prayerTimeHelper = PrayerTimeHelper.shared // Assuming PrayerTimeHelper is shared across instances
 
-    func fetchNextPrayerTime(for location: Location?) {
-        PrayerTimeHelper.shared.getSalahTimings(lat: location?.lat ?? 0.0, long: location?.lng ?? 0.0, offSet: location?.offSet ?? 0.0, completion: { location in
+    func fetchNextPrayerTime(for location: Location?) async {
+        await PrayerTimeHelper.shared.getSalahTimings(location: location ?? Location(), completion: { location in
             guard let location = location else { return  }
          
             self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.time ?? "")"
             let countdownTimer = CountdownTimer(remainingTime: 0)
-            countdownTimer.startCountdownTimer(with: location.timeDeferance ?? 0.0) { formattedTime in
+            countdownTimer.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
                 print("Remaining Time: \(formattedTime)")
                 self.remTime = "Next Prayer In : \(formattedTime)"
                 // Update UI or perform actions with the formattedTime
@@ -179,15 +181,6 @@ class PrayerTimeViewModel: ObservableObject {
         })
 }
 
-    // Function to start the timer to update the remaining time
-    func startTimerToUpdateRemainingTime(for location: Location?) {
-        // Assuming each instance manages its own timer
-        prayerTimeHelper.startTimerToUpdatePrayerTime(for: location) { remainingTime in
-            DispatchQueue.main.async {
-                self.remTime = remainingTime ?? ""
-            }
-        }
-    }
 
     // Stop timer if needed (when the view disappears, etc.)
     func stopTimer() {

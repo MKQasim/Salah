@@ -20,7 +20,7 @@ struct Location: Codable, Identifiable, Hashable {
     var prayerTimings : [PrayerTiming]?
     var nextPrayer : PrayerTiming?
     var remainingTime : String?
-    var timeDeferance : Double?
+    var timeDifference : Double?
     enum CodingKeys: String, CodingKey {
         case city
         case lat, lng
@@ -32,7 +32,7 @@ struct Location: Codable, Identifiable, Hashable {
         case prayerTimings
         case nextPrayer
         case remainingTime
-        case timeDeferance
+        case timeDifference
     }
 }
 

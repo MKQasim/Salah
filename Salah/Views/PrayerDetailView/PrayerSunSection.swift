@@ -21,8 +21,8 @@ struct PrayerSunSection: View {
                                 .foregroundColor(.yellow)
                                 .font(.title)
                             HStack{
-                                Text("\(sunTime.name)")
-                                Text(": \(sunTime.time)")
+                                Text("\(sunTime.name ?? "")")
+                                Text(": \((sunTime.time?.formatted(date: .omitted, time: .shortened))!)")
                                     .foregroundStyle(.gray)
                             }
                             
@@ -42,6 +42,6 @@ struct PrayerSunSection: View {
 }
 
 #Preview {
-    @State var sunTime = [PrayerTiming(name: "Sun Rise", time: "8:00"), PrayerTiming(name: "Sun Set", time: "18:00")]
+    @State var sunTime = [PrayerTiming(name: "Sun Rise", time: Date()), PrayerTiming(name: "Sun Set", time: Date())]
     return PrayerSunSection(sunTimes: $sunTime)
 }

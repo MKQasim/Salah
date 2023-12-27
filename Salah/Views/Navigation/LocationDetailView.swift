@@ -156,27 +156,31 @@ class PrayerTimeViewModel: ObservableObject {
         await PrayerTimeHelper.shared.getSalahTimings(location: location ?? Location(), completion: { location in
             guard let location = location else { return  }
          
-            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.time ?? "")"
-            let countdownTimer = CountdownTimer(remainingTime: 0)
-            countdownTimer.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
-                print("Remaining Time: \(formattedTime)")
-                self.remTime = "Next Prayer In : \(formattedTime)"
-                // Update UI or perform actions with the formattedTime
-                let hours = location.offSet ?? 0.0 // get the hours from GMT as a Double
-                let secondsFromGMT = Int(hours * 3600) // convert hours to seconds and cast to Int
-                let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) // create a TimeZone object
-                
-                guard let timeZone = timeZone else {
-                    // Handle the case where timeZone is nil
-                    // You might want to show an error message or handle this situation accordingly
-                    return
-                }
-                
-                let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
-               
-                self.timeNow = currentDate ?? ""
-                
+            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.time ?? Date())"
+            
+            // Update UI or perform actions with the formattedTime
+            let hours = location.offSet ?? 0.0 // get the hours from GMT as a Double
+            let secondsFromGMT = Int(hours * 3600) // convert hours to seconds and cast to Int
+            let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) // create a TimeZone object
+            
+            guard let timeZone = timeZone else {
+                // Handle the case where timeZone is nil
+                // You might want to show an error message or handle this situation accordingly
+                return
             }
+            
+            let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
+           
+            self.timeNow = currentDate ?? ""
+            
+            
+//            let countdownTimer = CountdownTimer(remainingTime: 0)
+//            countdownTimer.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
+//                print("Remaining Time: \(formattedTime)")
+//                self.remTime = "Next Prayer In : \(formattedTime)"
+//               
+//                
+//            }
             
         })
 }

@@ -15,8 +15,8 @@ struct PrayerDailyCellView: View {
             Image(systemName: "sun.max.fill")
                 .foregroundColor(.orange)
                 .font(.title)
-            Text(prayer.name)
-            Text(prayer.time)
+            Text(prayer.name ?? "")
+            Text("\(prayer.time?.formatted(date: .omitted, time: .standard) ?? "")")
                 .foregroundStyle(.gray)
         }
         .padding()
@@ -27,6 +27,6 @@ struct PrayerDailyCellView: View {
 }
 
 #Preview {
-    let prayerTime = PrayerTiming(name: "Fajr", time: "6:00")
+    let prayerTime = PrayerTiming(name: "Fajr", time: Date())
     return PrayerDailyCellView(prayer: prayerTime)
 }

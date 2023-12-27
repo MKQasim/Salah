@@ -59,7 +59,7 @@ struct PrayerWeeklySectionView: View {
         .onAppear{
             if isUpdate{
                 Task {
-//                    await setUpWeeklyPrayersTiming(lat: <#T##Double#>, long: <#T##Double#>, timeZone: <#T##Double#>)
+                    await setUpWeeklyPrayersTiming(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, timeZone: selectedLocation.offSet ?? 0.0)
                     isUpdate = false
                 }
             }

@@ -20,7 +20,7 @@ class PrayerTimeHelper: ObservableObject {
     @AppStorage("SetFajrJuridiction") private var juridictionMethod = 0
     @Published var prayerTiming = [PrayerTiming]()
     @Published var nextSalah = ""
-    @Published var selectedPrayer = PrayerTiming(name: "", time: "")
+    @Published var selectedPrayer : PrayerTiming?
     @Published var targetDate = Date()
     @Published var remTime = "00:00:00" // Use @Published to update views
     @Published var selectedLocation: Location?
@@ -59,32 +59,82 @@ class PrayerTimeHelper: ObservableObject {
                                               andtimeZone: location.offSet ?? 0.0)!
         let salahTiming = getTime.compactMap({ $0 as? String })
         
-        let timeFormat = "HH:mm"
-        
+        prayerTiming.removeAll()
         for (index, name) in salahNaming.enumerated() {
-            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
-            
-            if (name != "Sunset" && name != "Sunrise") {
-                prayerTiming.append(newSalahTiming)
+            if let time = PrayerTimeHelper.shared.getDateForTime(salahTiming[index]) {
+                let newSalahTiming = PrayerTiming(name: name, time: time)
+                if (name != "Sunset" && name != "Sunrise") {
+                    prayerTiming.append(newSalahTiming)
+                }
             }
         }
         
         
-        print(location.city)
-        PrayerTimeHelper.shared.getNextPrayerTime(for: location.city ?? "", prayerTimes: prayerTiming) { nextSalah, differance in
+        print(prayerTiming)
+        PrayerTimeHelper.shared.getNextPrayerTime(for: location , prayerTimes: prayerTiming) { nextSalah, differance in
             print(nextSalah,differance)
             
             var loc = Location()
             loc = location
             loc.prayerTimings = prayerTiming
             loc.nextPrayer = nextSalah
-//                    loc.remainingTime = result.remainingTime ?? ""
             loc.timeDifference = differance ?? 0.0
             completion(loc)
  
         }
  
     }
+//  
+//    static func getSalahTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming] {
+//        var prayerTiming:[PrayerTiming] = []
+//        let time = PrayTime()
+//        time.setCalcMethod(3)
+//        let mutableNames = time.timeNames!
+//        let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
+//        
+//        let getTime = time.getDatePrayerTimes(Int32(date.get(.year)),
+//                                              andMonth: Int32(date.get(.month)),
+//                                              andDay: Int32(date.get(.day)),
+//                                              andLatitude: lat,
+//                                              andLongitude: long,
+//                                              andtimeZone: timeZone)!
+//        let salahTiming = getTime.compactMap({ $0 as? String })
+//        
+//        for (index, name) in salahNaming.enumerated() {
+//            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
+//            
+//            if (name != "Sunset" && name != "Sunrise") {
+//                prayerTiming.append(newSalahTiming)
+//            }
+//        }
+//        return prayerTiming
+//    }
+//    
+//    static func getSunTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming]{
+//        var sunTimings:[PrayerTiming] = []
+//        let time = PrayTime()
+//        time.setCalcMethod(3)
+//        let mutableNames = time.timeNames!
+//        let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
+//        
+//        let getTime = time.getDatePrayerTimes(Int32(date.get(.year)),
+//                                              andMonth: Int32(date.get(.month)),
+//                                              andDay: Int32(date.get(.day)),
+//                                              andLatitude: lat,
+//                                              andLongitude: long,
+//                                              andtimeZone: timeZone)!
+//        let salahTiming = getTime.compactMap({ $0 as? String })
+//        
+//        for (index, name) in salahNaming.enumerated() {
+//            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
+//            
+//            if (name == "Sunset" || name == "Sunrise") {
+//                sunTimings.append(newSalahTiming)
+//            }
+//        }
+//        return sunTimings
+//    }
+    
     func getTimeZone(cityName: String) -> TimeZone? {
         // Get all the known time zone identifiers
         let timeZoneIdentifiers = TimeZone.knownTimeZoneIdentifiers
@@ -139,30 +189,24 @@ class PrayerTimeHelper: ObservableObject {
         }
         return nil
     }
-    func getNextPrayerTime(for cityOrCountryName: String, prayerTimes: [PrayerTiming], completion: @escaping (PrayerTiming?, Double?) -> Void) {
-      
-        guard let timeZone = getTimeZone(cityName: cityOrCountryName) else {
-            print("Unknown time zone")
+    func getNextPrayerTime(for location: Location, prayerTimes: [PrayerTiming], completion: @escaping (PrayerTiming?, Double?) -> Void) {
+
+        guard let updatedCurrentTime = formattedDate(from: Date(), with: location.timeZone ?? Calendar.current.timeZone) else {
             completion(nil, nil)
             return
         }
-        
-        guard let updatedCurrentTime = formattedDate(from: Date(), with: timeZone) else {
-            completion(nil, nil)
-            return
-        }
-        print("updatedCurrentTime \(updatedCurrentTime)")
+//        print("updatedCurrentTime \(updatedCurrentTime)")
         
         var nextPrayerTime: PrayerTiming? = nil
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
         
-        for prayerTime in prayerTimes {
-            guard let updatedPrayerTime = getDateForTime(prayerTime.time) else {
+        for prayer in prayerTimes {
+            guard let updatedPrayerTime = prayer.time else {
                 continue
             }
             
            
-            print("currentTime \(Date()) updatedCurrentTime \(updatedCurrentTime)")
+//            print("currentTime \(Date()) updatedCurrentTime \(updatedCurrentTime)")
             
             let result = updatedCurrentTime.compare(updatedPrayerTime)
             
@@ -172,28 +216,22 @@ class PrayerTimeHelper: ObservableObject {
             } else if result == .orderedAscending {
                 // The prayer time is later than the current time
                 let timeDifference = updatedPrayerTime.timeIntervalSince(updatedCurrentTime)
-                
                 if timeDifference < minTimeDifference {
                     minTimeDifference = timeDifference
-                    nextPrayerTime = prayerTime
-                    print("prayerTime \(prayerTime.time) updatedPrayerTime \(updatedPrayerTime)")
+                    nextPrayerTime = prayer
                 }
             } else {
                 // The prayer time is equal to the current time
-                nextPrayerTime = prayerTime
+                nextPrayerTime = prayer
                 minTimeDifference = 0
                 break
             }
         }
 
         
-        if let nextPrayerTime = nextPrayerTime {
-            let updatedNextPrayerTime = getDateForTime(nextPrayerTime.time) ?? Date()
-            let timeDifference = getTimeDifference(updatedCurrentTime, updatedNextPrayerTime)
-            
-            print("prayerTime \(nextPrayerTime.time) updatedPrayerTime \(updatedNextPrayerTime)")
-            print("currentTime \(Date()) updatedCurrentTime \(updatedCurrentTime)")
-            
+        if let nextTime = nextPrayerTime?.time {
+            let updatedNextPrayerTime = nextPrayerTime
+            let timeDifference = getTimeDifference(updatedCurrentTime, nextTime)
             completion(nextPrayerTime, timeDifference)
         } else {
             completion(nil, nil)
@@ -297,7 +335,7 @@ class PrayerTimeHelper: ObservableObject {
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
         
         for prayerTime in prayerTimes {
-            if let prayerDate = dateFormatter.date(from: prayerTime.time) {
+            if let prayerDate = dateFormatter.date(from: "\(prayerTime.time)") {
                 let components = calendar.dateComponents([.hour, .minute,.second], from: currentDateTime, to: prayerDate)
                 
                 if let difference = components.hour, difference >= 0 {
@@ -338,10 +376,11 @@ class PrayerTimeHelper: ObservableObject {
         
         
         for (index, name) in salahNaming.enumerated() {
-            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
-            
-            if (name == "Sunset" || name == "Sunrise") {
-                sunTimings.append(newSalahTiming)
+            if let time = PrayerTimeHelper.shared.getDateForTime(salahTiming[index]) {
+                let newSalahTiming = PrayerTiming(name: name, time: time)
+                if (name == "Sunset" || name == "Sunrise") {
+                    sunTimings.append(newSalahTiming)
+                }
             }
         }
         return sunTimings

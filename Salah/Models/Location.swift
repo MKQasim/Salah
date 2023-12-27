@@ -21,6 +21,8 @@ struct Location: Codable, Identifiable, Hashable {
     var nextPrayer : PrayerTiming?
     var remainingTime : String?
     var timeDifference : Double?
+    var nextPrayerTiem : Date?
+    
     enum CodingKeys: String, CodingKey {
         case city
         case lat, lng

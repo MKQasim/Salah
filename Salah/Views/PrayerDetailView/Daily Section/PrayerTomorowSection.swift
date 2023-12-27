@@ -26,6 +26,6 @@ struct PrayerTomorowSection: View {
 }
 
 #Preview {
-    @State var prayerTime = [PrayerTiming(name: "Fajr", time: "06:00"), PrayerTiming(name: "Duhr", time: "12:00"), PrayerTiming(name: "Asr", time: "14:00"),PrayerTiming(name: "Magrib", time: "17:00"),PrayerTiming(name: "Isah", time: "19:00")]
+    @State var prayerTime = [PrayerTiming(name: "Fajr", time: Date()), PrayerTiming(name: "Duhr", time: Date()), PrayerTiming(name: "Asr", time: Date()),PrayerTiming(name: "Magrib", time: Date()),PrayerTiming(name: "Isah", time:  Date())]
     return PrayerTomorowSection(prayerTimes: $prayerTime)
 }

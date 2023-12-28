@@ -18,6 +18,7 @@ struct Location: Codable, Identifiable, Hashable {
     var offSet: Double? // Updated property for timezone
     var timeZone : TimeZone?
     var prayerTimings : [PrayerTiming]?
+    var sunTimings : [PrayerTiming]?
     var nextPrayer : PrayerTiming?
     var remainingTime : String?
     var timeDifference : Double?
@@ -36,6 +37,20 @@ struct Location: Codable, Identifiable, Hashable {
         case remainingTime
         case timeDifference
     }
+    
+    static func == (lhs: Location, rhs: Location) -> Bool {
+           return lhs.city == rhs.city &&
+               lhs.lat == rhs.lat &&
+               lhs.lng == rhs.lng &&
+               lhs.country == rhs.country &&
+               lhs.id == rhs.id &&
+               lhs.dateTime == rhs.dateTime &&
+               lhs.offSet == rhs.offSet &&
+               lhs.timeZone == rhs.timeZone &&
+               lhs.remainingTime == rhs.remainingTime &&
+               lhs.timeDifference == rhs.timeDifference &&
+               lhs.nextPrayerTiem == rhs.nextPrayerTiem
+       }
 }
 
 typealias LocationDetails = [Location]

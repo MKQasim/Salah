@@ -22,7 +22,7 @@ struct PrayerSunSection: View {
                                 .font(.title)
                             HStack{
                                 Text("\(sunTime.name ?? "")")
-                                Text(": \((sunTime.time?.formatted(date: .omitted, time: .shortened))!)")
+                                Text(": \(sunTime.formatDateString(sunTime.time ?? Date()))")
                                     .foregroundStyle(.gray)
                             }
                             

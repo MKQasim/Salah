@@ -143,7 +143,10 @@ struct ListRowCellView: View {
 class PrayerTimeViewModel: ObservableObject {
     @Published var nextSalah: String = "" {
         didSet {
-            objectWillChange.send() // This will trigger UI updates in SwiftUI
+            DispatchQueue.main.async {
+                self.objectWillChange.send()
+            }
+             // This will trigger UI updates in SwiftUI
         }
     }
 
@@ -155,9 +158,7 @@ class PrayerTimeViewModel: ObservableObject {
     func fetchNextPrayerTime(for location: Location?) async {
         await PrayerTimeHelper.shared.getSalahTimings(location: location ?? Location(), completion: { location in
             guard let location = location else { return  }
-         
-            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.time ?? Date())"
-            
+//            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.formatDateString(location.nextPrayer?.time ?? Date()) ?? "")"
             // Update UI or perform actions with the formattedTime
             let hours = location.offSet ?? 0.0 // get the hours from GMT as a Double
             let secondsFromGMT = Int(hours * 3600) // convert hours to seconds and cast to Int

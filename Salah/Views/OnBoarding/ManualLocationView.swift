@@ -44,71 +44,57 @@ struct ManualLocationView: View {
     
     
     var body: some View {
-            NavigationView {
                 VStack {
-                    SearchBar(text: $searchable) // Assuming you have a custom SearchBar
-                        .padding(.horizontal)
-                        .padding(.bottom, 8)
+//                    SearchBar(text: $searchable) // Assuming you have a custom SearchBar
+//                        .padding(.horizontal)
+//                        .padding(.bottom, 8)
                     
                     List {
                         ForEach(dropDownList.filter({ searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable) }), id: \.self.id) { item in
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(item.city ?? "")
-                                    .font(.headline)
-                                Text(item.country ?? "")
-                                    .font(.subheadline)
-                                    .foregroundColor(Color.secondary)
-                            }
-                            .padding(.vertical, 8)
-                            .padding(.horizontal, 16)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.secondary.opacity(0.1))
-                            )
-                            .onTapGesture {
-                                selectedLocation = item
-                                selectLocation()
-                            }
+                                Button(action: {
+                                    selectedLocation = item
+                                    selectLocation()
+                                }, label: {
+                                    VStack(alignment: .leading){
+                                        Text(item.city ?? "")
+                                            .font(.headline)
+                                        Text(item.country ?? "")
+                                            .font(.subheadline)
+                                            .foregroundColor(Color.secondary)
+                                    }
+                                    .frame(maxWidth: .infinity,alignment: .leading)
+                                })
+                                .tint(.clear)
+                                .buttonStyle(.borderedProminent)
                         }
                     }
                     .listStyle(.plain)
-                    .navigationTitle("Manual Location")
-                    .toolbar {
-                        ToolbarItemGroup(placement: .confirmationAction) {
-                            if selectedLocation != nil {
-                                Button(action: {
-                                    selectLocation()
-                                }, label: {
-                                    Text("Done")
-                                })
-                            }
+                }
+                .sheet(isPresented: $isAddCitySheet) {
+                    if let location = selectedLocation {
+                        NavigationStack {
+                            PrayerDetailView(selectedLocation: location)
+                                .navigationTitle(location.city ?? "Nuremberg")
+                                .toolbar {
+                                    ToolbarItem(placement: .cancellationAction) {
+                                        Button(action: {
+                                            isAddCitySheet = false
+                                        }, label: {
+                                            Text("Cancel")
+                                        })
+                                    }
+                                    ToolbarItem(placement: .confirmationAction) {
+                                        Button(action: {
+                                            addLocation()
+                                            isAddCitySheet = false
+                                        }, label: {
+                                            Text("Add")
+                                        })
+                                    }
+                                }
                         }
                     }
                 }
-                .sheet(isPresented: $isAddCitySheet) {
-                    NavigationStack {
-                        PrayerDetailView(selectedLocation:selectedLocation ?? Location( prayerTimings: []))
-                            .navigationTitle(selectedLocation?.city ?? "Nuremberg")
-                            .toolbar {
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button(action: {
-                                        isAddCitySheet = false
-                                    }, label: {
-                                        Text("Cancel")
-                                    })
-                                }
-                                ToolbarItem(placement: .confirmationAction) {
-                                    Button(action: {
-                                        addLocation()
-                                        isAddCitySheet = false
-                                    }, label: {
-                                        Text("Add")
-                                    })
-                                }
-                            }
-                    }
-                }
-            }
             .onAppear {
                 parseLocalJSONtoFetchLocations()
             }
@@ -116,7 +102,7 @@ struct ManualLocationView: View {
     
     func selectLocation() {
         getTimeZone(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0) { location in
-            selectedLocation?.offSet = location?.offSet
+            selectedLocation = location
             isAddCitySheet = true
         }
     }
@@ -124,6 +110,8 @@ struct ManualLocationView: View {
     func addLocation() {
        
         locationState.cities.append(selectedLocation ?? Location())
+        print(locationState.cities)
+        print(selectedLocation)
         if let location = locationState.cities.last {
             navigationState.tabbarSelection = .location(selectedLocation ?? Location(prayerTimings: []))
             navigationState.sidebarSelection = .location(selectedLocation ?? Location(prayerTimings: []))
@@ -146,27 +134,27 @@ struct ManualLocationView: View {
                 return
             }
             
-            var updatedLocation = Location()
-            
             
             getTimeZone(lat: lat, long: long) { location in
                 
-                updatedLocation.prayerTimings = location?.prayerTimings
+                selectedLocation?.prayerTimings = location?.prayerTimings
             }
-            updatedLocation.lat = lat
-            updatedLocation.lng = long
-            updatedLocation.city = place.locality
-            updatedLocation.country = place.country
-            updatedLocation.dateTime = Date()
-            updatedLocation.timeZone = place.timeZone
+            selectedLocation?.lat = lat
+            selectedLocation?.lng = long
+            selectedLocation?.city = place.locality
+            selectedLocation?.country = place.country
+            selectedLocation?.dateTime = Date()
+            print(place.timeZone)
+            
+            selectedLocation?.timeZone = place.timeZone
             if let secondsFromGMT = Double(place.timeZone?.secondsFromGMT() ?? 0) as? Double {
                 let hours = secondsFromGMT / 3600
-                updatedLocation.offSet = hours
+                selectedLocation?.offSet = hours
             } else {
-                updatedLocation.offSet = 0.0 // Default to 0.0 if an error occurs or no timezone information is available
+                selectedLocation?.offSet = 0.0 // Default to 0.0 if an error occurs or no timezone information is available
             }
-            
-            completion(updatedLocation)
+//            selectedLocation = updatedLocation
+            completion(selectedLocation)
         }
         isSheet.toggle()
 

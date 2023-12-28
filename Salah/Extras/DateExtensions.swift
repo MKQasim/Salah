@@ -23,7 +23,7 @@ extension Date {
         }
     }
     
-    static func timeZoneDifference(offsetOfTimeZone: Double) -> Date{
+    static func timeZoneDifference(offsetOfTimeZone: Double) -> Date {
             let seconds = TimeZone.current.secondsFromGMT()
             let hours = Double(seconds/3600)
             var currentTime = Date()
@@ -124,4 +124,3 @@ extension Date {
     }
 
 }
-

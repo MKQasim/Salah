@@ -12,21 +12,23 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
     var id = UUID()
     let name: String?
     var time: Date? // Updated property type to Date
+    var offSet : Double?
     
     enum CodingKeys: String, CodingKey {
-        case id, name, time
+        case id, name, time , offSet
     }
     
-    init(name: String?, time: Date?) {
+    init(name: String?, time: Date? , offSet: Double? = 0.0) {
         self.name = name
         self.time = time
+        self.offSet = offSet
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(UUID.self, forKey: .id)
         self.name = try container.decode(String.self, forKey: .name)
-        
+        self.offSet = try container.decode(Double.self, forKey: .offSet)
         // Initialize time as nil
         self.time = nil
         
@@ -75,21 +77,77 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
         
         // Check if 'time' is nil; if not, encode it; otherwise, encode a placeholder value
         if let timeToEncode = time {
-            let timeString = PrayerTiming.formatDate(timeToEncode)
+            let timeString = formatDate(timeToEncode) as? String
             try container.encode(timeString, forKey: .time)
         } else {
             // Encode a placeholder value (for example, an empty string)
             try container.encode("", forKey: .time)
         }
     }
-
     
-    static func formatDate(_ date: Date) -> String {
+    func formatDateString(_ date: Date, calendarIdentifier: Calendar.Identifier? = nil, localeIdentifier: String? = nil, timeZoneOffsetHours: Double? = nil) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm" // Replace with your desired date format
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Set UTC timezone
+        
+        if let calendarIdentifier = calendarIdentifier {
+            dateFormatter.calendar = Calendar(identifier: calendarIdentifier)
+            dateFormatter.dateFormat = "dd MMMM yyyy HH:mm" // Islamic calendar format
+        } else {
+            // Default to Gregorian calendar if no specific calendar is provided
+            dateFormatter.calendar = Calendar(identifier: .gregorian)
+            dateFormatter.dateFormat = "HH:mm" // Default format
+        }
+        
+        if let localeIdentifier = localeIdentifier {
+            dateFormatter.locale = Locale(identifier: localeIdentifier)
+        }
+        
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Setting the time zone to GMT
+        
         return dateFormatter.string(from: date)
     }
+
+
+    func formatDate(_ date: Date, calendarIdentifier: Calendar.Identifier? = nil, localeIdentifier: String? = nil, timeZoneOffsetHours: Double? = nil) -> Date? {
+        let dateFormatter = DateFormatter()
+        
+        if let calendarIdentifier = calendarIdentifier {
+            dateFormatter.calendar = Calendar(identifier: calendarIdentifier)
+            dateFormatter.dateFormat = "dd MMMM yyyy HH:mm" // Islamic calendar format
+        } else {
+            // Default to Gregorian calendar if no specific calendar is provided
+            dateFormatter.calendar = Calendar(identifier: .gregorian)
+            dateFormatter.dateFormat = "HH:mm" // Default format
+        }
+        
+        if let localeIdentifier = localeIdentifier {
+            dateFormatter.locale = Locale(identifier: localeIdentifier)
+        }
+        
+        var modifiedDate = date // Start with the original date
+        
+        if let timeZoneOffsetHours = timeZoneOffsetHours {
+            let offsetSeconds = timeZoneOffsetHours * 3600 // Convert hours to seconds
+            modifiedDate = date.addingTimeInterval(offsetSeconds) // Apply the offset to the date
+        }
+        
+        let dateString = dateFormatter.string(from: modifiedDate)
+        return dateFormatter.date(from: dateString)
+    }
     
-    // Your other code...
+    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
+            var calendar = Calendar(identifier: calendarIdentifier)
+            let dateFormatter = DateFormatter()
+            dateFormatter.calendar = calendar
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            dateFormatter.timeZone = timeZone
+            let formattedString = dateFormatter.string(from: date)
+            return (date: date, formattedString: formattedString)
+        } else {
+            print("Invalid offset provided.")
+            return nil
+        }
+    }
+
 }

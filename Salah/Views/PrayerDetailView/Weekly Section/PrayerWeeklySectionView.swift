@@ -77,7 +77,7 @@ struct PrayerWeeklySectionView: View {
                         guard let getDailyPrayerTiming = location?.prayerTimings else { return  }
                         
                         for getDailyPrayerTime in getDailyPrayerTiming {
-                            let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time)
+                            let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time, offSet: selectedLocation.offSet)
                             oneDaySalah.append(newSalahTiming)
                         }
                         let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)

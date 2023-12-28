@@ -42,18 +42,23 @@ class PrayerTimeHelper: ObservableObject {
     
     
     // Function to fetch the prayer timings
-    func getSalahTimings(location : Location, date: Date = Date(), completion: @escaping (Location?) -> Void) async {
+    func getSalahTimings(location: Location, date: Date = Date(), completion: @escaping (Location?) -> Void) async {
         var prayerTiming = [PrayerTiming]()
+        var sunTiming = [PrayerTiming]()
         var nextPrayer: PrayerTiming?
+        let offsetSeconds = Int((location.offSet ?? 0.0) * 3600)
+        // Adjust the date by adding the location's offset
+        let adjustedDate = Calendar.current.date(byAdding: .second, value: offsetSeconds, to: date) ?? date
+        
         let time = PrayTime()
         time.setCalcMethod(3)
         time.setAsrMethod(Int32(1))
         let mutableNames = time.timeNames!
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
         
-        let getTime = time.getDatePrayerTimes(Int32(date.get(.year)),
-                                              andMonth: Int32(date.get(.month)),
-                                              andDay: Int32(date.get(.day)),
+        let getTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
+                                              andMonth: Int32(adjustedDate.get(.month)),
+                                              andDay: Int32(adjustedDate.get(.day)),
                                               andLatitude: location.lat ?? 0.0,
                                               andLongitude: location.lng ?? 0.0,
                                               andtimeZone: location.offSet ?? 0.0)!
@@ -62,79 +67,29 @@ class PrayerTimeHelper: ObservableObject {
         prayerTiming.removeAll()
         for (index, name) in salahNaming.enumerated() {
             if let time = PrayerTimeHelper.shared.getDateForTime(salahTiming[index]) {
-                let newSalahTiming = PrayerTiming(name: name, time: time)
+                let newSalahTiming = PrayerTiming(name: name, time: time, offSet: location.offSet)
                 if (name != "Sunset" && name != "Sunrise") {
                     prayerTiming.append(newSalahTiming)
+                }
+                if (name == "Sunset" || name == "Sunrise") {
+                    sunTiming.append(newSalahTiming)
                 }
             }
         }
         
-        
-        print(prayerTiming)
-        PrayerTimeHelper.shared.getNextPrayerTime(for: location , prayerTimes: prayerTiming) { nextSalah, differance in
-            print(nextSalah,differance)
+        PrayerTimeHelper.shared.getNextPrayerTime(for: location, prayerTimes: prayerTiming) { nextSalah, difference in
+            print(nextSalah, difference)
             
             var loc = Location()
             loc = location
             loc.prayerTimings = prayerTiming
+            loc.sunTimings = sunTiming
             loc.nextPrayer = nextSalah
-            loc.timeDifference = differance ?? 0.0
+            loc.timeDifference = difference ?? 0.0
             completion(loc)
- 
         }
- 
     }
-//  
-//    static func getSalahTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming] {
-//        var prayerTiming:[PrayerTiming] = []
-//        let time = PrayTime()
-//        time.setCalcMethod(3)
-//        let mutableNames = time.timeNames!
-//        let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
-//        
-//        let getTime = time.getDatePrayerTimes(Int32(date.get(.year)),
-//                                              andMonth: Int32(date.get(.month)),
-//                                              andDay: Int32(date.get(.day)),
-//                                              andLatitude: lat,
-//                                              andLongitude: long,
-//                                              andtimeZone: timeZone)!
-//        let salahTiming = getTime.compactMap({ $0 as? String })
-//        
-//        for (index, name) in salahNaming.enumerated() {
-//            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
-//            
-//            if (name != "Sunset" && name != "Sunrise") {
-//                prayerTiming.append(newSalahTiming)
-//            }
-//        }
-//        return prayerTiming
-//    }
-//    
-//    static func getSunTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming]{
-//        var sunTimings:[PrayerTiming] = []
-//        let time = PrayTime()
-//        time.setCalcMethod(3)
-//        let mutableNames = time.timeNames!
-//        let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
-//        
-//        let getTime = time.getDatePrayerTimes(Int32(date.get(.year)),
-//                                              andMonth: Int32(date.get(.month)),
-//                                              andDay: Int32(date.get(.day)),
-//                                              andLatitude: lat,
-//                                              andLongitude: long,
-//                                              andtimeZone: timeZone)!
-//        let salahTiming = getTime.compactMap({ $0 as? String })
-//        
-//        for (index, name) in salahNaming.enumerated() {
-//            let newSalahTiming = PrayerTiming(name: name, time: salahTiming[index])
-//            
-//            if (name == "Sunset" || name == "Sunrise") {
-//                sunTimings.append(newSalahTiming)
-//            }
-//        }
-//        return sunTimings
-//    }
-    
+
     func getTimeZone(cityName: String) -> TimeZone? {
         // Get all the known time zone identifiers
         let timeZoneIdentifiers = TimeZone.knownTimeZoneIdentifiers
@@ -151,9 +106,9 @@ class PrayerTimeHelper: ObservableObject {
             }
         }
         
-        // If no match is found, return nil
         return nil
     }
+    
     func formattedDate(from date: Date, with timeZone: TimeZone) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = timeZone
@@ -163,6 +118,7 @@ class PrayerTimeHelper: ObservableObject {
         dateFormatter.timeZone = TimeZone(identifier: "UTC") // Set the correct time zone for parsing
         return dateFormatter.date(from: dateString)
     }
+    
     func getDateForTime(_ time: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
@@ -184,67 +140,74 @@ class PrayerTimeHelper: ObservableObject {
                                                      minute: calendar.component(.minute, from: combinedDate),
                                                      second: 0,
                                                      of: currentDate)
+//                print(combinedDateTime)
                 return combinedDateTime
             }
         }
         return nil
     }
-    func getNextPrayerTime(for location: Location, prayerTimes: [PrayerTiming], completion: @escaping (PrayerTiming?, Double?) -> Void) {
 
-        guard let updatedCurrentTime = formattedDate(from: Date(), with: location.timeZone ?? Calendar.current.timeZone) else {
-            completion(nil, nil)
-            return
-        }
-//        print("updatedCurrentTime \(updatedCurrentTime)")
-        
+    func getNextPrayerTime(for location: Location, prayerTimes: [PrayerTiming], completion: @escaping (PrayerTiming?, Double?) -> Void) {
         var nextPrayerTime: PrayerTiming? = nil
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
         
-        for prayer in prayerTimes {
-            guard let updatedPrayerTime = prayer.time else {
-                continue
-            }
-            
-           
-//            print("currentTime \(Date()) updatedCurrentTime \(updatedCurrentTime)")
-            
-            let result = updatedCurrentTime.compare(updatedPrayerTime)
-            
-            if result == .orderedDescending {
-                // Skip if the current time is later than the prayer time
-                continue
-            } else if result == .orderedAscending {
-                // The prayer time is later than the current time
-                let timeDifference = updatedPrayerTime.timeIntervalSince(updatedCurrentTime)
-                if timeDifference < minTimeDifference {
-                    minTimeDifference = timeDifference
-                    nextPrayerTime = prayer
-                }
-            } else {
-                // The prayer time is equal to the current time
-                nextPrayerTime = prayer
-                minTimeDifference = 0
-                break
-            }
-        }
-
+        // Get the current date and time
+        let currentDate = Date()
         
-        if let nextTime = nextPrayerTime?.time {
-            let updatedNextPrayerTime = nextPrayerTime
-            let timeDifference = getTimeDifference(updatedCurrentTime, nextTime)
-            completion(nextPrayerTime, timeDifference)
-        } else {
-            completion(nil, nil)
+        for prayer in prayerTimes {
+            guard let prayerTime = prayer.time else {
+                continue
+            }
+            
+            // Adjust the current date and time by subtracting the location's offset
+            let currentTimeForComparison = formatDate(currentDate, timeZoneOffsetHours: (location.offSet ?? 0.0))
+            
+            if let currentTimeForComparison = currentTimeForComparison, currentTimeForComparison >= prayerTime {
+                // Skip if the current time is equal to or later than the prayer time
+                continue
+            }
+            
+            let timeDifference = prayerTime.timeIntervalSince(currentTimeForComparison ?? currentDate)
+            
+            if timeDifference < minTimeDifference {
+                minTimeDifference = timeDifference
+                nextPrayerTime = prayer
+            }
         }
+        
+        completion(nextPrayerTime, minTimeDifference)
     }
+
+    func formatDate(_ date: Date, calendarIdentifier: Calendar.Identifier? = nil, localeIdentifier: String? = nil, timeZoneOffsetHours: Double? = nil) -> Date? {
+        let dateFormatter = DateFormatter()
+        
+        if let calendarIdentifier = calendarIdentifier {
+            dateFormatter.calendar = Calendar(identifier: calendarIdentifier)
+            dateFormatter.dateFormat = "dd MMMM yyyy HH:mm" // Islamic calendar format
+        } else {
+            // Default to Gregorian calendar if no specific calendar is provided
+            dateFormatter.calendar = Calendar(identifier: .gregorian)
+            dateFormatter.dateFormat = "HH:mm" // Default format
+        }
+        
+        if let localeIdentifier = localeIdentifier {
+            dateFormatter.locale = Locale(identifier: localeIdentifier)
+        }
+        
+        if let timeZoneOffsetHours = timeZoneOffsetHours {
+            let timeZoneOffsetSeconds = timeZoneOffsetHours * 3600 // Convert hours to seconds
+            let timeZone = TimeZone(secondsFromGMT: Int(timeZoneOffsetSeconds))
+            dateFormatter.timeZone = timeZone
+        }
+        
+        let dateString = dateFormatter.string(from: date)
+        return dateFormatter.date(from: dateString)
+    }
+
     // Example method to calculate time difference
     func getTimeDifference(_ from: Date, _ to: Date) -> TimeInterval {
         return to.timeIntervalSince(from)
     }
-
-    
-    
-  
     
     
     
@@ -396,7 +359,6 @@ class PrayerTimeHelper: ObservableObject {
         let interval = destinationOffset - sourceOffset
         return date.addingTimeInterval(TimeInterval(interval))
     }
-    
     
     
     func formatTimeComponents(_ timeComponents: (hours: Int, minutes: Int, seconds: Int)) -> String {

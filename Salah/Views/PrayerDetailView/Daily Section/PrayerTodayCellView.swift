@@ -26,7 +26,7 @@ struct PrayerTodayCellView: View {
                 .foregroundColor(.orange)
                 .font(.title)
             Text(prayer.name ?? "")
-            Text("\(prayer.time?.formatted(date: .omitted, time: .standard) ?? "")")
+            Text("\(prayer.formatDateString(prayer.time ?? Date()))")
                 .foregroundStyle(.gray)
         }
         

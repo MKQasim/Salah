@@ -10,7 +10,7 @@ struct PrayerDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var locationState: LocationState
     let currentDate = Date()
-    let selectedLocation: Location
+    @State var selectedLocation: Location?
     // MARK: View States
     @State private var todayPrayersTimes: [PrayerTiming] = []
     @State private var tomorrowPrayerTimes: [PrayerTiming] = []
@@ -70,14 +70,20 @@ struct PrayerDetailView: View {
             PrayerSunSection(sunTimes: $sunTimes)
             PrayerTodaySectionView(prayerTimes: $todayPrayersTimes, nextSalah: $selectedPrayer)
             PrayerTomorowSection(prayerTimes: $tomorrowPrayerTimes)
-            PrayerWeeklySectionView(selectedLocation: selectedLocation)
+            PrayerWeeklySectionView(selectedLocation: selectedLocation  ?? Location())
         }
         .padding(.top, 10)
         .padding([.leading, .trailing])
         .onAppear {
+            print("Selected City: \(selectedLocation?.city ?? "No city selected")")
+            print("Latitude: \(selectedLocation?.lat ?? 0.0)")
+            print("Longitude: \(selectedLocation?.lng ?? 0.0)")
+                   
+            print(selectedLocation)
             Task {
                 await setUpView()
                 startTimer()
+                
             }
         }
     }
@@ -88,70 +94,89 @@ struct PrayerDetailView: View {
             tomorrowPrayerTimes = []
             sunTimes = []
             remTime = "00:00:00"
-            let timeZoneOffset = selectedLocation.offSet
-            timeNow = updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? ""
-
-            await PrayerTimeHelper.shared.getSalahTimings(location: selectedLocation) { location in
-                guard let location = location, let nextPrayer = location.nextPrayer, let name = nextPrayer.name, let time = nextPrayer.time?.formatted(date: .omitted, time: .standard) else { return }
-
+            await PrayerTimeHelper.shared.getSalahTimings(location: selectedLocation ?? Location()) { location in
+                guard let location = location, let nextPrayer = location.nextPrayer, let name = nextPrayer.name, let time = nextPrayer.time else { return }
+                
+//                if location.prayerTimings?.count == 0{
+//                    getNextPrayerTime()
+//                }
+                selectedLocation = location
                 todayPrayersTimes = location.prayerTimings ?? []
-                nextSalah = "\(name) at \(time)"
+                sunTimes = location.sunTimings ?? []
+                nextSalah = "\(name) at \(nextPrayer.formatDateString(time))"
+                selectedPrayer = nextPrayer
+                timeNow = "\(updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
                 targetDate = nextPrayer.time
-
-                let startDate = updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.date ?? Date()
-                // Update the remaining time immediately
-                updateTimer(startDate, targetDate ?? Date(), withTimeZoneOffset: selectedLocation.offSet ?? 0.0)
+                let startDate = updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation?.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.date ?? Date()
+                updateTimer(startDate, targetDate ?? Date())
             }
-            sunTimes = PrayerTimeHelper.shared.getSunTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, timeZone: selectedLocation.offSet ?? 0.0 , date: Date())
             if let cal = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
-                tomorrowPrayerTimes = PrayerTimeHelper.shared.getSunTimings(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, timeZone: selectedLocation.offSet ?? 0.0, date: Date())
+                tomorrowPrayerTimes = PrayerTimeHelper.shared.getSunTimings(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0, timeZone: selectedLocation?.offSet ?? 0.0, date: Date())
                 isUpdate = false
             }
         }
     }
     
-    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
-        let offsetInSeconds = Int(offset * 3600) // Convert hours to seconds
+    private func getNextPrayerTime() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+        let nextPrayerTime = Date.timeZoneDifference(offsetOfTimeZone: selectedLocation?.offSet ?? 0.0)
 
-        if let timeZone = TimeZone(secondsFromGMT: offsetInSeconds) {
-            var calendar = Calendar(identifier: calendarIdentifier)
-            calendar.timeZone = timeZone // Set the calendar's time zone
-
-            if let updatedDate = calendar.date(byAdding: .second, value: offsetInSeconds, to: date) {
-                let dateFormatter = DateFormatter()
-                dateFormatter.calendar = calendar
-                dateFormatter.dateStyle = .medium
-                dateFormatter.timeStyle = .short
-
-                let formattedString = dateFormatter.string(from: updatedDate)
-                return (date: updatedDate, formattedString: formattedString)
-            } else {
-                print("Error converting the date.")
-                return nil
+        for prayer in todayPrayersTimes {
+            let prayerDateFormatter = DateFormatter()
+            prayerDateFormatter.dateFormat = "yyyy/MM/dd"
+            let addedCurrentDate = prayerDateFormatter.string(from: nextPrayerTime ??  Date()) + " " + "\(prayer.time)" + ":00"
+            
+            if let prayerTime = dateFormatter.date(from: addedCurrentDate) {
+                if prayerTime > nextPrayerTime {
+                    print(prayerTime)
+                    nextSalah = "\(prayer.name) at \(prayer.time)"
+                    selectedPrayer = prayer
+                    targetDate = prayerTime
+                    return
+                }
             }
+        }
+        
+        if nextSalah.isEmpty {
+            nextSalah = "\(tomorrowPrayerTimes[0].name) at \(tomorrowPrayerTimes[0].time)"
+            selectedPrayer = todayPrayersTimes.first
+            let dateTime = Date.timeZoneDifference(offsetOfTimeZone: selectedLocation?.offSet ?? 0.0)
+            print("Date Time :",dateTime)
+            let nextDate = "\(dateTime.get(.year))-\(dateTime.get(.month))-\(dateTime.get(.day)+1) \("\(todayPrayersTimes[0].time)")"
+            let convertedString = TimeHelper.convertTimeStringToDate(nextDate, format: "yyyy-MM-dd HH:mm") ?? Date()
+            targetDate = convertedString
+//            newStartTimer()
+        }
+    }
+    
+    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
+            var calendar = Calendar(identifier: calendarIdentifier)
+            let dateFormatter = DateFormatter()
+            dateFormatter.calendar = calendar
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            dateFormatter.timeZone = timeZone
+            let formattedString = dateFormatter.string(from: date)
+            return (date: date, formattedString: formattedString)
         } else {
             print("Invalid offset provided.")
             return nil
         }
     }
 
-
     private func updateTime() {
-        let timeZoneOffset = selectedLocation.offSet
+        let timeZoneOffset = selectedLocation?.offSet
         let startDate = updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: timeZoneOffset ?? 0.0, calendarIdentifier: .islamicCivil)?.date ?? Date()
-        // Update the remaining time immediately
         guard let targetDate = targetDate else { return }
-        updateTimer(startDate, targetDate, withTimeZoneOffset: timeZoneOffset ?? 0.0)
+        updateTimer(startDate, targetDate)
     }
-
-    // Your other helper functions remain unchanged
 
     private func startTimer() {
         Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             guard let targetDate = self.targetDate else { return }
             remainingTime = max(targetDate.timeIntervalSinceNow, 0)
-            remTime = "0909:09u098"
-//            remTime = String(format: "%02d:%02d:%02d", hoursCom, minutes, secondsCom)
             if remainingTime == 0 {
                 // Timer reached zero
 //                $timer.invalidate
@@ -160,41 +185,26 @@ struct PrayerDetailView: View {
         .fire()
     }
     
-    func updateTimer(_ startDate: Date, _ endDate: Date, withTimeZoneOffset offset: Double) {
-            let calendar = Calendar.current
+    func updateTimer(_ startDate: Date, _ endDate: Date) {
+        let calendar = Calendar.current
 
-            let offsetInSeconds = Int(offset * 3600) // Convert hours to seconds
+        let components = calendar.dateComponents([.hour, .minute, .second], from: startDate, to: endDate)
 
-            if let timeZone = TimeZone(secondsFromGMT: offsetInSeconds) {
-                var targetCalendar = Calendar(identifier: .gregorian)
-                targetCalendar.timeZone = timeZone // Set the calendar's time zone
+        if let hours = components.hour, let minutes = components.minute, let seconds = components.second {
+            let hoursCom = max(hours, 0)
+            let minutesCom = max(minutes, 0)
+            let secondsCom = max(seconds, 0)
 
-                // Adjust end date based on the offset
-                if let updatedEndDate = targetCalendar.date(byAdding: .second, value: offsetInSeconds, to: endDate) {
+            print(components)
+            remTime = String(format: "%02d:%02d:%02d", hoursCom, minutesCom, secondsCom)
+            print("Remaining time: \(remTime)")
 
-                    let components = calendar.dateComponents([.hour, .minute, .second], from: startDate, to: updatedEndDate)
-
-                    let hoursCom = components.hour ?? 0
-                    let minutes = components.minute ?? 0
-                    let secondsCom = components.second ?? 0
-
-                    print(components)
-                    remTime = String(format: "%02d:%02d:%02d", hoursCom, minutes, secondsCom)
-                    print("Remaining time: \(remTime)")
-
-                    // Check if the end date is reached
-                    if startDate >= updatedEndDate {
-                        // Stop the timer when the end date is reached
-                        // timer?.invalidate()
-//                        getNextPrayerTime()
-                    }
-                } else {
-                    print("Error adjusting end date.")
-                }
-            } else {
-                print("Invalid offset provided.")
+            // Check if the end date is reached
+            if startDate >= endDate {
+                timer.upstream.connect().cancel()
             }
         }
+    }
 }
 
 

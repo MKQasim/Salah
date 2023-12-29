@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import SwiftUI
 
 struct LocationDetailView: View {
     @Environment(\.colorScheme) var colorScheme
@@ -125,10 +124,12 @@ struct ListRowCellView: View {
             .cornerRadius(8)
             .padding(5)
             .onAppear {
-                // Fetch the next prayer time when the view appears
-                print(location?.country)
                 Task{
-                    await viewModel.fetchNextPrayerTime(for: location)
+                    if let location = location {
+                        viewModel.fetchNextPrayerTime(for: location) { location in
+                            viewModel.updateCounter(for: location)
+                        }
+                    }
                 }
             }
         }
@@ -138,9 +139,20 @@ struct ListRowCellView: View {
                 .shadow(radius: 3)
         )
     }
+    
+    private func setupTimer(with prayerTiming: PrayerTiming?) {
+        guard let prayerTiming = prayerTiming , let endDate = prayerTiming.time else { return }
+        let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: location?.offSet ?? 0.0)
+        guard let startDate = prayerTiming.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location?.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date else { return }
+       
+        startDate.startCountdownTimer(from: startDate, to: endDate) { formattedTime in
+            self.viewModel.remTime = formattedTime
+        }
+    }
 }
 
 class PrayerTimeViewModel: ObservableObject {
+    
     @Published var nextSalah: String = "" {
         didSet {
             DispatchQueue.main.async {
@@ -152,84 +164,32 @@ class PrayerTimeViewModel: ObservableObject {
     
     @Published var remTime: String = ""
     @Published var timeNow: String = ""
-    var countdownTimer: CountDownTimer?
+    @State private var selectedPrayer: PrayerTiming? = nil
+    @State var selectedLocation: Location?
+    @State private var targetDate: Date?
+    @State private var startDate: Date?
     var prayerTimeHelper = PrayerTimeHelper.shared // Assuming PrayerTimeHelper is shared across instances
     
-    func fetchNextPrayerTime(for location: Location?) async {
-        await PrayerTimeHelper.shared.getSalahTimings(location: location ?? Location(), completion: { [self] location in
-            countdownTimer?.stopTimer()
-            guard let location = location else { return  }
-            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.formatDateString(location.nextPrayer?.time ?? Date()) ?? "")"
-            // Update UI or perform actions with the formattedTime
-            let hours = location.offSet ?? 0.0 // get the hours from GMT as a Double
-            let secondsFromGMT = Int(hours * 3600) // convert hours to seconds and cast to Int
-            let timeZone = TimeZone(secondsFromGMT: secondsFromGMT) // create a TimeZone object
-            
-            guard let timeZone = timeZone else {
-                // Handle the case where timeZone is nil
-                // You might want to show an error message or handle this situation accordingly
-                return
-            }
-            
-            self.timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
-            
-            
-            self.countdownTimer = CountDownTimer(remainingTime: location.timeDifference ?? 0.0)
-            countdownTimer?.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
-                print("Remaining Time: \(formattedTime)")
-                self.remTime = "Next Prayer In : \(formattedTime)"
-            }
-            
-        })
-    }
-    // Stop timer if needed (when the view disappears, etc.)
-    func stopTimer() {
-        countdownTimer?.stopTimer()
-    }
-}
-
-
-public class CountDownTimer {
-    var remainingTime: TimeInterval
-    var timer: Timer?
-    var timeUpdateHandler: ((String) -> Void)?
-    
-    init(remainingTime: TimeInterval) {
-        self.remainingTime = remainingTime
-    }
-    
-    func startTimer(completion: @escaping (String) -> Void) {
-        timeUpdateHandler = completion
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-            if self.remainingTime > 0 {
-                self.remainingTime -= 1
-                let formattedTime = self.formatTime(from: self.remainingTime)
-                self.timeUpdateHandler?(formattedTime)
-            } else {
-                timer.invalidate()
-                self.timeUpdateHandler?("00:00:00")
-                print("Countdown finished!")
-            }
+    func fetchNextPrayerTime(for location: Location?, completion: @escaping (Location) -> Void) {
+        guard let location = location else { return }
+        PrayerTimeHelper.shared.getSalahTimings(location: location) { [weak self] location in
+            guard let self = self, let nextPrayer = location?.nextPrayer else { return }
+            self.selectedLocation = location
+            self.nextSalah = "\(nextPrayer.name ?? "") at \(nextPrayer.formatDateString(nextPrayer.time ?? Date()))"
+            self.selectedPrayer = nextPrayer
+            self.targetDate = nextPrayer.time
+            completion(location ?? Location())
         }
-        timer?.fire()
     }
-    
-    func stopTimer() {
-        timer?.invalidate()
-    }
-    
-    func formatTime(from timeInterval: TimeInterval) -> String {
-        let hours = Int(timeInterval) / 3600
-        let minutes = Int(timeInterval) / 60 % 60
-        let seconds = Int(timeInterval) % 60
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    }
-    
-    func startCountdownTimer(with timeDifference: Double, completion: @escaping (String) -> Void) {
-        print("Time difference in seconds: \(timeDifference)")
-        self.remainingTime = timeDifference
-        self.startTimer(completion: completion)
+
+    func updateCounter(for location: Location?) {
+        self.timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location?.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
+        let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: location?.offSet ?? 0.0)
+        let startDate = location?.nextPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location?.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date
+        guard let endDate = location?.nextPrayer?.time , let unwrappedStartDate = startDate else { return }
+        startDate?.startCountdownTimer(from: unwrappedStartDate, to: endDate) { formattedTime in
+            self.remTime = formattedTime
+        }
     }
 }
 

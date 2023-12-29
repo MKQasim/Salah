@@ -149,5 +149,22 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
             return nil
         }
     }
+    
+    func updatedDateFormatAndTimeZoneString(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
+            var calendar = Calendar(identifier: calendarIdentifier)
+            let dateFormatter = DateFormatter()
+            dateFormatter.calendar = calendar
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            dateFormatter.timeZone = timeZone
+            let formattedString = dateFormatter.string(from: date)
+            guard let formattedDate = dateFormatter.date(from: formattedString) else {return nil}
+            return (date: formattedDate, formattedString: formattedString)
+        } else {
+            print("Invalid offset provided.")
+            return nil
+        }
+    }
 
 }

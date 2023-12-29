@@ -42,7 +42,7 @@ class PrayerTimeHelper: ObservableObject {
     
     
     // Function to fetch the prayer timings
-    func getSalahTimings(location: Location, date: Date = Date(), completion: @escaping (Location?) -> Void) async {
+    func getSalahTimings(location: Location, date: Date = Date(), completion: @escaping (Location?) -> Void) {
         var todayPrayerTiming = [PrayerTiming]()
         var tomorrowPrayerTiming = [PrayerTiming]()
         var todaySunTiming = [PrayerTiming]()
@@ -76,7 +76,7 @@ class PrayerTimeHelper: ObservableObject {
         todayPrayerTiming.removeAll()
         
         for (index, name) in salahNaming.enumerated() {
-            if let todayTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index]) , let tomorrowTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index]){
+            if let todayTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index], option: .today) , let tomorrowTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index], option: .tomorrow){
                 let newTodaySalahTiming = PrayerTiming(name: name, time: todayTime, offSet: location.offSet)
                 let newTomorrowSalahTiming = PrayerTiming(name: name, time: tomorrowTime, offSet: location.offSet)
                 
@@ -135,29 +135,51 @@ class PrayerTimeHelper: ObservableObject {
         return dateFormatter.date(from: dateString)
     }
     
-    func getDateForTime(_ time: String) -> Date? {
+    enum DateOption {
+        case today
+        case tomorrow
+    }
+
+    func getDateForTime(_ time: String, option: DateOption) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "HH:mm"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Set UTC timezone
         
         if let timeDate = dateFormatter.date(from: time) {
-            let currentDate = Date()
             let calendar = Calendar.current
-            
-            // Get components from the current date
-            let components = calendar.dateComponents([.year, .month, .day], from: currentDate)
-            
-            // Combine date components with the timeDate
-            if let combinedDate = calendar.date(bySettingHour: calendar.component(.hour, from: timeDate),
-                                                minute: calendar.component(.minute, from: timeDate),
-                                                second: 0,
-                                                of: currentDate) {
-                let combinedDateTime = calendar.date(bySettingHour: calendar.component(.hour, from: combinedDate),
-                                                     minute: calendar.component(.minute, from: combinedDate),
-                                                     second: 0,
-                                                     of: currentDate)
-//                print(combinedDateTime)
-                return combinedDateTime
+            let currentDate = Date()
+
+            switch option {
+            case .today:
+                // Get components from the current date
+                let components = calendar.dateComponents([.year, .month, .day], from: currentDate)
+                
+                // Combine date components with the timeDate
+                if let combinedDate = calendar.date(bySettingHour: calendar.component(.hour, from: timeDate),
+                                                    minute: calendar.component(.minute, from: timeDate),
+                                                    second: 0,
+                                                    of: currentDate) {
+                    let combinedDateTime = calendar.date(bySettingHour: calendar.component(.hour, from: combinedDate),
+                                                         minute: calendar.component(.minute, from: combinedDate),
+                                                         second: 0,
+                                                         of: currentDate)
+                    return combinedDateTime
+                }
+            case .tomorrow:
+                if let nextDay = calendar.date(byAdding: .day, value: 1, to: currentDate) {
+                    let components = calendar.dateComponents([.year, .month, .day], from: nextDay)
+                    
+                    if let combinedDate = calendar.date(bySettingHour: calendar.component(.hour, from: timeDate),
+                                                        minute: calendar.component(.minute, from: timeDate),
+                                                        second: 0,
+                                                        of: nextDay) {
+                        let combinedDateTime = calendar.date(bySettingHour: calendar.component(.hour, from: combinedDate),
+                                                             minute: calendar.component(.minute, from: combinedDate),
+                                                             second: 0,
+                                                             of: nextDay)
+                        return combinedDateTime
+                    }
+                }
             }
         }
         return nil
@@ -166,9 +188,9 @@ class PrayerTimeHelper: ObservableObject {
     func getNextPrayerTime(for location: Location, todaysPrayerTimes: [PrayerTiming],tomorrowPrayerTimes: [PrayerTiming], completion: @escaping (PrayerTiming?, Double?) -> Void) {
         var nextPrayerTime: PrayerTiming? = nil
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
-        
+        var currentTimeForComparison = Date()
         // Get the current date and time
-        let currentDate = Date()
+        let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: location.offSet ?? 0.0)
         
         for prayer in todaysPrayerTimes {
             guard let prayerTime = prayer.time else {
@@ -176,14 +198,14 @@ class PrayerTimeHelper: ObservableObject {
             }
             
             // Adjust the current date and time by subtracting the location's offset
-            let currentTimeForComparison = prayer.updatedDateFormatAndTimeZone(for: currentDate, withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date
+            currentTimeForComparison = prayer.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date ?? Date()
             
-            if let currentTimeForComparison = currentTimeForComparison, currentTimeForComparison >= prayerTime {
+            if let currentTimeForComparison = currentTimeForComparison as? Date , currentTimeForComparison >= prayerTime {
                 // Skip if the current time is equal to or later than the prayer time
                 continue
             }
             
-            let timeDifference = prayerTime.timeIntervalSince(currentTimeForComparison ?? currentDate)
+            let timeDifference = prayerTime.timeIntervalSince(currentTimeForComparison)
             
             if timeDifference < minTimeDifference {
                 minTimeDifference = timeDifference
@@ -191,12 +213,20 @@ class PrayerTimeHelper: ObservableObject {
             }
         }
         
+        
         if let nextPrayerTime = nextPrayerTime {
-            print("found for today : \(nextPrayerTime)")
-        }else{            
-            nextPrayerTime =  tomorrowPrayerTimes.first
-            print("assigned for tomorrow : \(nextPrayerTime)")
+            print("found for today: \(nextPrayerTime)")
+        } else {
+            if let firstPrayerTime = tomorrowPrayerTimes.first?.time {
+                let timeDifference = firstPrayerTime.timeIntervalSince(currentTimeForComparison ?? currentDate)
+                if timeDifference < minTimeDifference {
+                    minTimeDifference = timeDifference
+                    nextPrayerTime = tomorrowPrayerTimes.first
+                    print("assigned for tomorrow: \(nextPrayerTime)")
+                }
+            }
         }
+
         
         completion(nextPrayerTime, minTimeDifference)
     }
@@ -362,7 +392,7 @@ class PrayerTimeHelper: ObservableObject {
         
         
         for (index, name) in salahNaming.enumerated() {
-            if let time = PrayerTimeHelper.shared.getDateForTime(salahTiming[index]) {
+            if let time = PrayerTimeHelper.shared.getDateForTime(salahTiming[index], option: .today) {
                 let newSalahTiming = PrayerTiming(name: name, time: time)
                 if (name == "Sunset" || name == "Sunrise") {
                     sunTimings.append(newSalahTiming)

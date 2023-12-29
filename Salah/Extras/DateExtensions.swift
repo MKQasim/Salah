@@ -107,12 +107,12 @@ extension Date {
         return secondDate.timeIntervalSince(self)
     }
 
-    func getCurrentDateTime(for country: String) -> String {
-        let formatter = DateFormatter()
-        formatter.timeZone = TimeZone(identifier: country)
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.string(from: self)
-    }
+//    func getCurrentDateTime(for country: String) -> String {
+//        let formatter = DateFormatter()
+//        formatter.timeZone = TimeZone(identifier: country)
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        return formatter.string(from: self)
+//    }
     
     func getCurrentDateTime(for country: String) -> Date? {
         let formatter = DateFormatter()
@@ -122,6 +122,22 @@ extension Date {
         let dateString = formatter.string(from: Date())
         return formatter.date(from: dateString)
     }
+    
+    func getDateFromDecimalTimeZoneOffset(decimalOffset: Double) -> Date {
+        let offsetInSeconds = Int(decimalOffset * 3600) // Convert hours to seconds
+
+        let currentDate = Date()
+        let timeZoneOffset = TimeZone(secondsFromGMT: offsetInSeconds)
+
+        if let timeZone = timeZoneOffset {
+            let adjustedDate = currentDate.addingTimeInterval(TimeInterval(timeZone.secondsFromGMT(for: currentDate)))
+            return adjustedDate
+        } else {
+            // If the offset is invalid, return the current date
+            return currentDate
+        }
+    }
+
     
     func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
         if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {

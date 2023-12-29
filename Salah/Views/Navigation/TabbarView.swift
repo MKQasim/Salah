@@ -7,12 +7,35 @@
 
 import SwiftUI
 
+
+// ContentView 1
+struct ContentView2: View {
+    @State private var countdownValue1: String = "00:00:00"
+
+    var body: some View {
+        Text("Countdown View 1: \(countdownValue1)")
+            .onAppear {
+                let startDate = Date() // Replace this with your start date
+                let endDate = startDate.addingTimeInterval(3600) // Replace this with your end date
+
+                startDate.startCountdownTimer(to: endDate) { newValue in
+                    countdownValue1 = newValue
+                }
+            }
+    }
+}
+
+// ContentView 2, ContentView 3 (same as previous example)
+
+
+
+
 struct TabbarView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var navigationState: NavigationState
     @EnvironmentObject var locationState: LocationState
     @State private var isSheet = false
-    
+    @State private var countdownValue1: String = "00:00:00"
     init() {
         #if os(iOS)
         let pageControl = UIPageControl()
@@ -22,10 +45,19 @@ struct TabbarView: View {
     
     var body: some View {
         TabView(selection: $navigationState.tabbarSelection) {
+            VStack{
+                Text("Add Location to View screen")
+                    .foregroundStyle(.gray)
+                Text("Countdown View 1: \(countdownValue1)")
+                    .foregroundStyle(.gray)
+            }
             if locationManager.locationStatus == .denied {
                 if locationState.cities.count == 0 {
+//                    ContentView1()
                     VStack{
                         Text("Add Location to View screen")
+                            .foregroundStyle(.gray)
+                        Text("Countdown View 1: \(countdownValue1)")
                             .foregroundStyle(.gray)
                     }
                     .tag(NavigationItem.nocurrentLocation)
@@ -34,6 +66,8 @@ struct TabbarView: View {
                 if locationState.cities.count == 0 {
                     VStack{
                         Text("Add Location to View screen")
+                            .foregroundStyle(.gray)
+                        Text("Countdown View 1: \(countdownValue1)")
                             .foregroundStyle(.gray)
                     }
                     .tag(NavigationItem.nocurrentLocation)
@@ -79,6 +113,14 @@ struct TabbarView: View {
                     }
             }
             #endif
+        }
+        .onAppear {
+            let startDate = Date() // Replace this with your start date
+            let endDate = startDate.addingTimeInterval(3600) // Replace this with your end date
+
+            startDate.startCountdownTimer(to: endDate) { newValue in
+                countdownValue1 = newValue
+            }
         }
 //        .overlay(alignment: .bottom){
 //            HStack{

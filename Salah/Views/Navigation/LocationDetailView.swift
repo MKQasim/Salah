@@ -16,7 +16,7 @@ struct LocationDetailView: View {
     @State private var isSheet = false
     @State private var searchableText = ""
     @Binding var isFullScreenView: Bool
-
+    
     var body: some View {
         List {
             Group {
@@ -24,14 +24,14 @@ struct LocationDetailView: View {
                     if let currentLocation = locationState.currentLocation {
                         ListRowCellView(isFullScreenView: $isFullScreenView, location: currentLocation, isCurrent: true)
                     }
-
+                    
                     ForEach(locationState.cities, id: \.self) { location in
                         ListRowCellView(isFullScreenView: $isFullScreenView, location: location, isCurrent: false)
                     }
                 }
             }
             
-//            .listRowSeparator(.hidden, edges: .all)
+            //            .listRowSeparator(.hidden, edges: .all)
         }
         .listStyle(.plain)
         .navigationTitle("Cities")
@@ -65,13 +65,13 @@ struct LocationDetailView: View {
             }
         }
         .toolbar {
-            #if os(iOS)
+#if os(iOS)
             ToolbarItem(placement: .navigationBarTrailing) {
-                 NavigationLink(destination: SettingsView(), label: {
-                     Label("Settings", systemImage: "gear.circle").foregroundColor(.gray)
-                 })
+                NavigationLink(destination: SettingsView(), label: {
+                    Label("Settings", systemImage: "gear.circle").foregroundColor(.gray)
+                })
             }
-            #endif
+#endif
         }
     }
 }
@@ -82,7 +82,7 @@ struct ListRowCellView: View {
     var location: Location?
     let isCurrent: Bool
     @StateObject var viewModel = PrayerTimeViewModel()
-
+    
     var body: some View {
         VStack {
             Button(action: {
@@ -133,7 +133,7 @@ struct ListRowCellView: View {
             }
         }
         .background(
-        RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 10)
                 .fill(Color(UIColor.lightGray))
                 .shadow(radius: 3)
         )
@@ -146,15 +146,15 @@ class PrayerTimeViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.objectWillChange.send()
             }
-             // This will trigger UI updates in SwiftUI
+            // This will trigger UI updates in SwiftUI
         }
     }
-
+    
     @Published var remTime: String = ""
     @Published var timeNow: String = ""
     var countdownTimer: CountDownTimer?
     var prayerTimeHelper = PrayerTimeHelper.shared // Assuming PrayerTimeHelper is shared across instances
-
+    
     func fetchNextPrayerTime(for location: Location?) async {
         await PrayerTimeHelper.shared.getSalahTimings(location: location ?? Location(), completion: { [self] location in
             countdownTimer?.stopTimer()
@@ -175,21 +175,63 @@ class PrayerTimeViewModel: ObservableObject {
             
             
             self.countdownTimer = CountDownTimer(remainingTime: location.timeDifference ?? 0.0)
-                    countdownTimer?.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
-                        print("Remaining Time: \(formattedTime)")
-                        self.remTime = "Next Prayer In : \(formattedTime)"
-                    }
+            countdownTimer?.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
+                print("Remaining Time: \(formattedTime)")
+                self.remTime = "Next Prayer In : \(formattedTime)"
+            }
             
         })
-}
-
-
+    }
     // Stop timer if needed (when the view disappears, etc.)
     func stopTimer() {
-            countdownTimer?.stopTimer()
-        }
+        countdownTimer?.stopTimer()
+    }
 }
 
+
+public class CountDownTimer {
+    var remainingTime: TimeInterval
+    var timer: Timer?
+    var timeUpdateHandler: ((String) -> Void)?
+    
+    init(remainingTime: TimeInterval) {
+        self.remainingTime = remainingTime
+    }
+    
+    func startTimer(completion: @escaping (String) -> Void) {
+        timeUpdateHandler = completion
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+            if self.remainingTime > 0 {
+                self.remainingTime -= 1
+                let formattedTime = self.formatTime(from: self.remainingTime)
+                self.timeUpdateHandler?(formattedTime)
+            } else {
+                timer.invalidate()
+                self.timeUpdateHandler?("00:00:00")
+                print("Countdown finished!")
+            }
+        }
+        timer?.fire()
+    }
+    
+    func stopTimer() {
+        timer?.invalidate()
+    }
+    
+    func formatTime(from timeInterval: TimeInterval) -> String {
+        let hours = Int(timeInterval) / 3600
+        let minutes = Int(timeInterval) / 60 % 60
+        let seconds = Int(timeInterval) % 60
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+    func startCountdownTimer(with timeDifference: Double, completion: @escaping (String) -> Void) {
+        print("Time difference in seconds: \(timeDifference)")
+        self.remainingTime = timeDifference
+        self.startTimer(completion: completion)
+    }
+}
 
 
 #Preview {

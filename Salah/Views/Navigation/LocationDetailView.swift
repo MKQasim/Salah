@@ -152,13 +152,14 @@ class PrayerTimeViewModel: ObservableObject {
 
     @Published var remTime: String = ""
     @Published var timeNow: String = ""
-
+    var countdownTimer: CountDownTimer?
     var prayerTimeHelper = PrayerTimeHelper.shared // Assuming PrayerTimeHelper is shared across instances
 
     func fetchNextPrayerTime(for location: Location?) async {
-        await PrayerTimeHelper.shared.getSalahTimings(location: location ?? Location(), completion: { location in
+        await PrayerTimeHelper.shared.getSalahTimings(location: location ?? Location(), completion: { [self] location in
+            countdownTimer?.stopTimer()
             guard let location = location else { return  }
-//            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.formatDateString(location.nextPrayer?.time ?? Date()) ?? "")"
+            self.nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.formatDateString(location.nextPrayer?.time ?? Date()) ?? "")"
             // Update UI or perform actions with the formattedTime
             let hours = location.offSet ?? 0.0 // get the hours from GMT as a Double
             let secondsFromGMT = Int(hours * 3600) // convert hours to seconds and cast to Int
@@ -170,16 +171,14 @@ class PrayerTimeViewModel: ObservableObject {
                 return
             }
             
-            let currentDate = PrayerTimeHelper.shared.currentTime(for: timeZone, dateFormatString: "yyyy MMM d HH:mm").0
-           
-            self.timeNow = currentDate ?? ""
+            self.timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
             
             
-//            let countdownTimer = CountdownTimer(remainingTime: 0)
-//            countdownTimer.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
-//                print("Remaining Time: \(formattedTime)")
-//                self.remTime = "Next Prayer In : \(formattedTime)"
-//            }
+            self.countdownTimer = CountDownTimer(remainingTime: location.timeDifference ?? 0.0)
+                    countdownTimer?.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
+                        print("Remaining Time: \(formattedTime)")
+                        self.remTime = "Next Prayer In : \(formattedTime)"
+                    }
             
         })
 }
@@ -187,8 +186,8 @@ class PrayerTimeViewModel: ObservableObject {
 
     // Stop timer if needed (when the view disappears, etc.)
     func stopTimer() {
-        prayerTimeHelper.stopTimer()
-    }
+            countdownTimer?.stopTimer()
+        }
 }
 
 

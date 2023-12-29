@@ -75,10 +75,7 @@ struct PrayerDetailView: View {
         .padding(.top, 10)
         .padding([.leading, .trailing])
         .onAppear {
-            print("Selected City: \(selectedLocation?.city ?? "No city selected")")
-            print("Latitude: \(selectedLocation?.lat ?? 0.0)")
-            print("Longitude: \(selectedLocation?.lng ?? 0.0)")
-                   
+           
             print(selectedLocation)
             Task {
                 await setUpView()
@@ -106,9 +103,9 @@ struct PrayerDetailView: View {
                 sunTimes = location.todaySunTimings ?? []
                 nextSalah = "\(name) at \(nextPrayer.formatDateString(time))"
                 selectedPrayer = nextPrayer
-                timeNow = "\(updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
+                timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
                 targetDate = nextPrayer.time
-                let startDate = updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation?.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.date ?? Date()
+                let startDate = Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation?.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.date ?? Date()
                 updateTimer(startDate, targetDate ?? Date())
             }
             if let cal = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
@@ -150,26 +147,10 @@ struct PrayerDetailView: View {
 //            newStartTimer()
         }
     }
-    
-    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
-        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
-            var calendar = Calendar(identifier: calendarIdentifier)
-            let dateFormatter = DateFormatter()
-            dateFormatter.calendar = calendar
-            dateFormatter.dateStyle = .medium
-            dateFormatter.timeStyle = .short
-            dateFormatter.timeZone = timeZone
-            let formattedString = dateFormatter.string(from: date)
-            return (date: date, formattedString: formattedString)
-        } else {
-            print("Invalid offset provided.")
-            return nil
-        }
-    }
 
     private func updateTime() {
         let timeZoneOffset = selectedLocation?.offSet
-        let startDate = updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: timeZoneOffset ?? 0.0, calendarIdentifier: .islamicCivil)?.date ?? Date()
+        let startDate = Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: timeZoneOffset ?? 0.0, calendarIdentifier: .islamicCivil)?.date ?? Date()
         guard let targetDate = targetDate else { return }
         updateTimer(startDate, targetDate)
     }

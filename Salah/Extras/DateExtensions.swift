@@ -122,5 +122,21 @@ extension Date {
         let dateString = formatter.string(from: Date())
         return formatter.date(from: dateString)
     }
+    
+    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
+            var calendar = Calendar(identifier: calendarIdentifier)
+            let dateFormatter = DateFormatter()
+            dateFormatter.calendar = calendar
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            dateFormatter.timeZone = timeZone
+            let formattedString = dateFormatter.string(from: date)
+            return (date: date, formattedString: formattedString)
+        } else {
+            print("Invalid offset provided.")
+            return nil
+        }
+    }
 
 }

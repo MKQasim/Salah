@@ -43,8 +43,10 @@ class PrayerTimeHelper: ObservableObject {
     
     // Function to fetch the prayer timings
     func getSalahTimings(location: Location, date: Date = Date(), completion: @escaping (Location?) -> Void) async {
-        var prayerTiming = [PrayerTiming]()
-        var sunTiming = [PrayerTiming]()
+        var todayPrayerTiming = [PrayerTiming]()
+        var tomorrowPrayerTiming = [PrayerTiming]()
+        var todaySunTiming = [PrayerTiming]()
+        var tomorrowSunTiming = [PrayerTiming]()
         var nextPrayer: PrayerTiming?
         let offsetSeconds = Int((location.offSet ?? 0.0) * 3600)
         // Adjust the date by adding the location's offset
@@ -56,34 +58,48 @@ class PrayerTimeHelper: ObservableObject {
         let mutableNames = time.timeNames!
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
         
-        let getTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
+        let getTodayTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
                                               andMonth: Int32(adjustedDate.get(.month)),
                                               andDay: Int32(adjustedDate.get(.day)),
                                               andLatitude: location.lat ?? 0.0,
                                               andLongitude: location.lng ?? 0.0,
                                               andtimeZone: location.offSet ?? 0.0)!
-        let salahTiming = getTime.compactMap({ $0 as? String })
         
-        prayerTiming.removeAll()
+        let getTomorrowTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
+                                              andMonth: Int32(adjustedDate.get(.month)),
+                                              andDay: Int32(adjustedDate.get(.day)),
+                                              andLatitude: location.lat ?? 0.0,
+                                              andLongitude: location.lng ?? 0.0,
+                                              andtimeZone: location.offSet ?? 0.0)!
+        let salahTodayTiming = getTodayTime.compactMap({ $0 as? String })
+        
+        todayPrayerTiming.removeAll()
+        
         for (index, name) in salahNaming.enumerated() {
-            if let time = PrayerTimeHelper.shared.getDateForTime(salahTiming[index]) {
-                let newSalahTiming = PrayerTiming(name: name, time: time, offSet: location.offSet)
+            if let todayTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index]) , let tomorrowTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index]){
+                let newTodaySalahTiming = PrayerTiming(name: name, time: todayTime, offSet: location.offSet)
+                let newTomorrowSalahTiming = PrayerTiming(name: name, time: tomorrowTime, offSet: location.offSet)
+                
                 if (name != "Sunset" && name != "Sunrise") {
-                    prayerTiming.append(newSalahTiming)
+                    todayPrayerTiming.append(newTodaySalahTiming)
+                    tomorrowPrayerTiming.append(newTomorrowSalahTiming)
                 }
                 if (name == "Sunset" || name == "Sunrise") {
-                    sunTiming.append(newSalahTiming)
+                    todaySunTiming.append(newTodaySalahTiming)
+                    tomorrowSunTiming.append(newTomorrowSalahTiming)
                 }
             }
         }
         
-        PrayerTimeHelper.shared.getNextPrayerTime(for: location, prayerTimes: prayerTiming) { nextSalah, difference in
+        PrayerTimeHelper.shared.getNextPrayerTime(for: location, todaysPrayerTimes: todayPrayerTiming,tomorrowPrayerTimes: tomorrowPrayerTiming) { nextSalah, difference in
             print(nextSalah, difference)
             
             var loc = Location()
             loc = location
-            loc.prayerTimings = prayerTiming
-            loc.sunTimings = sunTiming
+            loc.todayPrayerTimings = todayPrayerTiming
+            loc.tomorrowPrayerTimings = tomorrowPrayerTiming
+            loc.todaySunTimings = todaySunTiming
+            loc.tomorrowSunTimings = todaySunTiming
             loc.nextPrayer = nextSalah
             loc.timeDifference = difference ?? 0.0
             completion(loc)
@@ -147,20 +163,20 @@ class PrayerTimeHelper: ObservableObject {
         return nil
     }
 
-    func getNextPrayerTime(for location: Location, prayerTimes: [PrayerTiming], completion: @escaping (PrayerTiming?, Double?) -> Void) {
+    func getNextPrayerTime(for location: Location, todaysPrayerTimes: [PrayerTiming],tomorrowPrayerTimes: [PrayerTiming], completion: @escaping (PrayerTiming?, Double?) -> Void) {
         var nextPrayerTime: PrayerTiming? = nil
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
         
         // Get the current date and time
         let currentDate = Date()
         
-        for prayer in prayerTimes {
+        for prayer in todaysPrayerTimes {
             guard let prayerTime = prayer.time else {
                 continue
             }
             
             // Adjust the current date and time by subtracting the location's offset
-            let currentTimeForComparison = formatDate(currentDate, timeZoneOffsetHours: (location.offSet ?? 0.0))
+            let currentTimeForComparison = prayer.updatedDateFormatAndTimeZone(for: currentDate, withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date
             
             if let currentTimeForComparison = currentTimeForComparison, currentTimeForComparison >= prayerTime {
                 // Skip if the current time is equal to or later than the prayer time
@@ -173,6 +189,13 @@ class PrayerTimeHelper: ObservableObject {
                 minTimeDifference = timeDifference
                 nextPrayerTime = prayer
             }
+        }
+        
+        if let nextPrayerTime = nextPrayerTime {
+            print("found for today : \(nextPrayerTime)")
+        }else{            
+            nextPrayerTime =  tomorrowPrayerTimes.first
+            print("assigned for tomorrow : \(nextPrayerTime)")
         }
         
         completion(nextPrayerTime, minTimeDifference)

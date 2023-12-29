@@ -50,7 +50,7 @@ struct NavigationSplitDetailView: View {
                     Text("No Location Added")
                 }
             case .currentLocation:
-                PrayerDetailView(selectedLocation:locationState.currentLocation ?? Location( prayerTimings: []))
+                PrayerDetailView(selectedLocation:locationState.currentLocation ?? Location())
                     .navigationTitle("Nuremberg")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)

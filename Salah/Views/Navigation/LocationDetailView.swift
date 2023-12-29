@@ -179,8 +179,6 @@ class PrayerTimeViewModel: ObservableObject {
 //            countdownTimer.startCountdownTimer(with: location.timeDifference ?? 0.0) { formattedTime in
 //                print("Remaining Time: \(formattedTime)")
 //                self.remTime = "Next Prayer In : \(formattedTime)"
-//               
-//                
 //            }
             
         })

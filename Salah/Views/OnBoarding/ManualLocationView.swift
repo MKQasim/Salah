@@ -113,8 +113,8 @@ struct ManualLocationView: View {
         print(locationState.cities)
         print(selectedLocation)
         if let location = locationState.cities.last {
-            navigationState.tabbarSelection = .location(selectedLocation ?? Location(prayerTimings: []))
-            navigationState.sidebarSelection = .location(selectedLocation ?? Location(prayerTimings: []))
+            navigationState.tabbarSelection = .location(selectedLocation ?? Location())
+            navigationState.sidebarSelection = .location(selectedLocation ?? Location())
         }
         dismissSearch()
         isSheet.toggle()
@@ -136,8 +136,11 @@ struct ManualLocationView: View {
             
             
             getTimeZone(lat: lat, long: long) { location in
-                
-                selectedLocation?.prayerTimings = location?.prayerTimings
+                selectedLocation?.todayPrayerTimings = location?.todayPrayerTimings
+                selectedLocation?.tomorrowPrayerTimings = location?.tomorrowPrayerTimings
+                selectedLocation?.todaySunTimings = location?.todaySunTimings
+                selectedLocation?.tomorrowSunTimings = location?.tomorrowSunTimings
+                selectedLocation?.nextPrayer = location?.nextPrayer
             }
             selectedLocation?.lat = lat
             selectedLocation?.lng = long

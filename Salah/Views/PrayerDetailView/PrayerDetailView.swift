@@ -69,7 +69,7 @@ struct PrayerDetailView: View {
 
             PrayerSunSection(sunTimes: $sunTimes)
             PrayerTodaySectionView(prayerTimes: $todayPrayersTimes, nextSalah: $selectedPrayer)
-            PrayerTomorowSection(prayerTimes: $tomorrowPrayerTimes)
+            PrayerTomorowSection(selectedLocation: $selectedLocation)
             PrayerWeeklySectionView(selectedLocation: selectedLocation  ?? Location())
         }
         .padding(.top, 10)
@@ -101,8 +101,9 @@ struct PrayerDetailView: View {
 //                    getNextPrayerTime()
 //                }
                 selectedLocation = location
-                todayPrayersTimes = location.prayerTimings ?? []
-                sunTimes = location.sunTimings ?? []
+                todayPrayersTimes = location.todayPrayerTimings ?? []
+                tomorrowPrayerTimes = location.tomorrowPrayerTimings ?? []
+                sunTimes = location.todaySunTimings ?? []
                 nextSalah = "\(name) at \(nextPrayer.formatDateString(time))"
                 selectedPrayer = nextPrayer
                 timeNow = "\(updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"

@@ -74,8 +74,8 @@ struct PrayerWeeklySectionView: View {
                 if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
                     var oneDaySalah:[PrayerTiming] = []
                     let getDailyPrayerTiming: () = await PrayerTimeHelper.shared.getSalahTimings(location: selectedLocation, date: newDate, completion: { location in
-                        guard let getDailyPrayerTiming = location?.prayerTimings else { return  }
                         
+                        guard let getDailyPrayerTiming = location?.todayPrayerTimings else { return  }
                         for getDailyPrayerTime in getDailyPrayerTiming {
                             let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time, offSet: selectedLocation.offSet)
                             oneDaySalah.append(newSalahTiming)
@@ -99,6 +99,6 @@ struct PrayerWeeklySectionView: View {
 }
 
 #Preview {
-    let selectedLocation = Location(prayerTimings: [])
+    let selectedLocation = Location(todayPrayerTimings:  [])
     return PrayerWeeklySectionView(selectedLocation: selectedLocation)
 }

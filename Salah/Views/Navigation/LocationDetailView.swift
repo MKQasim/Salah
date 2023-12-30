@@ -29,7 +29,6 @@ struct LocationDetailView: View {
                     }
                 }
             }
-            
             //            .listRowSeparator(.hidden, edges: .all)
         }
         .listStyle(.plain)
@@ -68,7 +67,7 @@ struct LocationDetailView: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: SettingsView(), label: {
                     Label("Settings", systemImage: "gear.circle").foregroundColor(.gray)
-                })
+                }).foregroundColor(.gray)
             }
 #endif
         }
@@ -76,11 +75,16 @@ struct LocationDetailView: View {
 }
 
 struct ListRowCellView: View {
+    @StateObject var viewModel = PrayerTimeViewModel()
     @EnvironmentObject var navigationState: NavigationState
     @Binding var isFullScreenView: Bool
-    var location: Location?
+    let location: Location?
     let isCurrent: Bool
-    @StateObject var viewModel = PrayerTimeViewModel()
+    
+    
+    @State private var timeNow = ""
+    @State private var nextSalah = ""
+    @State private var remTime = ""
     
     var body: some View {
         VStack {
@@ -96,17 +100,17 @@ struct ListRowCellView: View {
                     VStack(alignment: .leading) {
                         Text("\(location?.city ?? "") \(location?.country ?? "")")
                             .font(.headline)
-                        Text(viewModel.timeNow )
+                        Text(timeNow)
                             .font(.subheadline)
                             .foregroundColor(.white)
                     }
                     Spacer()
                     VStack(alignment: .trailing) {
-                        Text(viewModel.nextSalah) // Display nextSalah from the ViewModel
+                        Text(nextSalah) // Display nextSalah from the ViewModel
                             .font(.subheadline)
                             .foregroundColor(.white)
                         
-                        Text(viewModel.remTime)
+                        Text(remTime)
                             .font(.caption)
                             .foregroundColor(.white)
                     }
@@ -126,9 +130,8 @@ struct ListRowCellView: View {
             .onAppear {
                 Task{
                     if let location = location {
-                        viewModel.fetchNextPrayerTime(for: location) { location in
-                            viewModel.updateCounter(for: location)
-                        }
+                        nextSalah = "\(location.nextPrayer?.name ?? "") at \(location.nextPrayer?.formatDateString(location.nextPrayer?.time ?? Date()) ?? "")"
+                        updateCounter(for: location)
                     }
                 }
             }
@@ -140,13 +143,13 @@ struct ListRowCellView: View {
         )
     }
     
-    private func setupTimer(with prayerTiming: PrayerTiming?) {
-        guard let prayerTiming = prayerTiming , let endDate = prayerTiming.time else { return }
+    func updateCounter(for location: Location?) {
+        timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location?.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
         let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: location?.offSet ?? 0.0)
-        guard let startDate = prayerTiming.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location?.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date else { return }
-       
-        startDate.startCountdownTimer(from: startDate, to: endDate) { formattedTime in
-            self.viewModel.remTime = formattedTime
+        let startDate = location?.nextPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location?.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date
+        guard let endDate = location?.nextPrayer?.time , let unwrappedStartDate = startDate else { return }
+        startDate?.startCountdownTimer(from: unwrappedStartDate, to: endDate) { formattedTime in
+            self.remTime = formattedTime
         }
     }
 }

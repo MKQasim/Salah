@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - PostElement
+// MARK: - Location
 
 struct Location: Codable, Identifiable, Hashable {
     var city: String?
@@ -16,7 +16,7 @@ struct Location: Codable, Identifiable, Hashable {
     var id: Int?
     var dateTime: Date?
     var offSet: Double? // Updated property for timezone
-    var timeZone : TimeZone?
+    var timeZone : String?
     var todayPrayerTimings : [PrayerTiming]?
     var tomorrowPrayerTimings : [PrayerTiming]?
     var todaySunTimings : [PrayerTiming]?
@@ -24,7 +24,7 @@ struct Location: Codable, Identifiable, Hashable {
     var nextPrayer : PrayerTiming?
     var remainingTime : String?
     var timeDifference : Double?
-    var nextPrayerTiem : Date?
+    var targetTime : Date?
     
     enum CodingKeys: String, CodingKey {
         case city
@@ -52,7 +52,7 @@ struct Location: Codable, Identifiable, Hashable {
                lhs.timeZone == rhs.timeZone &&
                lhs.remainingTime == rhs.remainingTime &&
                lhs.timeDifference == rhs.timeDifference &&
-               lhs.nextPrayerTiem == rhs.nextPrayerTiem
+               lhs.targetTime == rhs.targetTime
        }
 }
 

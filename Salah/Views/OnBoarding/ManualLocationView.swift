@@ -53,6 +53,7 @@ struct ManualLocationView: View {
                         ForEach(dropDownList.filter({ searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable) }), id: \.self.id) { item in
                                 Button(action: {
                                     selectedLocation = item
+                                    isAddCitySheet = true
                                     selectLocation()
                                 }, label: {
                                     VStack(alignment: .leading){
@@ -101,10 +102,20 @@ struct ManualLocationView: View {
         }
     
     func selectLocation() {
-        getTimeZone(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0) { location in
-            selectedLocation = location
-            isAddCitySheet = true
+        
+        let offset = TimeZone.current.secondsFromGMT()
+        print(offset) // Your current timezone offset in seconds
+        if let secondsFromGMT = Double(offset ?? 0) as? Double {
+            let hours = secondsFromGMT / 3600
+            selectedLocation?.offSet = hours
+            selectedLocation?.dateTime = Date()
+        } else {
+            selectedLocation?.offSet = 0.0 
+            // Default to 0.0 if an error occurs or no timezone information is available
         }
+        
+        isSheet.toggle()
+        isAddCitySheet = true
     }
     
     func addLocation() {
@@ -120,49 +131,7 @@ struct ManualLocationView: View {
         isSheet.toggle()
         isDetailView.toggle()
     }
-    
-    func getTimeZone(lat: Double, long: Double, completion: @escaping (Location?) -> Void) {
-        let offset = TimeZone.current.secondsFromGMT()
-        print(offset) // Your current timezone offset in seconds
-        
-        let loc = CLLocation(latitude: lat, longitude: long)
-        let coder = CLGeocoder()
-        
-        coder.reverseGeocodeLocation(loc) { (placemarks, error) in
-            guard let place = placemarks?.last else {
-                completion(nil)
-                return
-            }
-            
-            
-            getTimeZone(lat: lat, long: long) { location in
-                selectedLocation?.todayPrayerTimings = location?.todayPrayerTimings
-                selectedLocation?.tomorrowPrayerTimings = location?.tomorrowPrayerTimings
-                selectedLocation?.todaySunTimings = location?.todaySunTimings
-                selectedLocation?.tomorrowSunTimings = location?.tomorrowSunTimings
-                selectedLocation?.nextPrayer = location?.nextPrayer
-            }
-            selectedLocation?.lat = lat
-            selectedLocation?.lng = long
-            selectedLocation?.city = place.locality
-            selectedLocation?.country = place.country
-            selectedLocation?.dateTime = Date()
-            print(place.timeZone)
-            
-            selectedLocation?.timeZone = place.timeZone
-            if let secondsFromGMT = Double(place.timeZone?.secondsFromGMT() ?? 0) as? Double {
-                let hours = secondsFromGMT / 3600
-                selectedLocation?.offSet = hours
-            } else {
-                selectedLocation?.offSet = 0.0 // Default to 0.0 if an error occurs or no timezone information is available
-            }
-//            selectedLocation = updatedLocation
-            completion(selectedLocation)
-        }
-        isSheet.toggle()
 
-    }
-    
 //    func getTimeZone(lat: Double, long: Double, completion: @escaping (Location?) -> Void) {
 //        let offset = TimeZone.current.secondsFromGMT()
 //        print(offset) // Your current timezone offset in seconds

@@ -44,14 +44,14 @@ struct TabbarView: View {
                 }
             }
             else{
-                if locationState.isLocation {
-                    PrayerDetailView(selectedLocation:locationState.currentLocation ?? Location())
-                        .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
-                        .tag(NavigationItem.currentLocation)
-                        .tabItem {
-                            Label("Current Location", systemImage: "location.fill")
-                        }
-                }
+//                if locationState.isLocation {
+//                    PrayerDetailView(selectedLocation: $locationState.currentLocation ?? Binding<Location()>)
+//                        .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
+//                        .tag(NavigationItem.currentLocation)
+//                        .tabItem {
+//                            Label("Current Location", systemImage: "location.fill")
+//                        }
+//                }
             }
             ForEach(locationState.cities, id: \.self){location in
                 VStack{

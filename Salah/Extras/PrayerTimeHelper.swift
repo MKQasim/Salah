@@ -105,25 +105,6 @@ class PrayerTimeHelper: ObservableObject {
             completion(loc)
         }
     }
-
-    func getTimeZone(cityName: String) -> TimeZone? {
-        // Get all the known time zone identifiers
-        let timeZoneIdentifiers = TimeZone.knownTimeZoneIdentifiers
-        
-        // Loop through each identifier and check if it contains the city name
-        for identifier in timeZoneIdentifiers {
-            // Get the time zone object
-            if let timeZone = TimeZone(identifier: identifier) {
-                // Check if the identifier contains the city name
-                if identifier.localizedCaseInsensitiveContains(cityName.replacingOccurrences(of: " ", with: "_")) {
-                    // If it does, return the time zone object
-                    return timeZone
-                }
-            }
-        }
-        
-        return nil
-    }
     
     func formattedDate(from date: Date, with timeZone: TimeZone) -> Date? {
         let dateFormatter = DateFormatter()

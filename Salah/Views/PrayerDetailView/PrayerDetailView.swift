@@ -125,6 +125,12 @@ struct PrayerDetailView: View {
                 nextSalah = "\(name) at \(nextPrayer.formatDateString(time))"
                 selectedPrayer = nextPrayer
                 targetDate = nextPrayer.time
+                
+                if let row = locationState.cities.firstIndex(where: {$0.id == location.id}){
+                    locationState.cities[row] = location
+                }
+                
+                print(selectedLocation)
             }
             if let cal = Calendar.current.date(byAdding: .day, value: 1, to: currentDate) {
                 tomorrowPrayerTimes = PrayerTimeHelper.shared.getSunTimings(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0, timeZone: selectedLocation?.offSet ?? 0.0, date: Date())

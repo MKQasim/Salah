@@ -7,11 +7,19 @@
 
 import Foundation
 
-struct Cities: Identifiable, Hashable {
-    var id = UUID()
-    let country : String?
-    let city: String?
-    let lat: Double?
-    let long: Double?
-    let timeZone: TimeZone?
+// MARK: - LocationElement
+struct Cities: Codable , Identifiable , Hashable {
+    let city, cityASCII: String?
+    let lat, lng: Double?
+    let country: String?
+    let id: Int?
+    let timeZone: String?
+
+    enum CodingKeys: String, CodingKey {
+        case city
+        case cityASCII = "city_ascii"
+        case lat, lng, country, id, timeZone
+    }
 }
+
+typealias Locations = [Cities]

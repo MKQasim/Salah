@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0504785F2B20DF6800E6BE85 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* cities.json */; };
 		050478642B20EDFA00E6BE85 /* NavigationSplitDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478632B20EDFA00E6BE85 /* NavigationSplitDetailView.swift */; };
 		050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050478652B20EE2F00E6BE85 /* MainNavigationView.swift */; };
 		0504786B2B20F33600E6BE85 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0504786A2B20F33600E6BE85 /* LocationManager.swift */; };
@@ -104,11 +103,12 @@
 		C98C93E62B248BBB00C4BC37 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C82B228654006AC7F8 /* Country.swift */; };
 		C98C93E72B248BBE00C4BC37 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056F97C32B223274006AC7F8 /* Location.swift */; };
 		C98C93E82B248BC300C4BC37 /* country.json in Resources */ = {isa = PBXBuildFile; fileRef = 056F97C62B228573006AC7F8 /* country.json */; };
-		C98C93E92B248BD200C4BC37 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 0504785D2B20DF6800E6BE85 /* cities.json */; };
 		C98C93EA2B248CCB00C4BC37 /* LocationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052F0CAB2B2310E30037ADAE /* LocationState.swift */; };
 		C98C93EB2B248D8D00C4BC37 /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
 		C9AD12D02B3E4CAC00BFAF92 /* CountDownService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AD12CF2B3E4CAC00BFAF92 /* CountDownService.swift */; };
 		C9AD12D12B3E4DE100BFAF92 /* CountDownService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AD12CF2B3E4CAC00BFAF92 /* CountDownService.swift */; };
+		C9CE44922B41C78D002B7002 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = C9CE44912B41C78D002B7002 /* cities.json */; };
+		C9CE44932B41C78D002B7002 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = C9CE44912B41C78D002B7002 /* cities.json */; };
 		C9DF63652B39345B00DE9FEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DF63642B39345B00DE9FEB /* SettingsView.swift */; };
 		C9DF63662B39345B00DE9FEB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9DF63642B39345B00DE9FEB /* SettingsView.swift */; };
 		C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F5E3092B20793A00964AF0 /* SalahApp.swift */; };
@@ -169,7 +169,6 @@
 
 /* Begin PBXFileReference section */
 		0504785C2B20DF6800E6BE85 /* PrayTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrayTime.h; sourceTree = "<group>"; };
-		0504785D2B20DF6800E6BE85 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		0504785E2B20DF6800E6BE85 /* PrayTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrayTime.m; sourceTree = "<group>"; };
 		050478632B20EDFA00E6BE85 /* NavigationSplitDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationSplitDetailView.swift; sourceTree = "<group>"; };
 		050478652B20EE2F00E6BE85 /* MainNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationView.swift; sourceTree = "<group>"; };
@@ -222,6 +221,7 @@
 		C98C93CB2B248AE700C4BC37 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C9AD12CF2B3E4CAC00BFAF92 /* CountDownService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownService.swift; sourceTree = "<group>"; };
+		C9CE44912B41C78D002B7002 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		C9DF63642B39345B00DE9FEB /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Salah/Views/SettingsView/SettingsView.swift; sourceTree = SOURCE_ROOT; };
 		C9F5E3062B20793A00964AF0 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9F5E3092B20793A00964AF0 /* SalahApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SalahApp.swift; sourceTree = "<group>"; };
@@ -368,7 +368,7 @@
 		056F97C52B22812B006AC7F8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0504785D2B20DF6800E6BE85 /* cities.json */,
+				C9CE44912B41C78D002B7002 /* cities.json */,
 				056F97C62B228573006AC7F8 /* country.json */,
 			);
 			path = Data;
@@ -639,8 +639,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9CE44932B41C78D002B7002 /* cities.json in Resources */,
 				055324DC2B332CE600241894 /* Preview Assets.xcassets in Resources */,
-				C98C93E92B248BD200C4BC37 /* cities.json in Resources */,
 				C98C93E82B248BC300C4BC37 /* country.json in Resources */,
 				055E27C52B28E4470087024E /* Assets.xcassets in Resources */,
 			);
@@ -650,9 +650,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9CE44922B41C78D002B7002 /* cities.json in Resources */,
 				056F97C72B228573006AC7F8 /* country.json in Resources */,
 				C9F5E3122B20793C00964AF0 /* Preview Assets.xcassets in Resources */,
-				0504785F2B20DF6800E6BE85 /* cities.json in Resources */,
 				C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

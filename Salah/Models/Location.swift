@@ -23,6 +23,7 @@ struct Location: Codable, Identifiable, Hashable {
     var remainingTime: String?
     var timeDifference: Double?
     var targetTime: Date?
+    var timeZoneIdentifier: String?
     
     static func == (lhs: Location, rhs: Location) -> Bool {
         return lhs.city == rhs.city &&
@@ -36,6 +37,7 @@ struct Location: Codable, Identifiable, Hashable {
                lhs.remainingTime == rhs.remainingTime &&
                lhs.timeDifference == rhs.timeDifference &&
                lhs.targetTime == rhs.targetTime
+               lhs.timeZoneIdentifier == rhs.timeZoneIdentifier
     }
     
     func hash(into hasher: inout Hasher) {
@@ -51,6 +53,7 @@ struct Location: Codable, Identifiable, Hashable {
         hasher.combine(remainingTime)
         hasher.combine(timeDifference)
         hasher.combine(targetTime)
+        hasher.combine(timeZoneIdentifier)
     }
 }
 

@@ -8,24 +8,6 @@
 import SwiftUI
 import CoreLocation
 
-// Custom SearchBar view
-struct SearchBar: View {
-    @Binding var text: String
-
-    var body: some View {
-        HStack {
-            TextField("Search", text: $text)
-                .padding(.horizontal, 20)
-                .padding(.vertical, 10)
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(8)
-                .foregroundColor(.primary)
-            
-            // You can add a search icon or cancel button here if needed
-        }
-    }
-}
-
 struct ManualLocationView: View {
     @Environment(\.dismissSearch) private var dismissSearch
     @Environment (\.colorScheme) private var colorScheme
@@ -40,78 +22,86 @@ struct ManualLocationView: View {
     @State var dropDownList:[Location] = []
     @State private var selectedLocation: Location? = nil
     @State private var isAddCitySheet = false
-
+    
     
     
     var body: some View {
-                VStack {
-//                    SearchBar(text: $searchable) // Assuming you have a custom SearchBar
-//                        .padding(.horizontal)
-//                        .padding(.bottom, 8)
-                    
-                    List {
-                        ForEach(dropDownList.filter({ searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable) }), id: \.self.id) { item in
-                                Button(action: {
-                                    selectedLocation = item
-                                    isAddCitySheet = true
-                                    selectLocation()
-                                }, label: {
-                                    VStack(alignment: .leading){
-                                        Text(item.city ?? "")
-                                            .font(.headline)
-                                        Text(item.country ?? "")
-                                            .font(.subheadline)
-                                            .foregroundColor(Color.secondary)
-                                    }
-                                    .frame(maxWidth: .infinity,alignment: .leading)
-                                })
-                                .tint(.clear)
-                                .buttonStyle(.borderedProminent)
-                        }
+        List {
+            ForEach(dropDownList.filter({ searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable) }), id: \.self.id) { item in
+                Button(action: {
+                    selectedLocation = item
+                    isAddCitySheet = true
+                    selectLocation()
+                }, label: {
+                    VStack(alignment: .leading){
+                        Text(item.city ?? "")
+                            .font(.title3)
+                            .foregroundStyle(Color.primary)
+                        Text(item.country ?? "")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
                     }
-                    .listStyle(.plain)
-                }
-                .sheet(isPresented: $isAddCitySheet) {
-                    if let location = selectedLocation {
-                        NavigationStack {
-                            PrayerDetailView(selectedLocation: location)
-                                .navigationTitle(location.city ?? "Nuremberg")
-                                .toolbar {
-                                    ToolbarItem(placement: .cancellationAction) {
-                                        Button(action: {
-                                            isAddCitySheet = false
-                                        }, label: {
-                                            Text("Cancel")
-                                        })
-                                    }
-                                    ToolbarItem(placement: .confirmationAction) {
-                                        Button(action: {
-                                            addLocation()
-                                            isAddCitySheet = false
-                                        }, label: {
-                                            Text("Add")
-                                        })
-                                    }
-                                }
-                        }
-                    }
-                }
-            .onAppear {
-                parseLocalJSONtoFetchLocations()
+                    .frame(maxWidth: .infinity,alignment: .leading)
+                })
+                .tint(.clear)
+                .buttonStyle(.borderedProminent)
             }
         }
+        .listStyle(.plain)
+        .sheet(isPresented: $isAddCitySheet) {
+            if let location = selectedLocation {
+                NavigationStack {
+                    PrayerDetailView(selectedLocation: location)
+                        .navigationTitle(location.city ?? "Nuremberg")
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button(action: {
+                                    isAddCitySheet = false
+                                }, label: {
+                                    Text("Cancel")
+                                })
+                            }
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button(action: {
+                                    addLocation()
+                                    isAddCitySheet = false
+                                }, label: {
+                                    Text("Add")
+                                })
+                            }
+                        }
+                }
+            }
+        }
+        .onAppear {
+            parseLocalJSONtoFetchLocations()
+        }
+    }
     
     func selectLocation() {
+        guard let timeZoneIdentifier = selectedLocation?.timeZoneIdentifier else {
+            print("No time zone identifier found for selected location")
+            return
+        }
         
-        let offset = TimeZone.current.secondsFromGMT()
-        print(offset) // Your current timezone offset in seconds
-        if let secondsFromGMT = Double(offset ?? 0) as? Double {
-            let hours = secondsFromGMT / 3600
-            selectedLocation?.offSet = hours
-            selectedLocation?.dateTime = Date()
+        if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
+            // Get current date in the specified time zone
+            let currentDate = Date()
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeZone = timeZone
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            
+            let currentDateInTimeZone = dateFormatter.string(from: currentDate)
+            
+            // Manipulating selectedLocation based on the current time zone
+            selectedLocation?.dateTime = dateFormatter.date(from: currentDateInTimeZone)
+            selectedLocation?.offSet = Double(timeZone.secondsFromGMT(for: currentDate)) / 3600.0
+            
+            // You might not want to update the timeZoneIdentifier here, as it represents the location's identifier
+            
         } else {
-            selectedLocation?.offSet = 0.0 
-            // Default to 0.0 if an error occurs or no timezone information is available
+            print("Invalid time zone identifier")
         }
         
         isSheet.toggle()
@@ -119,7 +109,7 @@ struct ManualLocationView: View {
     }
     
     func addLocation() {
-       
+        
         locationState.cities.append(selectedLocation ?? Location())
         print(locationState.cities)
         print(selectedLocation)
@@ -131,40 +121,7 @@ struct ManualLocationView: View {
         isSheet.toggle()
         isDetailView.toggle()
     }
-
-//    func getTimeZone(lat: Double, long: Double, completion: @escaping (Location?) -> Void) {
-//        let offset = TimeZone.current.secondsFromGMT()
-//        print(offset) // Your current timezone offset in seconds
-//        
-//        let loc = CLLocation(latitude: lat, longitude: long)
-//        let coder = CLGeocoder()
-//
-//        coder.reverseGeocodeLocation(loc) { (placemarks, error) in
-//            guard let place = placemarks?.last else {
-//                completion(nil)
-//                return
-//            }
-//            
-//            var location = Location( prayerTimings: <#[PrayerTiming]#>)
-//            location.lat = lat
-//            location.lng = long
-//            location.city = place.locality
-//            location.country = place.country
-//            location.timezone = place.timeZone
-//            location.dateTime = Date().getCurrentDateTime(for: place.country ?? "Makkah")
-//            print(location.city)
-//            
-////            if let secondsFromGMT = Double(place.timeZone?.secondsFromGMT() ?? 0) as? Double {
-////                let hours = secondsFromGMT / 3600
-////                location.timezone = hours
-////            } else {
-////                location.timezone = 0.0 // Default to 0.0 if an error occurs or no timezone information is available
-////            }
-//            
-//            completion(location)
-//        }
-//    }
-//    
+    
     func parseLocalJSONtoFetchLocations() {
         if let path = Bundle.main.path(forResource: "cities", ofType: "json") {
             do {
@@ -185,7 +142,7 @@ struct ManualLocationView: View {
 #Preview {
     @State var isSheet = false
     @State var isDetailView = true
-
+    
     @State var searching = ""
     return ManualLocationView(isSheet: $isSheet,searchable: $searching, isDetailView: $isDetailView)
         .environmentObject(LocationState())

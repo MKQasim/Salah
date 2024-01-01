@@ -12,13 +12,6 @@ struct TabbarView: View {
     @EnvironmentObject private var navigationState: NavigationState
     @EnvironmentObject var locationState: LocationState
     @State private var isSheet = false
-    @State private var countdownValue1: String = "00:00:00"
-    init() {
-        #if os(iOS)
-        let pageControl = UIPageControl()
-        pageControl.frame = CGRectMake(100, 100, .infinity, 100);
-        #endif
-    }
     
     var body: some View {
         TabView(selection: $navigationState.tabbarSelection) {
@@ -26,8 +19,6 @@ struct TabbarView: View {
                 if locationState.cities.count == 0 {
                     VStack{
                         Text("Add Location to View screen")
-                            .foregroundStyle(.gray)
-                        Text("Countdown View 1: \(countdownValue1)")
                             .foregroundStyle(.gray)
                     }
                     .tag(NavigationItem.nocurrentLocation)
@@ -37,23 +28,21 @@ struct TabbarView: View {
                     VStack{
                         Text("Add Location to View screen")
                             .foregroundStyle(.gray)
-                        Text("Countdown View 1: \(countdownValue1)")
-                            .foregroundStyle(.gray)
                     }
                     .tag(NavigationItem.nocurrentLocation)
                 }
             }
             else{
-//                if locationState.isLocation {
-//                    PrayerDetailView(selectedLocation: $locationState.currentLocation ?? Binding<Location()>)
-//                        .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
-//                        .tag(NavigationItem.currentLocation)
-//                        .tabItem {
-//                            Label("Current Location", systemImage: "location.fill")
-//                        }
-//                }
+                if locationState.isLocation {
+                    PrayerDetailView(selectedLocation: locationState.currentLocation)
+                        .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
+                        .tag(NavigationItem.currentLocation)
+                        .tabItem {
+                            Label("Current Location", systemImage: "location.fill")
+                        }
+                }
             }
-            ForEach(locationState.cities, id: \.self){location in
+            ForEach(locationState.cities, id: \.self){ location in
                 VStack{
                     PrayerDetailView(selectedLocation: location)
                 }
@@ -84,28 +73,6 @@ struct TabbarView: View {
             }
             #endif
         }
-        .onAppear {
-            
-        }
-//        .overlay(alignment: .bottom){
-//            HStack{
-//                #if os(iOS)
-//                Spacer()
-////                CustomPageControl(numberOfPages: locationState.cities.count + 1, currentPage: $navigationState.tabbarSelection)
-//                #endif
-//                Spacer()
-//                Button(action: {
-//                    isSheet.toggle()
-//                }) {
-//                    Image(systemName: "list.bullet")
-//                        .font(.title2)
-//                }
-//                .padding()
-//            }
-//            .background(.thinMaterial)
-//            .frame(minHeight: 50)
-//
-//        }
     }
 }
 

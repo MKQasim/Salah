@@ -100,18 +100,13 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
     func checkLocationPermission(completion: @escaping (Bool) -> Void) {
         DispatchQueue.main.async {
             var isEnabled = false
-            let locationManager = CLLocationManager()
-            if CLLocationManager.locationServicesEnabled() {
-                let status = locationManager.authorizationStatus
+                let status = self.locationManager.authorizationStatus
                 switch status {
                 case .authorizedWhenInUse, .authorizedAlways:
                     isEnabled = true
                 default:
                     isEnabled = false
                 }
-            } else {
-                isEnabled = false
-            }
             completion(isEnabled)
         }
     }

@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct SalahApp: App {
+    let fileShared = FileStorageManager.shared
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .onAppear{
+                    print(fileShared.loadSettings())
+                }
         }
     }
 }

@@ -75,6 +75,10 @@
 		05FC81712B27BEFA0046E93C /* NavigationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC816F2B27BEFA0046E93C /* NavigationState.swift */; };
 		05FC81732B27BF130046E93C /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC81722B27BF130046E93C /* NavigationItem.swift */; };
 		05FC81742B27BF130046E93C /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC81722B27BF130046E93C /* NavigationItem.swift */; };
+		C91731B22B45CA8F0054CAF6 /* SalahSettings.JSON in Resources */ = {isa = PBXBuildFile; fileRef = C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */; };
+		C91731B32B45CA8F0054CAF6 /* SalahSettings.JSON in Resources */ = {isa = PBXBuildFile; fileRef = C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */; };
+		C94AAE572B44D13F000AAF66 /* AppPrayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */; };
+		C94AAE582B44D13F000AAF66 /* AppPrayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */; };
 		C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
 		C964588F2B24B4BF002B4E3A /* AppLandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C964588E2B24B4BF002B4E3A /* AppLandingView.swift */; };
 		C96F50B52B29A401005D09A5 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C96F50B42B29A401005D09A5 /* WidgetKit.framework */; };
@@ -202,6 +206,8 @@
 		05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		05FC816F2B27BEFA0046E93C /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 		05FC81722B27BF130046E93C /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
+		C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SalahSettings.JSON; sourceTree = "<group>"; };
+		C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPrayerTime.swift; sourceTree = "<group>"; };
 		C964588E2B24B4BF002B4E3A /* AppLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLandingView.swift; sourceTree = "<group>"; };
 		C96F50B22B29A401005D09A5 /* SalahWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SalahWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		C96F50B42B29A401005D09A5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -323,6 +329,7 @@
 		0504786F2B20F97800E6BE85 /* OnBoarding */ = {
 			isa = PBXGroup;
 			children = (
+				C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */,
 				C9DF63642B39345B00DE9FEB /* SettingsView.swift */,
 				050478702B20F9E900E6BE85 /* LocationPermissionOnboard.swift */,
 				056F97BE2B21C731006AC7F8 /* ManualLocationView.swift */,
@@ -368,6 +375,7 @@
 		056F97C52B22812B006AC7F8 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */,
 				C9CE44912B41C78D002B7002 /* cities.json */,
 			);
 			path = Data;
@@ -647,6 +655,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91731B32B45CA8F0054CAF6 /* SalahSettings.JSON in Resources */,
 				C9CE44932B41C78D002B7002 /* cities.json in Resources */,
 				055324DC2B332CE600241894 /* Preview Assets.xcassets in Resources */,
 				055E27C52B28E4470087024E /* Assets.xcassets in Resources */,
@@ -657,6 +666,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C91731B22B45CA8F0054CAF6 /* SalahSettings.JSON in Resources */,
 				C9CE44922B41C78D002B7002 /* cities.json in Resources */,
 				C9F5E3122B20793C00964AF0 /* Preview Assets.xcassets in Resources */,
 				C9F5E30E2B20793C00964AF0 /* Assets.xcassets in Resources */,
@@ -740,6 +750,7 @@
 				05D78FB32B2CDBAA00CAB017 /* AppLandingView.swift in Sources */,
 				C98C93DD2B248B1F00C4BC37 /* SalahApp.swift in Sources */,
 				C98C93E02B248BA600C4BC37 /* NavigationSplitDetailView.swift in Sources */,
+				C94AAE582B44D13F000AAF66 /* AppPrayerTime.swift in Sources */,
 				05B545722B30B14D00DC27C2 /* CLLocationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -783,6 +794,7 @@
 				0529B77E2B2A631800842B19 /* PrayerTodayCellView.swift in Sources */,
 				050478662B20EE2F00E6BE85 /* MainNavigationView.swift in Sources */,
 				C9F5E30A2B20793A00964AF0 /* SalahApp.swift in Sources */,
+				C94AAE572B44D13F000AAF66 /* AppPrayerTime.swift in Sources */,
 				05B545712B30B0EB00DC27C2 /* CLLocationExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

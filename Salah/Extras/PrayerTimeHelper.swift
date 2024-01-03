@@ -8,11 +8,7 @@
 import SwiftUI
 import Foundation
 
-
-// A function to find the next prayer time from an array of prayers
-// Define a typealias for the callback closure
 typealias NextPrayerCompletion = (PrayerTiming?) -> Void
-
 
 class PrayerTimeHelper: ObservableObject {
     
@@ -27,10 +23,10 @@ class PrayerTimeHelper: ObservableObject {
     @Published var remainingTimes: [String: String] = [:] // For remaining times of prayers
     var timer: Timer? // Timer to update remaining prayer time
     let timeFormatter = DateFormatter()
-    
+    var prayerDate = Date()
     static let shared = PrayerTimeHelper()
     
-    private init() {
+    init() {
         timeFormatter.dateFormat = "HH:mm"
     }
     // Function to format remaining time
@@ -38,9 +34,6 @@ class PrayerTimeHelper: ObservableObject {
         // Implement your formatting logic here
         return remainingTime
     }
-    
-    
-    
     // Function to fetch the prayer timings
     func getSalahTimings(location: Location, date: Date = Date(), completion: @escaping (Location?) -> Void) {
         var todayPrayerTiming = [PrayerTiming]()
@@ -51,10 +44,12 @@ class PrayerTimeHelper: ObservableObject {
         let offsetSeconds = Int((location.offSet ?? 0.0) * 3600)
         // Adjust the date by adding the location's offset
         let adjustedDate = Calendar.current.date(byAdding: .second, value: offsetSeconds, to: date) ?? date
+        let prayTimeSetting = LocalPrayTimeSetting() // assuming you have an instance or reference to LocalPrayTimeSetting
+           let time = PrayTime()
+        time.setCalcMethod(Int32(prayTimeSetting.calculationMethod.rawValue))
+        time.setAsrMethod(Int32(prayTimeSetting.juristicMethod.rawValue))
+        time.setTimeFormat(Int32(prayTimeSetting.timeFormat.rawValue))
         
-        let time = PrayTime()
-        time.setCalcMethod(3)
-        time.setAsrMethod(Int32(1))
         let mutableNames = time.timeNames!
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
         
@@ -207,8 +202,6 @@ class PrayerTimeHelper: ObservableObject {
                 }
             }
         }
-
-        
         completion(nextPrayerTime, minTimeDifference)
     }
 
@@ -219,9 +212,8 @@ class PrayerTimeHelper: ObservableObject {
             dateFormatter.calendar = Calendar(identifier: calendarIdentifier)
             dateFormatter.dateFormat = "dd MMMM yyyy HH:mm" // Islamic calendar format
         } else {
-            // Default to Gregorian calendar if no specific calendar is provided
             dateFormatter.calendar = Calendar(identifier: .gregorian)
-            dateFormatter.dateFormat = "HH:mm" // Default format
+            dateFormatter.dateFormat = "HH:mm"
         }
         
         if let localeIdentifier = localeIdentifier {
@@ -237,13 +229,10 @@ class PrayerTimeHelper: ObservableObject {
         let dateString = dateFormatter.string(from: date)
         return dateFormatter.date(from: dateString)
     }
-
     // Example method to calculate time difference
     func getTimeDifference(_ from: Date, _ to: Date) -> TimeInterval {
         return to.timeIntervalSince(from)
     }
-    
-    
     
     func compareTimeStrings(firstTime: String, secondTime: String) -> ComparisonResult? {
         
@@ -260,11 +249,6 @@ class PrayerTimeHelper: ObservableObject {
         return comparisonResult
     }
     
-    
-    
-   
-    
-    var prayerDate = Date()
     func createPrayerDateTime(from time: String, with timeZone: TimeZone) -> Date? {
         var calendar = Calendar(identifier: .gregorian)
         var dateComponents = DateComponents()
@@ -301,18 +285,8 @@ class PrayerTimeHelper: ObservableObject {
             return nextDay
         }
         prayerDate = combinedDateTime
-        
-        //        guard let timeZone = getTimeZone(cityName: cityOrCountryName) else {
-        //            print("Unknown time zone")
-        //            return (nil, nil)
-        //        }
-        //
-        
-        
         return combinedDateTime
     }
-    
-    
     
     func getNextPrayerDetails(offSet: Double?, from prayerTimes: [PrayerTiming]) -> (nextPrayer: PrayerTiming?, remainingTime: String?, minTimeDifference: Double?) {
         guard let offSet = offSet else { return (nil, nil, nil) }
@@ -354,8 +328,6 @@ class PrayerTimeHelper: ObservableObject {
         return (nil, nil, nil)
     }
     
-    
-    // Function to fetch the sunrise and sunset timings
     func getSunTimings(lat: Double, long: Double, timeZone: Double, date: Date = Date()) -> [PrayerTiming] {
         var sunTimings: [PrayerTiming] = []
         let time = PrayTime()
@@ -383,9 +355,6 @@ class PrayerTimeHelper: ObservableObject {
         return sunTimings
     }
     
-    // Function to get the next upcoming prayer time
-    // Define an extension for Date to convert between time zones
-    
     func convertDateToTimeZone(date: Date, timeZone: TimeZone) -> Date {
         let sourceTimeZone = TimeZone(secondsFromGMT: 0) // GMT
         let destinationOffset = timeZone.secondsFromGMT(for: date)
@@ -393,7 +362,6 @@ class PrayerTimeHelper: ObservableObject {
         let interval = destinationOffset - sourceOffset
         return date.addingTimeInterval(TimeInterval(interval))
     }
-    
     
     func formatTimeComponents(_ timeComponents: (hours: Int, minutes: Int, seconds: Int)) -> String {
         let formattedHours = String(format: "%02d", timeComponents.hours)
@@ -437,6 +405,94 @@ class PrayerTimeHelper: ObservableObject {
     // Function to stop the timer
     func stopTimer() {
         timer?.invalidate()
+    }
+}
+
+extension PrayerTimeHelper {
+    func syncCalculationMethod(with prayTime: LocalPrayTimeSetting, value: Int) {
+        if let method = PrayerTimeSetting.CalculationMethod(rawValue: value) {
+            prayTime.setCalculationMethod(method)
+        }
+    }
+    
+    func syncJuristicMethod(with prayTime: LocalPrayTimeSetting, value: Int) {
+        if let method = PrayerTimeSetting.JuristicMethod(rawValue: value) {
+            prayTime.setJuristicMethod(method)
+        }
+    }
+    
+    func syncAdjustingMethod(with prayTime: LocalPrayTimeSetting, value: Int) {
+        if let method = PrayerTimeSetting.AdjustingMethod(rawValue: value) {
+            prayTime.setAdjustingMethod(method)
+        }
+    }
+    
+    func syncTimeFormat(with prayTime: LocalPrayTimeSetting, value: Int) {
+        if let format = PrayerTimeSetting.TimeFormat(rawValue: value) {
+            prayTime.setTimeFormat(format)
+        }
+    }
+    
+    func syncTimeName(with prayTime: LocalPrayTimeSetting, value: Int) {
+        if let name = PrayerTimeSetting.TimeName(rawValue: value) {
+            prayTime.setTimeName(name)
+        }
+    }
+    
+    func syncSetting(with prayTime: LocalPrayTimeSetting, setting: Setting) {
+        if let dropdownType = setting.settingType?.dropdownType {
+            switch dropdownType {
+            case .calculationMethod:
+                if let calculationMethod = PrayerTimeSetting.CalculationMethod(rawValue: setting.selectedOptionIndex ?? 0) {
+                    prayTime.setCalculationMethod(calculationMethod)
+                }
+            case .juristicMethod:
+                if let juristicMethod = PrayerTimeSetting.JuristicMethod(rawValue: setting.selectedOptionIndex ?? 0) {
+                    prayTime.setJuristicMethod(juristicMethod)
+                }
+            case .adjustingMethod:
+                if let adjustingMethod = PrayerTimeSetting.AdjustingMethod(rawValue: setting.selectedOptionIndex ?? 0) {
+                    prayTime.setAdjustingMethod(adjustingMethod)
+                }
+            case .timeFormat:
+                if let timeFormat = PrayerTimeSetting.TimeFormat(rawValue: setting.selectedOptionIndex ?? 0) {
+                    prayTime.setTimeFormat(timeFormat)
+                }
+            case .timeName:
+                if let timeName = PrayerTimeSetting.TimeName(rawValue: setting.selectedOptionIndex ?? 0) {
+                    prayTime.setTimeName(timeName)
+                }
+            }
+        }
+    }
+}
+
+class LocalPrayTimeSetting: ObservableObject {
+    
+    @Published var calculationMethod: PrayerTimeSetting.CalculationMethod = .jafari
+    @Published var juristicMethod: PrayerTimeSetting.JuristicMethod = .shafii
+    @Published var adjustingMethod: PrayerTimeSetting.AdjustingMethod = .none
+    @Published var timeFormat: PrayerTimeSetting.TimeFormat = .time24
+    @Published var timeName: PrayerTimeSetting.TimeName = .timeName1
+    
+    func setCalculationMethod(_ method: PrayerTimeSetting.CalculationMethod) {
+        calculationMethod = method
+    }
+    
+    func setJuristicMethod(_ method: PrayerTimeSetting.JuristicMethod) {
+        juristicMethod = method
+    }
+    
+    func setAdjustingMethod(_ method: PrayerTimeSetting.AdjustingMethod) {
+        adjustingMethod = method
+    }
+    
+    func setTimeFormat(_ format: PrayerTimeSetting.TimeFormat) {
+        timeFormat = format
+    }
+    
+    func setTimeName(_ name: PrayerTimeSetting.TimeName) {
+        timeName = name
     }
 }
 

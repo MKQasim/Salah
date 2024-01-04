@@ -42,13 +42,28 @@ class PrayerTimeHelper: ObservableObject {
         var tomorrowSunTiming = [PrayerTiming]()
         var nextPrayer: PrayerTiming?
         let offsetSeconds = Int((location.offSet ?? 0.0) * 3600)
+        
+    
         // Adjust the date by adding the location's offset
         let adjustedDate = Calendar.current.date(byAdding: .second, value: offsetSeconds, to: date) ?? date
-        let prayTimeSetting = LocalPrayTimeSetting() // assuming you have an instance or reference to LocalPrayTimeSetting
-           let time = PrayTime()
-        time.setCalcMethod(Int32(prayTimeSetting.calculationMethod.rawValue))
-        time.setAsrMethod(Int32(prayTimeSetting.juristicMethod.rawValue))
-        time.setTimeFormat(Int32(prayTimeSetting.timeFormat.rawValue))
+        let permissionsManager = PermissionsManager.shared
+        let localPrayTimeSetting = permissionsManager.prayTime ?? LocalPrayTimeSetting()
+        let allSettings = permissionsManager.settingsData
+        
+        // Filter the desired settings
+        let dropdownSettings = allSettings.filter { $0.settingType?.dropdownType != nil }
+        let simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
+        let permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
+        let time = PrayTime()
+        print(localPrayTimeSetting.calculationMethod.rawValue)
+        print(localPrayTimeSetting.juristicMethod.rawValue)
+        print(localPrayTimeSetting.timeFormat.rawValue)
+        
+        time.setCalcMethod(Int32(localPrayTimeSetting.calculationMethod.rawValue))
+        time.setAsrMethod(Int32(localPrayTimeSetting.juristicMethod.rawValue))
+        time.setTimeFormat(Int32(localPrayTimeSetting.timeFormat.rawValue))
+        
+        
         
         let mutableNames = time.timeNames!
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
@@ -304,14 +319,11 @@ class PrayerTimeHelper: ObservableObject {
         
         var earliestPrayer: PrayerTiming? = nil
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
-        
         for prayerTime in prayerTimes {
             if let prayerDate = dateFormatter.date(from: "\(prayerTime.time)") {
                 let components = calendar.dateComponents([.hour, .minute,.second], from: currentDateTime, to: prayerDate)
-                
                 if let difference = components.hour, difference >= 0 {
                     let timeDifference = TimeInterval(difference * 3600 + (components.minute ?? 0) * 60)
-                    
                     if timeDifference < minTimeDifference {
                         minTimeDifference = timeDifference
                         earliestPrayer = prayerTime

@@ -56,16 +56,16 @@ class FileStorageManager {
     
     func defaultSettings() -> [Setting] {
         return [
-            Setting(title: "Location Permission", description: "Manage location permission", isPermissionEnabled: false, settingType: .permission(.location)),
-            Setting(title: "Notification Permission", description: "Manage notification permission", isPermissionEnabled: false, settingType: .permission(.notifications)),
-            Setting(title: "Calculation Method", description: "Choose calculation method", isPermissionEnabled: false, settingType: .dropdown(.calculationMethod)),
-            Setting(title: "Juristic Method", description: "Choose juristic method", isPermissionEnabled: false, settingType: .dropdown(.juristicMethod)),
-            Setting(title: "Adjusting Method", description: "Choose adjusting method", isPermissionEnabled: false, settingType: .dropdown(.adjustingMethod)),
-            Setting(title: "Time Format", description: "Choose time format", isPermissionEnabled: false, settingType: .dropdown(.timeFormat)),
-            Setting(title: "Time Name", description: "Choose time name", isPermissionEnabled: false, settingType: .dropdown(.timeName)),
-            Setting(title: "Privacy", description: "Manage your privacy settings", isPermissionEnabled: false, settingType: .simple("Privacy")),
-            Setting(title: "Account", description: "View and manage your account details", isPermissionEnabled: false, settingType: .simple("Account")),
-            Setting(title: "Help & Support", description: "Get help and support", isPermissionEnabled: false, settingType: .simple("Help & Support"))
+            Setting(title: "Location Permission", description: "Manage location permission", isPermissionEnabled: false, settingType: .permission(.location), permissionType: .location),
+            Setting(title: "Notification Permission", description: "Manage notification permission", isPermissionEnabled: false, settingType: .permission(.notifications), permissionType: .notifications),
+            Setting(title: "Calculation Method", description: "Choose calculation method", isPermissionEnabled: false, settingType: .dropdown(.calculationMethod), permissionType: nil),
+            Setting(title: "Juristic Method", description: "Choose juristic method", isPermissionEnabled: false, settingType: .dropdown(.juristicMethod), permissionType: nil),
+            Setting(title: "Adjusting Method", description: "Choose adjusting method", isPermissionEnabled: false, settingType: .dropdown(.adjustingMethod), permissionType: nil),
+            Setting(title: "Time Format", description: "Choose time format", isPermissionEnabled: false, settingType: .dropdown(.timeFormat), permissionType: nil),
+//            Setting(title: "Time Name", description: "Choose time name", isPermissionEnabled: false, settingType: .dropdown(.timeName), permissionType: nil),
+            Setting(title: "Privacy", description: "Manage your privacy settings", isPermissionEnabled: false, settingType: .simple("Privacy"), permissionType: nil),
+            Setting(title: "Account", description: "View and manage your account details", isPermissionEnabled: false, settingType: .simple("Account"), permissionType: nil),
+            Setting(title: "Help & Support", description: "Get help and support", isPermissionEnabled: false, settingType: .simple("Help & Support"), permissionType: nil)
         ]
     }
 }
@@ -222,6 +222,8 @@ struct Setting: Identifiable, Equatable, Codable {
     var settingType: SettingType? // Use SettingType enum to define setting types
     var isExpanded: Bool? = false
     var selectedOptionIndex: Int? = 0
+    var permissionType: PermissionType? // Include the permission type
+        
     
     var optionsForDropdown: [String]? {
         if case let .dropdown(dropdownType) = settingType {
@@ -238,6 +240,7 @@ struct Setting: Identifiable, Equatable, Codable {
         case settingType
         case isExpanded
         case selectedOptionIndex
+        case permissionType
     }
     
     init(from decoder: Decoder) throws {
@@ -249,11 +252,19 @@ struct Setting: Identifiable, Equatable, Codable {
         isPermissionEnabled = try container.decodeIfPresent(Bool.self, forKey: .isPermissionEnabled)
         isExpanded = try container.decodeIfPresent(Bool.self, forKey: .isExpanded)
         selectedOptionIndex = try container.decodeIfPresent(Int.self, forKey: .selectedOptionIndex)
-        
+        if let permissionType =  try container.decodeIfPresent(PermissionType.self, forKey: .permissionType) {
+            switch permissionType {
+            case .location:
+                self.permissionType  = .location
+            case .notifications:
+                self.permissionType = .notifications
+            default:
+                print("default permissionType")
+            }
+        }
         if let typeString = try container.decodeIfPresent(SettingType.self, forKey: .settingType) {
             switch typeString {
             case .simple(let string):
-                //                let stringValue = try container.decode(String.self, forKey: .title)
                 settingType = .simple(string)
             case .permission(let permission):
                 settingType = .permission(permission)
@@ -262,29 +273,18 @@ struct Setting: Identifiable, Equatable, Codable {
             default:
                 print("Def")
             }
-            //            switch typeString {
-            //            case "simple":
-            //                let stringValue = try container.decode(String.self, forKey: .title)
-            //                settingType = .simple(stringValue)
-            //            case "permission":
-            //                let permissionType = try container.decode(PermissionType.self, forKey: .settingType)
-            //                settingType = .permission(permissionType)
-            //            case "dropdown":
-            //                let dropdownType = try container.decode(DropdownType.self, forKey: .settingType)
-            //                settingType = .dropdown(dropdownType)
-            //            default:
-            //                throw DecodingError.dataCorruptedError(forKey: .settingType, in: container, debugDescription: "Unknown setting type")
-            //            }
         }
     }
     
-    init(title: String?, description: String?, isPermissionEnabled: Bool?, settingType: SettingType?, isExpanded: Bool? = false, selectedOptionIndex: Int? = 0) {
+    init(title: String?, description: String?, isPermissionEnabled: Bool?, settingType: SettingType?, isExpanded: Bool? = false, selectedOptionIndex: Int? = 0 , permissionType : PermissionType?) {
         self.title = title
         self.description = description
         self.isPermissionEnabled = isPermissionEnabled
         self.settingType = settingType
         self.isExpanded = isExpanded
         self.selectedOptionIndex = selectedOptionIndex
+        self.permissionType = permissionType
+        
     }
     
     func toJSONString() -> String? {
@@ -334,9 +334,9 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
     
     // Load settings data from UserDefaults or create new settings if not found
     var settingsData: [Setting] = []
+    static let shared = PermissionsManager()
     
-    
-    override init() {
+   private override init() {
         super.init()
         notificationCenter.delegate = self
         locationManager.delegate = self
@@ -485,8 +485,6 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
         case .timeName:
             prayerTimeHelper.syncTimeName(with: prayTime, value: value)
         }
-        
-        
     }
     
     // Function to save settings to UserDefaults
@@ -504,7 +502,7 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
 }
 
 struct SettingsView: View {
-    @ObservedObject var permissionsManager = PermissionsManager()
+    @ObservedObject var permissionsManager = PermissionsManager.shared
     @State private var dropdownSettings: [Setting] = []
     @State private var simpleSettings: [Setting] = []
     @State private var permissionSettings: [Setting] = []
@@ -522,7 +520,6 @@ struct SettingsView: View {
                             print(updatedSetting.selectedOptionIndex)
                             let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
                             permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
-                           
                             permissionsManager.updatePrayerTimeSetting(dropdownType, value: updatedSetting.selectedOptionIndex ?? 0)
                         }, permissionsManager: permissionsManager
                     )
@@ -531,7 +528,17 @@ struct SettingsView: View {
             
             Section(header: Text("Permission Settings")) {
                 ForEach(permissionSettings.indices, id: \.self) { index in
-                    PermissionSettingsRow(setting: $permissionSettings[index], permissionsManager: permissionsManager)
+                    PermissionSettingsRow(
+                                            setting: $permissionSettings[index],
+                                            permissionsManager: permissionsManager,
+                                            updateSettingsManager: { updatedSetting in
+                                                // Handle updated setting here
+                                                // This closure will be called when the toggle changes
+                                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
+                                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
+                                                // Add logic to update permission settings
+                                            }
+                                        )
                 }
             }
             
@@ -556,6 +563,7 @@ struct SettingsView: View {
         }
     }
 }
+
 extension PermissionsManager {
     func updateSettingAndGetUpdatedArray(updatedSetting: Setting) -> [Setting] {
         // Find the index of the setting that needs to be updated
@@ -567,7 +575,6 @@ extension PermissionsManager {
         return settingsData
     }
 }
-
 
 struct DropdownSettingsRow: View {
     @Binding var setting: Setting
@@ -597,7 +604,6 @@ struct DropdownSettingsRow: View {
                         .pickerStyle(.wheel)
                         .onChange(of: setting.selectedOptionIndex) { newValue in
                             if let newValue = newValue, newValue >= 0, newValue < options.count {
-//                                updateSetting(selectedOptionIndex: newValue)
                                 setting.selectedOptionIndex = newValue
                             }
                         }
@@ -675,6 +681,110 @@ struct DropdownSettingsRow: View {
     }
 }
 
+struct PermissionSettingsRow: View {
+    @Binding var setting: Setting
+    @ObservedObject var permissionsManager: PermissionsManager
+    var updateSettingsManager: ((Setting) -> Void)?
+    
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(setting.title ?? "")
+                    .font(.headline)
+                    .foregroundColor(.primary)
+                
+                Text(setting.description ?? "")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 0))
+            
+            Spacer()
+            
+            if let permissionType = setting.settingType?.permissionType {
+                switch permissionType {
+                case .location:
+                    PermissionToggle(isEnabled: isEnabledBinding(for: permissionType),
+                                     permissionsManager: permissionsManager,
+                                     setting: $setting,
+                                     updatePermission: { _ in
+                                        updatePermissionSetting(permissionType: permissionType)
+                                        updateSettingsManager?(setting)
+                                     })
+                        .frame(width: 50)
+                        .padding(10)
+                        .onTapGesture {
+                            permissionsManager.openLocationSettings()
+                        }
+                case .notifications:
+                    PermissionToggle(isEnabled: isEnabledBinding(for: permissionType),
+                                     permissionsManager: permissionsManager,
+                                     setting: $setting,
+                                     updatePermission: { _ in
+                                        updatePermissionSetting(permissionType: permissionType)
+                                        updateSettingsManager?(setting)
+                                     })
+                        .frame(width: 50)
+                        .padding(10)
+                        .onTapGesture {
+                            permissionsManager.openNotificationSettings()
+                        }
+                }
+            } else {
+                Image(systemName: "chevron.right")
+                    .foregroundColor(.secondary)
+            }
+        }
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.white)
+                .shadow(radius: 2)
+        )
+        .padding(.vertical, 4)
+    }
+    
+    private func isEnabledBinding(for permissionType: PermissionType) -> Binding<Bool> {
+        switch permissionType {
+        case .location:
+            return $permissionsManager.locationPermissionEnabled
+        case .notifications:
+            return $permissionsManager.notificationPermissionEnabled
+        }
+    }
+    
+    private func updatePermissionSetting(permissionType: PermissionType) {
+        if let index = permissionsManager.settingsData.firstIndex(where: { $0.id == setting.id }) {
+            setting.isPermissionEnabled = permissionType == .location ?
+                permissionsManager.locationPermissionEnabled :
+                permissionsManager.notificationPermissionEnabled
+            permissionsManager.settingsData[index] = setting
+            let settingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: setting)
+            permissionsManager.saveSettingsToUserICloud(settingsArray)
+        }
+    }
+}
+
+struct PermissionToggle: View {
+    var isEnabled: Binding<Bool>
+    var permissionsManager: PermissionsManager
+    @Binding var setting: Setting
+    var updatePermission: (PermissionType) -> Void
+    
+    var body: some View {
+        Toggle("", isOn: isEnabled)
+            .toggleStyle(SwitchToggleStyle(tint: isEnabled.wrappedValue ? .green : .red))
+            .onChange(of: isEnabled.wrappedValue) { newValue in
+                if let permissionType = setting.settingType?.permissionType {
+                    updatePermission(permissionType)
+                }
+            }
+    }
+}
+
+
+
+
 
 
 
@@ -703,64 +813,6 @@ struct SimpleSettingsRow: View {
                 .shadow(radius: 2)
         )
         .padding(.vertical, 4) // Adjusted vertical padding here
-    }
-}
-
-struct PermissionSettingsRow: View {
-    @Binding var setting: Setting
-    @ObservedObject var permissionsManager: PermissionsManager
-    
-    var body: some View {
-        HStack {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(setting.title ?? "")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                
-                Text(setting.description ?? "")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(EdgeInsets(top: 8, leading: 10, bottom: 8, trailing: 0)) // Adjusted text padding
-            
-            Spacer() // To push the switch to the right
-            
-            if let permissionType = setting.settingType?.permissionType {
-                switch permissionType {
-                case .location, .notifications:
-                    PermissionToggle(isEnabled: permissionType == .location ? $permissionsManager.locationPermissionEnabled : $permissionsManager.notificationPermissionEnabled,
-                                     permissionsManager: permissionsManager)
-                    .frame(width: 50) // Adjusted switch frame width
-                    .padding(10)
-                    .onTapGesture {
-                        permissionsManager.openLocationSettings()
-                    }
-                default:
-                    Image(systemName: "chevron.right")
-                        .foregroundColor(.secondary)
-                }
-            } else {
-                Image(systemName: "chevron.right")
-                    .foregroundColor(.secondary)
-            }
-        }
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
-                .shadow(radius: 2)
-        )
-        .padding(.vertical, 4) // Adjusted vertical padding here
-    }
-}
-
-struct PermissionToggle: View {
-    @Binding var isEnabled: Bool
-    var permissionsManager: PermissionsManager
-    
-    var body: some View {
-        Toggle("", isOn: $isEnabled)
-            .toggleStyle(SwitchToggleStyle(tint: isEnabled ? .green : .red))
     }
 }
 

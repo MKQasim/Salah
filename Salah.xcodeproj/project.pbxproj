@@ -226,6 +226,7 @@
 		C9856D402B4329F80052E258 /* DetailLocationListRowCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailLocationListRowCellView.swift; sourceTree = "<group>"; };
 		C98C93CB2B248AE700C4BC37 /* Salah.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Salah.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C98C93D42B248AE900C4BC37 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C9A1FE8D2B45F84B00A72DDB /* MiniSalah Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "MiniSalah Watch App.entitlements"; sourceTree = "<group>"; };
 		C9AD12CF2B3E4CAC00BFAF92 /* CountDownService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownService.swift; sourceTree = "<group>"; };
 		C9CE44912B41C78D002B7002 /* cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cities.json; sourceTree = "<group>"; };
 		C9DF63642B39345B00DE9FEB /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SettingsView.swift; path = Salah/Views/SettingsView/SettingsView.swift; sourceTree = SOURCE_ROOT; };
@@ -447,6 +448,7 @@
 		C98C93CC2B248AE700C4BC37 /* MiniSalah Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				C9A1FE8D2B45F84B00A72DDB /* MiniSalah Watch App.entitlements */,
 				C98C93D32B248AE900C4BC37 /* Preview Content */,
 			);
 			path = "MiniSalah Watch App";
@@ -969,9 +971,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_ARC_EXCEPTIONS = NO;
+				CODE_SIGN_ENTITLEMENTS = "MiniSalah Watch App/MiniSalah Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
@@ -1005,9 +1008,10 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_ENABLE_OBJC_ARC_EXCEPTIONS = NO;
+				CODE_SIGN_ENTITLEMENTS = "MiniSalah Watch App/MiniSalah Watch App.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.1;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"MiniSalah Watch App/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;
 				ENABLE_PREVIEWS = YES;
@@ -1161,7 +1165,7 @@
 				CODE_SIGN_ENTITLEMENTS = Salah/Salah.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;
@@ -1210,7 +1214,7 @@
 				CODE_SIGN_ENTITLEMENTS = Salah/Salah.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 6;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"Salah/Preview Content\"";
 				DEVELOPMENT_TEAM = CT7H96YF74;

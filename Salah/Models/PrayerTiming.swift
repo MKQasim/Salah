@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct SalahTimingSettings {
+    let calculationMethod: Int
+    let juridictionMethod: Int
+    // Add other necessary settings
+}
 
 struct PrayerTiming: Identifiable, Hashable, Codable {
     var id = UUID()

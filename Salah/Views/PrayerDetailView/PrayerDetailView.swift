@@ -77,11 +77,10 @@ struct PrayerDetailView: View {
         .padding(.top, 10)
         .onAppear{
             Task{
-                if isUpdate == true {
-                    await setUpView()
-                    updateCounter()
-                }
+            setUpView()
+            updateCounter()
             }
+            
         }
 //        .task {
 //            await setUpView()
@@ -124,7 +123,7 @@ struct PrayerDetailView: View {
         }
     }
 
-    private func setUpView() async {
+    private func setUpView()  {
         if isUpdate {
             todayPrayersTimes = []
             tomorrowPrayerTimes = []
@@ -146,6 +145,8 @@ struct PrayerDetailView: View {
                 }
             }
             if Calendar.current.date(byAdding: .day, value: 1, to: currentDate) != nil {
+                let settings = SalahTimingSettings(calculationMethod: 0, juridictionMethod: 1 /* Add other settings */)
+
                 tomorrowPrayerTimes = PrayerTimeHelper.shared.getSunTimings(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0, timeZone: selectedLocation?.offSet ?? 0.0, date: Date())
                 isUpdate = false
             }

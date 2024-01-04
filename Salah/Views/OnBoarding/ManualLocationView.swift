@@ -30,8 +30,17 @@ struct ManualLocationView: View {
             ForEach(dropDownList.filter({ searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable) }), id: \.self.id) { item in
                 Button(action: {
                     selectedLocation = item
-                    isAddCitySheet = true
-                    selectLocation()
+                    selectLocation { isPassed in
+                        if isPassed {
+                            if let location = selectedLocation {
+                                isSheet.toggle()
+                                isAddCitySheet = true
+                            }else{
+                             print("")
+                            }
+                           
+                        }
+                    }
                 }, label: {
                     VStack(alignment: .leading){
                         Text(item.city ?? "")
@@ -49,10 +58,9 @@ struct ManualLocationView: View {
         }
         .listStyle(.plain)
         .sheet(isPresented: $isAddCitySheet) {
-            if let location = selectedLocation {
-                NavigationStack {
-                    PrayerDetailView(selectedLocation: location)
-                        .navigationTitle(location.city ?? "Nuremberg")
+             NavigationStack {
+                    PrayerDetailView(selectedLocation: selectedLocation)
+                     .navigationTitle(selectedLocation?.city ?? "Nuremberg")
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
                                 Button(action: {
@@ -71,14 +79,14 @@ struct ManualLocationView: View {
                             }
                         }
                 }
-            }
+            
         }
         .onAppear {
             parseLocalJSONtoFetchLocations()
         }
     }
     
-    func selectLocation() {
+    func selectLocation(completion: ((Bool) -> Void)? = nil) {
         guard let timeZoneIdentifier = selectedLocation?.timeZoneIdentifier else {
             print("No time zone identifier found for selected location")
             return
@@ -98,21 +106,25 @@ struct ManualLocationView: View {
             selectedLocation?.dateTime = dateFormatter.date(from: currentDateInTimeZone)
             selectedLocation?.offSet = Double(timeZone.secondsFromGMT(for: currentDate)) / 3600.0
             
+            // Check condition for selectedLocation?.offSet and perform callback
+            if let offset = selectedLocation?.offSet, offset > 0 {
+                completion?(true)
+            } else {
+                completion?(false)
+            }
+            
             // You might not want to update the timeZoneIdentifier here, as it represents the location's identifier
             
         } else {
             print("Invalid time zone identifier")
         }
-        
-        isSheet.toggle()
-        isAddCitySheet = true
     }
-    
+
+
+
     func addLocation() {
         
         locationState.cities.append(selectedLocation ?? Location())
-        print(locationState.cities)
-        print(selectedLocation)
         if let location = locationState.cities.last {
             navigationState.tabbarSelection = .location(selectedLocation ?? Location())
             navigationState.sidebarSelection = .location(selectedLocation ?? Location())

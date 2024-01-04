@@ -14,7 +14,7 @@ struct SalahApp: App {
         WindowGroup {
             ContentView()
                 .onAppear{
-                    print(fileShared.loadSettings())
+                    fileShared.loadSettings()
                 }
         }
     }

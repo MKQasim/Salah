@@ -21,19 +21,29 @@ class FileStorageManager {
     
     func loadSettings() -> [Setting] {
         let jsonFileURL = getDocumentsDirectory().first!.appendingPathComponent(settingsFileName)
+        let fileManager = FileManager.default
         
-        do {
-            let savedData = try Data(contentsOf: jsonFileURL)
-            let decoder = JSONDecoder()
-            let loadedSettings = try decoder.decode([Setting].self, from: savedData)
-            return loadedSettings
-        } catch {
-            print("Error loading settings from file: \(error.localizedDescription)")
-            // If file doesn't exist or there's an error loading, save the default settings
-            //            saveSettings(defaultSettings())
-            return defaultSettings()
+        if fileManager.fileExists(atPath: jsonFileURL.path) {
+            do {
+                let savedData = try Data(contentsOf: jsonFileURL)
+                let decoder = JSONDecoder()
+                let loadedSettings = try decoder.decode([Setting].self, from: savedData)
+                return loadedSettings
+            } catch {
+                print("Error loading settings from file: \(error.localizedDescription)")
+                // Handle the error if needed
+            }
+        } else {
+            print("File does not exist at:", jsonFileURL.path)
+            // If the file doesn't exist, create it or handle its absence
+            // fileManager.createFile(atPath: jsonFileURL.path, contents: nil, attributes: nil)
         }
+        
+        // If file doesn't exist or there's an error loading, return default settings
+        return defaultSettings()
     }
+
+
     
     func saveOnDoneDataToDocuments(_ data: Data, jsonFilename: String = "SalahSettings.JSON") {
         let fileManager = FileManager.default
@@ -41,7 +51,10 @@ class FileStorageManager {
         do {
             if fileManager.fileExists(atPath: jsonFileURL.path){
                 
-                try fileManager.removeItem(at: jsonFileURL)
+//                try fileManager.removeItem(at: jsonFileURL)
+                try data.write(to: jsonFileURL)
+            }
+            else{
                 try data.write(to: jsonFileURL)
             }
         } catch {
@@ -62,7 +75,7 @@ class FileStorageManager {
             Setting(title: "Juristic Method", description: "Choose juristic method", isPermissionEnabled: false, settingType: .dropdown(.juristicMethod), permissionType: nil),
             Setting(title: "Adjusting Method", description: "Choose adjusting method", isPermissionEnabled: false, settingType: .dropdown(.adjustingMethod), permissionType: nil),
             Setting(title: "Time Format", description: "Choose time format", isPermissionEnabled: false, settingType: .dropdown(.timeFormat), permissionType: nil),
-//            Setting(title: "Time Name", description: "Choose time name", isPermissionEnabled: false, settingType: .dropdown(.timeName), permissionType: nil),
+            Setting(title: "Time Name", description: "Choose time name", isPermissionEnabled: false, settingType: .dropdown(.timeName), permissionType: nil),
             Setting(title: "Privacy", description: "Manage your privacy settings", isPermissionEnabled: false, settingType: .simple("Privacy"), permissionType: nil),
             Setting(title: "Account", description: "View and manage your account details", isPermissionEnabled: false, settingType: .simple("Account"), permissionType: nil),
             Setting(title: "Help & Support", description: "Get help and support", isPermissionEnabled: false, settingType: .simple("Help & Support"), permissionType: nil)
@@ -335,7 +348,8 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
     // Load settings data from UserDefaults or create new settings if not found
     var settingsData: [Setting] = []
     static let shared = PermissionsManager()
-    
+    static var appTerminatedNotification = Notification.Name("AppTerminatedNotification")
+
    private override init() {
         super.init()
         notificationCenter.delegate = self
@@ -343,6 +357,17 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
         loadInitialPermissions()
         registerAppLifecycleNotifications()
         loadSettingsFromICloud()
+       NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: Self.appTerminatedNotification, object: nil)
+       
+    }
+    
+    @objc func appWillTerminate() {
+           // Save settings before the app is terminated
+           saveSettingsToICloud()
+       }
+    
+    func saveSettingsToICloud() {
+            fileStorageManager.saveSettings(settingsData)
     }
     
     deinit {

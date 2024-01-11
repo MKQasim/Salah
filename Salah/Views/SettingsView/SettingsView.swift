@@ -496,7 +496,7 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
     
     func updatePrayerTimeSetting(_ settingType: DropdownType, value: Int) {
         guard let prayTime = prayTime else { return }
-        let prayerTimeHelper = PrayerTimeHelper()
+        let prayerTimeHelper =  PrayerTimeHelper.shared
         
         switch settingType {
         case .calculationMethod:
@@ -608,7 +608,7 @@ struct DropdownSettingsRow: View {
     var updateSettingsManager: ((Setting) -> Void)?
     var permissionsManager: PermissionsManager
     
-    let prayerTimeHelpers = PrayerTimeHelper()
+    let prayerTimeHelpers = PrayerTimeHelper.shared
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -662,7 +662,7 @@ struct DropdownSettingsRow: View {
         .padding(.horizontal, 10)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
+                .fill(.sky2)
                 .shadow(radius: 2)
         )
         .padding(.vertical, 4)
@@ -763,7 +763,7 @@ struct PermissionSettingsRow: View {
         }
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
+                .fill(.sky2)
                 .shadow(radius: 2)
         )
         .padding(.vertical, 4)
@@ -834,7 +834,7 @@ struct SimpleSettingsRow: View {
         .padding(.horizontal, 10)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
+                .fill(.sky2)
                 .shadow(radius: 2)
         )
         .padding(.vertical, 4) // Adjusted vertical padding here

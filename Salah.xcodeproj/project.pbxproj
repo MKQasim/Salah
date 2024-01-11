@@ -77,6 +77,8 @@
 		05FC81742B27BF130046E93C /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FC81722B27BF130046E93C /* NavigationItem.swift */; };
 		C91731B22B45CA8F0054CAF6 /* SalahSettings.JSON in Resources */ = {isa = PBXBuildFile; fileRef = C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */; };
 		C91731B32B45CA8F0054CAF6 /* SalahSettings.JSON in Resources */ = {isa = PBXBuildFile; fileRef = C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */; };
+		C94946D02B4CCD3B00853259 /* QiblaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94946CF2B4CCD3B00853259 /* QiblaView.swift */; };
+		C94946D12B4CCD3B00853259 /* QiblaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94946CF2B4CCD3B00853259 /* QiblaView.swift */; };
 		C94AAE572B44D13F000AAF66 /* AppPrayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */; };
 		C94AAE582B44D13F000AAF66 /* AppPrayerTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */; };
 		C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 0504785E2B20DF6800E6BE85 /* PrayTime.m */; };
@@ -207,6 +209,7 @@
 		05FC816F2B27BEFA0046E93C /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 		05FC81722B27BF130046E93C /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SalahSettings.JSON; sourceTree = "<group>"; };
+		C94946CF2B4CCD3B00853259 /* QiblaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaView.swift; sourceTree = "<group>"; };
 		C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPrayerTime.swift; sourceTree = "<group>"; };
 		C964588E2B24B4BF002B4E3A /* AppLandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLandingView.swift; sourceTree = "<group>"; };
 		C96F50B22B29A401005D09A5 /* SalahWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SalahWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -278,6 +281,7 @@
 		050478612B20EDBA00E6BE85 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C94946CE2B4CCBEE00853259 /* QiblaView */,
 				C9856D3F2B4329A90052E258 /* DetailLocationView */,
 				0504786F2B20F97800E6BE85 /* OnBoarding */,
 				050478672B20EE4900E6BE85 /* PrayerDetailView */,
@@ -399,6 +403,14 @@
 				0575B0C12B29020200809387 /* PrayerWeeklySectionView.swift */,
 			);
 			path = "Weekly Section";
+			sourceTree = "<group>";
+		};
+		C94946CE2B4CCBEE00853259 /* QiblaView */ = {
+			isa = PBXGroup;
+			children = (
+				C94946CF2B4CCD3B00853259 /* QiblaView.swift */,
+			);
+			path = QiblaView;
 			sourceTree = "<group>";
 		};
 		C96F50B32B29A401005D09A5 /* Frameworks */ = {
@@ -729,6 +741,7 @@
 				0529B7702B2A2CBE00842B19 /* PrayerTimeHelper.swift in Sources */,
 				C98C93EA2B248CCB00C4BC37 /* LocationState.swift in Sources */,
 				05D78FB62B2CDEF300CAB017 /* PermissionBoard.swift in Sources */,
+				C94946D12B4CCD3B00853259 /* QiblaView.swift in Sources */,
 				0531E6522B26377400FBA29B /* PrayerSunSection.swift in Sources */,
 				C98C93E72B248BBE00C4BC37 /* Location.swift in Sources */,
 				C98C93DE2B248B9100C4BC37 /* ContentView.swift in Sources */,
@@ -773,6 +786,7 @@
 				0531E6572B263E8C00FBA29B /* Cities.swift in Sources */,
 				0531E64E2B2635A500FBA29B /* PrayerTodaySectionView.swift in Sources */,
 				05D78FB52B2CDEF300CAB017 /* PermissionBoard.swift in Sources */,
+				C94946D02B4CCD3B00853259 /* QiblaView.swift in Sources */,
 				055E27C72B28E7F60087024E /* PrayerDailyCellView.swift in Sources */,
 				C964588D2B24A3A5002B4E3A /* PrayTime.m in Sources */,
 				052F0CAC2B2310E30037ADAE /* LocationState.swift in Sources */,

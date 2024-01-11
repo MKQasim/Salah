@@ -14,7 +14,7 @@ struct Location: Codable, Identifiable, Hashable {
     var id: Int?
     var dateTime: Date?
     var offSet: Double?
-    var timeZone: String?
+    var timeZone: TimeZone?
     var todayPrayerTimings: [PrayerTiming]?
     var tomorrowPrayerTimings: [PrayerTiming]?
     var todaySunTimings: [PrayerTiming]?

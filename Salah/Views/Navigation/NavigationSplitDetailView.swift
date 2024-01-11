@@ -11,6 +11,7 @@ struct NavigationSplitDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
     @EnvironmentObject private var locationState:LocationState
     @EnvironmentObject private var navigationState: NavigationState
+    @State private var isPrayerDetailViewPresented = false
     @State private var searchable = ""
     @State private var isSheet = false
     @State private var isDetail = false
@@ -50,7 +51,12 @@ struct NavigationSplitDetailView: View {
                     Text("No Location Added")
                 }
             case .currentLocation:
-                PrayerDetailView(selectedLocation:locationState.currentLocation ?? Location())
+                PrayerDetailView(
+                    selectedLocation: locationState.currentLocation,
+                    isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
+                    print("onDismiss")
+                    }
+                )
                     .navigationTitle("Nuremberg")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)
@@ -60,7 +66,7 @@ struct NavigationSplitDetailView: View {
                         AngularGradient(colors: [.journal,.journal2], center: .bottomTrailing)
                     )
             case .location(let location):
-                PrayerDetailView(selectedLocation:location)
+                PrayerDetailView(selectedLocation:location, isDetailViewPresented: $isPrayerDetailViewPresented)
                     .navigationTitle(location.city ?? "")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)
@@ -73,11 +79,15 @@ struct NavigationSplitDetailView: View {
                 VStack{
                     Text("No Location Added")
                 }
+            case .some(.qiblaDirection):
+                Text(" Location Added qiblaDirection ")
             }
         }
         .sheet(isPresented: $isSheet){
             NavigationStack{
-                ManualLocationView(isSheet: $isSheet, searchable: $searchable, isDetailView: $isDetail)
+                ManualLocationView(searchable: $searchable, isDetailView: $isDetail, onDismiss: {
+                    print($isPrayerDetailViewPresented , "sheet(isPresented: $isSheet)")
+                })
                     .toolbar{
                         ToolbarItem(placement: .cancellationAction, content: {
                             Button(action: {

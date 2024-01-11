@@ -8,11 +8,12 @@
 import Foundation
 import SwiftUI
 
-enum NavigationItem: Hashable{
+enum NavigationItem: Hashable {
     case currentLocation
     case nocurrentLocation
     case location(Location)
-    
+    case qiblaDirection // Add qiblaDirection case here
+
     var localizedName: LocalizedStringKey {
         switch self {
         case .currentLocation:
@@ -25,7 +26,8 @@ enum NavigationItem: Hashable{
             }
         case .nocurrentLocation:
             return LocalizedStringKey("No Current Location")
+        case .qiblaDirection: // Handle localization for qiblaDirection if needed
+            return LocalizedStringKey("Qibla Direction")
         }
     }
-
 }

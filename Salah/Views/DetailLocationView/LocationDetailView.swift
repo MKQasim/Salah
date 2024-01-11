@@ -47,16 +47,26 @@ struct LocationDetailView: View {
                 }
                 if !searchableText.isEmpty {
                     VStack {
-                        ManualLocationView(isSheet: $isSheet, searchable: $searchableText, isDetailView: $isFullScreenView)
-                            .toolbar {
-                                ToolbarItem(placement: .cancellationAction) {
-                                    Button(action: {
-                                        isSheet.toggle()
-                                    }, label: {
-                                        Text("Cancel")
-                                    })
+                        ManualLocationView(
+                            searchable: $searchableText,
+                            isDetailView: $isFullScreenView,
+                            onDismiss: {
+                                // Handle the dismissal of ManualLocationView, e.g., pop the view
+                                isFullScreenView = false // Set the state variable to dismiss the view
+                                // Additional logic for dismissal if needed
+                                isSheet.toggle()
+                            }
+                        )
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button(action: {
+                                    isSheet.toggle()
+                                }) {
+                                    Text("Cancel")
                                 }
                             }
+                        }
+
                     }
                     .background(.thinMaterial)
                 }

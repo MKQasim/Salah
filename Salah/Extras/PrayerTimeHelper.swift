@@ -55,15 +55,14 @@ class PrayerTimeHelper: ObservableObject {
         let simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
         let permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
         let time = PrayTime()
-        print(localPrayTimeSetting.calculationMethod.rawValue)
-        print(localPrayTimeSetting.juristicMethod.rawValue)
-        print(localPrayTimeSetting.timeFormat.rawValue)
         
         time.setCalcMethod(Int32(localPrayTimeSetting.calculationMethod.rawValue))
         time.setAsrMethod(Int32(localPrayTimeSetting.juristicMethod.rawValue))
         time.setTimeFormat(Int32(localPrayTimeSetting.timeFormat.rawValue))
         
-        
+        print(localPrayTimeSetting.calculationMethod.rawValue)
+        print(localPrayTimeSetting.juristicMethod.rawValue)
+        print(localPrayTimeSetting.timeFormat.rawValue)
         
         let mutableNames = time.timeNames!
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
@@ -74,7 +73,6 @@ class PrayerTimeHelper: ObservableObject {
                                               andLatitude: location.lat ?? 0.0,
                                               andLongitude: location.lng ?? 0.0,
                                               andtimeZone: location.offSet ?? 0.0)!
-        
         let getTomorrowTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
                                               andMonth: Int32(adjustedDate.get(.month)),
                                               andDay: Int32(adjustedDate.get(.day)),

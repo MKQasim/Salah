@@ -139,8 +139,8 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
         return dateFormatter.date(from: dateString)
     }
     
-    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
-        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
+    func updatedDateFormatAndTimeZone(for date: Date, timeZoneIdentifier : String, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
             var calendar = Calendar(identifier: calendarIdentifier)
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = calendar
@@ -155,8 +155,8 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
         }
     }
     
-    func updatedDateFormatAndTimeZoneString(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
-        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
+    func updatedDateFormatAndTimeZoneString(for date: Date, withTimeZoneOffset timeZoneIdentifier: String, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
             var calendar = Calendar(identifier: calendarIdentifier)
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = calendar

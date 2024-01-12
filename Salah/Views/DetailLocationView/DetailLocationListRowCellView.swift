@@ -72,10 +72,10 @@ struct DetailLocationListRowCellView: View {
     func setupTimer() {
         guard let location = self.location else { return }
         
-        self.timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
+        self.timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: location.timeZoneIdentifier ?? "", calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
         
-        let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: location.offSet ?? 0.0)
-        let startDate = location.nextPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date
+        let currentDate = Date().getDateFromTimeZoneOffset(timeZoneIdentifier: location.timeZoneIdentifier ?? "")
+        let startDate = location.nextPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location.timeZoneIdentifier ?? "", calendarIdentifier: .gregorian)?.date
         
         guard let endDate = location.nextPrayer?.time, let unwrappedStartDate = startDate else { return }
         

@@ -123,24 +123,22 @@ extension Date {
         return formatter.date(from: dateString)
     }
     
-    func getDateFromDecimalTimeZoneOffset(decimalOffset: Double) -> Date {
-        let offsetInSeconds = Int(decimalOffset * 3600) // Convert hours to seconds
+    func getDateFromTimeZoneOffset(timeZoneIdentifier: String) -> Date {
+        let timeZone = TimeZone(identifier: timeZoneIdentifier)
 
-        let currentDate = Date()
-        let timeZoneOffset = TimeZone(secondsFromGMT: offsetInSeconds)
-
-        if let timeZone = timeZoneOffset {
-            let adjustedDate = currentDate.addingTimeInterval(TimeInterval(timeZone.secondsFromGMT(for: currentDate)))
+        if let validTimeZone = timeZone {
+            let adjustedDate = Date().addingTimeInterval(TimeInterval(validTimeZone.secondsFromGMT(for: Date())))
             return adjustedDate
         } else {
-            // If the offset is invalid, return the current date
-            return currentDate
+            // If the time zone identifier is invalid, return the current date
+            return Date()
         }
     }
 
     
-    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset offset: Double, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
-        if let timeZone = TimeZone(secondsFromGMT: Int(offset * 3600)) {
+    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset timeZoneIdentifier: String, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        
+        if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
             var calendar = Calendar(identifier: calendarIdentifier)
             let dateFormatter = DateFormatter()
             dateFormatter.calendar = calendar

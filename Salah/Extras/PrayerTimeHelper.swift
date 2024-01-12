@@ -179,7 +179,7 @@ class PrayerTimeHelper: ObservableObject {
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
         var currentTimeForComparison = Date()
         // Get the current date and time
-        let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: location.offSet ?? 0.0)
+        let currentDate = Date().getDateFromTimeZoneOffset(timeZoneIdentifier: location.timeZoneIdentifier ?? "")
         
         for prayer in todaysPrayerTimes {
             guard let prayerTime = prayer.time else {
@@ -187,7 +187,7 @@ class PrayerTimeHelper: ObservableObject {
             }
             
             // Adjust the current date and time by subtracting the location's offset
-            currentTimeForComparison = prayer.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date ?? Date()
+            currentTimeForComparison = prayer.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: location.timeZoneIdentifier ?? "", calendarIdentifier: .gregorian)?.date ?? Date()
             
             if let currentTimeForComparison = currentTimeForComparison as? Date , currentTimeForComparison >= prayerTime {
                 // Skip if the current time is equal to or later than the prayer time

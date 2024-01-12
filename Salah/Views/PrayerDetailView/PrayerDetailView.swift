@@ -114,10 +114,10 @@ struct PrayerDetailView: View {
 
     
     func updateCounter() {
-        timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation?.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
+        timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation?.timeZoneIdentifier ?? "", calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
         
-        let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: selectedLocation?.offSet ?? 0.0)
-        let startDate = selectedPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: selectedLocation?.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date
+        let currentDate = Date().getDateFromTimeZoneOffset(timeZoneIdentifier: selectedLocation?.timeZoneIdentifier ?? "")
+        let startDate = selectedPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: selectedLocation?.timeZoneIdentifier ?? "", calendarIdentifier: .gregorian)?.date
         
         guard let endDate = targetDate, let unwrappedStartDate = startDate else { return }
         
@@ -293,10 +293,10 @@ struct PrayerDetailViewPreview: View {
 
     
     func updateCounter() {
-        timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation?.offSet ?? 0.0, calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
+        timeNow = "\(Date().updatedDateFormatAndTimeZone(for: Date(), withTimeZoneOffset: selectedLocation?.timeZoneIdentifier ?? "", calendarIdentifier: .islamicCivil)?.formattedString ?? "")"
         
-        let currentDate = Date().getDateFromDecimalTimeZoneOffset(decimalOffset: selectedLocation?.offSet ?? 0.0)
-        let startDate = selectedPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: selectedLocation?.offSet ?? 0.0, calendarIdentifier: .gregorian)?.date
+        let currentDate = Date().getDateFromTimeZoneOffset(timeZoneIdentifier: selectedLocation?.timeZoneIdentifier ?? "")
+        let startDate = selectedPrayer?.updatedDateFormatAndTimeZoneString(for: currentDate, withTimeZoneOffset: selectedLocation?.timeZoneIdentifier ?? "", calendarIdentifier: .gregorian)?.date
         
         guard let endDate = targetDate, let unwrappedStartDate = startDate else { return }
         

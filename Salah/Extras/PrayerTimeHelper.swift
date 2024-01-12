@@ -41,53 +41,69 @@ class PrayerTimeHelper: ObservableObject {
         var todaySunTiming = [PrayerTiming]()
         var tomorrowSunTiming = [PrayerTiming]()
         var nextPrayer: PrayerTiming?
-        let offsetSeconds = Int((location.offSet ?? 0.0) * 3600)
-        
-    
+
+        let timeZone = TimeZone(identifier: location.timeZoneIdentifier ?? "") ?? TimeZone.current
+        var calendar = Calendar.current
+        calendar.timeZone = timeZone
+
+        var offsetSeconds: Double
+
+        // If offset is nil, calculate offset from time zone
+        if let locationOffset = location.offSet {
+            offsetSeconds = locationOffset * 3600
+        } else {
+            offsetSeconds = Double(timeZone.secondsFromGMT()) / 3600.0
+        }
+
         // Adjust the date by adding the location's offset
-        let adjustedDate = Calendar.current.date(byAdding: .second, value: offsetSeconds, to: date) ?? date
+        let adjustedDateByOffset = Calendar.current.date(byAdding: .second, value: Int(offsetSeconds), to: date) ?? date
+
+        // Adjust the date by using the time zone
+        let adjustedDate = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: adjustedDateByOffset) ?? adjustedDateByOffset
+
         let permissionsManager = PermissionsManager.shared
         let localPrayTimeSetting = permissionsManager.prayTime ?? LocalPrayTimeSetting()
         let allSettings = permissionsManager.settingsData
-        
+
         // Filter the desired settings
         let dropdownSettings = allSettings.filter { $0.settingType?.dropdownType != nil }
         let simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
         let permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
         let time = PrayTime()
-        
+
         time.setCalcMethod(Int32(localPrayTimeSetting.calculationMethod.rawValue))
         time.setAsrMethod(Int32(localPrayTimeSetting.juristicMethod.rawValue))
         time.setTimeFormat(Int32(localPrayTimeSetting.timeFormat.rawValue))
-        
+
         print(localPrayTimeSetting.calculationMethod.rawValue)
         print(localPrayTimeSetting.juristicMethod.rawValue)
         print(localPrayTimeSetting.timeFormat.rawValue)
-        
+
         let mutableNames = time.timeNames!
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
-        
+
         let getTodayTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
-                                              andMonth: Int32(adjustedDate.get(.month)),
-                                              andDay: Int32(adjustedDate.get(.day)),
-                                              andLatitude: location.lat ?? 0.0,
-                                              andLongitude: location.lng ?? 0.0,
-                                              andtimeZone: location.offSet ?? 0.0)!
+                                                   andMonth: Int32(adjustedDate.get(.month)),
+                                                   andDay: Int32(adjustedDate.get(.day)),
+                                                   andLatitude: location.lat ?? 0.0,
+                                                   andLongitude: location.lng ?? 0.0,
+                                                   andtimeZone: offsetSeconds)!
         let getTomorrowTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
-                                              andMonth: Int32(adjustedDate.get(.month)),
-                                              andDay: Int32(adjustedDate.get(.day)),
-                                              andLatitude: location.lat ?? 0.0,
-                                              andLongitude: location.lng ?? 0.0,
-                                              andtimeZone: location.offSet ?? 0.0)!
+                                                      andMonth: Int32(adjustedDate.get(.month)),
+                                                      andDay: Int32(adjustedDate.get(.day)),
+                                                      andLatitude: location.lat ?? 0.0,
+                                                      andLongitude: location.lng ?? 0.0,
+                                                      andtimeZone: offsetSeconds)!
         let salahTodayTiming = getTodayTime.compactMap({ $0 as? String })
-        
+
         todayPrayerTiming.removeAll()
-        
+
         for (index, name) in salahNaming.enumerated() {
-            if let todayTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index], option: .today) , let tomorrowTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index], option: .tomorrow){
-                let newTodaySalahTiming = PrayerTiming(name: name, time: todayTime, offSet: location.offSet)
-                let newTomorrowSalahTiming = PrayerTiming(name: name, time: tomorrowTime, offSet: location.offSet)
-                
+            if let todayTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index], option: .today),
+               let tomorrowTime = PrayerTimeHelper.shared.getDateForTime(salahTodayTiming[index], option: .tomorrow) {
+                let newTodaySalahTiming = PrayerTiming(name: name, time: todayTime, offSet: offsetSeconds)
+                let newTomorrowSalahTiming = PrayerTiming(name: name, time: tomorrowTime, offSet: offsetSeconds)
+
                 if (name != "Sunset" && name != "Sunrise") {
                     todayPrayerTiming.append(newTodaySalahTiming)
                     tomorrowPrayerTiming.append(newTomorrowSalahTiming)
@@ -98,10 +114,10 @@ class PrayerTimeHelper: ObservableObject {
                 }
             }
         }
-        
-        PrayerTimeHelper.shared.getNextPrayerTime(for: location, todaysPrayerTimes: todayPrayerTiming,tomorrowPrayerTimes: tomorrowPrayerTiming) { nextSalah, difference in
+
+        PrayerTimeHelper.shared.getNextPrayerTime(for: location, todaysPrayerTimes: todayPrayerTiming, tomorrowPrayerTimes: tomorrowPrayerTiming) { nextSalah, difference in
             print(nextSalah, difference)
-            
+
             var loc = Location()
             loc = location
             loc.todayPrayerTimings = todayPrayerTiming
@@ -113,7 +129,7 @@ class PrayerTimeHelper: ObservableObject {
             completion(loc)
         }
     }
-    
+
     func formattedDate(from date: Date, with timeZone: TimeZone) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = timeZone

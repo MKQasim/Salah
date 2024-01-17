@@ -23,19 +23,18 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Fetch the last commit date from the GitHub API
-      fetch('https://api.github.com/repos/MKQasim/Salah/commits?path=privacy-policy.html')
+      // Fetch the last commit date from the main branch
+      fetch('https://api.github.com/repos/MKQasim/Salah/commits/main?path=privacy-policy.html')
         .then(response => response.json())
         .then(data => {
           const lastUpdatedElement = document.getElementById('last-updated');
-          const lastCommitDate = new Date(data[0].commit.author.date);
+          const lastCommitDate = new Date(data.commit.author.date);
           lastUpdatedElement.textContent = 'Last Updated: ' + lastCommitDate.toDateString();
         })
         .catch(error => console.error('Error fetching GitHub API:', error));
     });
   </script>
 </head>
-  
 <body>
 
   <h1>Privacy Policy for Salah App</h1>

@@ -36,13 +36,21 @@ We take reasonable measures to protect your information from unauthorized access
 
 Salah may integrate with third-party services for enhanced functionality. These services have their own privacy policies, and we encourage you to review them. We do not share your personal information with third parties without your consent.
 
-### 5. Updates to Privacy Policy
+### 5. User Control and Opt-Out Options
+
+You have the right to control the information you provide to Salah. You can adjust location settings on your device or opt-out of certain data collection features within the App settings.
+
+### 6. Updates to Privacy Policy
 
 We may update this Privacy Policy to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated policy on the App.
 
-### 6. Contact Us
+### 7. Children's Privacy
 
-If you have any questions or concerns about this Privacy Policy or the Salah App, please contact us at [your-email@example.com](mailto:your-email@example.com).
+Salah is not intended for users under the age of 13. We do not knowingly collect or solicit personal information from children. If you believe that we might have any information from or about a child under 13, please contact us.
+
+### 8. Contact Us
+
+If you have any questions or concerns about this Privacy Policy or the Salah App, please contact us at [kamqasim1@gmail.com](mailto:kamqasim1@gmail.com).
 
 By using Salah, you agree to the terms of this Privacy Policy.
 

@@ -453,7 +453,6 @@ double JDate;      // Julian date
 
 //---------------------- Misc Functions -----------------------
 
-
 // compute the difference between two times
 -(double)timeDiff:(double)time1 andTime2:(double) time2 {
     return [self fixhour: (time2- time1)];
@@ -478,13 +477,13 @@ double JDate;      // Julian date
 }
 
 // return prayer times for a given date
--(NSMutableArray*)getPrayerTimes: (NSDateComponents*)date andLatitude:(double)latitude andLongitude:(double)longitude andtimeZone:(double)tZone {
-
+-(NSMutableArray*)getPrayerTimes:(NSDateComponents*)date andLatitude:(double)latitude andLongitude:(double)longitude andtimeZone:(double)tZone {
     NSInteger year = [date year];
     NSInteger month = [date month];
     NSInteger day = [date day];
     return [self getDatePrayerTimes:year andMonth:month andDay:day andLatitude:latitude andLongitude:longitude andtimeZone:tZone];
 }
+
 
 // set the calculation method
 -(void)setCalcMethod: (int)methodID {
@@ -582,97 +581,111 @@ double JDate;      // Julian date
 }
 
 // set the time format
--(void)setTimeFormat: (int)tFormat {
+- (void)setTimeFormat:(int)tFormat {
     timeFormat = tFormat;
 }
 
 // convert double hours to 24h format
--(NSString*)floatToTime24:(double)time {
-
+- (NSString*)floatToTime24:(double)time {
     NSString *result = nil;
-
     if (isnan(time))
         return InvalidTime;
 
     time = [self fixhour:(time + 0.5/ 60.0)];  // add 0.5 minutes to round
     int hours = floor(time);
     double minutes = floor((time - hours) * 60.0);
+    double seconds = floor((((time - hours) * 60.0) - minutes) * 60.0);
 
-    if((hours >=0 && hours<=9) && (minutes >=0 && minutes <=9)){
-        result = [NSString stringWithFormat:@"0%d:0%.0f",hours, minutes];
+    if ((hours >= 0 && hours <= 9) && (minutes >= 0 && minutes <= 9) && (seconds >= 0 && seconds <= 9)) {
+        result = [NSString stringWithFormat:@"0%d:0%.0f:0%.0f", hours, minutes, seconds];
+    } else if ((hours >= 0 && hours <= 9) && (minutes >= 0 && minutes <= 9)) {
+        result = [NSString stringWithFormat:@"0%d:0%.0f:%.0f", hours, minutes, seconds];
+    } else if ((hours >= 0 && hours <= 9) && (seconds >= 0 && seconds <= 9)) {
+        result = [NSString stringWithFormat:@"0%d:%.0f:0%.0f", hours, minutes, seconds];
+    } else if ((minutes >= 0 && minutes <= 9) && (seconds >= 0 && seconds <= 9)) {
+        result = [NSString stringWithFormat:@"%d:0%.0f:0%.0f", hours, minutes, seconds];
+    } else if (hours >= 0 && hours <= 9) {
+        result = [NSString stringWithFormat:@"0%d:%.0f:%.0f", hours, minutes, seconds];
+    } else if (minutes >= 0 && minutes <= 9) {
+        result = [NSString stringWithFormat:@"%d:0%.0f:%.0f", hours, minutes, seconds];
+    } else if (seconds >= 0 && seconds <= 9) {
+        result = [NSString stringWithFormat:@"%d:%.0f:0%.0f", hours, minutes, seconds];
+    } else {
+        result = [NSString stringWithFormat:@"%d:%.0f:%.0f", hours, minutes, seconds];
     }
-    else if((hours >=0 && hours<=9)){
-        result = [NSString stringWithFormat:@"0%d:%.0f",hours, minutes];
-    }
-    else if((minutes >=0 && minutes <=9)){
-        result = [NSString stringWithFormat:@"%d:0%.0f",hours, minutes];
-    }
-    else{
-        result = [NSString stringWithFormat:@"%d:%.0f",hours, minutes];
-    }
+
     return result;
 }
 
 // convert double hours to 12h format
--(NSString*)floatToTime12:(double)time andnoSuffix:(BOOL)noSuffix {
-
+- (NSString*)floatToTime12:(double)time andnoSuffix:(BOOL)noSuffix {
     if (isnan(time))
         return InvalidTime;
 
     time =[self fixhour:(time+ 0.5/ 60)];  // add 0.5 minutes to round
     double hours = floor(time);
-    double minutes = floor((time- hours)* 60);
-    NSString *suffix, *result=nil;
-    if(hours >= 12) {
+    double minutes = floor((time - hours)* 60);
+    double seconds = floor((((time - hours) * 60) - minutes) * 60);
+    NSString *suffix, *result = nil;
+    
+    if (hours >= 12) {
         suffix = @"pm";
-    }
-    else{
+    } else {
         suffix = @"am";
     }
-    //hours = ((((hours+ 12) -1) % (12))+ 1);
+    
     hours = (hours + 12) - 1;
     int hrs = (int)hours % 12;
     hrs += 1;
-    if(noSuffix == NO){
-        if((hrs >=0 && hrs<=9) && (minutes >=0 && minutes <=9)){
-            result = [NSString stringWithFormat:@"0%d:0%.0f %@",hrs, minutes, suffix];
-        }
-        else if((hrs >=0 && hrs<=9)){
-            result = [NSString stringWithFormat:@"0%d:%.0f %@",hrs, minutes, suffix];
-        }
-        else if((minutes >=0 && minutes <=9)){
-            result = [NSString stringWithFormat:@"%d:0%.0f %@",hrs, minutes, suffix];
-        }
-        else{
-            result = [NSString stringWithFormat:@"%d:%.0f %@",hrs, minutes, suffix];
-        }
-
-    }
-    else{
-        if((hrs >=0 && hrs<=9) && (minutes >=0 && minutes <=9)){
-            result = [NSString stringWithFormat:@"0%d:0%.0f",hrs, minutes];
-        }
-        else if((hrs >=0 && hrs<=9)){
-            result = [NSString stringWithFormat:@"0%d:%.0f",hrs, minutes];
-        }
-        else if((minutes >=0 && minutes <=9)){
-            result = [NSString stringWithFormat:@"%d:0%.0f",hrs, minutes];
-        }
-        else{
-            result = [NSString stringWithFormat:@"%d:%.0f",hrs, minutes];
+    
+    if (noSuffix == NO) {
+        if ((hrs >= 0 && hrs <= 9) && (minutes >= 0 && minutes <= 9) && (seconds >= 0 && seconds <= 9)) {
+            result = [NSString stringWithFormat:@"0%d:0%.0f:0%.0f %@", hrs, minutes, seconds, suffix];
+        } else if ((hrs >= 0 && hrs <= 9) && (minutes >= 0 && minutes <= 9)) {
+            result = [NSString stringWithFormat:@"0%d:0%.0f:%.0f %@", hrs, minutes, seconds, suffix];
+        } else if ((hrs >= 0 && hrs <= 9) && (seconds >= 0 && seconds <= 9)) {
+            result = [NSString stringWithFormat:@"0%d:%.0f:0%.0f %@", hrs, minutes, seconds, suffix];
+        } else if ((minutes >= 0 && minutes <= 9) && (seconds >= 0 && seconds <= 9)) {
+            result = [NSString stringWithFormat:@"%d:0%.0f:0%.0f %@", hrs, minutes, seconds, suffix];
+        } else if (hrs >= 0 && hrs <= 9) {
+            result = [NSString stringWithFormat:@"0%d:%.0f:%.0f %@", hrs, minutes, seconds, suffix];
+        } else if (minutes >= 0 && minutes <= 9) {
+            result = [NSString stringWithFormat:@"%d:0%.0f:%.0f %@", hrs, minutes, seconds, suffix];
+        } else if (seconds >= 0 && seconds <= 9) {
+            result = [NSString stringWithFormat:@"%d:%.0f:0%.0f %@", hrs, minutes, seconds, suffix];
+        } else {
+            result = [NSString stringWithFormat:@"%d:%.0f:%.0f %@", hrs, minutes, seconds, suffix];
         }
     }
+    else {
+        if ((hrs >= 0 && hrs <= 9) && (minutes >= 0 && minutes <= 9) && (seconds >= 0 && seconds <= 9)) {
+            result = [NSString stringWithFormat:@"0%d:0%.0f:0%.0f", hrs, minutes, seconds];
+        } else if ((hrs >= 0 && hrs <= 9) && (minutes >= 0 && minutes <= 9)) {
+            result = [NSString stringWithFormat:@"0%d:0%.0f:%.0f", hrs, minutes, seconds];
+        } else if ((hrs >= 0 && hrs <= 9) && (seconds >= 0 && seconds <= 9)) {
+            result = [NSString stringWithFormat:@"0%d:%.0f:0%.0f", hrs, minutes, seconds];
+        } else if ((minutes >= 0 && minutes <= 9) && (seconds >= 0 && seconds <= 9)) {
+            result = [NSString stringWithFormat:@"%d:0%.0f:0%.0f", hrs, minutes, seconds];
+        } else if (hrs >= 0 && hrs <= 9) {
+            result = [NSString stringWithFormat:@"0%d:%.0f:%.0f", hrs, minutes, seconds];
+        } else if (minutes >= 0 && minutes <= 9) {
+            result = [NSString stringWithFormat:@"%d:0%.0f:%.0f", hrs, minutes, seconds];
+        } else if (seconds >= 0 && seconds <= 9) {
+            result = [NSString stringWithFormat:@"%d:%.0f:0%.0f", hrs, minutes, seconds];
+        } else {
+            result = [NSString stringWithFormat:@"%d:%.0f:%.0f", hrs, minutes, seconds];
+        }
+    }
+    
     return result;
-
 }
 
 // convert double hours to 12h format with no suffix
--(NSString*)floatToTime12NS:(double)time {
+- (NSString*)floatToTime12NS:(double)time {
     return [self floatToTime12:time andnoSuffix:YES];
 }
 
 //---------------------- Compute Prayer Times -----------------------
-
 
 // compute prayer times at given julian date
 -(NSMutableArray*)computeTimes:(NSMutableArray*)times {

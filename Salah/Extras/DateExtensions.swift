@@ -1,0 +1,156 @@
+//
+//  DateExtensions.swift
+//  Salah
+//
+//  Created by Haaris Iqubal on 12/13/23.
+//
+
+import Foundation
+
+extension Date {
+    func timeRemainingString(to date: Date) -> String {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute, .second], from: self, to: date)
+        
+        guard let hours = components.hour, let minutes = components.minute, let seconds = components.second else {
+            return "Expired"
+        }
+        
+        if hours > 0 {
+            return String(format: "%02f:%02f:%02f", hours, minutes, seconds)
+        } else {
+            return String(format: "%02f:%02f", minutes, seconds)
+        }
+    }
+    
+    static func timeZoneDifference(offsetOfTimeZone: Double) -> Date {
+            let seconds = TimeZone.current.secondsFromGMT()
+            let hours = Double(seconds/3600)
+            var currentTime = Date()
+            if  offsetOfTimeZone != hours {
+                let differentInTimeZone = offsetOfTimeZone - abs(hours)
+                if let dateTime = currentTime.dateByAddingAlter(timeZoneOffset: differentInTimeZone) {
+                    currentTime = dateTime
+                } else {
+                    print("Error occurred while calculating the date.")
+                }
+            }
+            return currentTime
+        }
+    
+    func dateByAdding(hours: Int, minutes: Int) -> Date? {
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.hour = hours
+        dateComponents.minute = minutes
+        
+        return calendar.date(byAdding: dateComponents, to: self)
+    }
+    
+    func dateByAddingAlter(timeZoneOffset: Double) -> Date? {
+        let hours = Int(timeZoneOffset)
+        let minutes = Int((timeZoneOffset - Double(hours)) * 60)
+        return dateByAdding(hours: hours, minutes: minutes)
+    }
+    
+    func adjusted(byHours hours: Int, minutes: Int, seconds: Int) -> Date {
+        let calendar = Calendar.current
+        var dateComponents = DateComponents()
+        dateComponents.hour = hours
+        dateComponents.minute = minutes
+        dateComponents.second = seconds
+        
+        return calendar.date(byAdding: dateComponents, to: self) ?? self
+    }
+    
+    func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(Set(components), from: self)
+    }
+    
+    func get(_ component: Calendar.Component, calendar: Calendar = Calendar.current) -> Int {
+        return calendar.component(component, from: self)
+    }
+    
+    static func localTime(for country: String) -> String {
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone(identifier: country)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: Date())
+    }
+
+    func convertUTCtoGMT() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.string(from: self)
+    }
+
+    static func convertGMTtoUTC(dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dateFormatter.date(from: dateString)
+    }
+
+    func updateDateTimeFormat(fromFormat: String, toFormat: String) -> String? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = fromFormat
+        dateFormatter.timeZone = TimeZone.current
+        if let date = dateFormatter.date(from: dateFormatter.string(from: self)) {
+            dateFormatter.dateFormat = toFormat
+            return dateFormatter.string(from: date)
+        }
+        return nil
+    }
+
+    func getTimeDifference(from secondDate: Date) -> TimeInterval {
+        return secondDate.timeIntervalSince(self)
+    }
+
+//    func getCurrentDateTime(for country: String) -> String {
+//        let formatter = DateFormatter()
+//        formatter.timeZone = TimeZone(identifier: country)
+//        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        return formatter.string(from: self)
+//    }
+    
+    func getCurrentDateTime(for country: String) -> Date? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.timeZone = TimeZone(identifier: country)
+        
+        let dateString = formatter.string(from: Date())
+        return formatter.date(from: dateString)
+    }
+    
+    func getDateFromTimeZoneOffset(timeZoneIdentifier: String) -> Date {
+        let timeZone = TimeZone(identifier: timeZoneIdentifier)
+
+        if let validTimeZone = timeZone {
+            let adjustedDate = Date().addingTimeInterval(TimeInterval(validTimeZone.secondsFromGMT(for: Date())))
+            return adjustedDate
+        } else {
+            // If the time zone identifier is invalid, return the current date
+            return Date()
+        }
+    }
+
+    
+    func updatedDateFormatAndTimeZone(for date: Date, withTimeZoneOffset timeZoneIdentifier: String, calendarIdentifier: Calendar.Identifier) -> (date: Date, formattedString: String)? {
+        
+        if let timeZone = TimeZone(identifier: timeZoneIdentifier) {
+            var calendar = Calendar(identifier: calendarIdentifier)
+            let dateFormatter = DateFormatter()
+            dateFormatter.calendar = calendar
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .short
+            dateFormatter.timeZone = timeZone
+            let formattedString = dateFormatter.string(from: date)
+            return (date: date, formattedString: formattedString)
+        } else {
+            print("Invalid offset provided.")
+            return nil
+        }
+    }
+
+}

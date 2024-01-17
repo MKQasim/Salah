@@ -8,86 +8,66 @@
 import SwiftUI
 import CoreLocation
 
-struct ManualLocationView: View {
-    @EnvironmentObject private var locationState: LocationState
 
-    @Binding var isSheet:Bool
-    @State private var countryName = ""
-    @State private var cityName = ""
-    
-    @State var dropDownList:[Location] = []
-    @State private var selectedLocation: Location? = nil
-    @State private var searchable = ""
+struct SearchBar: View {
+    @Binding var text: String
 
     var body: some View {
-        NavigationView{
-            Form{
-                List{
-                    ForEach(dropDownList.filter({searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable)}), id: \.self.id){item in
-                        HStack{
-                            Text(item.city ?? "")
-                            Spacer()
-                            if (selectedLocation == item) {
-                                Image(systemName: "checkmark").foregroundStyle(.blue)
-                            }
-                        }
-                        .onTapGesture {
-                            selectedLocation = item
-                        }
-                        
-                    }
-                }
-            }
-            .navigationTitle("Manual Location")
-            #if os(iOS)
-            .searchable(text: $searchable)
-            .navigationBarTitleDisplayMode(.large)
-            #endif
-            .toolbar{
-                ToolbarItem(placement: .primaryAction){
-                    if selectedLocation != nil {
-                        Button(action: {
-                            
-                            getTimeZone(lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0) { timeZone in
-                                print("Time zone offset: \(timeZone) hours")
-                                // Use the timeZone value here or perform additional actions
-                                let newCity = Cities(city: selectedLocation?.city ?? "Nuremberg", lat: selectedLocation?.lat ?? 0.0, long: selectedLocation?.lng ?? 0.0, timeZone: timeZone)
-                                locationState.cities.append(newCity)
-                                isSheet.toggle()
-                            }
-                           
-                        }, label: {
-                            Text("Done")
-                        })
-                    }
-                }
-            }
-        }
-        
-        .onAppear{
-            parseLocalJSONtoFetchLocations()
-        }
+        TextField("Search for a city", text: $text)
+            .padding(8)
+            .background(Color(.gray))
+            .cornerRadius(8)
+            .padding(.horizontal)
     }
-    
-    func getTimeZone(lat: Double, long: Double, completion: @escaping (Double) -> Void) {
-        let offset = TimeZone.current.secondsFromGMT()
-        print(offset) // Your current timezone offset in seconds
+}
 
-        let loc = CLLocation(latitude: lat, longitude: long) // Paris's lon/lat
-        let coder = CLGeocoder()
-        
-        coder.reverseGeocodeLocation(loc) { (placemarks, error) in
-            if let place = placemarks?.last,
-               let secondsFromGMT = Double(place.timeZone?.secondsFromGMT() ?? 0) as? Double{
-                let hours = secondsFromGMT / 3600
-                let offsetString = String(format: "%+f", hours)
-                print(offsetString)
-                completion(hours)
-            } else {
-                completion(0.0) // Default to 0.0 if an error occurs or no timezone information is available
+struct ManualLocationView: View {
+    @State private var isPrayerDetailViewPresented = false
+    @Binding var searchable: String
+    @Binding var isDetailView: Bool
+    var onDismiss: (() -> Void)
+    @State private var dropDownList: [Location] = []
+
+    var body: some View {
+        NavigationView {
+            VStack {
+              
+                List {
+#if os(macOS)
+                    Section {
+                      
+                        SearchBar(text: $searchable)
+                      
+                    }
+#endif
+                    Section {
+                        ForEach(dropDownList.filter { item in
+                            searchable.isEmpty ? true : item.city?.localizedStandardContains(searchable) ?? false
+                        }, id: \.self.id) { item in
+                            NavigationLink(
+                                destination: PrayerDetailViewPreview(
+                                    selectedLocation: item,
+                                    isDetailViewPresented: $isPrayerDetailViewPresented,
+                                    onDismiss: {
+                                        onDismiss()
+                                    }
+                                ),
+                                label: {
+                                    Text(item.city ?? "emp")
+                                }
+                            )
+                        }
+                    }
+                }
+                .listStyle(.plain)
+                .onAppear {
+                    parseLocalJSONtoFetchLocations()
+                }
             }
+            .navigationTitle("Locations")
         }
     }
+
     func parseLocalJSONtoFetchLocations() {
         if let path = Bundle.main.path(forResource: "cities", ofType: "json") {
             do {
@@ -95,18 +75,20 @@ struct ManualLocationView: View {
                 let jsonData = try Data(contentsOf: fileUrl)
                 let location = try? JSONDecoder().decode([Location].self, from: jsonData)
                 dropDownList = location ?? []
-                
-                } catch {
+            } catch {
                 print("Error parsing JSON: \(error)")
             }
         } else {
             print("File not found")
         }
     }
-
 }
 
-//#Preview {
-//    ManualLocationView()
-//        .environmentObject(LocationState())
-//}
+#Preview {
+    @State var isSheet = false
+    @State var isDetailView = true
+    
+    @State var searching = ""
+    return ManualLocationView(searchable: $searching, isDetailView: $isDetailView, onDismiss: {})
+        .environmentObject(LocationState())
+}

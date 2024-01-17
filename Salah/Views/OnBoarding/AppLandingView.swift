@@ -49,7 +49,7 @@ public struct AppLandingView: View {
                     .foregroundColor(.white)
                     .cornerRadius(20)
                     .padding(.bottom,8)
-                    #if os(iOS)
+                    #if !os(watchOS)
                 case .authorized:
                     Button(action: locationCheck, label: {
                         Text("Get current location")
@@ -72,9 +72,6 @@ public struct AppLandingView: View {
                     .cornerRadius(20)
                     .padding(.bottom,8)
                 }
-                
-//                NavigationLink("Don't want to share location", destination: ManualLocationView())
-//                    .padding(.bottom,8)
             }
             .padding()
         }
@@ -90,17 +87,11 @@ public struct AppLandingView: View {
         case .authorizedAlways, .authorizedWhenInUse:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.defaultLatitude = userCoordinates.latitude
-            locationState.defaultLongitude = userCoordinates.longitude
-            locationState.defaultTimeZone = +1.0
             locationState.isLocation = true
-            #if os(iOS)
+            #if !os(watchOS)
         case .authorized:
             locationManager.requestLocation()
             guard let userCoordinates = locationManager.lastLocation?.coordinate else {return}
-            locationState.defaultLatitude = userCoordinates.latitude
-            locationState.defaultLongitude = userCoordinates.longitude
-            locationState.defaultTimeZone = +1.0
             locationState.isLocation = true
             #endif
         default:

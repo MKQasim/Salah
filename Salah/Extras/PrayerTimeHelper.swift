@@ -27,13 +27,55 @@ class PrayerTimeHelper: ObservableObject {
     static let shared = PrayerTimeHelper()
     
     init() {
-        timeFormatter.dateFormat = "HH:mm"
+        timeFormatter.dateFormat = "HH:mm:ss"
     }
     // Function to format remaining time
     func formatRemainingTime(_ remainingTime: String) -> String {
         // Implement your formatting logic here
         return remainingTime
     }
+    
+    func testPrayers(location: Location) {
+        // Create an instance of PrayTimes
+        let prayTimes = PrayTimes()
+
+        // Set the location details
+        guard let locationLatitude = location.lat, let locationLongitude = location.lng else {
+            print("Error: Location coordinates are missing.")
+            return
+        }
+
+        let timeZoneOffset = prayTimes.getTimeZone()
+
+        // Set the location and time zone
+        prayTimes.lat = locationLatitude
+        prayTimes.lng = locationLongitude
+        prayTimes.timeZone = timeZoneOffset
+
+        // Set the calculation method
+        prayTimes.setCalcMethod(methodID: prayTimes.calcMethod.rawValue)
+
+        // Set the number of iterations (you can adjust this value)
+        prayTimes.numIterations = 5
+
+        // Compute prayer times for the day
+        let prayerTimesArray = prayTimes.computeDayTimes()
+
+        // Check if the prayer times are available
+        if !prayerTimesArray.isEmpty {
+            // Access the prayer times from the prayerTimesCurrent property
+            let prayerTimesList = prayTimes.prayerTimesCurrent
+
+            // Print or use the list of prayer times
+            for (index, time) in prayerTimesList.enumerated() {
+                let prayerName = prayTimes.timeNames[index]
+                print("\(prayerName): \(time)")
+            }
+        } else {
+            print("Error: Unable to compute prayer times.")
+        }
+    }
+
     // Function to fetch the prayer timings
     func getSalahTimings(location: Location, date: Date = Date(), completion: @escaping (Location?) -> Void) {
         var todayPrayerTiming = [PrayerTiming]()
@@ -60,7 +102,11 @@ class PrayerTimeHelper: ObservableObject {
 
         // Adjust the date by using the time zone
         let adjustedDate = calendar.date(bySettingHour: 0, minute: 0, second: 0, of: adjustedDateByOffset) ?? adjustedDateByOffset
-
+       
+        let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
+        let adjustedDateComponents = calendar.dateComponents(components, from: adjustedDate)
+        
+        
         let permissionsManager = PermissionsManager.shared
         let localPrayTimeSetting = permissionsManager.prayTime ?? LocalPrayTimeSetting()
         let allSettings = permissionsManager.settingsData
@@ -80,6 +126,10 @@ class PrayerTimeHelper: ObservableObject {
         print(localPrayTimeSetting.timeFormat.rawValue)
 
         let mutableNames = time.timeNames!
+        
+//        testPrayers(location: location)
+        
+        
         let salahNaming: [String] = mutableNames.compactMap({ $0 as? String })
 
         let getTodayTime = time.getDatePrayerTimes(Int32(adjustedDate.get(.year)),
@@ -147,7 +197,7 @@ class PrayerTimeHelper: ObservableObject {
 
     func getDateForTime(_ time: String, option: DateOption) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "HH:mm:ss"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Set UTC timezone
         
         if let timeDate = dateFormatter.date(from: time) {
@@ -242,7 +292,7 @@ class PrayerTimeHelper: ObservableObject {
             dateFormatter.dateFormat = "dd MMMM yyyy HH:mm" // Islamic calendar format
         } else {
             dateFormatter.calendar = Calendar(identifier: .gregorian)
-            dateFormatter.dateFormat = "HH:mm"
+            dateFormatter.dateFormat = "HH:mm:ss"
         }
         
         if let localeIdentifier = localeIdentifier {
@@ -265,7 +315,7 @@ class PrayerTimeHelper: ObservableObject {
     
     func compareTimeStrings(firstTime: String, secondTime: String) -> ComparisonResult? {
         
-        timeFormatter.dateFormat = "HH:mm"
+        timeFormatter.dateFormat = "HH:mm:ss"
         
         // Convert time strings to Date objects
         guard let firstDate = timeFormatter.date(from: firstTime),
@@ -329,7 +379,7 @@ class PrayerTimeHelper: ObservableObject {
         
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = timeZone
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "HH:mm:ss"
         
         var earliestPrayer: PrayerTiming? = nil
         var minTimeDifference = TimeInterval.greatestFiniteMagnitude
@@ -459,12 +509,6 @@ extension PrayerTimeHelper {
         }
     }
     
-    func syncTimeName(with prayTime: LocalPrayTimeSetting, value: Int) {
-        if let name = PrayerTimeSetting.TimeName(rawValue: value) {
-            prayTime.setTimeName(name)
-        }
-    }
-    
     func syncSetting(with prayTime: LocalPrayTimeSetting, setting: Setting) {
         if let dropdownType = setting.settingType?.dropdownType {
             switch dropdownType {
@@ -484,22 +528,17 @@ extension PrayerTimeHelper {
                 if let timeFormat = PrayerTimeSetting.TimeFormat(rawValue: setting.selectedOptionIndex ?? 0) {
                     prayTime.setTimeFormat(timeFormat)
                 }
-            case .timeName:
-                if let timeName = PrayerTimeSetting.TimeName(rawValue: setting.selectedOptionIndex ?? 0) {
-                    prayTime.setTimeName(timeName)
-                }
             }
         }
     }
 }
 
-class LocalPrayTimeSetting: ObservableObject {
+public class LocalPrayTimeSetting: ObservableObject {
     
     @Published var calculationMethod: PrayerTimeSetting.CalculationMethod = .jafari
     @Published var juristicMethod: PrayerTimeSetting.JuristicMethod = .shafii
-    @Published var adjustingMethod: PrayerTimeSetting.AdjustingMethod = .none
+    @Published var adjustingMethod: PrayerTimeSetting.AdjustingMethod = .angleBased
     @Published var timeFormat: PrayerTimeSetting.TimeFormat = .time24
-    @Published var timeName: PrayerTimeSetting.TimeName = .timeName1
     
     func setCalculationMethod(_ method: PrayerTimeSetting.CalculationMethod) {
         calculationMethod = method
@@ -515,10 +554,6 @@ class LocalPrayTimeSetting: ObservableObject {
     
     func setTimeFormat(_ format: PrayerTimeSetting.TimeFormat) {
         timeFormat = format
-    }
-    
-    func setTimeName(_ name: PrayerTimeSetting.TimeName) {
-        timeName = name
     }
 }
 

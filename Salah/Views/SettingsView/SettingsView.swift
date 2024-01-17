@@ -75,7 +75,7 @@ class FileStorageManager {
             Setting(title: "Juristic Method", description: "Choose juristic method", isPermissionEnabled: false, settingType: .dropdown(.juristicMethod), permissionType: nil),
             Setting(title: "Adjusting Method", description: "Choose adjusting method", isPermissionEnabled: false, settingType: .dropdown(.adjustingMethod), permissionType: nil),
             Setting(title: "Time Format", description: "Choose time format", isPermissionEnabled: false, settingType: .dropdown(.timeFormat), permissionType: nil),
-            Setting(title: "Time Name", description: "Choose time name", isPermissionEnabled: false, settingType: .dropdown(.timeName), permissionType: nil),
+//            Setting(title: "Time Name", description: "Choose time name", isPermissionEnabled: false, settingType: .dropdown(.timeName), permissionType: nil),
             Setting(title: "Privacy", description: "Manage your privacy settings", isPermissionEnabled: false, settingType: .simple("Privacy"), permissionType: nil),
             Setting(title: "Account", description: "View and manage your account details", isPermissionEnabled: false, settingType: .simple("Account"), permissionType: nil),
             Setting(title: "Help & Support", description: "Get help and support", isPermissionEnabled: false, settingType: .simple("Help & Support"), permissionType: nil)
@@ -194,7 +194,6 @@ enum DropdownType: Identifiable, Equatable , Codable{
     case juristicMethod
     case adjustingMethod
     case timeFormat
-    case timeName
     
     var id: String {
         switch self {
@@ -206,8 +205,7 @@ enum DropdownType: Identifiable, Equatable , Codable{
             return "adjustingMethod"
         case .timeFormat:
             return "timeFormat"
-        case .timeName:
-            return "timeName"
+        
         }
     }
     
@@ -221,8 +219,7 @@ enum DropdownType: Identifiable, Equatable , Codable{
             return PrayerTimeSetting.AdjustingMethod.allCases.map { $0.stringValue }
         case .timeFormat:
             return PrayerTimeSetting.TimeFormat.allCases.map { $0.stringValue }
-        case .timeName:
-            return PrayerTimeSetting.TimeName.allCases.map { $0.stringValue }
+      
         }
     }
 }
@@ -507,8 +504,7 @@ class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDe
             prayerTimeHelper.syncAdjustingMethod(with: prayTime, value: value)
         case .timeFormat:
             prayerTimeHelper.syncTimeFormat(with: prayTime, value: value)
-        case .timeName:
-            prayerTimeHelper.syncTimeName(with: prayTime, value: value)
+        
         }
     }
     
@@ -692,12 +688,6 @@ struct DropdownSettingsRow: View {
             case .timeFormat:
                 if let updatedTimeFormat = PrayerTimeSetting.TimeFormat(rawValue: selectedOptionIndex) {
                     localPrayTimeSetting.timeFormat = updatedTimeFormat
-                    setting.selectedOptionIndex = selectedOptionIndex
-                    updateSettingsManager?(setting)
-                }
-            case .timeName:
-                if let updatedTimeName = PrayerTimeSetting.TimeName(rawValue: selectedOptionIndex) {
-                    localPrayTimeSetting.timeName = updatedTimeName
                     setting.selectedOptionIndex = selectedOptionIndex
                     updateSettingsManager?(setting)
                 }

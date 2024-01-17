@@ -41,6 +41,7 @@ struct QiblaView: View {
     }
 
     private func startDeviceMotionUpdates() {
+        #if os(iOS)
         let motionManager = CMMotionManager()
         if motionManager.isDeviceMotionAvailable {
             motionManager.deviceMotionUpdateInterval = 0.1
@@ -50,11 +51,15 @@ struct QiblaView: View {
                 deviceOrientation.updateDeviceDirection(attitude: attitude)
             }
         }
+        #endif
+        
     }
 
     private func stopDeviceMotionUpdates() {
+#if os(iOS)
         let motionManager = CMMotionManager()
         motionManager.stopDeviceMotionUpdates()
+#endif
     }
 }
 
@@ -206,14 +211,15 @@ extension BinaryFloatingPoint {
 
 class OrientationManager: ObservableObject {
     @Published var deviceDirection: DeviceDirection = .unknown
-
+    #if os(ios)
     private let motionManager = CMMotionManager()
-
+#endif
     init() {
         startDeviceMotionUpdates()
     }
 
     private func startDeviceMotionUpdates() {
+#if os(ios)
         if motionManager.isDeviceMotionAvailable {
             motionManager.deviceMotionUpdateInterval = 0.1
             motionManager.startDeviceMotionUpdates(to: .main) { [weak self] motion, error in
@@ -221,6 +227,8 @@ class OrientationManager: ObservableObject {
                 self?.updateDeviceDirection(attitude: motion.attitude)
             }
         }
+#endif
+        
     }
 
     func updateDeviceDirection(attitude: CMAttitude) {

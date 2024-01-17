@@ -16,7 +16,7 @@ struct DetailLocationListRowCellView: View {
     @State private var nextSalah = ""
     @State private var remTime = ""
     
-    var countdownTimer: TimerManager?
+    var timeManager: TimerManager?
     var timerUpdated: ((String) -> Void)?
 
     let location: Location?
@@ -79,7 +79,7 @@ struct DetailLocationListRowCellView: View {
         
         guard let endDate = location.nextPrayer?.time, let unwrappedStartDate = startDate else { return }
         
-        countdownTimer?.stopTimer()
+        timeManager?.stopTimer()
         
         startDate?.startCountdownTimer(from: unwrappedStartDate, to: endDate) { formattedTime in
             self.remTime = formattedTime

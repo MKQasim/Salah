@@ -45,8 +45,10 @@ struct TabbarView: View {
             } else {
                 if locationState.isLocation {
                     PrayerDetailView(
-                        selectedLocation: locationState.currentLocation ?? Location(), // Provide a default value if currentLocation is nil
-                        isDetailViewPresented: $isPrayerDetailViewPresented // Pass the binding
+                        selectedLocation: locationState.currentLocation,
+                        isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
+                        print("onDismiss")
+                        }
                     )
                     .navigationTitle(locationState.currentLocation?.city ?? "Nuremberg")
                     .tag(NavigationItem.currentLocation)
@@ -58,10 +60,11 @@ struct TabbarView: View {
             ForEach(locationState.cities, id: \.self) { location in
                 VStack {
                     PrayerDetailView(
-                        selectedLocation: location, // Provide a default value if currentLocation is nil
-                        isDetailViewPresented: $isPrayerDetailViewPresented // Pass the binding
+                        selectedLocation: location,
+                        isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
+                        print("onDismiss")
+                        }
                     )
-//                    PrayerDetailView(selectedLocation: location)
                 }
                 .navigationTitle(location.city ?? "")
                 .tag(NavigationItem.location(location))

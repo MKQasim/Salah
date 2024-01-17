@@ -45,11 +45,11 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
             throw DecodingError.dataCorruptedError(forKey: .time, in: container, debugDescription: "Date string cannot be decoded.")
         }
     }
-
+    
     
     func getDateForTime(_ time: String) -> Date? {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "HH:mm:ss"
         dateFormatter.timeZone = TimeZone(secondsFromGMT: 0) // Set UTC timezone
         
         if let timeDate = dateFormatter.date(from: time) {
@@ -62,11 +62,11 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
             // Combine date components with the timeDate
             if let combinedDate = calendar.date(bySettingHour: calendar.component(.hour, from: timeDate),
                                                 minute: calendar.component(.minute, from: timeDate),
-                                                second: 0,
+                                                second: components.second ?? 0,
                                                 of: currentDate) {
                 let combinedDateTime = calendar.date(bySettingHour: calendar.component(.hour, from: combinedDate),
                                                      minute: calendar.component(.minute, from: combinedDate),
-                                                     second: 0,
+                                                     second:calendar.component(.second, from: combinedDate),
                                                      of: currentDate)
                 return combinedDateTime
             }
@@ -99,7 +99,7 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
         } else {
             // Default to Gregorian calendar if no specific calendar is provided
             dateFormatter.calendar = Calendar(identifier: .gregorian)
-            dateFormatter.dateFormat = "HH:mm" // Default format
+            dateFormatter.dateFormat = "HH:mm:ss" // Default format
         }
         
         if let localeIdentifier = localeIdentifier {
@@ -110,8 +110,8 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
         
         return dateFormatter.string(from: date)
     }
-
-
+    
+    
     func formatDate(_ date: Date, calendarIdentifier: Calendar.Identifier? = nil, localeIdentifier: String? = nil, timeZoneOffsetHours: Double? = nil) -> Date? {
         let dateFormatter = DateFormatter()
         
@@ -121,7 +121,7 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
         } else {
             // Default to Gregorian calendar if no specific calendar is provided
             dateFormatter.calendar = Calendar(identifier: .gregorian)
-            dateFormatter.dateFormat = "HH:mm" // Default format
+            dateFormatter.dateFormat = "HH:mm:ss" // Default format
         }
         
         if let localeIdentifier = localeIdentifier {
@@ -171,5 +171,7 @@ struct PrayerTiming: Identifiable, Hashable, Codable {
             return nil
         }
     }
-
+    
 }
+
+

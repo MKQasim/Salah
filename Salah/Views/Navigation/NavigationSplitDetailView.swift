@@ -14,6 +14,7 @@ struct NavigationSplitDetailView: View {
     @State private var isPrayerDetailViewPresented = false
     @State private var searchable = ""
     @State private var isSheet = false
+    @State private var isSheetSetting = false
     @State private var isDetail = false
     var body: some View {
         NavigationSplitView{
@@ -33,14 +34,19 @@ struct NavigationSplitDetailView: View {
                         Text(location.city ?? "")
                     })
                 }
+                Button(action: {
+                    isSheet.toggle()
+                }, label: {
+                    Label("Add a city",systemImage: "plus")
+                })
             }
             .navigationTitle("Salah")
             .toolbar{
                 ToolbarItem(id: "sidebar", placement: .primaryAction){
                     Button(action: {
-                        isSheet.toggle()
+                        isSheetSetting.toggle()
                     }, label: {
-                        Label("Open add city", systemImage: "plus")
+                        Label("Open add city", systemImage: "gear")
                     })
                 }
             }
@@ -66,8 +72,12 @@ struct NavigationSplitDetailView: View {
                         AngularGradient(colors: [.journal,.journal2], center: .bottomTrailing)
                     )
             case .location(let location):
-                PrayerDetailView(selectedLocation:location, isDetailViewPresented: $isPrayerDetailViewPresented)
-                    .navigationTitle(location.city ?? "")
+                PrayerDetailView(
+                    selectedLocation: location,
+                    isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
+                    print("onDismiss")
+                    }
+                ).navigationTitle(location.city ?? "")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
@@ -83,25 +93,41 @@ struct NavigationSplitDetailView: View {
                 Text(" Location Added qiblaDirection ")
             }
         }
-        .sheet(isPresented: $isSheet){
+        .overlay(EmptyView().sheet(isPresented: $isSheet, content: {
             NavigationStack{
-                ManualLocationView(searchable: $searchable, isDetailView: $isDetail, onDismiss: {
-                    print($isPrayerDetailViewPresented , "sheet(isPresented: $isSheet)")
-                })
-                    .toolbar{
-                        ToolbarItem(placement: .cancellationAction, content: {
-                            Button(action: {
-                                isSheet.toggle()
-                            }, label: {
-                                Text("Cancel")
-                            })
-                        })
+                ManualLocationView(
+                    searchable: $searchable,
+                    isDetailView: $isDetail,
+                    onDismiss: {
+                        print($isPrayerDetailViewPresented , "onDismiss called")
+                        // Handle the dismissal of ManualLocationView, e.g., pop the view
+                        isDetail = false // Set the state variable to dismiss the view
+                        // Additional logic for dismissal if needed
+                        isSheet.toggle()
                     }
+                )
+#if os(iOS)
+                .searchable(text: $searchable, placement: .navigationBarDrawer(displayMode: .always),prompt: "Search for a city")
+#endif
+                .toolbar{
+                    ToolbarItem(placement: .cancellationAction, content: {
+                        Button(action: {
+                            isSheet.toggle()
+                        }, label: {
+                            Text("Cancel")
+                        })
+                    })
+                }
             }
-            #if os(macOS)
-            .frame(minWidth: 600, minHeight: 400)
-            #endif
-        }
+#if os(macOS)
+.frame(minWidth: 600, minHeight: 400)
+#endif
+        }))
+        .overlay(EmptyView().sheet(isPresented: $isSheetSetting, content: {
+            NavigationStack{
+                SettingsView()
+            }
+        }))
         .onAppear{
             if navigationState.sidebarSelection == nil {
                 if locationState.isLocation {

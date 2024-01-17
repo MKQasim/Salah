@@ -19,7 +19,7 @@ struct PrayerDetailView: View {
     @State private var tomorrowPrayerTimes: [PrayerTiming] = []
     @State private var sunTimes: [PrayerTiming] = []
     @State private var selectedPrayer: PrayerTiming? = nil
-    @State private var isUpdate = false
+    @State private var isUpdate = true
     @State private var timeNow = ""
     @State private var nextSalah = ""
     @State private var remainingTime: TimeInterval = 0
@@ -82,6 +82,8 @@ struct PrayerDetailView: View {
         }
         .padding(.top, 10)
         .onAppear{
+            
+          
             Task{
             setUpView()
             updateCounter()
@@ -261,28 +263,16 @@ struct PrayerDetailViewPreview: View {
        
 #if os(iOS)
 .navigationBarItems(trailing:
-    Button(action: {
-        addLocation()
-    }) {
-        Text(isOpenedAfterSearch ? "Preview" : "Add")
-    }
-    .disabled(isLocationAdded) // Disable the button when location is added
+                        Button(action: {
+                                         addLocation()
+                                     }) {
+                                         Text(isOpenedAfterSearch ? "Preview" : "Add")
+                                     }
+                                     .disabled(isLocationAdded) // Disable the button when location is added
+                                
 )
 .navigationBarTitle(selectedLocation?.city ?? "", displayMode: .automatic)
-#elseif os(macOS)
-.toolbar {
-    ToolbarItem(placement: .primaryAction) {
-        Button(action: {
-            addLocation()
-        }) {
-            Text(isOpenedAfterSearch ? "Preview" : "Add")
-        }
-        .disabled(isLocationAdded) // Disable the button when location is added
-    }
-}
-.presentedWindowToolbarStyle(DefaultWindowToolbarStyle()) // You can replace DefaultWindowToolbarStyle with the desired style
 #endif
-
 //        .task {
 //            await setUpView()
 //            updateCounter()
@@ -366,7 +356,6 @@ struct PrayerDetailViewPreview: View {
         }
     }
 }
-
 //#Preview {
 //    let city = Cities(city: "Nuremberg", lat: 28.61, long: 77.20, timeZone: +5.5)
 //    return PrayerDetailView(city: city)

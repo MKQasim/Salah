@@ -74,6 +74,13 @@ struct LocationDetailView: View {
         }
         .toolbar {
 #if os(iOS)
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {
+                    isFullScreenView.toggle()
+                }, label: {
+                    Label("Close", systemImage: "multiply")
+                })
+            }
             ToolbarItem(placement: .navigationBarTrailing) {
                 NavigationLink(destination: SettingsView(), label: {
                     Label("Settings", systemImage: "gear.circle").foregroundColor(.gray)

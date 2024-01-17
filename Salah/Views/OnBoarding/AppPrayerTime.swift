@@ -8,8 +8,8 @@
 import Foundation
 
 
-enum PrayerTimeSetting {
-    enum CalculationMethod: Int {
+public enum PrayerTimeSetting {
+   public enum CalculationMethod: Int {
         case jafari = 0
         case karachi
         case isna
@@ -20,7 +20,7 @@ enum PrayerTimeSetting {
         case tehran
         
         // Retrieve associated string for each enum case
-        var stringValue: String {
+       public var stringValue: String {
             switch self {
             case .jafari:
                 return "Ithna Ashari"
@@ -42,11 +42,11 @@ enum PrayerTimeSetting {
         }
     }
     
-    enum JuristicMethod: Int {
+    public enum JuristicMethod: Int {
         case shafii = 0
         case hanafi
         
-        var stringValue: String {
+        public  var stringValue: String {
             switch self {
             case .shafii:
                 return "Shafii (standard)"
@@ -56,13 +56,13 @@ enum PrayerTimeSetting {
         }
     }
     
-    enum AdjustingMethod: Int {
+    public enum AdjustingMethod: Int {
         case none = 0
         case midnight
         case oneSeventh
         case angleBased
         
-        var stringValue: String {
+        public  var stringValue: String {
             switch self {
             case .none:
                 return "No adjustment"
@@ -76,13 +76,13 @@ enum PrayerTimeSetting {
         }
     }
     
-    enum TimeFormat: Int {
+    public enum TimeFormat: Int {
         case time24 = 0
         case time12
         case time12NS
         case float
         
-        var stringValue: String {
+        public var stringValue: String {
             switch self {
             case .time24:
                 return "24-hour format"
@@ -96,22 +96,6 @@ enum PrayerTimeSetting {
         }
     }
     
-    enum TimeName: Int {
-        case timeName1 = 0
-        case timeName2
-        case timeName3
-        
-        var stringValue: String {
-            switch self {
-            case .timeName1:
-                return "Time Name 1"
-            case .timeName2:
-                return "Time Name 2"
-            case .timeName3:
-                return "Time Name 3"
-            }
-        }
-    }
 }
 
 extension PrayerTimeSetting.CalculationMethod {
@@ -138,8 +122,3 @@ extension PrayerTimeSetting.TimeFormat {
     }
 }
 
-extension PrayerTimeSetting.TimeName {
-    static var allCases: [PrayerTimeSetting.TimeName] {
-        return [.timeName1, .timeName2, .timeName3]
-    }
-}

@@ -8,49 +8,66 @@
 import SwiftUI
 import CoreLocation
 
+
+struct SearchBar: View {
+    @Binding var text: String
+
+    var body: some View {
+        TextField("Search for a city", text: $text)
+            .padding(8)
+            .background(Color(.gray))
+            .cornerRadius(8)
+            .padding(.horizontal)
+    }
+}
+
 struct ManualLocationView: View {
-    @State private var isPrayerDetailViewPresented = false // New state to manage presentation
-    @Environment(\.dismissSearch) private var dismissSearchAction
-    @Environment(\.colorScheme) private var colorScheme
-    @EnvironmentObject private var locationState: LocationState
-    @EnvironmentObject private var navigationState: NavigationState
+    @State private var isPrayerDetailViewPresented = false
     @Binding var searchable: String
     @Binding var isDetailView: Bool
     var onDismiss: (() -> Void)
-    @State private var countryName = ""
-    @State private var cityName = ""
-    @State var dropDownList: [Location] = []
-    @State private var selectedLocation: Location? = nil
-    @State private var isAddCitySheet = false
-    @State private var isAddCitySelected = false
-    
+    @State private var dropDownList: [Location] = []
+
     var body: some View {
         NavigationView {
-            List {
-                ForEach(dropDownList.filter({ searchable.isEmpty ? true : $0.city!.localizedStandardContains(searchable) }), id: \.self.id) { item in
-                    NavigationLink(
-                        destination: PrayerDetailViewPreview(
-                            selectedLocation: item,
-                            isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
-                            onDismiss()
-                            }
-                        ),
-                        label: {
-                            Text(item.city ?? "emp")
+            VStack {
+              
+                List {
+#if os(macOS)
+                    Section {
+                      
+                        SearchBar(text: $searchable)
+                      
+                    }
+#endif
+                    Section {
+                        ForEach(dropDownList.filter { item in
+                            searchable.isEmpty ? true : item.city?.localizedStandardContains(searchable) ?? false
+                        }, id: \.self.id) { item in
+                            NavigationLink(
+                                destination: PrayerDetailViewPreview(
+                                    selectedLocation: item,
+                                    isDetailViewPresented: $isPrayerDetailViewPresented,
+                                    onDismiss: {
+                                        onDismiss()
+                                    }
+                                ),
+                                label: {
+                                    Text(item.city ?? "emp")
+                                }
+                            )
                         }
-                    )
+                    }
+                }
+                .listStyle(.plain)
+                .onAppear {
+                    parseLocalJSONtoFetchLocations()
                 }
             }
-            .listStyle(.plain)
-            .onAppear {
-                parseLocalJSONtoFetchLocations()
-            }
-            #if os(iOS)
-            .navigationBarTitle("Locations", displayMode: .automatic)
-            #endif
+            .navigationTitle("Locations")
         }
     }
-    
+
     func parseLocalJSONtoFetchLocations() {
         if let path = Bundle.main.path(forResource: "cities", ofType: "json") {
             do {
@@ -66,8 +83,6 @@ struct ManualLocationView: View {
         }
     }
 }
-
-
 
 #Preview {
     @State var isSheet = false

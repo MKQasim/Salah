@@ -8,19 +8,26 @@
 import SwiftUI
 
 struct SectionHeaderView: View {
-    let title:String
+    let title: String
+    
     var body: some View {
-        VStack{
-            Text(title).font(.subheadline)
+        VStack {
+            Text(title)
+                .font(.subheadline)
                 .fontWeight(.heavy)
-                .foregroundStyle(.gray)
+                .foregroundStyle(.white)
         }
-            .frame(maxWidth: .infinity,alignment: .leading)
-            .padding()
-            .background(.thinMaterial)
-            .cornerRadius(10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(
+            LinearGradient(gradient: Gradient(colors: [.gray, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        )
+        .cornerRadius(10)
     }
 }
+
+
+
 
 #Preview {
     let title = "Header"

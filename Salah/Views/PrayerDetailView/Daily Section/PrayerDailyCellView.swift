@@ -11,20 +11,32 @@ struct PrayerDailyCellView: View {
     let prayer: PrayerTiming
 
     var body: some View {
-        VStack{
+        VStack {
             Image(systemName: "sun.max.fill")
                 .foregroundColor(.orange)
                 .font(.title)
+                .frame(maxWidth: .infinity)
+            
             Text(prayer.name ?? "")
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(.primary)
+                .padding(.top, 4)
+            
             Text("\(prayer.formatDateString(prayer.time ?? Date()))")
-                .foregroundStyle(.gray)
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .padding(.top, 2)
         }
         .padding()
-        .frame(minWidth: 120, maxWidth: .infinity,minHeight: 120)
-        .background(.thinMaterial)
+        .frame(minWidth: 120, maxWidth: .infinity, minHeight: 120)
+        .background(
+            LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        )
         .cornerRadius(10)
     }
 }
+
 
 #Preview {
     let prayerTime = PrayerTiming(name: "Fajr", time: Date())

@@ -33,6 +33,7 @@ struct NavigationSplitDetailView: View {
                     NavigationLink(value: NavigationItem.location(location), label: {
                         Text(location.city ?? "")
                     })
+                    .tag(location)
                 }
                 Button(action: {
                     isSheet.toggle()
@@ -74,10 +75,7 @@ struct NavigationSplitDetailView: View {
             case .location(let location):
                 PrayerDetailView(
                     selectedLocation: location,
-                    isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
-                    print("onDismiss")
-                    }
-                ).navigationTitle(location.city ?? "")
+                    isDetailViewPresented: $isPrayerDetailViewPresented).navigationTitle(location.city ?? "")
                 #if !os(macOS)
                     .toolbarBackground(.automatic, for: .navigationBar)
                     .toolbarBackground(.ultraThinMaterial, for: .navigationBar)

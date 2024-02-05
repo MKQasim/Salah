@@ -33,73 +33,42 @@ struct PrayerDetailView: View {
 
     var body: some View {
         ScrollView(.vertical) {
-            VStack{
-                VStack(spacing: 10) {
-                    if selectedPrayer != nil {
-                        HStack {
-                            Image(systemName: "timer")
-                                .foregroundColor(.green)
-                                .font(.title2)
-                                .fontWeight(.black)
-                            
-                            Text("Next Prayer in : \(remTime)")
-                                .font(.title2)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(spacing: 20) {
+                VStack {
+                    if let selectedPrayer = selectedPrayer {
+                        PrayerInfoView(systemName: "timer", title: "Next Prayer in", value: remTime, gradientColors: [.green, .blue])
                     }
-                    
-                    HStack {
-                        Image(systemName: "clock.arrow.circlepath")
-                            .font(.title2)
-                            .foregroundColor(.orange)
-                        
-                        Text("\(nextSalah)")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    HStack {
-                        Image(systemName: "calendar")
-                            .font(.title2)
-                            .foregroundColor(.blue)
-                        
-                        Text("\(timeNow)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.title2)
-                    }
+
+                    FeatureRow(systemName: "clock.arrow.circlepath", color: .yellow, title: "Next Prayer", value: nextSalah)
+                    FeatureRow(systemName: "calendar", color: .pink, title: "Current Time", value: timeNow)
                 }
                 .padding()
-                .background(.thinMaterial)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                   
+                )
                 .cornerRadius(20)
-                .frame(minWidth: 140)
+                .shadow(radius: 5)
+
                 PrayerSunSection(sunTimes: $sunTimes)
-                PrayerTodaySectionView(prayerTimes: $todayPrayersTimes, nextSalah: $selectedPrayer)
+                PrayerTodaySectionView(selectedLocation: $selectedLocation, nextSalah: $selectedPrayer)
                 PrayerTomorowSection(selectedLocation: $selectedLocation)
-                PrayerWeeklySectionView(selectedLocation: selectedLocation  ?? Location())
+                PrayerWeeklySectionView(selectedLocation: selectedLocation ?? Location())
             }
             .padding([.leading, .trailing])
-        }
-        .padding(.top, 10)
-        .onAppear{
-            
-          
-            Task{
-            setUpView()
-            updateCounter()
+            .padding(.top, 10)
+            .onAppear {
+                Task {
+                    await setUpView()
+                    updateCounter()
+                }
             }
-                    
         }
-       
-#if os(iOS)
-.navigationBarTitle(selectedLocation?.city ?? "", displayMode: .automatic)
-#endif
-//        .task {
-//            await setUpView()
-//            updateCounter()
-//        }
+        .navigationBarTitle(selectedLocation?.city ?? "", displayMode: .automatic)
     }
-    
+
+   
+
     func addLocation() {
         locationState.cities.append(selectedLocation ?? Location())
         if let newSelectedLocation = selectedLocation {
@@ -178,6 +147,56 @@ struct PrayerDetailView: View {
     }
 }
 
+struct FeatureRow: View {
+    var systemName: String
+    var color: Color
+    var title: String
+    var value: String
+    
+    var body: some View {
+        HStack {
+            Image(systemName: systemName)
+                .font(.title2)
+                .foregroundColor(color)
+            
+            Text(value)
+                .font(.title2)
+                .fontWeight(.bold)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(
+            LinearGradient(gradient: Gradient(colors: [.gray,.blue]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .cornerRadius(20)
+        )
+    }
+}
+
+struct PrayerInfoView: View {
+    var systemName: String
+    var title: String
+    var value: String
+    var gradientColors: [Color]
+
+    var body: some View {
+        HStack {
+            Image(systemName: systemName)
+                .foregroundColor(.green)
+                .font(.title2)
+                .fontWeight(.black)
+            
+            Text("\(title): \(value)")
+                .font(.title2)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(
+            LinearGradient(gradient: Gradient(colors: gradientColors), startPoint: .topLeading, endPoint: .bottomTrailing)
+                .cornerRadius(20)
+        )
+    }
+}
+
 struct PrayerDetailViewPreview: View {
     // MARK: View States
     @EnvironmentObject private var locationState: LocationState
@@ -205,52 +224,36 @@ struct PrayerDetailViewPreview: View {
 
     var body: some View {
         ScrollView(.vertical) {
-            VStack{
-                VStack(spacing: 10) {
-                    if selectedPrayer != nil {
-                        HStack {
-                            Image(systemName: "timer")
-                                .foregroundColor(.green)
-                                .font(.title2)
-                                .fontWeight(.black)
-                            
-                            Text("Next Prayer in : \(remTime)")
-                                .font(.title2)
-                        }
-                        .frame(maxWidth: .infinity, alignment: .leading)
+            VStack(spacing: 20) {
+                VStack {
+                    if let selectedPrayer = selectedPrayer {
+                        PrayerInfoView(systemName: "timer", title: "Next Prayer in", value: remTime, gradientColors: [.green, .blue])
                     }
-                    
-                    HStack {
-                        Image(systemName: "clock.arrow.circlepath")
-                            .font(.title2)
-                            .foregroundColor(.orange)
-                        
-                        Text("\(nextSalah)")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    HStack {
-                        Image(systemName: "calendar")
-                            .font(.title2)
-                            .foregroundColor(.blue)
-                        
-                        Text("\(timeNow)")
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .font(.title2)
-                    }
+
+                    FeatureRow(systemName: "clock.arrow.circlepath", color: .yellow, title: "Next Prayer", value: nextSalah)
+                    FeatureRow(systemName: "calendar", color: .pink, title: "Current Time", value: timeNow)
                 }
                 .padding()
-                .background(.thinMaterial)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+                   
+                )
                 .cornerRadius(20)
-                .frame(minWidth: 140)
+                .shadow(radius: 5)
+
                 PrayerSunSection(sunTimes: $sunTimes)
-                PrayerTodaySectionView(prayerTimes: $todayPrayersTimes, nextSalah: $selectedPrayer)
+                PrayerTodaySectionView(selectedLocation: $selectedLocation, nextSalah: $selectedPrayer)
                 PrayerTomorowSection(selectedLocation: $selectedLocation)
-                PrayerWeeklySectionView(selectedLocation: selectedLocation  ?? Location())
+                PrayerWeeklySectionView(selectedLocation: selectedLocation ?? Location())
             }
             .padding([.leading, .trailing])
+            .padding(.top, 10)
+            .onAppear {
+                Task {
+                    await setUpView()
+                    updateCounter()
+                }
+            }
         }
         .padding(.top, 10)
         .onAppear{

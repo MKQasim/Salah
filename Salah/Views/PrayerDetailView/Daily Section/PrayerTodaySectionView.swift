@@ -7,28 +7,47 @@
 
 import SwiftUI
 
+//struct PrayerTodaySectionView: View {
+//    @Binding var prayerTimes: [PrayerTiming]
+//    @Binding var nextSalah: PrayerTiming?
+//    @State private var remainingTime: String = ""
+//    let column = [GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150))]
+//    
+//    var body: some View {
+//        LazyVGrid(columns: column, pinnedViews: .sectionHeaders, content: {
+//            Section(header: SectionHeaderView(title: "Today's Salah Times")) {
+//                ForEach(prayerTimes, id: \.self) { prayer in
+//                    PrayerTodayCellView(prayer: prayer)
+//                        .background(nextSalah == prayer ? LinearGradient(gradient: Gradient(colors: [.orange, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing) : LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+//                        .cornerRadius(10)
+//                }
+//            }
+//        })
+//    }
+//}
+
 struct PrayerTodaySectionView: View {
-    @Binding var prayerTimes:[PrayerTiming]
-    @Binding var nextSalah:PrayerTiming?
+    @Binding var selectedLocation: Location?
+    @Binding var nextSalah: PrayerTiming?
     @State private var remainingTime: String = ""
     let column = [GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150)), GridItem(.adaptive(minimum: 150))]
     
     var body: some View {
-        VStack(alignment: .leading){
-            LazyVGrid(columns: column, pinnedViews: .sectionHeaders, content: {
-                Section(header: SectionHeaderView(title: "Today's Salah Times")) {
-                    ForEach(prayerTimes, id: \.self) { prayer in
-                        PrayerTodayCellView(prayer: prayer)
-                            .padding()
-                            .frame(maxWidth: .infinity,minHeight: 120)
-                            .background(nextSalah == prayer ? .ultraThickMaterial : .thinMaterial)
-                            .cornerRadius(10)
-                    }
+        LazyVGrid(columns: column, pinnedViews: .sectionHeaders, content: {
+            Section(header: SectionHeaderView(title: "Today's Salah Times")) {
+                ForEach(selectedLocation?.todayPrayerTimings ?? [], id: \.self) { prayer in
+                    
+                    PrayerDailyCellView(prayer: prayer)
+                        .background(nextSalah == prayer ? LinearGradient(gradient: Gradient(colors: [.orange, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing) : LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .cornerRadius(10)
+                        .padding()
                 }
-            })
-        }
+            }
+        })
     }
 }
+
+
 
 
 

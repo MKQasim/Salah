@@ -9,30 +9,50 @@ import SwiftUI
 
 struct PrayerTodayCellView: View {
     let prayer: PrayerTiming
+    
     var body: some View {
-        VStack(alignment: .leading){
-            HStack{
+        VStack(alignment: .leading) {
+            HStack {
                 Spacer()
                 Image(systemName: "bell.fill")
-                    .font(.headline)
-                    .padding(5)
-                    .background(.white)
-                    .cornerRadius(20)
-                    .foregroundColor(.blue)
+                    .font(.title2)
+                    .padding(8)
+                    .background(Color.blue)
+                    .clipShape(Circle())
+                    .foregroundColor(.white)
             }
             .frame(maxWidth: .infinity)
             
             Image(systemName: "sun.max.fill")
                 .foregroundColor(.orange)
                 .font(.title)
+                .padding(.top, 8)
+            
             Text(prayer.name ?? "")
-            Text("\(prayer.formatDateString(prayer.time ?? Date()))")
-                .foregroundStyle(.gray)
+                .font(.headline)
+                .fontWeight(.bold)
+                .foregroundColor(.primary)
+                .padding(.top, 4)
+            
+            Text(formatTimeString(prayer.formatDateString(prayer.time ?? Date())))
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .padding(.top, 2)
         }
-        
+        .padding()
+        .frame(minWidth: 140, maxWidth: .infinity, minHeight: 140) // Adjusted width and height
+        .background(
+            LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .topLeading, endPoint: .bottomTrailing)
+        )
+        .cornerRadius(15)
     }
     
-    func convertDateTimeString(_ originalDateTimeString: String, from originalFormat: String? = "yyyy-MM-dd HH:mm:ss Z", to targetFormat: String? = "MMM dd, yyyy HH:mm:ss Z", originalTimeZone: TimeZone, targetTimeZone: TimeZone) -> String? {
+    private func formatTimeString(_ originalDateTimeString: String?) -> String {
+        guard let originalDateTimeString = originalDateTimeString else { return "" }
+        return convertDateTimeString(originalDateTimeString)
+    }
+    
+    private func convertDateTimeString(_ originalDateTimeString: String, from originalFormat: String? = "yyyy-MM-dd HH:mm:ss Z", to targetFormat: String? = "MMM dd, yyyy HH:mm:ss Z", originalTimeZone: TimeZone = .current, targetTimeZone: TimeZone = .current) -> String {
         let originalDateFormatter = DateFormatter()
         originalDateFormatter.dateFormat = originalFormat
         originalDateFormatter.timeZone = originalTimeZone
@@ -44,14 +64,12 @@ struct PrayerTodayCellView: View {
             
             return targetDateFormatter.string(from: originalDate)
         } else {
-            print("Failed to convert original date and time string to Date.")
-            return nil
+            print("Failed to convert the original date and time string to Date.")
+            return ""
         }
     }
-
-
-
 }
+
 
 #Preview {
     let prayerTime = PrayerTiming(name: "Fajr", time: Date())

@@ -19,11 +19,11 @@ struct TabbarView: View {
     var body: some View {
         TabView(selection: $navigationState.tabbarSelection) {
             // Add QiblaView as the first tab
-            QiblaView()
-                .tag(NavigationItem.qiblaDirection)
-                .tabItem {
-                    Label("Qibla Direction", systemImage: "location.north")
-                }
+//            QiblaView()
+//                .tag(NavigationItem.qiblaDirection)
+//                .tabItem {
+//                    Label("Qibla Direction", systemImage: "location.north")
+//                }
 
             // Other tabs go here
             if locationManager.locationStatus == .denied {
@@ -88,18 +88,18 @@ struct TabbarView: View {
             #if !os(macOS)
             ToolbarItemGroup(placement: .bottomBar) {
                 // Add button to show/hide QiblaView
-                Button(action: {
-                    isShowingQibla.toggle()
-                    if isShowingQibla {
-                        navigationState.tabbarSelection = NavigationItem.qiblaDirection
-                    } else {
-                        navigationState.tabbarSelection = NavigationItem.currentLocation
-                    }
-                }) {
-                    Image(systemName: "location.north")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                }
+//                Button(action: {
+//                    isShowingQibla.toggle()
+//                    if isShowingQibla {
+//                        navigationState.tabbarSelection = NavigationItem.qiblaDirection
+//                    } else {
+//                        navigationState.tabbarSelection = NavigationItem.currentLocation
+//                    }
+//                }) {
+//                    Image(systemName: "location.north")
+//                        .font(.subheadline)
+//                        .foregroundColor(.gray)
+//                }
                 Spacer()
                 Button(action: {
                     isSheet.toggle()

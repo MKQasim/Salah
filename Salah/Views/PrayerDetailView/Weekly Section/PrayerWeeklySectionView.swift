@@ -17,47 +17,50 @@ struct PrayerWeeklySectionView: View {
     let selectedLocation: Location
     @State private var weeklyPrayerTiming: [PrayerWeekly] = []
     @State var isUpdate = true
-    
+
     var body: some View {
-        LazyVGrid(columns: [.init(.flexible(maximum: .infinity))],pinnedViews: .sectionHeaders){
+        LazyVGrid(columns: [.init(.flexible(maximum: .infinity))], pinnedViews: .sectionHeaders) {
             Section(header: SectionHeaderView(title: "Weekly Salah Timings")) {
-                ForEach(weeklyPrayerTiming, id: \.self){item in
-                    VStack{
-                        Section(header: VStack{
+                ForEach(weeklyPrayerTiming, id: \.self) { item in
+                    VStack {
+                        Section(header: VStack {
                             Text(item.date, style: .date)
-                                .foregroundStyle(.gray)
-                        }.frame(maxWidth: .infinity,alignment: .leading)
-                        ){
-                            ViewThatFits{
-                                HStack{
-                                    ForEach(item.dayPrayerTime, id: \.self){
-                                        oneDaySalah in
-                                        
+                                .foregroundStyle(.white)
+                        }.frame(maxWidth: .infinity, alignment: .leading)) {
+                            ViewThatFits {
+                                HStack {
+                                    ForEach(item.dayPrayerTime, id: \.self) { oneDaySalah in
                                         PrayerDailyCellView(prayer: oneDaySalah)
+                                            .background(LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                                            .cornerRadius(10)
+//                                            .padding()
                                     }
                                 }
-                                .frame(maxWidth: .infinity,alignment: .leading)
-                                ScrollView(.horizontal, showsIndicators: false){
-                                    LazyHStack{
-                                        ForEach(item.dayPrayerTime, id: \.self){
-                                            oneDaySalah in
-                                            
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                ScrollView(.horizontal, showsIndicators: false) {
+                                    LazyHStack {
+                                        ForEach(item.dayPrayerTime, id: \.self) { oneDaySalah in
                                             PrayerDailyCellView(prayer: oneDaySalah)
+                                                .background(LinearGradient(gradient: Gradient(colors: [.green, .blue]), startPoint: .topLeading, endPoint: .bottomTrailing))
+                                                .cornerRadius(10)
+//                                                .padding()
                                         }
                                     }
                                     .frame(maxWidth: .infinity)
                                 }
-                                
                             }
                         }
-                        
+//                        .background(
+//                            LinearGradient(gradient: Gradient(colors: [.orange, .purple]), startPoint: .topLeading, endPoint: .bottomTrailing)
+//                        )
+                        .cornerRadius(10)
+                        .padding(4)
                     }
                 }
-                .padding(4)
             }
         }
-        .onAppear{
-            if isUpdate{
+        .onAppear {
+            if isUpdate {
                 Task {
                     await setUpWeeklyPrayersTiming(lat: selectedLocation.lat ?? 0.0, long: selectedLocation.lng ?? 0.0, timeZone: selectedLocation.offSet ?? 0.0)
                     isUpdate = false
@@ -65,17 +68,15 @@ struct PrayerWeeklySectionView: View {
             }
         }
     }
-    
-    func setUpWeeklyPrayersTiming(lat: Double, long:Double, timeZone:Double) async{
-        
-        if Date().dateByAdding(timeZoneOffset: selectedLocation.offSet ?? 0.0) != nil{
+
+    func setUpWeeklyPrayersTiming(lat: Double, long: Double, timeZone: Double) async {
+        if Date().dateByAdding(timeZoneOffset: selectedLocation.offSet ?? 0.0) != nil {
             let cal = Calendar.current
-            for i in 2...8{
+            for i in 2...8 {
                 if let newDate = cal.date(byAdding: .day, value: i, to: Date()) {
-                    var oneDaySalah:[PrayerTiming] = []
+                    var oneDaySalah: [PrayerTiming] = []
                     let getDailyPrayerTiming: () = await PrayerTimeHelper.shared.getSalahTimings(location: selectedLocation, date: newDate, completion: { location in
-                        
-                        guard let getDailyPrayerTiming = location?.todayPrayerTimings else { return  }
+                        guard let getDailyPrayerTiming = location?.todayPrayerTimings else { return }
                         for getDailyPrayerTime in getDailyPrayerTiming {
                             let newSalahTiming = PrayerTiming(name: getDailyPrayerTime.name, time: getDailyPrayerTime.time, offSet: selectedLocation.offSet)
                             oneDaySalah.append(newSalahTiming)
@@ -83,19 +84,10 @@ struct PrayerWeeklySectionView: View {
                         let dayPrayerTime = PrayerWeekly(date: newDate, dayPrayerTime: oneDaySalah)
                         weeklyPrayerTiming.append(dayPrayerTime)
                     })
-                   
                 }
-                
-                
             }
-            
-            
         }
-        
-        
     }
-    
-    
 }
 
 #Preview {

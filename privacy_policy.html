@@ -39,17 +39,22 @@
     a:hover {
       color: #2980b9;
     }
-
+    
     #logo {
       display: block;
       margin: 0 auto;
+      max-width: 100%; /* This will ensure the image does not exceed the width of its container */
+      height: auto; /* This will maintain the aspect ratio of the image */
     }
+
   </style>
 </head>
 
 <body>
 
-  <img id="logo" src="./logo.png" alt="Salah App Logo">
+<img id="logo" src="./logo.png" alt="Salah App Logo" style="width: 200px; height: 200px;">
+
+
 
   <h1>Privacy Policy for Salah App</h1>
 

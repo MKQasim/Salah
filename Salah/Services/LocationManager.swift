@@ -60,7 +60,6 @@ class LocationManager: NSObject, ObservableObject {
         }
     }
     
-
     func requestLocation() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -92,7 +91,7 @@ extension LocationManager: CLLocationManagerDelegate {
         
         let trueHeading = newHeading.trueHeading
         let magneticHeading = newHeading.magneticHeading
-
+        manager.stopUpdatingHeading()
         // Use the heading information as needed
         print("True Heading: \(trueHeading), Magnetic Heading: \(magneticHeading)")
     }

@@ -7,19 +7,60 @@
 
 import SwiftUI
 import CoreLocation
+import Combine
 
+class Debouncer {
+    var delay: TimeInterval
+    var cancellable: DispatchWorkItem?
+
+    init(delay: TimeInterval) {
+        self.delay = delay
+    }
+
+    func run(action: @escaping (String) -> Void) -> (String) -> Void {
+        return { value in
+            self.cancellable?.cancel()
+            let newTask = DispatchWorkItem(block: { action(value) })
+            self.cancellable = newTask
+            DispatchQueue.main.asyncAfter(deadline: .now() + self.delay, execute: newTask)
+        }
+    }
+}
+
+
+
+extension Binding where Value: Equatable {
+    func onChange(perform action: @escaping (Value) -> Void) -> Binding<Value> {
+        return Binding(
+            get: { self.wrappedValue },
+            set: { newValue in
+                if self.wrappedValue != newValue {
+                    self.wrappedValue = newValue
+                    action(newValue)
+                }
+            }
+        )
+    }
+}
 
 struct SearchBar: View {
     @Binding var text: String
+    @State var debouncer = Debouncer(delay: 0.5)
 
     var body: some View {
-        TextField("Search for a city", text: $text)
+        TextField("Search for a city", text: $text.onChange(perform: { newValue in
+            self.debouncer.run(action: { value in
+                print(value) // Perform the action here
+            })(newValue)
+        }))
             .padding(8)
             .background(Color(.gray))
             .cornerRadius(8)
             .padding(.horizontal)
     }
 }
+
+
 
 struct ManualLocationView: View {
     @State private var isPrayerDetailViewPresented = false
@@ -31,13 +72,10 @@ struct ManualLocationView: View {
     var body: some View {
         NavigationView {
             VStack {
-              
                 List {
 #if os(macOS)
                     Section {
-                      
                         SearchBar(text: $searchable)
-                      
                     }
 #endif
                     Section {
@@ -61,7 +99,9 @@ struct ManualLocationView: View {
                 }
                 .listStyle(.plain)
                 .onAppear {
-                    parseLocalJSONtoFetchLocations()
+                    DispatchQueue.global(qos: .background).async {
+                        parseLocalJSONtoFetchLocations()
+                    }
                 }
             }
             .navigationTitle("Locations")
@@ -74,13 +114,28 @@ struct ManualLocationView: View {
                 let fileUrl = URL(fileURLWithPath: path)
                 let jsonData = try Data(contentsOf: fileUrl)
                 let location = try? JSONDecoder().decode([Location].self, from: jsonData)
-                dropDownList = location ?? []
+                DispatchQueue.main.async {
+                    dropDownList = location ?? []
+                }
             } catch {
                 print("Error parsing JSON: \(error)")
             }
         } else {
             print("File not found")
         }
+    }
+}
+
+
+
+
+extension Published.Publisher where Value: Equatable {
+    func onChange(perform action: @escaping (Value) -> Void) -> AnyPublisher<Value, Never> {
+        self
+            .removeDuplicates()
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: action)
+            .eraseToAnyPublisher()
     }
 }
 

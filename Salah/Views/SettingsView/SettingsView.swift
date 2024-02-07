@@ -69,16 +69,16 @@ class FileStorageManager {
     
     func defaultSettings() -> [Setting] {
         return [
-            Setting(title: "Location Permission", description: "Manage location permission", isPermissionEnabled: false, settingType: .permission(.location), permissionType: .location),
-            Setting(title: "Notification Permission", description: "Manage notification permission", isPermissionEnabled: false, settingType: .permission(.notifications), permissionType: .notifications),
-            Setting(title: "Calculation Method", description: "Choose calculation method", isPermissionEnabled: false, settingType: .dropdown(.calculationMethod), permissionType: nil),
-            Setting(title: "Juristic Method", description: "Choose juristic method", isPermissionEnabled: false, settingType: .dropdown(.juristicMethod), permissionType: nil),
-            Setting(title: "Adjusting Method", description: "Choose adjusting method", isPermissionEnabled: false, settingType: .dropdown(.adjustingMethod), permissionType: nil),
-            Setting(title: "Time Format", description: "Choose time format", isPermissionEnabled: false, settingType: .dropdown(.timeFormat), permissionType: nil),
+            Setting(title: "Location Permission", description: "Manage location permission", isPermissionEnabled: false, settingType: .permission(.location), permissionType: .location, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Notification Permission", description: "Manage notification permission", isPermissionEnabled: false, settingType: .permission(.notifications), permissionType: .notifications, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Calculation Method", description: "Choose calculation method", isPermissionEnabled: false, settingType: .dropdown(.calculationMethod), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Juristic Method", description: "Choose juristic method", isPermissionEnabled: false, settingType: .dropdown(.juristicMethod), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Adjusting Method", description: "Choose adjusting method", isPermissionEnabled: false, settingType: .dropdown(.adjustingMethod), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Time Format", description: "Choose time format", isPermissionEnabled: false, settingType: .dropdown(.timeFormat), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
 //            Setting(title: "Time Name", description: "Choose time name", isPermissionEnabled: false, settingType: .dropdown(.timeName), permissionType: nil),
-            Setting(title: "Privacy", description: "Manage your privacy settings", isPermissionEnabled: false, settingType: .simple("Privacy"), permissionType: nil),
-            Setting(title: "Account", description: "View and manage your account details", isPermissionEnabled: false, settingType: .simple("Account"), permissionType: nil),
-            Setting(title: "Help & Support", description: "Get help and support", isPermissionEnabled: false, settingType: .simple("Help & Support"), permissionType: nil)
+            Setting(title: "Privacy", description: "Manage your privacy settings", isPermissionEnabled: false, settingType: .simple("Privacy"), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Account", description: "View and manage your account details", isPermissionEnabled: false, settingType: .simple("Account"), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Help & Support", description: "Get help and support", isPermissionEnabled: false, settingType: .simple("Help & Support"), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html")
         ]
     }
 }
@@ -233,7 +233,7 @@ struct Setting: Identifiable, Equatable, Codable {
     var isExpanded: Bool? = false
     var selectedOptionIndex: Int? = 0
     var permissionType: PermissionType? // Include the permission type
-        
+    var urlLink : String?
     
     var optionsForDropdown: [String]? {
         if case let .dropdown(dropdownType) = settingType {
@@ -251,6 +251,7 @@ struct Setting: Identifiable, Equatable, Codable {
         case isExpanded
         case selectedOptionIndex
         case permissionType
+        case urlLink
     }
     
     init(from decoder: Decoder) throws {
@@ -262,6 +263,7 @@ struct Setting: Identifiable, Equatable, Codable {
         isPermissionEnabled = try container.decodeIfPresent(Bool.self, forKey: .isPermissionEnabled)
         isExpanded = try container.decodeIfPresent(Bool.self, forKey: .isExpanded)
         selectedOptionIndex = try container.decodeIfPresent(Int.self, forKey: .selectedOptionIndex)
+        urlLink = try container.decodeIfPresent(String.self, forKey: .urlLink)
         if let permissionType =  try container.decodeIfPresent(PermissionType.self, forKey: .permissionType) {
             switch permissionType {
             case .location:
@@ -286,7 +288,7 @@ struct Setting: Identifiable, Equatable, Codable {
         }
     }
     
-    init(title: String?, description: String?, isPermissionEnabled: Bool?, settingType: SettingType?, isExpanded: Bool? = false, selectedOptionIndex: Int? = 0 , permissionType : PermissionType?) {
+    init(title: String?, description: String?, isPermissionEnabled: Bool?, settingType: SettingType?, isExpanded: Bool? = false, selectedOptionIndex: Int? = 0 , permissionType : PermissionType? , urlLink : String?) {
         self.title = title
         self.description = description
         self.isPermissionEnabled = isPermissionEnabled
@@ -294,7 +296,7 @@ struct Setting: Identifiable, Equatable, Codable {
         self.isExpanded = isExpanded
         self.selectedOptionIndex = selectedOptionIndex
         self.permissionType = permissionType
-        
+        self.urlLink = urlLink
     }
     
     func toJSONString() -> String? {
@@ -798,38 +800,74 @@ struct PermissionToggle: View {
 }
 
 
+import SwiftUI
+import WebKit
 
+struct WebView: UIViewRepresentable {
+    let request: URLRequest
+    @Binding var title: String
 
+    func makeUIView(context: Context) -> WKWebView  {
+        let webView = WKWebView()
+        webView.navigationDelegate = context.coordinator
+        return webView
+    }
 
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.load(request)
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
 
+    class Coordinator: NSObject, WKNavigationDelegate {
+        var parent: WebView
+
+        init(_ parent: WebView) {
+            self.parent = parent
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            webView.evaluateJavaScript("document.title") { (response, error) in
+                if let title = response as? String {
+                    DispatchQueue.main.async {
+                        self.parent.title = title
+                    }
+                }
+            }
+        }
+    }
+}
 
 struct SimpleSettingsRow: View {
     @Binding var setting: Setting
+    @State private var title: String = ""
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            VStack(alignment: .leading) { // Ensuring text is aligned to leading edge
+        NavigationLink(destination: WebView(request: URLRequest(url: URL(string: "\(setting.urlLink ?? "")")!), title: $title).navigationBarTitle(Text(title), displayMode: .inline)) {
+            VStack(alignment: .leading){
                 Text(setting.title ?? "")
                     .font(.headline)
                     .foregroundColor(.primary)
-                
                 Text(setting.description ?? "")
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .foregroundColor(.secondary)
-            .padding(10)
+           
         }
-        .padding(.horizontal, 10)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(10)
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(.sky2)
-                .shadow(radius: 2)
-        )
-        .padding(.vertical, 4) // Adjusted vertical padding here
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(.sky2)
+                    .shadow(radius: 2)
+            )
+            .padding(.vertical, 4)
+        .padding(.horizontal, 10)
     }
 }
+
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {

@@ -56,6 +56,10 @@ struct NavigationSplitDetailView: View {
             case .nocurrentLocation:
                 VStack{
                     Text("No Location Added")
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
                 }
             case .currentLocation:
                 PrayerDetailView(
@@ -86,6 +90,10 @@ struct NavigationSplitDetailView: View {
             case .none:
                 VStack{
                     Text("No Location Added")
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 100)
                 }
             case .some(.qiblaDirection):
                 Text(" Location Added qiblaDirection ")

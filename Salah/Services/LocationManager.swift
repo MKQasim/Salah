@@ -9,28 +9,25 @@ import SwiftUI
 import Combine
 import CoreLocation
 
-class LocationManager: NSObject, ObservableObject {
+class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     @Published var locationStatus: CLAuthorizationStatus?
     @Published var lastLocation: CLLocation? = nil
     @Published var userLocation = CLLocationCoordinate2D()
-    @Published var locations: [(String, CLLocationCoordinate2D)] = [
-        ("Berlin", CLLocationCoordinate2D(latitude: 52.5200, longitude: 13.4050)),
-        ("New York", CLLocationCoordinate2D(latitude: 40.7128, longitude: -74.0060)),
-        ("London", CLLocationCoordinate2D(latitude: 51.5074, longitude: -0.1278)),
-        ("Paris", CLLocationCoordinate2D(latitude: 48.8566, longitude: 2.3522)),
-        ("Tokyo", CLLocationCoordinate2D(latitude: 35.6895, longitude: 139.6917)),
-        ("Sydney", CLLocationCoordinate2D(latitude: -33.8688, longitude: 151.2093)),
-        ("Dubai", CLLocationCoordinate2D(latitude: 25.276987, longitude: 55.296249)),
-        ("Cape Town", CLLocationCoordinate2D(latitude: -33.9249, longitude: 18.4241)),
-        ("Rio de Janeiro", CLLocationCoordinate2D(latitude: -22.9068, longitude: -43.1729)),
-        ("Moscow", CLLocationCoordinate2D(latitude: 55.7558, longitude: 37.6173)),
-        ("Mumbai", CLLocationCoordinate2D(latitude: 19.0760, longitude: 72.8777)),
-        // Add more locations here...
-    ]
     @Published var targetLocation = CLLocationCoordinate2D(latitude: 21.4225, longitude: 39.8262)
-    // New property for heading
     @Published var currentHeading: CLHeading?
+    @Published var heading: Double = 0
+    @Published var qiblaDirection: Double = 0
+    
+    @Published var isCompassViewVisible = false {
+           didSet {
+               if isCompassViewVisible {
+                   startHeadingUpdates()
+               } else {
+                   stopHeadingUpdates()
+               }
+           }
+       }
 
     override init() {
         super.init()
@@ -39,27 +36,24 @@ class LocationManager: NSObject, ObservableObject {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
-        // Start updating heading
         if CLLocationManager.headingAvailable() {
-            locationManager.headingFilter = 1  // Set the desired heading filter (in degrees)
+            locationManager.headingFilter = 1
             locationManager.startUpdatingHeading()
         }
     }
-    
-    // Additional method to start heading updates
+
     func startHeadingUpdates() {
         if CLLocationManager.headingAvailable() {
             locationManager.startUpdatingHeading()
         }
     }
 
-    // Additional method to stop heading updates
     func stopHeadingUpdates() {
         if CLLocationManager.headingAvailable() {
             locationManager.stopUpdatingHeading()
         }
     }
-    
+
     func requestLocation() {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
@@ -72,29 +66,47 @@ class LocationManager: NSObject, ObservableObject {
     func stopLocationUpdates() {
         locationManager.stopUpdatingLocation()
     }
-}
 
-extension LocationManager: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        locationStatus = manager.authorizationStatus
+    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
+        DispatchQueue.main.async {
+            self.heading = newHeading.trueHeading
+            self.currentHeading = newHeading
+        }
+        let trueHeading = newHeading.trueHeading
+        let magneticHeading = newHeading.magneticHeading
+        manager.stopUpdatingLocation()
+//        print("True Heading: \(trueHeading), Magnetic Heading: \(magneticHeading)")
     }
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         lastLocation = location
+        userLocation = location.coordinate
+        let makkah = CLLocation(latitude: 21.4225241, longitude: 39.8261818)
+        let qiblaDirection = location.coordinate.direction(to: makkah.coordinate)
+        DispatchQueue.main.async {
+            self.qiblaDirection = qiblaDirection
+        }
         manager.stopUpdatingLocation()
     }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateHeading newHeading: CLHeading) {
-        // Access the updated heading information in the `newHeading` object
-        currentHeading = newHeading
-        
-        let trueHeading = newHeading.trueHeading
-        let magneticHeading = newHeading.magneticHeading
-        manager.stopUpdatingHeading()
-        // Use the heading information as needed
-        print("True Heading: \(trueHeading), Magnetic Heading: \(magneticHeading)")
+
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        locationStatus = manager.authorizationStatus
     }
 }
 
+extension CLLocationCoordinate2D {
+    func direction(to point: CLLocationCoordinate2D) -> Double {
+        let fromLat = self.latitude.degreesToRadians
+        let fromLon = self.longitude.degreesToRadians
+        let toLat = point.latitude.degreesToRadians
+        let toLon = point.longitude.degreesToRadians
+        let direction = atan2(sin(toLon - fromLon) * cos(toLat), cos(fromLat) * sin(toLat) - sin(fromLat) * cos(toLat) * cos(toLon - fromLon))
+        return (direction.radiansToDegrees + 360).truncatingRemainder(dividingBy: 360)
+    }
+}
 
+extension Double {
+    var degreesToRadians: Double { return self * .pi / 180 }
+    var radiansToDegrees: Double { return self * 180 / .pi }
+}

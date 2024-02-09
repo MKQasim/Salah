@@ -7,22 +7,8 @@
 
 import SwiftUI
 
-extension Date {
-    func startCountdownTimer(
-        from startDate: Date,
-        to endDate: Date,
-        onUpdate: @escaping (String) -> Void
-    ) {
-        TimerManager().startTimer(
-            between: startDate,
-            endDate: endDate,
-            onUpdate: onUpdate
-        )
-    }
-}
-
 class TimerManager {
-//    static let shared = TimerManager()
+    static let shared = TimerManager()
 
     var timer: Timer?
     private var onUpdate: ((String) -> Void)?
@@ -35,8 +21,7 @@ class TimerManager {
 
         self.onUpdate = onUpdate
 
-        let timeDifference = endDate.timeIntervalSince(startDate)
-        remainingTime = max(endDate.timeIntervalSinceNow - startDate.timeIntervalSinceNow, 0)
+        remainingTime = max(endDate.timeIntervalSinceNow, 0)
 
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
         
@@ -67,3 +52,22 @@ class TimerManager {
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 }
+
+extension Date {
+    func startCountdownTimer(
+        from startDate: Date,
+        to endDate: Date,
+        onUpdate: @escaping (String) -> Void
+    ) {
+        TimerManager.shared.startTimer(
+            between: startDate,
+            endDate: endDate,
+            onUpdate: { formattedTime in
+                print("formattedTime \(formattedTime ?? "")")
+                onUpdate(formattedTime)
+               
+            }
+        )
+    }
+}
+

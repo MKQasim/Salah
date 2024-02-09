@@ -105,6 +105,15 @@ struct ManualLocationView: View {
                 }
             }
             .navigationTitle("Locations")
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 50)
+                    
+                }
+            }
         }
     }
 

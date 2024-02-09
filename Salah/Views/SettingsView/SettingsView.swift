@@ -584,6 +584,15 @@ struct SettingsView: View {
             simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
             permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
         }
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 50)
+                
+            }
+        }
     }
 }
 
@@ -845,28 +854,30 @@ struct SimpleSettingsRow: View {
     @State private var title: String = ""
     
     var body: some View {
-        NavigationLink(destination: WebView(request: URLRequest(url: URL(string: "\(setting.urlLink ?? "")")!), title: $title).navigationBarTitle(Text(title), displayMode: .inline)) {
-            VStack(alignment: .leading){
-                Text(setting.title ?? "")
-                    .font(.headline)
-                    .foregroundColor(.primary)
-                Text(setting.description ?? "")
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+        if let validURL = URL(string: setting.urlLink ?? "https://mkqasim.github.io/Salah/privacy_policy.html") {
+            NavigationLink(destination: WebView(request: URLRequest(url: validURL), title: $title).navigationBarTitle(Text(title), displayMode: .inline)) {
+                VStack(alignment: .leading){
+                    Text(setting.title ?? "")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    Text(setting.description ?? "")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
             }
-           
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(10)
+            .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(.sky2)
+                        .shadow(radius: 2)
+                )
+                .padding(.vertical, 4)
+            .padding(.horizontal, 10)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(10)
-        .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(.sky2)
-                    .shadow(radius: 2)
-            )
-            .padding(.vertical, 4)
-        .padding(.horizontal, 10)
     }
 }
+
 
 
 struct SettingsView_Previews: PreviewProvider {

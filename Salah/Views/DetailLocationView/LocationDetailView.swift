@@ -21,18 +21,24 @@ struct LocationDetailView: View {
         List {
             Group {
                 if !isSearching {
-                    if let currentLocation = locationState.currentLocation {
-                        DetailLocationListRowCellView(isFullScreenView: $isFullScreenView, location: currentLocation, isCurrent: true)
-                    }
-                    
                     ForEach(locationState.cities, id: \.self) { location in
                         DetailLocationListRowCellView(isFullScreenView: $isFullScreenView, location: location, isCurrent: false)
                     }
+                    .onDelete(perform: delete)
                 }
             }
         }
         .listStyle(.plain)
         .navigationTitle("Cities")
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 50)
+                
+            }
+        }
         .searchable(text: $searchableText, prompt: "Search for a city")
         .overlay {
             ZStack {
@@ -89,6 +95,11 @@ struct LocationDetailView: View {
 #endif
         }
     }
+    
+    func delete(at offsets: IndexSet) {
+        locationState.cities.remove(atOffsets: offsets)
+    }
+
 }
 
 #Preview {

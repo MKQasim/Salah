@@ -19,11 +19,11 @@ struct TabbarView: View {
     var body: some View {
         TabView(selection: $navigationState.tabbarSelection) {
             // Add QiblaView as the first tab
-//            QiblaView()
-//                .tag(NavigationItem.qiblaDirection)
-//                .tabItem {
-//                    Label("Qibla Direction", systemImage: "location.north")
-//                }
+            QiblaView()
+                .tag(NavigationItem.qiblaDirection)
+                .tabItem {
+                    Label("Qibla Direction", systemImage: "location.north")
+                }
 
             // Other tabs go here
             if locationManager.locationStatus == .denied {
@@ -31,6 +31,11 @@ struct TabbarView: View {
                     VStack {
                         Text("Add Location to View screen")
                             .foregroundStyle(.gray)
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                      
                     }
                     .tag(NavigationItem.nocurrentLocation)
                 }
@@ -39,6 +44,10 @@ struct TabbarView: View {
                     VStack {
                         Text("Add Location to View screen")
                             .foregroundStyle(.gray)
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
                     }
                     .tag(NavigationItem.nocurrentLocation)
                 }
@@ -58,24 +67,30 @@ struct TabbarView: View {
                 }
 }
             ForEach(locationState.cities, id: \.self) { location in
-                VStack {
-                    PrayerDetailView(
-                        selectedLocation: location,
-                        isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
-                        print("onDismiss")
-                        }
-                    )
+                // Check if the location is not the current location
+                if location.city != locationState.currentLocation?.city {
+                    VStack {
+                        PrayerDetailView(
+                            selectedLocation: location,
+                            isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
+                            print("onDismiss")
+                            }
+                        )
+                    }
+                    .navigationTitle(location.city ?? "")
+                    .tag(NavigationItem.location(location))
                 }
-                .navigationTitle(location.city ?? "")
-                .tag(NavigationItem.location(location))
             }
+
         }
         .onChange(of: navigationState.tabbarSelection) { newSelection in
             if newSelection == NavigationItem.qiblaDirection {
                 isShowingQibla = true
             }
         }
+        
         #if !os(macOS) && !os(watchOS)
+       
         .tabViewStyle(.page(indexDisplayMode: .always))
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .fullScreenCover(isPresented: $isSheet) {
@@ -84,8 +99,11 @@ struct TabbarView: View {
             }
         }
         #endif
+        
         .toolbar {
-            #if !os(macOS)
+            #if targetEnvironment(macCatalyst)
+            // Code for macOS
+            #else
             ToolbarItemGroup(placement: .bottomBar) {
                 // Add button to show/hide QiblaView
 //                Button(action: {
@@ -108,13 +126,29 @@ struct TabbarView: View {
                         .font(.subheadline)
                         .foregroundColor(.gray)
                 }
-               
             }
             #endif
         }
+
+        
+//        .toolbar {
+//            #if !os(macOS)
+//            ToolbarItemGroup(placement: .bottomBar) {
+// 
+//                Spacer()
+//                Button(action: {
+//                    isSheet.toggle()
+//                }) {
+//                    Image(systemName: "list.bullet")
+//                        .font(.subheadline)
+//                        .foregroundColor(.gray)
+//                }
+//               
+//            }
+//            #endif
+//        }
     }
 }
-
 
 
 #if os(iOS)

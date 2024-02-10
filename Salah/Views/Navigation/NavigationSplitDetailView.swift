@@ -16,31 +16,40 @@ struct NavigationSplitDetailView: View {
     @State private var isSheet = false
     @State private var isSheetSetting = false
     @State private var isDetail = false
+
     var body: some View {
         NavigationSplitView{
+            
             List(selection: $navigationState.sidebarSelection){
-                if locationManager.locationStatus == .denied && locationState.cities.count == 0 {
-                        NavigationLink(value: NavigationItem.nocurrentLocation, label: {
-                            Text("Location Denied")
-                        })
-                }
-                else{
-                    NavigationLink(value: NavigationItem.currentLocation, label: {
-                        Text("Current Location")
-                    })
-                }
                 ForEach(locationState.cities){ location in
                     NavigationLink(value: NavigationItem.location(location), label: {
-                        Text(location.city ?? "")
-                    })
-                    .tag(location)
+                        Text(location.city ?? "Nap" )
+                        DetailLocationListRowCellView(isFullScreenView: $isPrayerDetailViewPresented, location: location, isCurrent: false)
+                        { location in
+                            print("cell taped")
+                            isPrayerDetailViewPresented =  isPrayerDetailViewPresented
+                            navigationState.sidebarSelection = .nocurrentLocationWithSelected(location)
+                        }.id(location)
+                    }).buttonStyle(GradientButtonStyle())
+                        
                 }
+                .onDelete(perform: delete)
+                   
+                
                 Button(action: {
                     isSheet.toggle()
                 }, label: {
                     Label("Add a city",systemImage: "plus")
                 })
+                .frame(width: 200, height: 50, alignment: .leading)
+                .buttonStyle(GradientButtonStyle())
+                
+                NavigationLink(value: NavigationItem.qiblaDirection, label: {
+                    Text("Qibla Direction")
+                }).buttonStyle(GradientButtonStyle())
+                    .tag(NavigationItem.qiblaDirection)
             }
+            .frame(width: 400)
             .navigationTitle("Salah")
             .toolbar{
                 ToolbarItem(id: "sidebar", placement: .primaryAction){
@@ -48,68 +57,64 @@ struct NavigationSplitDetailView: View {
                         isSheetSetting.toggle()
                     }, label: {
                         Label("Open add city", systemImage: "gear")
-                    })
+                    }).buttonStyle(GradientButtonStyle())
+                        .frame(width: 30, height: 30, alignment: .center)
+                        .background(LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom))
+                        .cornerRadius(15)
+                        .shadow(color: .gray, radius: 10, x: 0, y: 10)
                 }
             }
-        } detail: {
-            switch navigationState.sidebarSelection {
-            case .nocurrentLocation:
-                VStack{
-                    Text("No Location Added")
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
-                }
-            case .currentLocation:
-                PrayerDetailView(
-                    selectedLocation: locationState.currentLocation,
-                    isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
+        } 
+    detail:
+     {
+        switch navigationState.sidebarSelection {
+        case .noCurrentLocationWithoutItem:
+            VStack{
+                Text("Please add a location to view Prayers")
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+            }
+        case .currentLocation:
+            PrayerDetailView(
+                selectedLocation: locationState.currentLocation,
+                isDetailViewPresented: $isPrayerDetailViewPresented, onDismiss: {
                     print("onDismiss")
-                    }
-                )
-                    .navigationTitle("Nuremberg")
-                #if !os(macOS)
-                    .toolbarBackground(.automatic, for: .navigationBar)
-                    .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-                #endif
-                    .background(
-                        AngularGradient(colors: [.journal,.journal2], center: .bottomTrailing)
-                    )
-            case .location(let location):
-                PrayerDetailView(
-                    selectedLocation: location,
-                    isDetailViewPresented: $isPrayerDetailViewPresented).navigationTitle(location.city ?? "")
-                #if !os(macOS)
-                    .toolbarBackground(.automatic, for: .navigationBar)
-                    .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
-                #endif
-                    .background(
-                        AngularGradient(colors: [.journal,.journal2], center: .bottomTrailing)
-                    )
-            case .none:
-                VStack{
-                    Text("No Location Added")
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 100)
                 }
-            case .some(.qiblaDirection):
-                Text(" Location Added qiblaDirection ")
-            }
+            )
+            .navigationTitle("Nuremberg")
+        case .location(let location):
+            PrayerDetailView(
+                selectedLocation: location,
+                isDetailViewPresented: $isPrayerDetailViewPresented).navigationTitle(location.city ?? "")
+                .id(location)
+        case .nocurrentLocationWithSelected(let location):
+            PrayerDetailView(
+                selectedLocation: location,
+                isDetailViewPresented: $isPrayerDetailViewPresented).navigationTitle(location.city ?? "")
+                .id(location)
+        case .qiblaDirection:
+            QiblaView()
+                .tag(NavigationItem.qiblaDirection)
+                .tabItem {
+                    Label("Qibla Direction", systemImage: "location.north")
+                }
+        default:
+            Text("Hello")
         }
+    }
+
         .overlay(EmptyView().sheet(isPresented: $isSheet, content: {
             NavigationStack{
                 ManualLocationView(
                     searchable: $searchable,
                     isDetailView: $isDetail,
-                    onDismiss: {
+                    onDismiss: { location in
                         print($isPrayerDetailViewPresented , "onDismiss called")
-                        // Handle the dismissal of ManualLocationView, e.g., pop the view
-                        isDetail = false // Set the state variable to dismiss the view
-                        // Additional logic for dismissal if needed
+                        isDetail = false
                         isSheet.toggle()
+                        navigationState.sidebarSelection = .nocurrentLocationWithSelected(location)
                     }
                 )
 #if os(iOS)
@@ -122,33 +127,38 @@ struct NavigationSplitDetailView: View {
                         }, label: {
                             Text("Cancel")
                         })
+                        .buttonStyle(GradientButtonStyle())
                     })
                 }
             }
+            .buttonStyle(GradientButtonStyle())
 #if os(macOS)
-.frame(minWidth: 600, minHeight: 400)
+            .frame(minWidth: 800, minHeight: 460)
 #endif
         }))
         .overlay(EmptyView().sheet(isPresented: $isSheetSetting, content: {
             NavigationStack{
                 SettingsView()
             }
+            .buttonStyle(GradientButtonStyle())
         }))
         .onAppear{
             if navigationState.sidebarSelection == nil {
-                if locationState.isLocation {
+                if locationState.isLocation && locationState.cities.isEmpty {
                     navigationState.sidebarSelection = .currentLocation
-                }
-                else if locationState.cities.count > 0 {
+                } else if !locationState.cities.isEmpty {
                     navigationState.sidebarSelection = .location(locationState.cities[0])
-                }
-                else{
-                    navigationState.sidebarSelection = .nocurrentLocation
+                } else {
+                    navigationState.sidebarSelection = .noCurrentLocationWithoutItem
                 }
             }
         }
     }
+    func delete(at offsets: IndexSet) {
+        locationState.cities.remove(atOffsets: offsets)
+    }
 }
+
 
 #Preview {
     NavigationSplitDetailView()

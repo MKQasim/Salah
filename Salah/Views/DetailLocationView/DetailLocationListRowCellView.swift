@@ -9,18 +9,15 @@ import SwiftUI
 
 struct DetailLocationListRowCellView: View {
     @EnvironmentObject var navigationState: NavigationState
-    
     @Binding var isFullScreenView: Bool
-    
     @State private var timeNow = ""
     @State private var nextSalah = ""
     @State private var remTime = ""
-    
     var timeManager: TimerManager?
     var timerUpdated: ((String) -> Void)?
-
     let location: Location?
     let isCurrent: Bool
+    var onTap: ((Location) -> Void)
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -31,6 +28,8 @@ struct DetailLocationListRowCellView: View {
                     navigationState.tabbarSelection = .location(location ?? Location())
                 }
                 isFullScreenView.toggle()
+                guard let selectedLocation = location else { return  }
+                onTap(selectedLocation)
             }, label: {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(location?.city ?? ""), \(location?.country ?? "")")

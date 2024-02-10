@@ -7,6 +7,7 @@
 import SwiftUI
 import UserNotifications
 import CoreLocation
+import WebKit
 
 class FileStorageManager {
     static let shared = FileStorageManager()
@@ -530,69 +531,86 @@ struct SettingsView: View {
     @State private var simpleSettings: [Setting] = []
     @State private var permissionSettings: [Setting] = []
     let localPrayTimeSetting = LocalPrayTimeSetting() // Create an instance of PrayTime
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
-        List {
-            Section(header: Text("Prayer Settings")) {
-                ForEach(dropdownSettings.indices, id: \.self) { index in
-                    DropdownSettingsRow(
-                        setting: $dropdownSettings[index],
-                        localPrayTimeSetting: localPrayTimeSetting,
-                        updateSettingsManager: { updatedSetting in
-                            guard let settingType = updatedSetting.settingType , let dropdownType = settingType.dropdownType as? DropdownType else { return  }
-                            print(updatedSetting.selectedOptionIndex)
-                            let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
-                            permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
-                            permissionsManager.updatePrayerTimeSetting(dropdownType, value: updatedSetting.selectedOptionIndex ?? 0)
-                        }, permissionsManager: permissionsManager
-                    )
+        VStack{
+            VStack(alignment: .leading){
+                HStack{
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "arrow.backward")
+                            
+                    }.buttonStyle(CircleButtonStyle())
+                    Spacer()
                 }
             }
-            
-            Section(header: Text("Permission Settings")) {
-                ForEach(permissionSettings.indices, id: \.self) { index in
-                    PermissionSettingsRow(
-                                            setting: $permissionSettings[index],
-                                            permissionsManager: permissionsManager,
-                                            updateSettingsManager: { updatedSetting in
-                                                // Handle updated setting here
-                                                // This closure will be called when the toggle changes
-                                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
-                                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
-                                                // Add logic to update permission settings
-                                            }
-                                        )
+           
+            List {
+                Section(header: Text("Prayer Settings")) {
+                    ForEach(dropdownSettings.indices, id: \.self) { index in
+                        DropdownSettingsRow(
+                            setting: $dropdownSettings[index],
+                            localPrayTimeSetting: localPrayTimeSetting,
+                            updateSettingsManager: { updatedSetting in
+                                guard let settingType = updatedSetting.settingType , let dropdownType = settingType.dropdownType as? DropdownType else { return  }
+                                print(updatedSetting.selectedOptionIndex)
+                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
+                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
+                                permissionsManager.updatePrayerTimeSetting(dropdownType, value: updatedSetting.selectedOptionIndex ?? 0)
+                            }, permissionsManager: permissionsManager
+                        )
+                    }
                 }
-            }
-            
-            Section(header: Text("About")) {
-                ForEach(simpleSettings.indices, id: \.self) { index in
-                    SimpleSettingsRow(setting: $simpleSettings[index])
-                }
-            }
-        }
-        .listStyle(.plain)
-        .environment(\.defaultMinListRowHeight, 0) // Reduces the default space between items
-        .navigationTitle("Settings")
-#if os(iOS)
-        .listRowSeparatorTint(.clear) // Hides the list separators
-#endif
-        .onAppear {
-            permissionsManager.setPrayTimeInstance(localPrayTimeSetting)
-            let allSettings = permissionsManager.settingsData
-            dropdownSettings = allSettings.filter { $0.settingType?.dropdownType != nil }
-            simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
-            permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
-        }
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 50)
                 
+                Section(header: Text("Permission Settings")) {
+                    ForEach(permissionSettings.indices, id: \.self) { index in
+                        PermissionSettingsRow(
+                            setting: $permissionSettings[index],
+                            permissionsManager: permissionsManager,
+                            updateSettingsManager: { updatedSetting in
+                                // Handle updated setting here
+                                // This closure will be called when the toggle changes
+                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
+                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
+                                // Add logic to update permission settings
+                            }
+                        )
+                    }
+                }
+                
+                Section(header: Text("About")) {
+                    ForEach(simpleSettings.indices, id: \.self) { index in
+                        SimpleSettingsRow(setting: $simpleSettings[index])
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .environment(\.defaultMinListRowHeight, 0) // Reduces the default space between items
+            .navigationTitle("Settings")
+           
+#if os(iOS)
+            .listRowSeparatorTint(.clear) // Hides the list separators
+#endif
+            .onAppear {
+                permissionsManager.setPrayTimeInstance(localPrayTimeSetting)
+                let allSettings = permissionsManager.settingsData
+                dropdownSettings = allSettings.filter { $0.settingType?.dropdownType != nil }
+                simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
+                permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 50)
+                    
+                }
             }
         }
+        .frame(width: 600, height: 600, alignment: .center)
     }
 }
 
@@ -619,7 +637,7 @@ struct DropdownSettingsRow: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
-#if os(iOS)
+            #if os(iOS)
             DisclosureGroup(isExpanded: $isExpanded) {
                 VStack {
                     if let options = setting.optionsForDropdown {
@@ -633,7 +651,7 @@ struct DropdownSettingsRow: View {
                                 Text(options[index])
                             }
                         }
-                        .pickerStyle(.wheel)
+                        .pickerStyle(WheelPickerStyle())
                         .onChange(of: setting.selectedOptionIndex) { newValue in
                             if let newValue = newValue, newValue >= 0, newValue < options.count {
                                 setting.selectedOptionIndex = newValue
@@ -646,7 +664,7 @@ struct DropdownSettingsRow: View {
                         updateSetting(selectedOptionIndex: setting.selectedOptionIndex ?? 0)
                     }
                     .padding(.top, 8)
-                    .foregroundColor(.blue)
+                    .foregroundColor(.sky2)
                     .onTapGesture {
                         isExpanded = false
                         updateSetting(selectedOptionIndex: setting.selectedOptionIndex ?? 0)
@@ -664,12 +682,65 @@ struct DropdownSettingsRow: View {
                         .foregroundColor(.secondary)
                 }.padding(10)
             }
-#endif
+            #elseif os(macOS)
+            DisclosureGroup(isExpanded: $isExpanded) {
+                VStack {
+                    if let options = setting.optionsForDropdown {
+                        Picker(selection: Binding<Int>(
+                            get: { setting.selectedOptionIndex ?? 0 },
+                            set: { newValue in
+                                setting.selectedOptionIndex = newValue
+                            }
+                        ), label: Text("")) {
+                            ForEach(0..<options.count, id: \.self) { index in
+                                Text(options[index])
+                            }
+                        }
+                        .onChange(of: setting.selectedOptionIndex) { newValue in
+                            if let newValue = newValue, newValue >= 0, newValue < options.count {
+                                setting.selectedOptionIndex = newValue
+                            }
+                        }
+                    }
+                    
+                    Button("Done") {
+                        isExpanded = false
+                        updateSetting(selectedOptionIndex: setting.selectedOptionIndex ?? 0)
+                    }
+                    .padding(.top, 8)
+                    .foregroundColor(.sky2)
+                    .onTapGesture {
+                        isExpanded = false
+                        updateSetting(selectedOptionIndex: setting.selectedOptionIndex ?? 0)
+                    }
+                }
+                .padding(.bottom, 8)
+            } label: {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(setting.title ?? "")
+                        .font(.headline)
+                        .foregroundColor(.primary)
+                    
+                    Text(setting.description ?? "")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }.padding(10)
+            }
+            #elseif os(watchOS)
+            // A simplified interface for watchOS
+            VStack {
+                Text(setting.title ?? "")
+                    .font(.headline)
+                
+                Text(setting.description ?? "")
+                    .font(.subheadline)
+            }
+            #endif
         }
         .padding(.horizontal, 10)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(.sky2)
+                .fill(Color.sky2)
                 .shadow(radius: 2)
         )
         .padding(.vertical, 4)
@@ -706,6 +777,8 @@ struct DropdownSettingsRow: View {
         }
     }
 }
+
+
 
 struct PermissionSettingsRow: View {
     @Binding var setting: Setting
@@ -809,13 +882,31 @@ struct PermissionToggle: View {
 }
 
 
-import SwiftUI
-import WebKit
+#if os(macOS)
+public typealias ViewRepresentable = NSViewRepresentable
+#elseif os(iOS)
+public typealias ViewRepresentable = UIViewRepresentable
+#endif
 
-struct WebView: UIViewRepresentable {
+struct WebView: ViewRepresentable {
     let request: URLRequest
     @Binding var title: String
 
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+
+    #if os(macOS)
+    func makeNSView(context: Context) -> WKWebView  {
+        let webView = WKWebView()
+        webView.navigationDelegate = context.coordinator
+        return webView
+    }
+
+    func updateNSView(_ nsView: WKWebView, context: Context) {
+        nsView.load(request)
+    }
+    #elseif os(iOS)
     func makeUIView(context: Context) -> WKWebView  {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
@@ -825,10 +916,7 @@ struct WebView: UIViewRepresentable {
     func updateUIView(_ uiView: WKWebView, context: Context) {
         uiView.load(request)
     }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
+    #endif
 
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: WebView
@@ -855,7 +943,7 @@ struct SimpleSettingsRow: View {
     
     var body: some View {
         if let validURL = URL(string: setting.urlLink ?? "https://mkqasim.github.io/Salah/privacy_policy.html") {
-            NavigationLink(destination: WebView(request: URLRequest(url: validURL), title: $title).navigationBarTitle(Text(title), displayMode: .inline)) {
+            NavigationLink(destination: WebView(request: URLRequest(url: validURL), title: $title).navigationTitle(Text(title))) {
                 VStack(alignment: .leading){
                     Text(setting.title ?? "")
                         .font(.headline)
@@ -877,6 +965,9 @@ struct SimpleSettingsRow: View {
         }
     }
 }
+
+
+
 
 
 

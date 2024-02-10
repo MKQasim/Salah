@@ -10,7 +10,8 @@ import SwiftUI
 
 enum NavigationItem: Hashable {
     case currentLocation
-    case nocurrentLocation
+    case noCurrentLocationWithoutItem
+    case nocurrentLocationWithSelected(Location)
     case location(Location)
     case qiblaDirection // Add qiblaDirection case here
 
@@ -24,10 +25,16 @@ enum NavigationItem: Hashable {
             } else {
                 return LocalizedStringKey("Unknown City")
             }
-        case .nocurrentLocation:
+        case .noCurrentLocationWithoutItem:
             return LocalizedStringKey("No Current Location")
         case .qiblaDirection: // Handle localization for qiblaDirection if needed
             return LocalizedStringKey("Qibla Direction")
+        case .nocurrentLocationWithSelected(let selectedLocation):
+            if let city = selectedLocation.city {
+                return LocalizedStringKey(city)
+            } else {
+                return LocalizedStringKey("Unknown City")
+            }
         }
     }
 }

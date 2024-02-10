@@ -58,12 +58,17 @@ struct PrayerDetailView: View {
             .padding(.top, 10)
             .onAppear {
                 Task {
-                    await setUpView()
+                    setUpView()
                     updateCounter()
                 }
             }
         }
-        .navigationBarTitle(selectedLocation?.city ?? "", displayMode: .automatic)
+#if os(macOS)
+    .navigationTitle(selectedLocation?.city ?? "")
+#else
+    .navigationBarTitle(selectedLocation?.city ?? "", displayMode: .automatic)
+#endif
+
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Image("logo")
@@ -262,21 +267,15 @@ struct PrayerDetailViewPreview: View {
             .padding(.top, 10)
             .onAppear {
                 Task {
-                    await setUpView()
+                    setUpView()
                     updateCounter()
                 }
             }
         }
         .padding(.top, 10)
-        .onAppear{
-            Task{
-                setUpView()
-                updateCounter()
-            }
-            
-        }
         
-#if os(iOS)
+        
+#if os(iOS) || os(watchOS) || os(tvOS)
         .navigationBarItems(trailing:
                                 Button(action: {
             addLocation()
@@ -288,16 +287,23 @@ struct PrayerDetailViewPreview: View {
         )
         .navigationBarTitle(selectedLocation?.city ?? "", displayMode: .automatic)
 #endif
-        
+
+#if os(macOS)
         .toolbar {
-            ToolbarItem(placement: .principal) {
-                Image("logo")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 50)
-                
+            ToolbarItem(placement: .automatic) {
+                // Usage
+                Button(action: {
+                    addLocation()
+                }) {
+                    Text(isOpenedAfterSearch ? "Preview" : "Add")
+                }
+                .buttonStyle(GradientButtonStyle())
+                .disabled(isLocationAdded) // Disable the button when location is added
             }
+            
         }
+        .navigationTitle(selectedLocation?.city ?? "")
+#endif
     }
     
     func addLocation() {
@@ -378,9 +384,42 @@ struct PrayerDetailViewPreview: View {
     }
 }
 
+
 //#Preview {
 //    let city = Cities(city: "Nuremberg", lat: 28.61, long: 77.20, timeZone: +5.5)
 //    return PrayerDetailView(city: city)
 //        .environmentObject(LocationManager())
 //        .environmentObject(LocationState())
 //}
+
+
+struct CircleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .background(
+                LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .leading, endPoint: .trailing)
+            )
+            .foregroundColor(.black)
+            .clipShape(Circle())
+            .shadow(color: .gray, radius: 5, x: 0, y: 5)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+    }
+}
+
+
+struct GradientButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding(.horizontal, 50)
+            .padding(.vertical, 10)
+            .background(
+                LinearGradient(gradient: Gradient(colors: [.blue, .white]), startPoint: .leading, endPoint: .trailing)
+            )
+            .foregroundColor(.black)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
+            .shadow(color: .gray, radius: 5, x: 0, y: 5)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+    }
+}

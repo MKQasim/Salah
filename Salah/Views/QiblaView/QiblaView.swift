@@ -56,8 +56,28 @@ struct QiblaView: View {
             }
             .padding()
         }
+        .overlay(
+            Group {
+                if locationState.cities.isEmpty {
+                    VStack {
+                        Text("Please add a location to view Qibla directions.")
+                            .foregroundStyle(.gray)
+                        Image("logo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 100, height: 100)
+                    }
+                } else {
+                    EmptyView()
+                }
+            }
+        )
         .navigationTitle("Qibla Directions")
     }
 }
+
+
+
+
 
 

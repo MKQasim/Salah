@@ -22,7 +22,9 @@ struct LocationDetailView: View {
             Group {
                 if !isSearching {
                     ForEach(locationState.cities, id: \.self) { location in
-                        DetailLocationListRowCellView(isFullScreenView: $isFullScreenView, location: location, isCurrent: false)
+                        DetailLocationListRowCellView(isFullScreenView: $isFullScreenView, location: location, isCurrent: false, onTap:{_ in 
+                            print("cell taped")
+                        })
                     }
                     .onDelete(perform: delete)
                 }
@@ -56,7 +58,7 @@ struct LocationDetailView: View {
                         ManualLocationView(
                             searchable: $searchableText,
                             isDetailView: $isFullScreenView,
-                            onDismiss: {
+                            onDismiss: { location in
                                 // Handle the dismissal of ManualLocationView, e.g., pop the view
                                 isFullScreenView = false // Set the state variable to dismiss the view
                                 // Additional logic for dismissal if needed
@@ -70,6 +72,7 @@ struct LocationDetailView: View {
                                 }) {
                                     Text("Cancel")
                                 }
+                                .buttonStyle(GradientButtonStyle())
                             }
                         }
 

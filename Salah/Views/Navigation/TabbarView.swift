@@ -12,7 +12,7 @@ struct TabbarView: View {
     @EnvironmentObject private var navigationState: NavigationState
     @EnvironmentObject var locationState: LocationState
     @State private var isSheet = false
-    @State private var isShowingQibla = false // Add state to track if QiblaView is shown
+    @State private var isShowingQibla = false
     @State private var isPrayerDetailViewPresented = false
     @Environment(\.dismissSearch) private var dismissSearchAction
 
@@ -29,7 +29,7 @@ struct TabbarView: View {
             if locationManager.locationStatus == .denied {
                 if locationState.cities.count == 0 {
                     VStack {
-                        Text("Add Location to View screen")
+                        Text("Please add a location to view Qibla directions.")
                             .foregroundStyle(.gray)
                         Image("logo")
                             .resizable()
@@ -37,19 +37,19 @@ struct TabbarView: View {
                             .frame(width: 100, height: 100)
                       
                     }
-                    .tag(NavigationItem.nocurrentLocation)
+                    .tag(NavigationItem.noCurrentLocationWithoutItem)
                 }
             } else if locationState.isLocation == false {
                 if locationState.cities.count == 0 {
                     VStack {
-                        Text("Add Location to View screen")
+                        Text("Please add a location to view Qibla directions.")
                             .foregroundStyle(.gray)
                         Image("logo")
                             .resizable()
                             .scaledToFit()
                             .frame(width: 100, height: 100)
                     }
-                    .tag(NavigationItem.nocurrentLocation)
+                    .tag(NavigationItem.noCurrentLocationWithoutItem)
                 }
             } else {
                 if locationState.isLocation {
@@ -63,6 +63,11 @@ struct TabbarView: View {
                     .tag(NavigationItem.currentLocation)
                     .tabItem {
                         Label("Current Location", systemImage: "location.fill")
+                            .buttonStyle(GradientButtonStyle())
+                                .frame(width: 30, height: 30, alignment: .center)
+                                .background(LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .top, endPoint: .bottom))
+                                .cornerRadius(15)
+                                .shadow(color: .gray, radius: 10, x: 0, y: 10)
                     }
                 }
 }
@@ -90,7 +95,6 @@ struct TabbarView: View {
         }
         
         #if !os(macOS) && !os(watchOS)
-       
         .tabViewStyle(.page(indexDisplayMode: .always))
         .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         .fullScreenCover(isPresented: $isSheet) {
@@ -103,21 +107,31 @@ struct TabbarView: View {
         .toolbar {
             #if targetEnvironment(macCatalyst)
             // Code for macOS
-            #else
+            ToolbarItemGroup(placement: .automatic) {
+                Spacer()
+                Button(action: {
+                    isSheet.toggle()
+                }) {
+                    Image(systemName: "list.bullet")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+            }
+            #elseif os(watchOS)
+            // Code for watchOS
+            ToolbarItemGroup(placement: .automatic) {
+                Spacer()
+                Button(action: {
+                    isSheet.toggle()
+                }) {
+                    Image(systemName: "list.bullet")
+                        .font(.subheadline)
+                        .foregroundColor(.gray)
+                }
+            }
+            #elseif os(iOS) || os(tvOS)
+            // Code for iOS and iPadOS
             ToolbarItemGroup(placement: .bottomBar) {
-                // Add button to show/hide QiblaView
-//                Button(action: {
-//                    isShowingQibla.toggle()
-//                    if isShowingQibla {
-//                        navigationState.tabbarSelection = NavigationItem.qiblaDirection
-//                    } else {
-//                        navigationState.tabbarSelection = NavigationItem.currentLocation
-//                    }
-//                }) {
-//                    Image(systemName: "location.north")
-//                        .font(.subheadline)
-//                        .foregroundColor(.gray)
-//                }
                 Spacer()
                 Button(action: {
                     isSheet.toggle()
@@ -130,23 +144,9 @@ struct TabbarView: View {
             #endif
         }
 
-        
-//        .toolbar {
-//            #if !os(macOS)
-//            ToolbarItemGroup(placement: .bottomBar) {
-// 
-//                Spacer()
-//                Button(action: {
-//                    isSheet.toggle()
-//                }) {
-//                    Image(systemName: "list.bullet")
-//                        .font(.subheadline)
-//                        .foregroundColor(.gray)
-//                }
-//               
-//            }
-//            #endif
-//        }
+
+
+
     }
 }
 

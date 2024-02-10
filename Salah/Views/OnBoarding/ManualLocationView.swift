@@ -66,7 +66,7 @@ struct ManualLocationView: View {
     @State private var isPrayerDetailViewPresented = false
     @Binding var searchable: String
     @Binding var isDetailView: Bool
-    var onDismiss: (() -> Void)
+    var onDismiss: ((Location) -> Void)
     @State private var dropDownList: [Location] = []
 
     var body: some View {
@@ -87,7 +87,7 @@ struct ManualLocationView: View {
                                     selectedLocation: item,
                                     isDetailViewPresented: $isPrayerDetailViewPresented,
                                     onDismiss: {
-                                        onDismiss()
+                                        onDismiss(item)
                                     }
                                 ),
                                 label: {
@@ -106,14 +106,51 @@ struct ManualLocationView: View {
             }
             .navigationTitle("Locations")
             .toolbar {
+//                ToolbarItem(placement: .principal) {
+//                    Image("logo")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 100, height: 50)
+//                    
+//                }
+//                ToolbarItem(placement: .principal) {
+//                    Image("logo")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width: 100, height: 50)
+//                    
+//                }
+                
                 ToolbarItem(placement: .principal) {
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 50)
-                    
+                    HStack {
+                        Spacer()
+                        Button(action: {
+//                            addLocation()
+                        }) {
+                            Text("Add")
+                        }
+//                        .disabled(!isLocationAdded) // Disable the button when location is added
+                        Spacer()
+                    }
                 }
+                
             }
+            
+//            .toolbar {
+//                ToolbarItem(placement: .principal) {
+//                    HStack {
+//                        Spacer()
+//                        Button(action: {
+//                            addLocation()
+//                        }) {
+//                            Text(isOpenedAfterSearch ? "Preview" : "Add")
+//                        }
+//                        .disabled(!isLocationAdded) // Disable the button when location is added
+//                        Spacer()
+//                    }
+//                }
+//            }
+//            .navigationTitle(selectedLocation?.city ?? "")
         }
     }
 
@@ -153,6 +190,6 @@ extension Published.Publisher where Value: Equatable {
     @State var isDetailView = true
     
     @State var searching = ""
-    return ManualLocationView(searchable: $searching, isDetailView: $isDetailView, onDismiss: {})
+    return ManualLocationView(searchable: $searching, isDetailView: $isDetailView, onDismiss: {_ in })
         .environmentObject(LocationState())
 }

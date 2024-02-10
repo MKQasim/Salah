@@ -50,7 +50,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 
     func stopHeadingUpdates() {
         if CLLocationManager.headingAvailable() {
+            #if os(iOS)
             locationManager.stopUpdatingHeading()
+            #endif
         }
     }
 

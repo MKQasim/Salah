@@ -12,7 +12,7 @@ struct ContentView: View {
     @StateObject var locationState = LocationState()
     @StateObject var navigationState = NavigationState()
     @ObservedObject var locationManager = LocationManager()
-    @StateObject var notificationManager = NotificationManager()
+//    @StateObject var notificationManager = NotificationManager()
     @State private var prayerTimes:[String] = []
     
     var body: some View {
@@ -30,7 +30,7 @@ struct ContentView: View {
                 }
             }
             .environmentObject(locationManager)
-            .environmentObject(notificationManager)
+//            .environmentObject(notificationManager)
             .environmentObject(locationState)
             .environmentObject(navigationState)
         

@@ -108,6 +108,13 @@
 		05E01DE72B2B96F9002ED7FC /* TimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		05FC816F2B27BEFA0046E93C /* NavigationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationState.swift; sourceTree = "<group>"; };
 		05FC81722B27BF130046E93C /* NavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
+		527F44682B7822B100758629 /* Salah_WatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Salah_WatchApp.swift; sourceTree = "<group>"; };
+		527F446A2B7822B100758629 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		527F446C2B7822B300758629 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		527F446F2B7822B300758629 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		527F44792B7822B300758629 /* Salah_Watch_Watch_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Salah_Watch_Watch_AppTests.swift; sourceTree = "<group>"; };
+		527F44832B7822B300758629 /* Salah_Watch_Watch_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Salah_Watch_Watch_AppUITests.swift; sourceTree = "<group>"; };
+		527F44852B7822B300758629 /* Salah_Watch_Watch_AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Salah_Watch_Watch_AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		C91731B12B45CA8F0054CAF6 /* SalahSettings.JSON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SalahSettings.JSON; sourceTree = "<group>"; };
 		C94946CF2B4CCD3B00853259 /* QiblaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiblaView.swift; sourceTree = "<group>"; };
 		C94AAE562B44D13F000AAF66 /* AppPrayerTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppPrayerTime.swift; sourceTree = "<group>"; };
@@ -267,6 +274,42 @@
 			path = "Weekly Section";
 			sourceTree = "<group>";
 		};
+		527F44672B7822B100758629 /* Salah_Watch Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				527F44682B7822B100758629 /* Salah_WatchApp.swift */,
+				527F446A2B7822B100758629 /* ContentView.swift */,
+				527F446C2B7822B300758629 /* Assets.xcassets */,
+				527F446E2B7822B300758629 /* Preview Content */,
+			);
+			path = "Salah_Watch Watch App";
+			sourceTree = "<group>";
+		};
+		527F446E2B7822B300758629 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				527F446F2B7822B300758629 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		527F44782B7822B300758629 /* Salah_Watch Watch AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				527F44792B7822B300758629 /* Salah_Watch_Watch_AppTests.swift */,
+			);
+			path = "Salah_Watch Watch AppTests";
+			sourceTree = "<group>";
+		};
+		527F44822B7822B300758629 /* Salah_Watch Watch AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				527F44832B7822B300758629 /* Salah_Watch_Watch_AppUITests.swift */,
+				527F44852B7822B300758629 /* Salah_Watch_Watch_AppUITestsLaunchTests.swift */,
+			);
+			path = "Salah_Watch Watch AppUITests";
+			sourceTree = "<group>";
+		};
 		C94946CE2B4CCBEE00853259 /* QiblaView */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +340,9 @@
 			isa = PBXGroup;
 			children = (
 				C9F5E3082B20793A00964AF0 /* Salah */,
+				527F44672B7822B100758629 /* Salah_Watch Watch App */,
+				527F44782B7822B300758629 /* Salah_Watch Watch AppTests */,
+				527F44822B7822B300758629 /* Salah_Watch Watch AppUITests */,
 				C96F50B32B29A401005D09A5 /* Frameworks */,
 				C9F5E3072B20793A00964AF0 /* Products */,
 			);
@@ -368,7 +414,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1510;
+				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1510;
 				TargetAttributes = {
 					C9F5E3052B20793A00964AF0 = {
@@ -596,7 +642,8 @@
 				INFOPLIST_FILE = Salah/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Salah;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app require you location coodinates to calculate salah timing natively";
+				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs your location coordinates to calculate the accurate salah timings for your region. Your location data is only used for this purpose and is not shared with any third parties. You can grant or revoke this permission at any time in your device settings.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location coordinates to calculate the accurate salah timings for your region. Your location data is only used for this purpose and is not shared with any third parties. You can grant or revoke this permission at any time in your device settings.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -606,21 +653,22 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.3;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kamsque.Salah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Salah/Salah-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Debug;
 		};
@@ -645,7 +693,8 @@
 				INFOPLIST_FILE = Salah/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Salah;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app require you location coodinates to calculate salah timing natively";
+				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs your location coordinates to calculate the accurate salah timings for your region. Your location data is only used for this purpose and is not shared with any third parties. You can grant or revoke this permission at any time in your device settings.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs your location coordinates to calculate the accurate salah timings for your region. Your location data is only used for this purpose and is not shared with any third parties. You can grant or revoke this permission at any time in your device settings.";
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -655,20 +704,21 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.3;
 				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kamsque.Salah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTED_PLATFORMS = "appletvos appletvsimulator iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "Salah/Salah-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3";
 			};
 			name = Release;
 		};

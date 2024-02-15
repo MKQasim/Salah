@@ -1,0 +1,24 @@
+{
+  "source": "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test’s MacBook Pro/GitHub/Salah/Salah/Views/OnBoarding/AppLandingView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Start with new journey of Salah Tracking"
+      },
+      {
+        "comment": "",
+        "key": "We do not share your location to any third parties servers and really care for your privacy."
+      },
+      {
+        "comment": "",
+        "key": "Get current location"
+      },
+      {
+        "comment": "",
+        "key": "Allow location permission"
+      }
+    ]
+  },
+  "version": 1
+}

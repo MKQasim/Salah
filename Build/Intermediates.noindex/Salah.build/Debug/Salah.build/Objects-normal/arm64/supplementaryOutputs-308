@@ -1,0 +1,30 @@
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/Navigation/MainNavigationView.swift":
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MainNavigationView.d"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MainNavigationView.o"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MainNavigationView.swiftconstvalues"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MainNavigationView.swiftdeps"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MainNavigationView.dia"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Services/LocationManager.swift":
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationManager.d"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationManager.swiftdeps"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationManager.dia"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationManager.o"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationManager.swiftconstvalues"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/DetailLocationView/LocationDetailView.swift":
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationDetailView.d"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationDetailView.swiftconstvalues"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationDetailView.dia"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationDetailView.o"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationDetailView.swiftdeps"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/PrayerDetailView/PrayerSunSection.swift":
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerSunSection.swiftconstvalues"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerSunSection.o"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerSunSection.dia"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerSunSection.swiftdeps"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerSunSection.d"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/PrayerDetailView/Daily Section/PrayerTodayCellView.swift":
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodayCellView.swiftconstvalues"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodayCellView.dia"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodayCellView.d"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodayCellView.swiftdeps"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodayCellView.o"

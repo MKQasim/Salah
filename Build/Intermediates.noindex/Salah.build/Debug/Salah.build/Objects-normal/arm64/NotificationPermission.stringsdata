@@ -1,0 +1,20 @@
+{
+  "source": "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test’s MacBook Pro/GitHub/Salah/Salah/Views/OnBoarding/NotificationPermission.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Get notified for upcoming Salah"
+      },
+      {
+        "comment": "",
+        "key": "We do not share your information to any third parties servers and really care for your privacy."
+      },
+      {
+        "comment": "",
+        "key": "Skip notification"
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,44 @@
+{
+  "source": "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test’s MacBook Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Salah"
+      },
+      {
+        "comment": "",
+        "key": "Add a city"
+      },
+      {
+        "comment": "",
+        "key": "Qibla Direction"
+      },
+      {
+        "comment": "",
+        "key": "Open add city"
+      },
+      {
+        "comment": "",
+        "key": "Hello"
+      },
+      {
+        "comment": "",
+        "key": "Nuremberg"
+      },
+      {
+        "comment": "",
+        "key": "Please add a location to view Prayers"
+      },
+      {
+        "comment": "",
+        "key": "Allow Current Location"
+      },
+      {
+        "comment": "",
+        "key": "Cancel"
+      }
+    ]
+  },
+  "version": 1
+}

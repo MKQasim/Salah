@@ -1,0 +1,30 @@
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Models/Location.swift":
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Location.o"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Location.d"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Location.swiftconstvalues"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Location.dia"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Location.swiftdeps"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift":
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.swiftdeps"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.dia"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.swiftconstvalues"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.d"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.o"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Models/PrayerTiming.swift":
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTiming.d"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTiming.swiftconstvalues"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTiming.dia"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTiming.swiftdeps"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTiming.o"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Extras/PrayerTimeHelper.swift":
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTimeHelper.dia"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTimeHelper.d"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTimeHelper.swiftconstvalues"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTimeHelper.o"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTimeHelper.swiftdeps"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Models/Cities.swift":
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Cities.o"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Cities.dia"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Cities.swiftdeps"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Cities.swiftconstvalues"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/Cities.d"

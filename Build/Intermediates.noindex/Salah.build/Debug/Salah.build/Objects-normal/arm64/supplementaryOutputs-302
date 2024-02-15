@@ -1,0 +1,30 @@
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/Navigation/TabbarView.swift":
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/TabbarView.d"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/TabbarView.o"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/TabbarView.swiftdeps"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/TabbarView.swiftconstvalues"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/TabbarView.dia"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Extras/DateExtensions.swift":
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/DateExtensions.dia"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/DateExtensions.d"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/DateExtensions.swiftconstvalues"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/DateExtensions.swiftdeps"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/DateExtensions.o"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/State/NavigationState.swift":
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NavigationState.o"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NavigationState.swiftconstvalues"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NavigationState.swiftdeps"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NavigationState.d"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NavigationState.dia"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Services/CountDownService.swift":
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/CountDownService.swiftconstvalues"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/CountDownService.o"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/CountDownService.dia"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/CountDownService.swiftdeps"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/CountDownService.d"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/PrayerDetailView/PrayerDetailView.swift":
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDetailView.swiftdeps"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDetailView.dia"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDetailView.o"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDetailView.d"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDetailView.swiftconstvalues"

@@ -1,0 +1,30 @@
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/State/LocationState.swift":
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationState.swiftdeps"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationState.o"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationState.d"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationState.swiftconstvalues"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationState.dia"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/OnBoarding/PermissionBoard.swift":
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.o"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.swiftconstvalues"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.swiftdeps"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.dia"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.d"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/QiblaView/QiblaView.swift":
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.swiftconstvalues"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.d"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.swiftdeps"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.dia"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.o"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/PrayerDetailView/Daily Section/PrayerDailyCellView.swift":
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDailyCellView.swiftconstvalues"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDailyCellView.d"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDailyCellView.swiftdeps"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDailyCellView.dia"
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerDailyCellView.o"
+"/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Salah/Views/PrayerDetailView/Daily Section/PrayerTodaySectionView.swift":
+  object: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.o"
+  diagnostics: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.dia"
+  const-values: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftconstvalues"
+  dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.d"
+  swift-dependencies: "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test\u2019s MacBook Pro/GitHub/Salah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftdeps"

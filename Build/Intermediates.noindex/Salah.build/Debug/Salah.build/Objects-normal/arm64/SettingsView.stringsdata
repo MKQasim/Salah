@@ -1,0 +1,32 @@
+{
+  "source": "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test’s MacBook Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": ""
+      },
+      {
+        "comment": "",
+        "key": "Done"
+      },
+      {
+        "comment": "",
+        "key": "Settings"
+      },
+      {
+        "comment": "",
+        "key": "Prayer Settings"
+      },
+      {
+        "comment": "",
+        "key": "Permission Settings"
+      },
+      {
+        "comment": "",
+        "key": "About"
+      }
+    ]
+  },
+  "version": 1
+}

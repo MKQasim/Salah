@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import SwiftUI
+import CoreLocation
+
 
 struct NavigationSplitDetailView: View {
     @EnvironmentObject private var locationManager: LocationManager
@@ -16,10 +19,10 @@ struct NavigationSplitDetailView: View {
     @State private var isSheet = false
     @State private var isSheetSetting = false
     @State private var isDetail = false
-
+    @State private var isLocationPermissionEnabled = false
+    
     var body: some View {
         NavigationSplitView{
-            
             List(selection: $navigationState.sidebarSelection){
                 ForEach(locationState.cities){ location in
                     NavigationLink(value: NavigationItem.location(location), label: {
@@ -70,11 +73,31 @@ struct NavigationSplitDetailView: View {
         switch navigationState.sidebarSelection {
         case .noCurrentLocationWithoutItem:
             VStack{
+                Spacer()
+                Button(action: {
+                         
+                      }) {
+                          Text("Allow Current Location")
+                              .padding()
+                              .background(Color.blue)
+                              .foregroundColor(Color.white)
+                              .cornerRadius(8)
+                      }
+                      .buttonStyle(BorderlessButtonStyle())
+                      .labelStyle(.iconOnly)
+                              .symbolVariant(.fill)
+                              .tint(.blue)
+                              .cornerRadius(8)
+                              // Show or hide the button based on the location status
+                              .opacity(PermissionsManager.shared.locationPermissionEnabled == true ? 0 : 1)
+                     
+                Spacer()
                 Text("Please add a location to view Prayers")
                 Image("logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 100, height: 100)
+                Spacer()
             }
         case .currentLocation:
             PrayerDetailView(
@@ -104,7 +127,6 @@ struct NavigationSplitDetailView: View {
             Text("Hello")
         }
     }
-
         .overlay(EmptyView().sheet(isPresented: $isSheet, content: {
             NavigationStack{
                 ManualLocationView(

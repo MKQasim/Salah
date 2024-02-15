@@ -69,8 +69,9 @@ class FileStorageManager {
     }
     
     func defaultSettings() -> [Setting] {
+        print("PermissionsManager.shared.locationPermissionEnabled", PermissionsManager.shared.locationPermissionEnabled)
         return [
-            Setting(title: "Location Permission", description: "Manage location permission", isPermissionEnabled: false, settingType: .permission(.location), permissionType: .location, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
+            Setting(title: "Location Permission", description: "Manage location permission", isPermissionEnabled: PermissionsManager.shared.locationPermissionEnabled, settingType: .permission(.location), permissionType: .location, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
             Setting(title: "Notification Permission", description: "Manage notification permission", isPermissionEnabled: false, settingType: .permission(.notifications), permissionType: .notifications, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
             Setting(title: "Calculation Method", description: "Choose calculation method", isPermissionEnabled: false, settingType: .dropdown(.calculationMethod), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
             Setting(title: "Juristic Method", description: "Choose juristic method", isPermissionEnabled: false, settingType: .dropdown(.juristicMethod), permissionType: nil, urlLink: "https://mkqasim.github.io/Salah/privacy_policy.html"),
@@ -190,6 +191,34 @@ enum PermissionType: Identifiable, Equatable, Codable {
     }
 }
 
+extension SettingType: Hashable {
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .simple(let string):
+            hasher.combine("simple")
+            hasher.combine(string)
+        case .permission(let permissionType):
+            hasher.combine("permission")
+            hasher.combine(permissionType)
+        case .dropdown(let dropdownType):
+            hasher.combine("dropdown")
+            hasher.combine(dropdownType)
+        }
+    }
+}
+
+extension PermissionType: Hashable {
+    func hash(into hasher: inout Hasher) {
+        switch self {
+        case .location:
+            hasher.combine("location")
+        case .notifications:
+            hasher.combine("notifications")
+        }
+    }
+}
+
+
 enum DropdownType: Identifiable, Equatable , Codable{
     case calculationMethod
     case juristicMethod
@@ -225,7 +254,7 @@ enum DropdownType: Identifiable, Equatable , Codable{
     }
 }
 
-struct Setting: Identifiable, Equatable, Codable {
+struct Setting: Identifiable, Equatable, Codable  , Hashable{
     var id = UUID()
     var title: String?
     var description: String?
@@ -316,6 +345,34 @@ struct Setting: Identifiable, Equatable, Codable {
         return nil
     }
 }
+extension Setting {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+        hasher.combine(title)
+        hasher.combine(description)
+        hasher.combine(isPermissionEnabled)
+        hasher.combine(settingType)
+        hasher.combine(isExpanded)
+        hasher.combine(selectedOptionIndex)
+        hasher.combine(permissionType)
+        hasher.combine(urlLink)
+    }
+}
+
+// Equatable conformance
+extension Setting {
+    static func == (lhs: Setting, rhs: Setting) -> Bool {
+        return lhs.id == rhs.id &&
+            lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.isPermissionEnabled == rhs.isPermissionEnabled &&
+            lhs.settingType == rhs.settingType &&
+            lhs.isExpanded == rhs.isExpanded &&
+            lhs.selectedOptionIndex == rhs.selectedOptionIndex &&
+            lhs.permissionType == rhs.permissionType &&
+            lhs.urlLink == rhs.urlLink
+    }
+}
 
 extension Setting {
     // Method to create Setting object from JSON string
@@ -337,302 +394,20 @@ extension Setting {
     }
 }
 
-class PermissionsManager: NSObject, ObservableObject, UNUserNotificationCenterDelegate, CLLocationManagerDelegate {
-    @Published var notificationPermissionEnabled = false
-    @Published var locationPermissionEnabled = false
-    var prayTime: LocalPrayTimeSetting?
-    private let notificationCenter = UNUserNotificationCenter.current()
-    private let locationManager = CLLocationManager()
-    private let fileStorageManager = FileStorageManager.shared
-    
-    // Load settings data from UserDefaults or create new settings if not found
-    var settingsData: [Setting] = []
-    static let shared = PermissionsManager()
-    static var appTerminatedNotification = Notification.Name("AppTerminatedNotification")
-
-   private override init() {
-        super.init()
-        notificationCenter.delegate = self
-        locationManager.delegate = self
-        loadInitialPermissions()
-        registerAppLifecycleNotifications()
-        loadSettingsFromICloud()
-       NotificationCenter.default.addObserver(self, selector: #selector(appWillTerminate), name: Self.appTerminatedNotification, object: nil)
-       
-    }
-    
-    @objc func appWillTerminate() {
-           // Save settings before the app is terminated
-           saveSettingsToICloud()
-       }
-    
-    func saveSettingsToICloud() {
-            fileStorageManager.saveSettings(settingsData)
-    }
-    
-    deinit {
-        removeAppLifecycleNotifications()
-    }
-    
-    func setPrayTimeInstance(_ prayTime: LocalPrayTimeSetting) {
-        self.prayTime = prayTime
-    }
-    
-    private func registerAppLifecycleNotifications() {
-#if os(iOS)
-        NotificationCenter.default.addObserver(self, selector: #selector(appBecameActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-#endif
-    }
-    
-    private func removeAppLifecycleNotifications() {
-#if os(iOS)
-        NotificationCenter.default.removeObserver(self, name: UIApplication.didBecomeActiveNotification, object: nil)
-#endif
-    }
-    
-    @objc func appBecameActive() {
-        loadInitialPermissions()
-    }
-    
-    func updateLocationPermission(_ isEnabled: Bool) {
-        locationPermissionEnabled = isEnabled
-        saveLocationPermissionStatus(isEnabled)
-        if isEnabled {
-            requestLocationPermission()
-        }
-    }
-    
-    func updateNotificationPermission(_ isEnabled: Bool) {
-        notificationPermissionEnabled = isEnabled
-        saveNotificationPermissionStatus(isEnabled)
-        if isEnabled {
-            requestNotificationPermission()
-        }
-    }
-    
-    private func saveLocationPermissionStatus(_ isEnabled: Bool) {
-        UserDefaults.standard.set(isEnabled, forKey: "LocationPermissionStatus")
-        // Save the location permission status to app settings or storage if needed
-    }
-    
-    private func saveNotificationPermissionStatus(_ isEnabled: Bool) {
-        UserDefaults.standard.set(isEnabled, forKey: "NotificationPermissionStatus")
-        // Save the notification permission status to app settings or storage if needed
-    }
-    
-    func loadInitialPermissions() {
-        notificationPermissionEnabled = checkNotificationPermission()
-        checkLocationPermission { isEnabled in
-            // Handle isEnabled (true/false) here
-            self.locationPermissionEnabled = isEnabled
-        }
-    }
-    
-    func checkNotificationPermission() -> Bool {
-        var isEnabled = false
-        notificationCenter.getNotificationSettings { settings in
-            isEnabled = settings.authorizationStatus == .authorized
-            DispatchQueue.main.async {
-                self.notificationPermissionEnabled = isEnabled
-            }
-        }
-        return isEnabled
-    }
-    
-    func checkLocationPermission(completion: @escaping (Bool) -> Void) {
-        DispatchQueue.main.async {
-            var isEnabled = false
-            let status = self.locationManager.authorizationStatus
-            switch status {
-            case .authorizedWhenInUse, .authorizedAlways:
-                isEnabled = true
-            default:
-                isEnabled = false
-            }
-            completion(isEnabled)
-        }
-    }
-    
-    
-    func requestNotificationPermission() {
-        notificationCenter.requestAuthorization(options: [.alert, .sound, .badge]) { [weak self] granted, _ in
-            DispatchQueue.main.async {
-                self?.notificationPermissionEnabled = granted
-            }
-        }
-    }
-    
-    func requestLocationPermission() {
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-    }
-    
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        checkLocationPermission { isEnabled in
-            // Handle isEnabled (true/false) here
-            self.locationPermissionEnabled = isEnabled
-        }
-    }
-    
-    func openLocationSettings() {
-#if os(iOS)
-        guard let locationsUrl = URL(string: UIApplication.openSettingsURLString + "location/" + Bundle.main.bundleIdentifier!) else {
-            return
-        }
-        UIApplication.shared.open(locationsUrl)
-#endif
-        
-    }
-    
-    func openNotificationSettings() {
-#if os(iOS)
-        guard let notificationsUrl = URL(string: UIApplication.openSettingsURLString + "notifications/") else {
-            return
-        }
-        UIApplication.shared.open(notificationsUrl)
-#endif
-        
-    }
-    
-    func updatePrayerTimeSetting(_ settingType: DropdownType, value: Int) {
-        guard let prayTime = prayTime else { return }
-        let prayerTimeHelper =  PrayerTimeHelper.shared
-        
-        switch settingType {
-        case .calculationMethod:
-            prayerTimeHelper.syncCalculationMethod(with: prayTime, value: value)
-        case .juristicMethod:
-            prayerTimeHelper.syncJuristicMethod(with: prayTime, value: value)
-        case .adjustingMethod:
-            prayerTimeHelper.syncAdjustingMethod(with: prayTime, value: value)
-        case .timeFormat:
-            prayerTimeHelper.syncTimeFormat(with: prayTime, value: value)
-        
-        }
-    }
-    
-    // Function to save settings to UserDefaults
-    func saveSettingsToUserICloud(_ settings: [Setting]) {
-        fileStorageManager.saveSettings(settings)
-    }
-    
-    // Function to load settings from UserDefaults
-    func loadSettingsFromICloud() {
-        let loadedSettings = fileStorageManager.loadSettings()
-        settingsData = loadedSettings
-        // Process loadedSettings as needed after loading from UserDefaults
-        // For example, update UI or perform actions based on loadedSettings
-    }
+protocol AppLifecycle {
+    var didBecomeActiveNotification: NSNotification.Name { get }
 }
 
-struct SettingsView: View {
-    @ObservedObject var permissionsManager = PermissionsManager.shared
-    @State private var dropdownSettings: [Setting] = []
-    @State private var simpleSettings: [Setting] = []
-    @State private var permissionSettings: [Setting] = []
-    let localPrayTimeSetting = LocalPrayTimeSetting() // Create an instance of PrayTime
-    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-    
-    var body: some View {
-        VStack{
-            VStack(alignment: .leading){
-                HStack{
-                    Button(action: {
-                        self.presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrow.backward")
-                            
-                    }.buttonStyle(CircleButtonStyle())
-                    Spacer()
-                }
-            }
-           
-            List {
-                Section(header: Text("Prayer Settings")) {
-                    ForEach(dropdownSettings.indices, id: \.self) { index in
-                        DropdownSettingsRow(
-                            setting: $dropdownSettings[index],
-                            localPrayTimeSetting: localPrayTimeSetting,
-                            updateSettingsManager: { updatedSetting in
-                                guard let settingType = updatedSetting.settingType , let dropdownType = settingType.dropdownType as? DropdownType else { return  }
-                                print(updatedSetting.selectedOptionIndex)
-                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
-                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
-                                permissionsManager.updatePrayerTimeSetting(dropdownType, value: updatedSetting.selectedOptionIndex ?? 0)
-                            }, permissionsManager: permissionsManager
-                        )
-                    }
-                }
-                
-                Section(header: Text("Permission Settings")) {
-                    ForEach(permissionSettings.indices, id: \.self) { index in
-                        PermissionSettingsRow(
-                            setting: $permissionSettings[index],
-                            permissionsManager: permissionsManager,
-                            updateSettingsManager: { updatedSetting in
-                                // Handle updated setting here
-                                // This closure will be called when the toggle changes
-                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
-                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
-                                // Add logic to update permission settings
-                            }
-                        )
-                    }
-                }
-                
-                Section(header: Text("About")) {
-                    ForEach(simpleSettings.indices, id: \.self) { index in
-                        SimpleSettingsRow(setting: $simpleSettings[index])
-                    }
-                }
-            }
-            .listStyle(.plain)
-            .environment(\.defaultMinListRowHeight, 0) // Reduces the default space between items
-            .navigationTitle("Settings")
-           
-#if os(iOS)
-            .listRowSeparatorTint(.clear) // Hides the list separators
-#endif
-            .onAppear {
-                permissionsManager.setPrayTimeInstance(localPrayTimeSetting)
-                let allSettings = permissionsManager.settingsData
-                dropdownSettings = allSettings.filter { $0.settingType?.dropdownType != nil }
-                simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
-                permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
-            }
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Image("logo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 100, height: 50)
-                    
-                }
-            }
-        }
-        .frame(width: 600, height: 600, alignment: .center)
-    }
-}
 
-extension PermissionsManager {
-    func updateSettingAndGetUpdatedArray(updatedSetting: Setting) -> [Setting] {
-        // Find the index of the setting that needs to be updated
-        if let index = settingsData.firstIndex(where: { $0.id == updatedSetting.id }) {
-            // Update the setting object in the array
-            settingsData[index] = updatedSetting
-        }
-        // Return the updated array
-        return settingsData
-    }
-}
+
+
 
 struct DropdownSettingsRow: View {
     @Binding var setting: Setting
     @State private var isExpanded = false
     @ObservedObject var localPrayTimeSetting: LocalPrayTimeSetting
     var updateSettingsManager: ((Setting) -> Void)?
-    var permissionsManager: PermissionsManager
-    
+    var permissionsManager = PermissionsManager.shared
     let prayerTimeHelpers = PrayerTimeHelper.shared
     
     var body: some View {
@@ -779,6 +554,108 @@ struct DropdownSettingsRow: View {
 }
 
 
+struct SettingsView: View {
+    @ObservedObject var permissionsManager = PermissionsManager.shared
+    @State private var dropdownSettings: [Setting] = []
+    @State private var simpleSettings: [Setting] = []
+    @State private var permissionSettings: [Setting] = []
+    let localPrayTimeSetting = LocalPrayTimeSetting() // Create an instance of PrayTime
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    var body: some View {
+        VStack{
+            VStack(alignment: .leading){
+                HStack{
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                    }) {
+                        Image(systemName: "arrow.backward")
+                            
+                    }.buttonStyle(CircleButtonStyle())
+                    Spacer()
+                }
+            }
+           
+            List {
+                Section(header: Text("Prayer Settings")) {
+                    ForEach(dropdownSettings.indices, id: \.self) { index in
+                        DropdownSettingsRow(
+                            setting: $dropdownSettings[index],
+                            localPrayTimeSetting: localPrayTimeSetting,
+                            updateSettingsManager: { updatedSetting in
+                                guard let settingType = updatedSetting.settingType , let dropdownType = settingType.dropdownType as? DropdownType else { return  }
+                                print(updatedSetting.selectedOptionIndex)
+                                
+                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
+                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
+                                permissionsManager.updatePrayerTimeSetting(dropdownType, value: updatedSetting.selectedOptionIndex ?? 0)
+                            }, permissionsManager: permissionsManager
+                        )
+                    }
+                }
+                
+                Section(header: Text("Permission Settings")) {
+                    ForEach(permissionSettings.indices, id: \.self) { index in
+                        PermissionSettingsRow(
+                            setting: $permissionSettings[index],
+                            permissionsManager: permissionsManager,
+                            updateSettingsManager: { updatedSetting in
+                                // Handle updated setting here
+                                // This closure will be called when the toggle changes
+                                let updatedSettingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: updatedSetting)
+                                permissionsManager.saveSettingsToUserICloud(updatedSettingsArray)
+                                // Add logic to update permission settings
+                            }
+                        )
+                    }
+                }
+                
+                Section(header: Text("About")) {
+                    ForEach(simpleSettings.indices, id: \.self) { index in
+                        SimpleSettingsRow(setting: $simpleSettings[index])
+                    }
+                }
+            }
+            .listStyle(.plain)
+            .environment(\.defaultMinListRowHeight, 0) // Reduces the default space between items
+            .navigationTitle("Settings")
+#if os(iOS)
+            .listRowSeparatorTint(.clear) // Hides the list separators
+#endif
+            .onAppear {
+                permissionsManager.setPrayTimeInstance(localPrayTimeSetting)
+                let allSettings = permissionsManager.settingsData
+                    
+                dropdownSettings = allSettings.filter { $0.settingType?.dropdownType != nil }
+                simpleSettings = allSettings.filter { $0.settingType?.stringValue != nil }
+                permissionSettings = allSettings.filter { $0.settingType?.permissionType != nil }
+            }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Image("logo")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 100, height: 50)
+                    
+                }
+            }
+
+        }.id(permissionsManager.settingsData)
+        .frame(width: 600, height: 600, alignment: .center)
+    }
+}
+
+extension PermissionsManager {
+    func updateSettingAndGetUpdatedArray(updatedSetting: Setting) -> [Setting] {
+        // Find the index of the setting that needs to be updated
+        if let index = settingsData.firstIndex(where: { $0.id == updatedSetting.id }) {
+            // Update the setting object in the array
+            settingsData[index] = updatedSetting
+        }
+        // Return the updated array
+        return settingsData
+    }
+}
 
 struct PermissionSettingsRow: View {
     @Binding var setting: Setting
@@ -804,9 +681,8 @@ struct PermissionSettingsRow: View {
             if let permissionType = setting.settingType?.permissionType {
                 switch permissionType {
                 case .location:
-                    PermissionToggle(isEnabled: isEnabledBinding(for: permissionType),
-                                     permissionsManager: permissionsManager,
-                                     setting: $setting,
+                    PermissionToggle(
+                        setting: $setting, permissionsManager: permissionsManager,
                                      updatePermission: { _ in
                                         updatePermissionSetting(permissionType: permissionType)
                                         updateSettingsManager?(setting)
@@ -817,9 +693,8 @@ struct PermissionSettingsRow: View {
                             permissionsManager.openLocationSettings()
                         }
                 case .notifications:
-                    PermissionToggle(isEnabled: isEnabledBinding(for: permissionType),
-                                     permissionsManager: permissionsManager,
-                                     setting: $setting,
+                    PermissionToggle(
+                        setting: $setting, permissionsManager: permissionsManager,
                                      updatePermission: { _ in
                                         updatePermissionSetting(permissionType: permissionType)
                                         updateSettingsManager?(setting)
@@ -830,11 +705,12 @@ struct PermissionSettingsRow: View {
                             permissionsManager.openNotificationSettings()
                         }
                 }
-            } else {
+            }
+            else {
                 Image(systemName: "chevron.right")
                     .foregroundColor(.secondary)
             }
-        }
+        }.id(setting)
         .background(
             RoundedRectangle(cornerRadius: 12)
                 .fill(.sky2)
@@ -846,6 +722,7 @@ struct PermissionSettingsRow: View {
     private func isEnabledBinding(for permissionType: PermissionType) -> Binding<Bool> {
         switch permissionType {
         case .location:
+            print($permissionsManager.locationPermissionEnabled)
             return $permissionsManager.locationPermissionEnabled
         case .notifications:
             return $permissionsManager.notificationPermissionEnabled
@@ -854,9 +731,18 @@ struct PermissionSettingsRow: View {
     
     private func updatePermissionSetting(permissionType: PermissionType) {
         if let index = permissionsManager.settingsData.firstIndex(where: { $0.id == setting.id }) {
-            setting.isPermissionEnabled = permissionType == .location ?
-                permissionsManager.locationPermissionEnabled :
-                permissionsManager.notificationPermissionEnabled
+            print(permissionsManager.locationPermissionEnabled)
+            
+            if permissionType == .location {
+                permissionsManager.openLocationSettings()
+                setting.isPermissionEnabled = permissionsManager.locationPermissionEnabled
+                print("Updated \(permissionType)", setting.isPermissionEnabled)
+            }else if permissionType == .notifications{
+                permissionsManager.openNotificationSettings()
+                setting.isPermissionEnabled =  permissionsManager.notificationPermissionEnabled
+                print("Updated \(permissionType)", setting.isPermissionEnabled)
+            }
+            print("\(permissionType)",setting.isPermissionEnabled)
             permissionsManager.settingsData[index] = setting
             let settingsArray = permissionsManager.updateSettingAndGetUpdatedArray(updatedSetting: setting)
             permissionsManager.saveSettingsToUserICloud(settingsArray)
@@ -865,19 +751,31 @@ struct PermissionSettingsRow: View {
 }
 
 struct PermissionToggle: View {
-    var isEnabled: Binding<Bool>
-    var permissionsManager: PermissionsManager
     @Binding var setting: Setting
+    var permissionsManager: PermissionsManager
     var updatePermission: (PermissionType) -> Void
     
     var body: some View {
-        Toggle("", isOn: isEnabled)
-            .toggleStyle(SwitchToggleStyle(tint: isEnabled.wrappedValue ? .green : .red))
-            .onChange(of: isEnabled.wrappedValue) { newValue in
+        Toggle("", isOn: Binding(
+            get: { setting.isPermissionEnabled ?? false },
+            set: { isEnabled in
+                setting.isPermissionEnabled = isEnabled
                 if let permissionType = setting.settingType?.permissionType {
                     updatePermission(permissionType)
                 }
+            })
+        )
+        .toggleStyle(SwitchToggleStyle(tint: setting.isPermissionEnabled ?? false ? .green : .red))
+        .onChange(of: setting.isPermissionEnabled, perform: { newValue in
+            if let permissionType = setting.settingType?.permissionType {
+                updatePermission(permissionType)
             }
+        })
+        .onTapGesture {
+            if let permissionType = setting.settingType?.permissionType {
+                updatePermission(permissionType)
+            }
+        }
     }
 }
 

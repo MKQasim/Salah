@@ -1,0 +1,16 @@
+{
+  "source": "/Users/test/iCloud Drive (Archive)/Documents/Documents - Test’s MacBook Pro/GitHub/Salah/Salah/Views/QiblaView/QiblaView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Qibla Directions"
+      },
+      {
+        "comment": "",
+        "key": "Please add a location to view Qibla directions."
+      }
+    ]
+  },
+  "version": 1
+}

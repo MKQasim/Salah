@@ -36,19 +36,19 @@ struct NotificationPermission: View {
                 .padding(.bottom,20)
             Spacer()
             VStack(spacing: 15){
-                switch notificationManager.notificationStatus {
-                case .denied,.authorized,.provisional,.notDetermined:
-                    Button(action: {}, label: {
-                        Text("Next")
-                    })
-                default:
-                    Button(action: {
-                        notificationManager.requestNotification()
-                    }, label: {
-                        Text("Allow notification")
-                    })
-                    .buttonStyle(.borderedProminent)
-                }
+//                switch $notificationManager.notificationStatus {
+//                case .denied,.authorized,.provisional,.notDetermined:
+//                    Button(action: {}, label: {
+//                        Text("Next")
+//                    })
+//                default:
+//                    Button(action: {
+//                        notificationManager.requestNotification()
+//                    }, label: {
+//                        Text("Allow notification")
+//                    })
+//                    .buttonStyle(.borderedProminent)
+//                }
                 Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
                     Text("Skip notification")
                 })
@@ -63,5 +63,5 @@ struct NotificationPermission: View {
 
 #Preview {
     NotificationPermission()
-        .environmentObject(NotificationManager())
+//        .environmentObject(NotificationManager())
 }

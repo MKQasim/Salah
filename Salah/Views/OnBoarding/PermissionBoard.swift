@@ -29,7 +29,7 @@ struct PermissionBoard: View {
                         getlocationStatus()
                     }
                     HStack{
-                        getNotificationStatus()
+//                        getNotificationStatus()
                     }
                 }
                 .frame(maxWidth: .infinity,minHeight: 200)
@@ -65,22 +65,22 @@ struct PermissionBoard: View {
         }
     }
     
-    func getNotificationStatus()-> some View{
-        switch notificationManager.notificationStatus {
-        case .notDetermined:
-            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
-        case .denied:
-            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .red, buttonColor: .red)
-        case .authorized, .provisional:
-            NotificationPermissionButtonView(image: "checkmark.circle.fill", checkBoxColor: .green, buttonColor: .green)
-#if !os(watchOS)
-        case .ephemeral:
-            NotificationPermissionButtonView(image: "circle", checkBoxColor: .green, buttonColor: .green)
-#endif
-        default:
-            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
-        }
-    }
+//    func getNotificationStatus()-> some View{
+//        switch notificationManager.$isNotificationEnabled {
+//        case .notDetermined:
+//            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
+//        case .denied:
+//            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .red, buttonColor: .red)
+//        case .authorized, .provisional:
+//            NotificationPermissionButtonView(image: "checkmark.circle.fill", checkBoxColor: .green, buttonColor: .green)
+//#if !os(watchOS)
+//        case .ephemeral:
+//            NotificationPermissionButtonView(image: "circle", checkBoxColor: .green, buttonColor: .green)
+//#endif
+//        default:
+//            NotificationPermissionButtonView(image: "cicle", checkBoxColor: .gray, buttonColor: .blue)
+//        }
+//    }
 }
 
 
@@ -120,5 +120,5 @@ struct NotificationPermissionButtonView: View {
 #Preview {
     PermissionBoard()
         .environmentObject(LocationManager())
-        .environmentObject(NotificationManager())
+//        .environmentObject(NotificationManager())
 }

@@ -78,10 +78,72 @@
             filePath = "Salah/Views/Navigation/NavigationSplitDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0D95BFA0-5774-49B0-9B86-E828B0EB0846 - 3916942bc17c103a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #3 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0 in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "968">
+               </Location>
+               <Location
+                  uuid = "0D95BFA0-5774-49B0-9B86-E828B0EB0846 - f4bc75da08f2ade1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Salah.Location) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #3 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0 in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  uuid = "0D95BFA0-5774-49B0-9B86-E828B0EB0846 - f4bc75da08f2ad4c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Salah.Location) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #3 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0 in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "148"
+                  endingLineNumber = "148"
+                  offsetFromSymbolStart = "324">
+               </Location>
+               <Location
+                  uuid = "0D95BFA0-5774-49B0-9B86-E828B0EB0846 - f4bc75da08f2acf8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Salah.Location) -&gt; () in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in closure #3 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.frame(minWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxWidth: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, minHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, idealHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, maxHeight: Swift.Optional&lt;CoreGraphics.CGFloat&gt;, alignment: SwiftUI.Alignment) -&gt; some&gt;&gt;.0 in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "136"
+                  endingLineNumber = "136"
+                  offsetFromSymbolStart = "324">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -168,14 +230,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "89EC09B2-6237-4161-8B46-93D762F8EF0D"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Salah/Views/Navigation/NavigationSplitDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -190,10 +252,72 @@
             filePath = "Salah/Views/Navigation/NavigationSplitDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0296467A-6BD6-433C-BE07-745ED56D4CFD - c510fdbecbbc0862"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "284">
+               </Location>
+               <Location
+                  uuid = "0296467A-6BD6-433C-BE07-745ED56D4CFD - c510fdbecbbc0862"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "1400">
+               </Location>
+               <Location
+                  uuid = "0296467A-6BD6-433C-BE07-745ED56D4CFD - c510fdbecbbc0b07"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "1400">
+               </Location>
+               <Location
+                  uuid = "0296467A-6BD6-433C-BE07-745ED56D4CFD - c510fdbecbbc088b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "172"
+                  endingLineNumber = "172"
+                  offsetFromSymbolStart = "1400">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,10 +330,563 @@
             filePath = "Salah/Views/Navigation/NavigationSplitDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "body"
             landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "764E7436-C4B0-4A9B-865C-094A2C0C8A0C - ee25657a0c1bda2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0 in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "764E7436-C4B0-4A9B-865C-094A2C0C8A0C - c510fdbecbbc0820"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "177"
+                  endingLineNumber = "177"
+                  offsetFromSymbolStart = "976">
+               </Location>
+               <Location
+                  uuid = "764E7436-C4B0-4A9B-865C-094A2C0C8A0C - c510fdbecbbc0bc5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "182"
+                  endingLineNumber = "182"
+                  offsetFromSymbolStart = "976">
+               </Location>
+               <Location
+                  uuid = "764E7436-C4B0-4A9B-865C-094A2C0C8A0C - c510fdbecbbc0949"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #5 () -&gt; () in Salah.NavigationSplitDetailView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/Navigation/NavigationSplitDetailView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "170"
+                  endingLineNumber = "170"
+                  offsetFromSymbolStart = "976">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C13C4F37-54AA-4DAC-BC2A-1BE660437ECD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "720"
+            endingLineNumber = "720"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0D962ABE-8926-4FEF-A886-155CB123B17D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "734"
+            endingLineNumber = "734"
+            landmarkName = "updatePermissionSetting(permissionType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0D962ABE-8926-4FEF-A886-155CB123B17D - 426003ceb0a0a6ee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "676"
+                  endingLineNumber = "676"
+                  offsetFromSymbolStart = "508">
+               </Location>
+               <Location
+                  uuid = "0D962ABE-8926-4FEF-A886-155CB123B17D - 426003ceb0a0a709"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "675"
+                  endingLineNumber = "675"
+                  offsetFromSymbolStart = "824">
+               </Location>
+               <Location
+                  uuid = "0D962ABE-8926-4FEF-A886-155CB123B17D - 426003ceb0a0bf97"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "733"
+                  endingLineNumber = "733"
+                  offsetFromSymbolStart = "824">
+               </Location>
+               <Location
+                  uuid = "0D962ABE-8926-4FEF-A886-155CB123B17D - 426003ceb0a0bf74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "734"
+                  endingLineNumber = "734"
+                  offsetFromSymbolStart = "824">
+               </Location>
+               <Location
+                  uuid = "0D962ABE-8926-4FEF-A886-155CB123B17D - 426003ceb0a0bf74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "734"
+                  endingLineNumber = "734"
+                  offsetFromSymbolStart = "908">
+               </Location>
+               <Location
+                  uuid = "0D962ABE-8926-4FEF-A886-155CB123B17D - 426003ceb0a0bf74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "734"
+                  endingLineNumber = "734"
+                  offsetFromSymbolStart = "712">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2EB7E1B7-36E1-42AB-A754-CF89A691C167"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "745"
+            endingLineNumber = "745"
+            landmarkName = "updatePermissionSetting(permissionType:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2EB7E1B7-36E1-42AB-A754-CF89A691C167 - 426003ceb0a0be03"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "745"
+                  endingLineNumber = "745"
+                  offsetFromSymbolStart = "3228">
+               </Location>
+               <Location
+                  uuid = "2EB7E1B7-36E1-42AB-A754-CF89A691C167 - 426003ceb0a0be03"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "745"
+                  endingLineNumber = "745"
+                  offsetFromSymbolStart = "2328">
+               </Location>
+               <Location
+                  uuid = "2EB7E1B7-36E1-42AB-A754-CF89A691C167 - 426003ceb0a0be03"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.PermissionSettingsRow.updatePermissionSetting(permissionType: Salah.PermissionType) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "745"
+                  endingLineNumber = "745"
+                  offsetFromSymbolStart = "2308">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EF4F5BB-FD77-4723-9F02-58342057F5ED"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "defaultSettings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "98079229-5CC3-4232-8DE8-EAF19C768783"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "627"
+            endingLineNumber = "627"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0EA925E7-3AB9-4BCA-A880-7148E4EA9C84"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "629"
+            endingLineNumber = "629"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "0EA925E7-3AB9-4BCA-A880-7148E4EA9C84 - c540c981c614baa2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.VStack&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in Salah.SettingsView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "629"
+                  endingLineNumber = "629"
+                  offsetFromSymbolStart = "480">
+               </Location>
+               <Location
+                  uuid = "0EA925E7-3AB9-4BCA-A880-7148E4EA9C84 - 1c7aeb8fa53d7ad4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Salah.Setting) -&gt; Swift.Bool in closure #3 () -&gt; () in closure #1 () -&gt; SwiftUI.TupleView&lt;(SwiftUI.VStack&lt;SwiftUI.HStack&lt;SwiftUI.TupleView&lt;(&lt;&lt;opaque return type of SwiftUI.View.buttonStyle&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ButtonStyle&gt;(&#x3c4;_1_0) -&gt; some&gt;&gt;.0, SwiftUI.Spacer)&gt;&gt;&gt;, &lt;&lt;opaque return type of SwiftUI.View.toolbar&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.ToolbarContent&gt;(content: () -&gt; &#x3c4;_1_0) -&gt; some&gt;&gt;.0)&gt; in Salah.SettingsView.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "629"
+                  endingLineNumber = "629"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "652CFA2E-9233-46A4-80CC-CC21098A4E7B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "705"
+            endingLineNumber = "705"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C05D7770-340D-41C1-9F4D-BF32981FA759"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "776"
+            endingLineNumber = "776"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "C05D7770-340D-41C1-9F4D-BF32981FA759 - 63bd972d46f6da6c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in Salah.PermissionToggle.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "776"
+                  endingLineNumber = "776"
+                  offsetFromSymbolStart = "492">
+               </Location>
+               <Location
+                  uuid = "C05D7770-340D-41C1-9F4D-BF32981FA759 - 63bd972d46f6da6c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #4 () -&gt; () in Salah.PermissionToggle.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "776"
+                  endingLineNumber = "776"
+                  offsetFromSymbolStart = "432">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "49D14A1F-5541-45C4-9FB2-42C09007A334"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "771"
+            endingLineNumber = "771"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "49D14A1F-5541-45C4-9FB2-42C09007A334 - e82a7ac6e23cce85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in Salah.PermissionToggle.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "771"
+                  endingLineNumber = "771"
+                  offsetFromSymbolStart = "512">
+               </Location>
+               <Location
+                  uuid = "49D14A1F-5541-45C4-9FB2-42C09007A334 - e82a7ac6e23cce85"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #3 (Swift.Optional&lt;Swift.Bool&gt;) -&gt; () in Salah.PermissionToggle.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "771"
+                  endingLineNumber = "771"
+                  offsetFromSymbolStart = "452">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F97E5261-6030-4B95-8171-A725BAB6008F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "764"
+            endingLineNumber = "764"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "F97E5261-6030-4B95-8171-A725BAB6008F - 1dd755aa12eb31ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Bool) -&gt; () in Salah.PermissionToggle.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "764"
+                  endingLineNumber = "764"
+                  offsetFromSymbolStart = "660">
+               </Location>
+               <Location
+                  uuid = "F97E5261-6030-4B95-8171-A725BAB6008F - 1dd755aa12eb31ae"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (Swift.Bool) -&gt; () in Salah.PermissionToggle.body.getter : some"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Views/SettingsView/SettingsView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "764"
+                  endingLineNumber = "764"
+                  offsetFromSymbolStart = "600">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A52334A5-B63C-4D31-B2CA-0F05314E58F4"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Views/SettingsView/SettingsView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "82382252-6D1B-4043-99F9-D7CBF332076F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Salah/Services/NotificationManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "getNotificationSetting()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "82382252-6D1B-4043-99F9-D7CBF332076F - 2579ed63576a5721"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Salah.NotificationManager.updateAuthorizationStatus(granted: Swift.Bool) -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Services/NotificationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "60"
+                  endingLineNumber = "60"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "82382252-6D1B-4043-99F9-D7CBF332076F - 206044ea2b725626"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (__C.UNNotificationSettings) -&gt; () in Salah.NotificationManager.getNotificationSetting() -&gt; ()"
+                  moduleName = "Salah"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/test/iCloud%20Drive%20(Archive)/Documents/Documents%20-%20Test%E2%80%99s%20MacBook%20Pro/GitHub/Salah/Salah/Services/NotificationManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

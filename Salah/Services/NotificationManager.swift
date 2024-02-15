@@ -8,86 +8,95 @@
 import Foundation
 import UserNotifications
 
-@MainActor
-class NotificationManager: NSObject, ObservableObject {
-    private let notificationManager = UNUserNotificationCenter.current()
-    @Published var notificationStatus: UNAuthorizationStatus?
-    
-    override init() {
-        super.init()
-        notificationManager.delegate = self
-    }
-    
-    var statusString: String{
-        guard let status = notificationStatus else {
-            return "Unknown"
-        }
-        switch status {
-        case .notDetermined:
-            return "Not  Determined"
-        case .denied:
-            return "Denied"
-        case .authorized:
-            return "Authorized"
-        case .provisional:
-            return "Provisional"
-        case .ephemeral:
-            return "Ephemeral"
-        @unknown default:
-            return "Unknown"
-        }
-    }
-    
-    func requestNotification() {
-        notificationManager.requestAuthorization(options: [.alert,.badge,.sound], completionHandler: {
-            granted, error in
-            if let error = error {
-                print(error.localizedDescription)
-            }
-            DispatchQueue.main.sync {
-                if granted {
-                    self.notificationStatus = .authorized
-                }
-                else{
-                    self.notificationStatus = .denied
-                }
-            }
-            
-        })
-    }
-    
-    func getNotificationSetting() {
-        notificationManager.getNotificationSettings(completionHandler:{ (setting) in
-            print(setting.authorizationStatus.rawValue)
-            DispatchQueue.main.async {
-                switch setting.authorizationStatus {
-                case .notDetermined:
-                    self.notificationStatus = .notDetermined
-                case .denied:
-                    self.notificationStatus = .denied
-                case .authorized:
-                    self.notificationStatus = .authorized
-                case .provisional:
-                    self.notificationStatus = .provisional
+enum AuthorizationStatus {
+    case notDetermined
+    case denied
+    case authorized
+    case provisional
     #if !os(macOS) && !os(watchOS)
-                case .ephemeral:
-                    self.notificationStatus = .ephemeral
+    case ephemeral
     #endif
-                @unknown default:
-                    self.notificationStatus = .none
-                }
-                print(self.notificationStatus?.rawValue)
-            }
-            
-        })
-    }
-    
+    case unknown
 }
 
-extension NotificationManager: UNUserNotificationCenterDelegate{
-    func notificationCenterDidChangeAuthorization(_ center: UNUserNotificationCenter){
-        center.getNotificationSettings(completionHandler: { (setting) in
-            self.notificationStatus = setting.authorizationStatus
-        })
+@MainActor
+class NotificationManager: NSObject, ObservableObject {
+    
+    static let shared = NotificationManager()
+
+    private let notificationManager = UNUserNotificationCenter.current()
+    @Published var isNotificationEnabled: Bool = false
+    
+    // Initialize authorizationStatus with a default value
+    private var authorizationStatus: AuthorizationStatus = .notDetermined {
+        didSet {
+            isNotificationEnabled = authorizationStatus == .authorized
+        }
+    }
+
+    private override init() {
+        super.init()
+        notificationManager.delegate = self
+        requestNotification { granted in
+            print("self.notificationManager.isNotificationEnabled", granted)
+            self.isNotificationEnabled = granted
+        }
+        getNotificationSetting()
+    }
+
+    func requestNotification(completion: @escaping (Bool) -> Void) {
+            notificationManager.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                self.updateAuthorizationStatus(granted: granted)
+                completion(granted)
+            }
+        }
+    
+    func getNotificationSetting() {
+        notificationManager.getNotificationSettings { setting in
+            self.updateAuthorizationStatus(status: setting.authorizationStatus)
+        }
+    }
+    
+    private func updateAuthorizationStatus(granted: Bool) {
+        DispatchQueue.main.async {
+            self.authorizationStatus = granted ? .authorized : .denied
+        }
+    }
+    
+    private func updateAuthorizationStatus(status: UNAuthorizationStatus) {
+        DispatchQueue.main.async {
+            self.authorizationStatus = self.convertAuthorizationStatus(status)
+        }
+    }
+    
+    private func convertAuthorizationStatus(_ status: UNAuthorizationStatus) -> AuthorizationStatus {
+        switch status {
+        case .notDetermined:
+            return .notDetermined
+        case .denied:
+            return .denied
+        case .authorized:
+            return .authorized
+        case .provisional:
+            return .provisional
+        #if !os(macOS) && !os(watchOS)
+        case .ephemeral:
+            return .ephemeral
+        #endif
+        default:
+            return .unknown
+        }
     }
 }
+
+extension NotificationManager: UNUserNotificationCenterDelegate {
+    func notificationCenterDidChangeAuthorization(_ center: UNUserNotificationCenter) {
+        center.getNotificationSettings { setting in
+            self.updateAuthorizationStatus(status: setting.authorizationStatus)
+        }
+    }
+}
+

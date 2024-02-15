@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BuildMachineOSBuild</key>
+	<string>23D60</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Salah</string>
+	<key>CFBundleExecutable</key>
+	<string>Salah</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
+	<key>CFBundleIconName</key>
+	<string>AppIcon</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.kamsque.Salah</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>ar</string>
+	</array>
+	<key>CFBundleName</key>
+	<string>Salah</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1</string>
+	<key>CFBundleSupportedPlatforms</key>
+	<array>
+		<string>MacOSX</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>DTCompiler</key>
+	<string>com.apple.compilers.llvm.clang.1_0</string>
+	<key>DTPlatformBuild</key>
+	<string></string>
+	<key>DTPlatformName</key>
+	<string>macosx</string>
+	<key>DTPlatformVersion</key>
+	<string>14.2</string>
+	<key>DTSDKBuild</key>
+	<string>23C53</string>
+	<key>DTSDKName</key>
+	<string>macosx14.2</string>
+	<key>DTXcode</key>
+	<string>1520</string>
+	<key>DTXcodeBuild</key>
+	<string>15C500b</string>
+	<key>LSApplicationCategoryType</key>
+	<string>public.app-category.utilities</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>14.3</string>
+	<key>NSLocationUsageDescription</key>
+	<string>This app needs your location coordinates to calculate the accurate salah timings for your region. Your location data is only used for this purpose and is not shared with any third parties. You can grant or revoke this permission at any time in your device settings.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs your location coordinates to calculate the accurate salah timings for your region. Your location data is only used for this purpose and is not shared with any third parties. You can grant or revoke this permission at any time in your device settings.</string>
+	<key>NSUserNotificationUsageDescription</key>
+	<string>This app require your notification access to remind of upcoming prayer timings</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string></string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+</dict>
+</plist>

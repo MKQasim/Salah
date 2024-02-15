@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSUserNotificationsUsageDescription</key>
+	<key>NSUserNotificationUsageDescription</key>
 	<string>This app require your notification access to remind of upcoming prayer timings</string>
 </dict>
 </plist>

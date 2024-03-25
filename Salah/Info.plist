@@ -4,5 +4,12 @@
 <dict>
 	<key>NSUserNotificationUsageDescription</key>
 	<string>This app require your notification access to remind of upcoming prayer timings</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>location</string>
+		<string>processing</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

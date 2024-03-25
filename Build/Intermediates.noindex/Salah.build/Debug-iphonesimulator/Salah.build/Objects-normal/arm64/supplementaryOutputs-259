@@ -1,0 +1,18 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/ViewModel/ContentViewModel.swift":
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.swiftconstvalues"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.o"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.dia"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.swiftdeps"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PermissionBoard.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.swiftdeps"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.dia"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.o"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerInfoView.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.d"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.o"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.dia"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.swiftdeps"

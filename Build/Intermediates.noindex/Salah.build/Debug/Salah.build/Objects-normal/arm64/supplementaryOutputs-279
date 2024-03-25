@@ -1,0 +1,18 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/DerivedSources/GeneratedAssetSymbols.swift":
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.dia"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.d"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/SettingsView.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.d"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.dia"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.swiftdeps"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/SettingsView.o"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/QiblaView.swift":
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.swiftdeps"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.d"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.o"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/QiblaView.dia"

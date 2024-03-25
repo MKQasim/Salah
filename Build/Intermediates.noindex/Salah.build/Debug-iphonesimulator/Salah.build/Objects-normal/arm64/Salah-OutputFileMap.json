@@ -1,0 +1,278 @@
+{
+  "" : {
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/Salah-master.dia",
+    "emit-module-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/Salah-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/Salah-master-emit-module.dia",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/Salah-master.swiftdeps"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/AppButtons.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppButtons~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/AppLandingView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/AppLandingView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/ContentView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/SalahApp.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SalahApp~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Models/PrayerPlace.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/ChooseCityView/ChooseCityView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/IPadView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/IPhoneView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPhoneView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/MacView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MacView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/TabView/MainTabView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/MainTabView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/ViewModel/ContentViewModel.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentViewModel~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/ContainerView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContainerView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/DetailsView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationListView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationListView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationManager.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationManager~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationPermissionOnboard.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/LocationPermissionOnboard~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NextPrayerView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NextPrayerView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NotificationManager.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NotificationPermission.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationPermission~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NowTimeView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NowTimeView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PermissionBoard.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PermissionBoard~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerInfoView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerInfoView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerTodayCellView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodayCellView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerTodaySectionView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerTodaySectionView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/QiblaView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/QiblaView~partial.swiftmodule"
+  },
+  "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/SettingsView.swift" : {
+    "const-values" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView.swiftconstvalues",
+    "dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView.d",
+    "diagnostics" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView.dia",
+    "index-unit-output-path" : "/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView.o",
+    "swift-dependencies" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView.swiftdeps",
+    "swiftmodule" : "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/SettingsView~partial.swiftmodule"
+  }
+}

@@ -15,11 +15,10 @@ extension ContentView {
     var iPhoneView: some View {
         NavigationStack(path: $viewModel.navigationPath) {
             createTabView()
-                .navigationTitle(viewModel.tabViewModel.tapTitle)
                 .toolbar {
-                    getToolbarItems()
-                }
-                .onChange(of: viewModel.tabViewModel.isListMode) { newValue in
+                    toolbarContent()
+                }.toolbarTitleDisplayMode(.large)
+                .onChange(of: viewModel.tabViewModel.isListMode) { _ , newValue in
                     print(newValue)
                 }
                 .onChange(of: viewModel.permissionManager.locationManager?.lastLocation) { _, newValue in
@@ -33,22 +32,15 @@ extension ContentView {
 
     @ViewBuilder
     private func createTabView() -> some View {
-        TabView(selection: Binding<Bool>(
-            get: { self.viewModel.tabViewModel.isListMode ?? false },
-            set: { self.viewModel.tabViewModel.isListMode = $0 }
-        )) {
-            createTab(isListMode: true)
-            createTab(isListMode: false)
-        }
-    }
-
-    @ViewBuilder
-    private func createTab(isListMode: Bool) -> some View {
-        getViewForTab(isListMode: isListMode)
-            .tabItem {
-                Label(viewModel.tabViewModel.tapTitle, systemImage: viewModel.tabViewModel.tapIcon)
+        VStack {
+            getViewForTab(isListMode: viewModel.tabViewModel.isListMode)
+            HStack {
+                Spacer()
+                BottomTapButton()
+                .padding(.bottom, 20)
+                .padding(.trailing, 30)
             }
-            .tag(isListMode)
+        }
     }
 
     @ViewBuilder
@@ -60,11 +52,28 @@ extension ContentView {
         }
     }
 
-    private func getToolbarItems() -> some View {
-        HStack {
+    @ToolbarContentBuilder
+    private func toolbarContent() -> some ToolbarContent {
+        ToolbarItem(placement: .topBarLeading) {
             AddButton()
+        }
+        
+        ToolbarItem(placement: .topBarLeading) {
             LocationButton()
+        }
+        
+        ToolbarItem(placement: .topBarLeading) {
             QiblaButton()
+        }
+        
+        ToolbarItem(placement: .principal) {
+            Image("logo")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 50)
+        }
+        
+        ToolbarItem(placement: .topBarTrailing) {
             NavigationLink(destination: SettingsView(), isActive: $viewModel.isSettingsViewPresented) {
                 SettingsButton()
             }

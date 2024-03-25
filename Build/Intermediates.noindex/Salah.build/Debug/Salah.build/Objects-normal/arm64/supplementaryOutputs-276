@@ -1,0 +1,18 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PermissionBoard.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.dia"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.swiftdeps"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PermissionBoard.d"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/ViewModel/ContentViewModel.swift":
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/ContentViewModel.swiftconstvalues"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/ContentViewModel.o"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/ContentViewModel.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/ContentViewModel.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/ContentViewModel.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerInfoView.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerInfoView.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerInfoView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerInfoView.swiftdeps"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerInfoView.d"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerInfoView.dia"

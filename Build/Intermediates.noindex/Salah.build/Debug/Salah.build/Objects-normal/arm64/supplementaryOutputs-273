@@ -1,0 +1,18 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/AppButtons.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppButtons.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppButtons.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppButtons.swiftdeps"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppButtons.d"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppButtons.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/AppLandingView.swift":
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.dia"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.o"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.d"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.swiftdeps"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationPermissionOnboard.swift":
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.swiftconstvalues"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.o"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.dia"

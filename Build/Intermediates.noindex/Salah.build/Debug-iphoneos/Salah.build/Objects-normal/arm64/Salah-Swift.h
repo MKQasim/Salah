@@ -306,6 +306,8 @@ SWIFT_CLASS("_TtC5Salah15LocationManager")
 + (nonnull instancetype)new SWIFT_UNAVAILABLE_MSG("-init is unavailable");
 @end
 
+
+
 @class CLLocationManager;
 @class CLHeading;
 
@@ -315,22 +317,12 @@ SWIFT_CLASS("_TtC5Salah15LocationManager")
 
 
 
-
-
 @class CLLocation;
 
 @interface LocationManager (SWIFT_EXTENSION(Salah)) <CLLocationManagerDelegate>
 - (void)locationManager:(CLLocationManager * _Nonnull)manager didUpdateLocations:(NSArray<CLLocation *> * _Nonnull)locations;
 - (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
 - (void)locationManagerDidChangeAuthorization:(CLLocationManager * _Nonnull)manager;
-@end
-
-
-SWIFT_CLASS("_TtC5Salah16LocationManagers")
-@interface LocationManagers : NSObject <CLLocationManagerDelegate>
-- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
-- (void)locationManager:(CLLocationManager * _Nonnull)manager didUpdateLocations:(NSArray<CLLocation *> * _Nonnull)locations;
-- (void)locationManager:(CLLocationManager * _Nonnull)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status;
 @end
 
 
@@ -353,13 +345,13 @@ SWIFT_CLASS("_TtC5Salah18PermissionsManager")
 
 
 
-
-
-
-
 @interface PermissionsManager (SWIFT_EXTENSION(Salah))
 - (void)appWillTerminate;
 @end
+
+
+
+
 
 
 

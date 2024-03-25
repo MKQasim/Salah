@@ -19,8 +19,6 @@ class TabViewModel: ObservableObject {
     
     func toggleListMode() {
         isListMode.toggle()
-        
-        
     }
 }
 

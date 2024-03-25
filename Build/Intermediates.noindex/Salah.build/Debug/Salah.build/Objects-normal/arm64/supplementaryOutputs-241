@@ -1,0 +1,24 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationPermissionOnboard.swift":
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.dia"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.swiftdeps"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.swiftconstvalues"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.o"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationPermissionOnboard.d"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/AppLandingView.swift":
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.swiftdeps"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.swiftconstvalues"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.d"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.o"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/AppLandingView.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NowTimeView.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NowTimeView.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NowTimeView.swiftdeps"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NowTimeView.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NowTimeView.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NowTimeView.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/MacView.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MacView.o"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MacView.d"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MacView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MacView.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/MacView.dia"

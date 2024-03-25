@@ -1,0 +1,18 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationListView.swift":
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationListView.swiftdeps"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationListView.swiftconstvalues"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationListView.o"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationListView.d"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/LocationListView.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerTodaySectionView.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftconstvalues"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NotificationPermission.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NotificationPermission.d"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NotificationPermission.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NotificationPermission.dia"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NotificationPermission.swiftdeps"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug/Salah.build/Objects-normal/arm64/NotificationPermission.o"

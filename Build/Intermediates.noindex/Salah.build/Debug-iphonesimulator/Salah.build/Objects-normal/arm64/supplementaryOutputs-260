@@ -1,0 +1,18 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/ContentView.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.d"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.swiftdeps"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.o"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ContentView.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/IPadView.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.swiftconstvalues"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/IPadView.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Models/PrayerPlace.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.swiftconstvalues"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.d"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/PrayerPlace.dia"

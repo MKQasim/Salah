@@ -1,0 +1,20 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/ContentView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Watch View"
+      },
+      {
+        "comment": "",
+        "key": "TV View"
+      },
+      {
+        "comment": "",
+        "key": "LocationPages"
+      }
+    ]
+  },
+  "version": 1
+}

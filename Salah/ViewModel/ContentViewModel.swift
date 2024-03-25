@@ -101,7 +101,7 @@ class ContentViewModel: ObservableObject {
     var permissionManager = PermissionsManager.shared
     private var context: ModelContext
     private var jsonDecoder = JSONDecoder()
-   
+    @Published var currentDate = Date()
     
     init(context: ModelContext) {
         prayer = Prayer()
@@ -253,10 +253,11 @@ extension ContentViewModel {
         let todayPrayers = prayers.filter { $0.name?.lowercased() != "sunrise" && $0.name?.lowercased() != "sunset" }
         
         // Find the next coming prayer
-        var currentDate = Date()
-        DispatchQueue.main.async {
-            if let timeZone = location?.timeZoneIdentifier {
-                currentDate = Date().toGlobalTime().toLocalTime(timeZone: timeZone)
+       
+        // Update it on the main thread
+        if let timeZone = location?.timeZoneIdentifier {
+            DispatchQueue.main.async {
+                self.currentDate = Date().toGlobalTime().toLocalTime(timeZone: timeZone)
             }
         }
         

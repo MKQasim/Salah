@@ -1,0 +1,18 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/DetailsView.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.d"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.dia"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.swiftdeps"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/DetailsView.o"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NotificationManager.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.swiftdeps"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.d"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/NotificationManager.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/ChooseCityView/ChooseCityView.swift":
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.dia"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.swiftdeps"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.d"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphonesimulator/Salah.build/Objects-normal/arm64/ChooseCityView.o"

@@ -1,0 +1,16 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationListView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Current Location"
+      },
+      {
+        "comment": "",
+        "key": "Delete"
+      }
+    ]
+  },
+  "version": 1
+}

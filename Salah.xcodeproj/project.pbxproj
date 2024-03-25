@@ -128,13 +128,6 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
-		52125CA32BAD7FC100701295 /* Prayer */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Prayer;
-			sourceTree = "<group>";
-		};
 		52125CA42BAD7FC100701295 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,7 +276,6 @@
 				52125CAE2BAD7FC200701295 /* AppResources */,
 				52125CB32BAD7FC200701295 /* Models */,
 				52125CA42BAD7FC100701295 /* Modules */,
-				52125CA32BAD7FC100701295 /* Prayer */,
 				52125CAC2BAD7FC100701295 /* ViewModel */,
 				52125CB52BAD7FC200701295 /* Views */,
 				0504786E2B20F63500E6BE85 /* Info.plist */,

@@ -1,0 +1,16 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/QiblaView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Qibla View"
+      },
+      {
+        "comment": "",
+        "key": "Qibla At %@ , %@"
+      }
+    ]
+  },
+  "version": 1
+}

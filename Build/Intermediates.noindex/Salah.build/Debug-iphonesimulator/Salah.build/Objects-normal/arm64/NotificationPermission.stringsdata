@@ -1,0 +1,20 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NotificationPermission.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Get notified for upcoming Salah"
+      },
+      {
+        "comment": "",
+        "key": "We do not share your information to any third parties servers and really care for your privacy."
+      },
+      {
+        "comment": "",
+        "key": "Skip notification"
+      }
+    ]
+  },
+  "version": 1
+}

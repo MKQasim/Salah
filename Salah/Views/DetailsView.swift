@@ -162,6 +162,7 @@ struct DetailView: View {
                     }
                   
                 }
+                .navigationTitle(viewModel.tabViewModel.tapTitle)
                 .frame(width: geometry.size.width)
                 .onChange(of: viewModel.prayer) { _,newValue in
                     print(newValue)

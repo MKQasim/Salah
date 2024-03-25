@@ -1,5 +1,5 @@
 //
-//  Item.swift
+//  PrayerPlace.swift
 //  Salah
 //
 //  Created by Muhammad's on 02.03.24.

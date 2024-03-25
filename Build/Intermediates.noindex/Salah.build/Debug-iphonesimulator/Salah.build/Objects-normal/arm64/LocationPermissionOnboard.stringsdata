@@ -1,0 +1,56 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationPermissionOnboard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "City: %@"
+      },
+      {
+        "comment": "",
+        "key": "Current Location: %lf, %lf"
+      },
+      {
+        "comment": "",
+        "key": "Fetching Location..."
+      },
+      {
+        "comment": "",
+        "key": "Request Location Authorization"
+      },
+      {
+        "comment": "",
+        "key": "Get Location Details"
+      },
+      {
+        "comment": "",
+        "key": "Start Updating Location"
+      },
+      {
+        "comment": "",
+        "key": "Stop Updating Location"
+      },
+      {
+        "comment": "",
+        "key": "Start with a new journey of Salah Tracking"
+      },
+      {
+        "comment": "",
+        "key": "We do not share your location with any third-party servers and really care about your privacy."
+      },
+      {
+        "comment": "",
+        "key": "Allow location permission"
+      },
+      {
+        "comment": "",
+        "key": "Get current location"
+      },
+      {
+        "comment": "",
+        "key": "Don't want to share location"
+      }
+    ]
+  },
+  "version": 1
+}

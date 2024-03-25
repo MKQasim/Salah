@@ -441,7 +441,8 @@ extension LocationManager: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         locationStatus = status
-        if status == .authorizedWhenInUse {
+        
+        if status == .authorized {
             requestLocationPermission()
         }
     }

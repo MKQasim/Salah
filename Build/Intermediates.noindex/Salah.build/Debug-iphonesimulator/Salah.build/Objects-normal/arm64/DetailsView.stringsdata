@@ -1,0 +1,16 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/DetailsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Settings"
+      },
+      {
+        "comment": "",
+        "key": "Location at %@, %@"
+      }
+    ]
+  },
+  "version": 1
+}

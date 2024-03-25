@@ -13,7 +13,6 @@ struct SalahApp: App {
     
     let fileShared = FileStorageManager.shared
     @StateObject var currentTheme: Theme = Theme()
-    @StateObject var viewModels = ContentViewModels()
     @StateObject var viewModel: ContentViewModel = {
         // Create the schema
         let schema = Schema([
@@ -65,7 +64,6 @@ struct SalahApp: App {
         }
         .environmentObject(currentTheme)
         .environmentObject(viewModel)
-//        .environmentObject(viewModels)
         .modelContainer(sharedModelContainer)
     }
 }

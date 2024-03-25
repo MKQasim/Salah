@@ -14,70 +14,6 @@ import CoreLocation
 import Foundation
 import CoreLocation
 
-class ContentViewModels: ObservableObject {
-    @Published var locationManager = LocationManagers()
-}
-
-
-
-
-class LocationManagers: NSObject, ObservableObject, CLLocationManagerDelegate {
-    static let shared = LocationManagers() // Shared singleton instance
-       
-    private let manager = CLLocationManager()
-    
-    @Published var currentLocation: CLLocation?
-    @Published var authorizationStatus: CLAuthorizationStatus?
-    @Published var isLocationEnabled: Bool = false
-   
-    override init() {
-        super.init()
-        manager.delegate = self
-    }
-    
-    func requestLocationAuthorization() {
-        manager.requestWhenInUseAuthorization()
-    }
-    
-    func startUpdatingLocation() {
-        guard CLLocationManager.locationServicesEnabled() else {
-            // Handle case where location services are not enabled
-            print("Location services are not enabled.")
-            return
-        }
-        
-        switch manager.authorizationStatus {
-        case .authorizedAlways, .authorizedWhenInUse:
-            DispatchQueue.main.async { [weak self] in
-                self?.manager.startUpdatingLocation()
-            }
-        case .notDetermined:
-            // Request authorization if not determined
-            manager.requestWhenInUseAuthorization()
-        case .denied, .restricted:
-            // Handle case where authorization is denied or restricted
-            print("Location authorization denied or restricted.")
-        @unknown default:
-            fatalError("Unhandled case.")
-        }
-    }
-    
-    func stopUpdatingLocation() {
-        manager.stopUpdatingLocation()
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        print(location.coordinate.latitude)
-        currentLocation = location
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        authorizationStatus = status
-        isLocationEnabled = status == .authorizedWhenInUse || status == .authorizedAlways
-    }
-}
-
 extension LocationManager {
     func getLocationDetails(completion: @escaping (Result<(String, String), Error>) -> Void) {
         guard let location = lastLocation else {
@@ -104,66 +40,6 @@ extension LocationManager {
     }
 }
 
-struct LocationTest: View {
-    @EnvironmentObject var viewModel: ContentViewModel
-    @State private var cityName: String = ""
-    @State private var isLoading = false
-    
-    var body: some View {
-        VStack {
-            if isLoading {
-                ProgressView("Fetching Location...")
-            } else {
-                Text("City: \(cityName)")
-                    .padding()
-                
-                Text("Current Location: \(viewModel.permissionManager.locationManager?.lastLocation?.coordinate.latitude ?? 0), \(viewModel.permissionManager.locationManager?.lastLocation?.coordinate.longitude ?? 0)")
-                    .padding()
-                
-                Button(action: {
-                    viewModel.permissionManager.locationManager?.requestLocationPermission()
-//                    viewModel.locationManager.requestLocationAuthorization()
-                }) {
-                    Text("Request Location Authorization")
-                }
-                .padding()
-                
-                Button(action: {
-                    isLoading = true
-                    viewModel.permissionManager.locationManager?.checkLocationPermission { result in
-                        isLoading = false
-                        switch result {
-                        case .success(let (isEnabled, prayerPlace)):
-                            cityName = prayerPlace?.city ?? ""
-                        case .failure(let error):
-                            print("Failed to get location details: \(error.localizedDescription)")
-                        }
-                    }
-                }) {
-                    Text("Get Location Details")
-                }
-                .padding()
-                
-                Button(action: {
-                    viewModel.permissionManager.locationManager?.stopLocationUpdates()
-                }) {
-                    Text("Start Updating Location")
-                }
-                .padding()
-                
-                Button(action: {
-                    viewModel.permissionManager.locationManager?.stopLocationUpdates()
-                }) {
-                    Text("Stop Updating Location")
-                }
-                .padding()
-            }
-        }
-    }
-}
-
-
-
 // MARK: - LocationPermissionOnboard View
 struct LocationPermissionOnboard: View {
     @EnvironmentObject private var viewModel: ContentViewModel
@@ -182,16 +58,24 @@ struct LocationPermissionOnboard: View {
                 chooseCityButton
             }
             .padding()
+#if os(iOS)
             .fullScreenCover(isPresented: $navigateToContentView) {
                 ContentView()
                     .edgesIgnoringSafeArea(.all)
             }
+#endif
             .onAppear(perform: onAppear)
             .onChange(of: viewModel.permissionManager.locationManager?.lastLocation, perform: onLocationChange)
             .onChange(of: navigateToContentView, perform: onNavigateToContentViewChange)
             .sheet(isPresented: $isChoosingCity) {
                 ChooseCityView(onDismiss: onChooseCityViewDismiss)
             }
+#if os(macOS)
+            .sheet(isPresented: $navigateToContentView) {
+                ContentView()
+                    .edgesIgnoringSafeArea(.all)
+            }
+#endif
         }
     }
     
@@ -231,23 +115,23 @@ struct LocationPermissionOnboard: View {
             return AnyView(Button(action: locationCheck) {
                 Text("Get current location")
             }
-            .buttonStyle(.borderedProminent)
-            .tint(.blue)
-            .foregroundColor(.white)
-            .cornerRadius(20)
-            .padding(.bottom, 8))
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+                .padding(.bottom, 8))
         default:
             return AnyView(Button(action: requestLocationPermission) {
                 Text("Allow location permission")
             }
-            .buttonStyle(.borderedProminent)
-            .tint(.gray)
-            .foregroundColor(.white)
-            .cornerRadius(20)
-            .padding(.bottom, 8))
+                .buttonStyle(.borderedProminent)
+                .tint(.gray)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+                .padding(.bottom, 8))
         }
     }
-
+    
     
     private var chooseCityButton: some View {
         Button(action: { isChoosingCity = true }) {
@@ -259,7 +143,7 @@ struct LocationPermissionOnboard: View {
     // MARK: - Actions
     private func onAppear() {
         
-       
+        
         animationAmount += 2
         
         // Check if onboarding is completed

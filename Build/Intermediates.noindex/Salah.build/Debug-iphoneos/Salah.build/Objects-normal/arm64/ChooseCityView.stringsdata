@@ -1,0 +1,16 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/ChooseCityView/ChooseCityView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "Available Cities %lld"
+      },
+      {
+        "comment": "",
+        "key": "Search"
+      }
+    ]
+  },
+  "version": 1
+}

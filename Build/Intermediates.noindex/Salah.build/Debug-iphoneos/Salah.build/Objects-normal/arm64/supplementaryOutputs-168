@@ -1,0 +1,24 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerTodaySectionView.swift":
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.d"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodaySectionView.dia"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/AppButtons.swift":
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/AppButtons.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/AppButtons.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/AppButtons.dia"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/AppButtons.o"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/AppButtons.d"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/NotificationPermission.swift":
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/NotificationPermission.swiftdeps"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/NotificationPermission.dia"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/NotificationPermission.d"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/NotificationPermission.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/NotificationPermission.swiftconstvalues"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/LocationListView.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/LocationListView.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/LocationListView.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/LocationListView.dia"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/LocationListView.swiftdeps"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/LocationListView.d"

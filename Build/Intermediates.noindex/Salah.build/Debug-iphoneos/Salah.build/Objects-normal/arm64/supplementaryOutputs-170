@@ -1,0 +1,24 @@
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PrayerTodayCellView.swift":
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodayCellView.o"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodayCellView.swiftdeps"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodayCellView.swiftconstvalues"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodayCellView.dia"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/PrayerTodayCellView.d"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/AppResources/SalahApp.swift":
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/SalahApp.dia"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/SalahApp.d"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/SalahApp.o"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/SalahApp.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/SalahApp.swiftdeps"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Modules/IPhoneView.swift":
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/IPhoneView.swiftconstvalues"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/IPhoneView.swiftdeps"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/IPhoneView.o"
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/IPhoneView.dia"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/IPhoneView.d"
+"/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/ContainerView.swift":
+  diagnostics: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/ContainerView.dia"
+  object: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/ContainerView.o"
+  swift-dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/ContainerView.swiftdeps"
+  const-values: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/ContainerView.swiftconstvalues"
+  dependencies: "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Build/Intermediates.noindex/Salah.build/Debug-iphoneos/Salah.build/Objects-normal/arm64/ContainerView.d"

@@ -1,0 +1,28 @@
+{
+  "source": "/Users/test/Documents/Development/iOS_Dev/UpdatedSalah/Salah/Views/PermissionBoard.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "We care about your privacy"
+      },
+      {
+        "comment": "",
+        "key": "Allow which feature you want to enable for this app."
+      },
+      {
+        "comment": "",
+        "key": "Skip"
+      },
+      {
+        "comment": "",
+        "key": "Location Permission"
+      },
+      {
+        "comment": "",
+        "key": "Notification"
+      }
+    ]
+  },
+  "version": 1
+}
